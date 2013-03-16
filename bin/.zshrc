@@ -40,7 +40,7 @@ alias 2spooky='lua ~/stuff/2spooky.lua'
 alias gentoo='lua ~/sfuff/gentoo.lua'
 
 #alias for pkill
-alias pk='sudo pkill'
+alias pk='pkill'
 alias pkx='sudo pkill X'
 
 #toilet
