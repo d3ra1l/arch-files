@@ -48,9 +48,6 @@ alias gaym='toilet --gay -f mono9 -t'
 alias gayf='toilet --gay -f future -t'
 alias gayt='toilet --gay -f term -t'
 
-#pretty console clock
-alias clock='while true; do tput clear; date +"%H : %M : %S" | gaym ; sleep 1; done'
-
 #convert flacs in dir to ogg, then move up a dir
 alias f2o='flac2ogg;..'
 
