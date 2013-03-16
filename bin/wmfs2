@@ -1,0 +1,4 @@
+sh ~/.fehbg &
+
+exec wmfs -C ~/.config/wmfs2/wmfsrc&
+~/.config/wmfs2/status.sh

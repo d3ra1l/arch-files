@@ -1,0 +1,30 @@
+bind_to_address "127.0.0.1"
+port "6600"
+
+music_directory "~/mu/music"
+playlist_directory "~/mu/playlists"
+
+db_file "~/mu/conf/mpd.db"
+log_file "~/mu/conf/mpd.log"
+pid_file "~/mu/conf/mpd.pid"
+state_file "~/mu/conf/mpdstate"
+
+audio_output {
+	type		"pulse"
+	name		"pulse audio"
+}
+
+audio_output {
+	type		"alsa"
+	name		"My Sound Card"
+	mixer_type	"software"
+	format 		"44100:16:2"
+        device  	"hw:0,0"
+	period_time	"2000000"
+}
+
+audio_output {
+	type		"fifo"
+	name		"my_fifo"
+	path 		"/tmp/mpd.fifo"
+}

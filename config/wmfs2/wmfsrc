@@ -1,0 +1,266 @@
+#a Possible file inclusion: @include "file"
+
+[themes]
+
+    [theme]
+     # No name mean default
+     name = "theme"
+
+     font = "-*-lime.se-*-*-*-*-10-*-*-*-*-*-*-*"
+
+     # Bars
+     bars_width = 10
+     bars_fg = "#ababab"
+     bars_bg = "#ffffff"
+
+     # Element tags
+     tags_normal_fg = "#ababab"
+     tags_normal_bg = "#ffffff"
+     # tags_normal_statusline = ""
+
+     tags_sel_fg = "#1a1a1a"
+     tags_sel_bg = "#ffffff"
+     tags_sel_statusline = "\R[1;2;2;2;#1a1a1a]"
+
+     tags_occupied_fg = "#a2a2a2"
+     tags_occupied_bg = "#ffffff"
+     tags_occupied_statusline = "\R[1;2;2;2;#ababab]"
+
+     tags_urgent_fg = "#1a1a1a"
+     tags_urgent_bg = "#3f3f3f"
+     # tags_urgent_statusline = ""
+
+     tags_border_color = "#f9f9f9"
+     tags_border_width = 0
+
+     # Frame / Client
+     client_normal_fg = "#aaaaaa"
+     client_normal_bg = "#aaaaaa"
+     # client_normal_statusline = "\s[3;9;#121212;x] \s[2;8;#ff0000;x](1;client_close)"
+
+     client_sel_fg = "#505050"
+     client_sel_bg = "#505050"
+     # client_sel_statusline = "\s[3;9;#121212;x] \s[2;8;#ff0000;x](1;client_close)"
+
+     # client_free_statusline = ""
+
+     frame_bg = "#f9f9f9"
+     client_titlebar_width = 0
+     client_border_width = 1
+
+    [/theme]
+
+
+
+[/themes]
+
+[bars]
+
+  [bar]
+     name = "bar"
+     position = 0
+     screen = 0
+     elements = "tls" # element order in bar
+     theme = "theme"
+  [/bar]
+
+# [bar]
+# position = 0 screen = 1 elements = "ts" theme = "default" [/bar]
+
+[/bars]
+
+[tags]
+
+  # Tag wrapping navigation
+  circular = true
+
+  # Use no screen option or screen = -1 to set tag on each screen
+
+  [tag] name = "1" [/tag] 
+  [tag] name = "2" [/tag]
+  [tag] name = "3" [/tag] 
+  [tag] name = "4" [/tag]
+  [tag] name = "5" [/tag] 
+#  [tag] name = ":::: " [/tag]
+#  [tag] name = ":::: " [/tag]
+#  [tag] name = ":::: " [/tag]
+#  [tag] name = ":::: " [/tag]
+#  [tag] name = ":::: " [/tag]
+
+ 
+  # Mousebinds associated to Tags element button
+  [mouse] button = "1" func = "tag_click" [/mouse]
+  [mouse] button = "4" func = "tag_next" [/mouse]
+  [mouse] button = "5" func = "tag_prev" [/mouse]
+
+
+[/tags]
+
+[client]
+
+  # Padding between clients (default: 0)
+  padding = 350
+
+  # Give focus to new created client (default = false)
+  autofocus = true
+
+  theme = "default"
+  key_modifier = "Alt"
+
+  # Focus type:
+  # enter : focus follow mouse (default) click : click to focus everything-else : disable mouse focus support
+  focus = enter
+
+  [mouse] button = "1" func = "client_focus_click" [/mouse]
+  [mouse] button = "1" func = "mouse_swap" [/mouse]
+  [mouse] button = "2" func = "mouse_tab" [/mouse]
+  [mouse] button = "3" func = "mouse_resize" [/mouse]
+  [mouse] button = "4" func = "client_focus_next_tab" [/mouse]
+  [mouse] button = "5" func = "client_focus_prev_tab" [/mouse]
+
+[/client]
+
+[rules]
+
+  [rule]
+      # use instance = "*" for a all-clients rule
+      instance = "urxvt"
+
+      # role = "" name = "" theme = "default"
+
+      screen = 0
+
+      free = true
+      tab = false
+      ignore_tag = false
+  [/rule]
+
+[/rules]
+
+[launchers]
+
+  [launcher]
+     name = "l-man"
+     prompt = "man:"
+     command = "spawn urxvt -e man"
+     width = 300
+  [/launcher]
+
+  [launcher]
+     name = "l-todo"
+     prompt = "todo:"
+     command = "spawn ~/bin/todo"
+     width = 300
+  [/launcher]
+
+  [launcher]
+     name = "l-vim"
+     prompt = "edit:"
+     command = "spawn urxvt -e vim "
+     width = 300
+  [/launcher]
+
+
+
+[/launchers]
+
+[keys]
+
+  [key] mod = {"Alt"} key = "Return" func = "spawn" cmd = "urxvtc" [/key]
+#  [key] mod = {"Super"} key = "Return" func = "spawn" cmd = "urxvt -e tmux" [/key]
+  [key] mod = {"Alt"} key = "c" func = "client_close" [/key]
+  [key] mod = {"Alt"} key = "r" func = "reload" [/key]
+  [key] mod = {"Alt"} key = "d" func = "spawn" cmd = "dmenu_path | dmenu_run -p 'run' -fn '-*-cure-*-*-*-*-11-*-*-*-*-*-*-*' -nf '#a2a2a2' -nb '#f9f9f9' -sf '#3f3f3f' -sb '#f9f9f9'" [/key]
+  [key] mod = {"Alt"} key = "n" func = "spawn" cmd = "firefox" [/key] 
+  [key] mod = {"Alt"} key = "e" func = "spawn" cmd = "epdfview" [/key]
+  [key] mod = {"Alt"} key = "z" func = "spawn" cmd = "~/bin/tunnel_status" [/key]
+  [key] mod = {"Alt", "Shift"} key = "z" func = "spawn" cmd = "~/bin/tunnel_off" [/key]
+  [key] mod = {"Alt"} key = "p" func = "spawn" cmd = "mpc toggle" [/key]
+  [key] mod = {"Alt"} key = "F1" func = "spawn" cmd = "~/bin/d-music" [/key]
+  [key] mod = {"Alt"} key = "F2" func = "spawn" cmd = "~/bin/d-todo" [/key]
+  [key] mod = {"Alt"} key = "F3" func = "spawn" cmd = "~/bin/d-date" [/key]
+  [key] mod = {"Alt"} key = "F4" func = "spawn" cmd = "~/bin/d-hardware" [/key]
+  [key] mod = {"Control"} key = "k" func = "spawn" cmd = "amixer -q set Master 4%+ unmute" [/key]
+  [key] mod = {"Control"} key = "j" func = "spawn" cmd = "amixer -q set Master 4%- unmute" [/key]
+  [key] mod = {"Control"} key = "l" func = "spawn" cmd = "mpc next" [/key]
+  [key] mod = {"Control"} key = "h" func = "spawn" cmd = "mpc prev" [/key]
+#  [key] mod = {"Alt"} key = "m" func = "launcher" cmd = "l-man" [/key]
+#  [key] mod = {"Alt"} key = "a" func = "launcher" cmd = "l-todo" [/key]
+#  [key] mod = {"Alt"} key = "v" func = "launcher" cmd = "l-vim" [/key]
+
+
+  # Tag manipulation
+  [key] mod = {"Alt"} key = "1" func = "tag_set" cmd = "0" [/key]
+  [key] mod = {"Alt"} key = "2" func = "tag_set" cmd = "1" [/key]
+  [key] mod = {"Alt"} key = "3" func = "tag_set" cmd = "2" [/key]
+  [key] mod = {"Alt"} key = "4" func = "tag_set" cmd = "3" [/key]
+  [key] mod = {"Alt"} key = "5" func = "tag_set" cmd = "4" [/key]
+  [key] mod = {"Alt"} key = "6" func = "tag_set" cmd = "5" [/key]
+  [key] mod = {"Alt"} key = "7" func = "tag_set" cmd = "6" [/key]
+  [key] mod = {"Alt"} key = "8" func = "tag_set" cmd = "7" [/key]
+
+  [key] mod = {"Alt", "Shift"} key = "1" func = "tag_client" cmd = "0" [/key]
+  [key] mod = {"Alt", "Shift"} key = "2" func = "tag_client" cmd = "1" [/key]
+  [key] mod = {"Alt", "Shift"} key = "3" func = "tag_client" cmd = "2" [/key]
+  [key] mod = {"Alt", "Shift"} key = "4" func = "tag_client" cmd = "3" [/key]
+  [key] mod = {"Alt", "Shift"} key = "5" func = "tag_client" cmd = "4" [/key]
+  [key] mod = {"Alt", "Shift"} key = "6" func = "tag_client" cmd = "5" [/key]
+  [key] mod = {"Alt", "Shift"} key = "7" func = "tag_client" cmd = "6" [/key]
+  [key] mod = {"Alt", "Shift"} key = "8" func = "tag_client" cmd = "7" [/key]
+
+  [key] mod = {"Super"} key = "minus" func = "tag_del" [/key]
+  [key] mod = {"Super", "Shift"} key = "minus" func = "tag_new" [/key]
+
+  # tag function: cmd = nameofthetag [key] mod = {"Super"} key = "z" func = "tag" cmd = "2" [/key]
+
+  [key] mod = {"Alt"} key = "k" func = "tag_next" [/key]
+  [key] mod = {"Alt"} key = "j" func = "tag_prev" [/key]
+  [key] mod = {"Alt"} key = "l" func = "client_focus_next" [/key]
+  [key] mod = {"Alt"} key = "h" func = "client_focus_prev" [/key]
+  [key] mod = {"Alt"} key = "i" func = "layout_rotate_right" [/key]
+  [key] mod = {"Alt"} key = "o" func = "layout_rotate_left" [/key]
+
+  # swap next client with direction:
+  [key] mod = {"Super"} key = "h" func = "client_swap_left" [/key]
+  [key] mod = {"Super"} key = "l" func = "client_swap_right" [/key]
+  [key] mod = {"Super"} key = "k" func = "client_swap_top" [/key]
+  [key] mod = {"Super"} key = "j" func = "client_swap_bottom" [/key]
+
+  # Resize selected tiled client with direction
+  [key] mod = {"Alt", "Shift"} key = "a" func = "client_resize_left" cmd = "-4" [/key]
+  [key] mod = {"Alt", "Shift"} key = "s" func = "client_resize_bottom" cmd = "-2" [/key]
+  [key] mod = {"Alt", "Shift"} key = "d" func = "client_resize_top" cmd = "-2" [/key]
+  [key] mod = {"Alt", "Shift"} key = "f" func = "client_resize_right" cmd = "-4" [/key]
+  [key] mod = {"Alt", "Shift"} key = "l" func = "client_resize_right" cmd = "4" [/key]
+  [key] mod = {"Alt", "Shift"} key = "h" func = "client_resize_left" cmd = "4" [/key]
+  [key] mod = {"Alt", "Shift"} key = "j" func = "client_resize_bottom" cmd = "2" [/key]
+  [key] mod = {"Alt", "Shift"} key = "k" func = "client_resize_top" cmd = "2" [/key]
+
+  # Layout manipulation
+#  [key] mod = {"Super", "Alt"} key = "v" func = "layout_vmirror" [/key]
+#  [key] mod = {"Super", "Alt"} key = "h" func = "layout_hmirror" [/key]
+#  [key] mod = {"Super"} key = "" func = "layout_rotate_right" [/key]
+#  [key] mod = {"Super"} key = "" func = "layout_rotate_left" [/key]
+
+  [key] mod = {"Super"} key = "a" func = "layout_integrate_left" [/key]
+  [key] mod = {"Super"} key = "s" func = "layout_integrate_bottom" [/key]
+  [key] mod = {"Super"} key = "d" func = "layout_integrate_top" [/key]
+  [key] mod = {"Super"} key = "f" func = "layout_integrate_right" [/key]
+
+  # Layout set historic travelling function (TESTING)
+  [key] mod = {"Super"} key = "o" func = "layout_prev_set" [/key]
+  [key] mod = {"Super", "Shift"} key = "o" func = "layout_next_set" [/key]
+
+  # Toggle client free/tile
+  [key] mod = {"Alt"} key = "t" func = "client_toggle_free" [/key]
+
+  # Toggle client ignore_tag
+  #[key] mod = {"Super", "Shift"} key = "f" func = "client_toggle_ignore_tag" [/key]
+
+  # Toggle infobar visibility
+  #[key] mod = {"Super", "Shift"} key = "h" func = "infobar_toggle_hide" [/key]
+
+  # Launcher
+  #[key] mod = {"Super"} key = "p" func = "launcher" cmd = "exec" [/key]
+
+[/keys]

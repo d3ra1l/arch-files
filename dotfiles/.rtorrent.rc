@@ -1,0 +1,21 @@
+## Performance
+
+max_uploads = 10
+download_rate = 0
+upload_rate = 400
+check_hash = yes
+
+## Files
+
+directory = ~/torrents
+session = ~/.rsession
+schedule = watch_directory,5,5,load_start=~/torrents
+schedule = untied_directory,5,5,stop_untied=
+schedule = tied_directory,5,5,start_tied=
+schedule = low_diskspace,5,60,close_low_diskspace=100M
+
+## Ports
+port_range = 49153-65535
+
+## Other settings
+encryption = require

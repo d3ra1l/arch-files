@@ -1,0 +1,8 @@
+#!/bin/bash
+
+BG="#ffffff"
+FG1="#ababab"
+FG2="#646464"
+
+FONT="-*-lime.se-*-*-*-*-10-*-*-*-*-*-*-*"
+
