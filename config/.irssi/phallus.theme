@@ -127,8 +127,8 @@ formats = {
 	topic = "%|%nthe topic is $1";
 	topic_info = "%|%B{nick $0}%n set the topic";
 	channel_created = "%|%r$0%n was created on %r$1";
-	channel_mode = "%|{nick $2}%n sets modes {$channelhilight $0} {mode $1}";
-	chanmode_change = "%|%B{nick $2}%n sets %r{mode $1}";
+	channel_mode = "%|{nick $2}%n has set {$channelhilight $0} {mode $1}";
+	chanmode_change = "%|%B{nick $2}%n has set %r{mode $1}";
 	channel_synced = "%|%r$0 %nwas synced in %C{hilight $1} %nseconds";
 	};
 };
