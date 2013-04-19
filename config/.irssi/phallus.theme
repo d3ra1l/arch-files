@@ -6,7 +6,7 @@ replaces = { "[]=" = "$*"; };
 abstracts = {
 
   line_start = "";
-  timestamp = " %K$*%n";
+  timestamp = "";
   hilight = "$*";
   error = "%R$*%K";
   channel = "$*";
@@ -107,10 +107,10 @@ abstracts = {
 formats = {
   "fe-common/core" = { pubmsg = "{pubmsgnick $2 {pubnick \00304$0}}$1"; };
   "fe-common/core" = {
-	join = "%|{channick_hilight $0}%n has joined";
-	part = "%|{channick_hilight $0}%n has left";
-	kick = "%|{nick $2}%n has kicked {channick_hilight $0}%n {reason $3}";
-	quit = "%|{channick_hilight $0}%n has quit";
+	join = "%|{channick_hilight $0}%n%| has joined";
+	part = "%|{channick_hilight $0}%n%| has left";
+	kick = "%|{nick $2}%n%| has kicked {channick_hilight $0}%n {reason $3}";
+	quit = "%|{channick_hilight $0}%n%| has quit";
 	topic = "%|%nthe topic is $1";	
 	
 	new_topic = "%|{nick $0} %nhas changed the topic";

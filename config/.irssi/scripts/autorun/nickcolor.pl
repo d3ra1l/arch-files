@@ -104,8 +104,12 @@ sub sig_public {
     $session_colors{$nick} = $color;
   }
 
-  $color = "0".$color if ($color < 10);
-  $server->command('/^format pubmsg {pubmsgnick $2 {pubnick '.chr(3).$color.'$0}}$1');
+#  $color = "0".$color if ($color < 10);
+#  $server->command('/^format pubmsg {pubmsgnick $2 {pubnick '.chr(3).$color.'$0}}$1');
+
+   $color = "0".$color if ($color < 10);
+-  $server->command('/^format pubmsg {pubmsgnick $2 {pubnick '.chr(3).$color.'$0}}$1');
++  $server->command('/^format pubmsg {pubmsgnick $2 {pubnick '.chr(3).$color.'$[-11]0}}$1');
 }
 
 sub cmd_color {

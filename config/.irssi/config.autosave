@@ -244,19 +244,19 @@ statusbar = {
     };
 
     # topicbar
-    topic = {
-      type = "window";
-      placement = "top";
-      position = "2";
-      visible = "inactive";
-      items = {
-        topicbarstart = { priority = "100"; };
-        topic = { };
-        topic_empty = { };
-        topicbarend = { priority = "100"; alignment = "right"; };
-
-      };
-    };
+    #    topic = {
+    #      type = "window";
+    #      placement = "top";
+    #      position = "2";
+    #      visible = "never";
+    #      items = {
+    #        topicbarstart = { priority = "100"; };
+    #        topic = { };
+    #        topic_empty = { };
+    #        topicbarend = { priority = "100"; alignment = "right"; };
+    #
+    #      };
+    #    };
     awl_0 = {
       placement = "top";
       position = "1";
@@ -282,7 +282,7 @@ settings = {
 
 
   "perl/core/scripts" = {
-    awl_display_key_active = "%B $Q $H$C$S ";
+    awl_display_key_active = "%K $Q $H$C$S ";
     awl_display_key = "%k $Q $C ";
     awl_block = "15";
     awl_maxlines = "2";
@@ -301,7 +301,7 @@ settings = {
   };
 
   "fe-common/core" = {
-    theme = "crshd";
+    theme = "phallus";
     use_status_window = "no";
     show_names_on_join = "no";
     autocreate_own_query = "no";
