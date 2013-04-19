@@ -80,7 +80,7 @@ abstracts = {
   pubnick = "%N$*%n";
 
   # public highlighted message in channel
-  pubmsghinick = "$1 %K| %|%R";
+  pubmsghinick = "$1 %K| %|%r";
   menick = "%R$*%n";
 
   # channel name is printed with message
@@ -105,7 +105,7 @@ abstracts = {
   ########## Actions (/ME stuff) #########################
 
   # generic one that's used by most actions
-  action = " %m$* %M* %m%|";
+  action = "%m$* %M* %m%|";
 
   # own action, both private/public
   # ownaction = "{action $*}";
@@ -237,7 +237,7 @@ formats = {
 
     join = "%R{channick $[-11]0}%n %K> %nhas joined ";
     part = "%R{channick $[-11]0}%n %K< %nhas left ";
-    kick = "%R{nick $2}%n%| > kicked {channick_hilight $0}%n {reason $3}";
+    kick = "%R{nick $[-11]2}%n%| > kicked {channick_hilight $0}%n {reason $3}";
     quit = "%R{channick $[-11]0}%n%| < has quit ";
 #    quit_once = "{channel $3} {channick $0} {chanhost $1} %kquit {reason %C$2}";
 
@@ -253,12 +253,12 @@ formats = {
     pubmsg_me = "{menick $[-11]0}$1";
     pubmsg_me_channel = "{pubmsghinick $3 {menick $[-11]0}{msgchannel $1}}$2";
 
-    pubmsg_hilight = "{pubmsghinick $3 {menick $[-11]1}}$2";
+    pubmsg_hilight = "{pubmsghinick $3 {menick $[-11]1}} %K| %R$2";
     pubmsg_hilight_channel = "{pubmsghinick $0 $[-11]$4{msgchannel $2}}$3";
 
     pubmsg_channel = "{pubmsgnick {pubnick %G$[-13]0}$2}$1";
     msg_private_query = "{privmsgnick $[-31]0}$2";
-    new_topic = "        %ctopic %K= %|%B'$2' %non %b$1%n%K[set by {nick %y$0}]";
+    new_topic = "%B{channick $[-11]0}%n %K> %|%nchanged the topic to {channick $2}";
 
     endofnames = "%Y!%K!      names %Y!%m Total: {hilight $2} ops, {hilight $3} halfops, {hilight $4} voices, {hilight $5} normal%n";
   };
@@ -266,10 +266,10 @@ formats = {
     server_chanmode_change = "       mode %K>%n {channick $1}";
     usermode_change = "%B%|{nick $[-11]1} %K> %nreceived %r{mode $0}";
     topic = "      %rtopic > %|%B$1";
-    topic_info = "%B{channick $[-11]2}%n %K> %nset the topic";
+    topic_info = "%B{nick $[-11]0}%n %K> %nset the topic";
     channel_created = "%r{$channel $[-11]0}%n %K> %ncreated on %r$1";
-    channel_mode =    "%B{channick $[-11]2}%n %K> %nset{$channelhilight $0} {mode $1}";
-    chanmode_change = "%B{channick $[-11]2}%n %K> %nset %r$0";
+    channel_mode =    "%B{channick $[-11]2}%n %K> %nset {$channelhilight $0} $1";
+    chanmode_change = "%B{channick $[-11]2}%n %K> %nset mode %r$1";
     channel_synced =  "%r{$channel $[-11]0}%n %K> %nsynced in %C{hilight $1} %nseconds";
     own_action = "{ownaction $[-11]0} $1";
     action_private = "{pvtaction $[-11]0}$1";

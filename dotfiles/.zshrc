@@ -1,6 +1,6 @@
 # Created by newuser for 5.0.2
 
-PROMPT="%{$fg[blue]%} » "
+PROMPT="%{$fg[blue]%}» "
 RPROMPT="%{$reset_color%}"
 #. /usr/share/zsh/site-contrib/powerline.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

@@ -1,0 +1,69 @@
+! black
+URxvt*color15  : #777777
+URxvt*color7  : #4a4a4a
+
+! red
+!URxvt*color1  : #c29198
+!URxvt*color9  : #a0616a
+URxvt*color1: #df6f6f
+URxvt*color9: #eba8a8
+
+! yellow/orange
+!URxvt*color3: #acacac
+!URxvt*color11: #858585
+URxvt*color3: #dfdc6f
+URxvt*color11: #ebeaa8
+
+! green
+!URxvt*color2 : #abd8a5
+!URxvt*color10  : #80a27b
+URxvt*color5 : #846fdf
+URxvt*color13: #b5a8eb
+
+
+! blue
+URxvt*color4: #6fa5df
+URxvt*color12: #a8c9eb
+
+! magenta
+URxvt*color2 : #6fdfa4
+URxvt*color10  : #a8ebc8
+
+! cyan
+URxvt*color6 : #6fcadf
+URxvt*color14  : #a6e6eb
+
+! white
+URxvt*color0 : #aaaaaa
+URxvt*color8  : #c3c3c3
+
+URxvt*scrollBar: false
+URxvt*background: #30303a
+URxvt*foreground: #d6d6d6
+URxvt*cursorUnderline: true
+URxvt*cursorColor: #30303a
+URxvt*colorUL: #9693b5
+!URxvt*colorBD: #af8ac1
+URxvt*internalBorder: 5
+URxvt*borderColor: #30303a
+URxvt*iso14755: false
+
+URxvt*font: xft:limey:pixelsize=8
+URxvt*boldFont: xft:limey:pixelzize=8
+
+URxvt*keysym.Home: \033[1~
+URxvt*keysym.End: \033[4~
+!URxvt*letterSpace: 0
+
+!URxvt.perl-ext-common: default,tabbed
+!URxvt.tabbed.tabbar-fg: -1
+!URxvt.tabbed.tabbar-bg: -1
+!URxvt.tabbed.tab-fg:    -1
+!URxvt.tabbed.tab-bg:    -1
+
+! URxvt.keysym.Mod4-c: perl:clipboard:copy
+! URxvt.keysym.Mod4-v: perl:clipboard:paste
+
+URxvt.perl-ext: default,matcher
+URXvt.urlLauncher: /usr/bin/firefox
+URxvt.matcher.button: 1
