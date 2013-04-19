@@ -1,6 +1,6 @@
 # Created by newuser for 5.0.2
 
-PROMPT="%{$fg[blue]%}~>%{$fg_bold[blue]%}> "
+PROMPT="%{$fg[blue]%} » "
 RPROMPT="%{$reset_color%}"
 #. /usr/share/zsh/site-contrib/powerline.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -27,17 +27,13 @@ export PATH=~/bin:$PATH
 #add pretty much any font in ~/.fonts
 alias fonts='mkfontdir ~/.fonts;mkfontscale ~/.fonts;xset +fp ~/.fonts;xset fp rehash;fc-cache;fc-cache -fv'
 
-#take a screenshot
-alias scr='scrot -d2 penis.png;pngcrush penis.png benis.png;rm -r penis.png'
-alias scrv='scrot -cd5 penis.png;pngcrush penis.png benis.png;rm -r penis.png'
-
 #make du pretty
 alias du='cdu -d ch'
 
 #h4x0rz ur sh1t
 alias hack='cat /dev/urandom | hexdump -c'
 alias 2spooky='lua ~/stuff/2spooky.lua'
-alias gentoo='lua ~/sfuff/gentoo.lua'
+alias gentoo='lua ~/stuff/gentoo.lua'
 
 #alias for pkill
 alias pk='pkill'
