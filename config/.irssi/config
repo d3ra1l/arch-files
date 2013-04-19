@@ -77,7 +77,7 @@ chatnets = {
   };
   Rizon = {
     type = "IRC";
-    autosendcmd = "msg nickserv identify nigger; msg hostserv on";
+    autosendcmd = "msg nickserv identify ; msg hostserv on";
     max_kicks = "1";
     max_msgs = "3";
     max_whois = "30";
