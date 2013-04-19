@@ -18,11 +18,11 @@ class Default(ColorScheme):
 				bg = red
 				fg = black
 			if context.border:
-				
+				attr |= bold
 				fg = black
 			if context.media:
 				if context.image:
-					fg = black
+					fg = white
 				else:
 					fg = red
 			if context.container:
@@ -30,12 +30,12 @@ class Default(ColorScheme):
 				fg = magenta
 			if context.directory:
 				attr |= bold
-				fg = black
+				fg = blue
 			elif context.executable and not \
 					any((context.media, context.container,
 						context.fifo, context.socket)):
 				attr |= bold
-				fg = blue
+				fg = red
 			if context.socket:
 				fg = magenta
 			if context.fifo or context.device:
