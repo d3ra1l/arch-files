@@ -47,6 +47,12 @@ alias gayt='toilet --gay -f term -t'
 #convert flacs in dir to ogg, then move up a dir
 alias f2o='flac2ogg;..'
 
+#git
+alias ga='git add'
+alias gaa='git add *'
+alias gc='git commit -m' #remember to put commit in quotes
+alias gp='git push origin master'
+
 #package management
 alias pu='pacman -Syu'
 alias ys='yaourt'
