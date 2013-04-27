@@ -68,20 +68,20 @@ abstracts = {
 
   # the basic styling of how to print message, $0 = nick mode, $1 = nick
   # msgnick = " $1 %N %|";
-  msgnick = "$1 %K│ %|";
+  msgnick = "$1 %b│ %K%|";
   # msgnick = "   $1 %K· %n";
 
   # $0 = nick mode, $1 = nick
-  ownmsgnick = "$1 %K| %|";
-  ownnick = "%Y$*%n";
+  ownmsgnick = "$1 %b| %K%|";
+  ownnick = "%B$*%n";
 
   # public message in channel, $0 = nick mode, $1 = nick
-  pubmsgnick = "$1 %K| %|";
+  pubmsgnick = "$1 %b| %K%|";
   pubnick = "%N$*%n";
 
   # public highlighted message in channel
-  pubmsghinick = "$1 %K| %|%r";
-  menick = "$0 %K| %|%r";
+  pubmsghinick = "$1 %b| %|%r";
+  menick = "%B$* %b| %r";
 
   # channel name is printed with message
   msgchannel = "%K:%m$*%n";
@@ -239,7 +239,6 @@ formats = {
     part = "%R{channick $[-11]0}%n %K< %nhas left ";
     kick = "%R{nick $[-11]2}%n%| > kicked {channick_hilight $0}%n {reason $3}";
     quit = "%R{channick $[-11]0}%n%| < has quit ";
-#    quit_once = "{channel $3} {channick $0} {chanhost $1} %kquit {reason %C$2}";
 
     nick_changed = "{nick $[-11]0} %G>%n {channick $1}";
     your_nick_changed = "%|%K        you %G>%n {channick $1}";
@@ -253,7 +252,7 @@ formats = {
     pubmsg_me = "{menick $[-11]0}$1";
     pubmsg_me_channel = "{pubmsghinick $3 {menick $[-11]0}{msgchannel $1}}$2";
 
-    pubmsg_hilight = "{pubmsghinick $3 {menick $[-11]1}} %K| %R$2";
+    pubmsg_hilight = "{pubmsghinick $3 {menick $[-11]0}}$1";
     pubmsg_hilight_channel = "{pubmsghinick $0 $[-11]$4{msgchannel $2}}$3";
 
     pubmsg_channel = "{pubmsgnick {pubnick %G$[-13]0}$2}$1";
@@ -264,7 +263,7 @@ formats = {
   };
   "fe-common/irc" = {
     server_chanmode_change = "       mode %K>%n {channick $1}";
-    usermode_change = "%B%|{nick $[-11]1} %K> %nreceived %r$0";
+    usermode_change = "%B%|{nick $[-11]1} %K> %nreceived %r{mode $0}";
     topic = "      %rtopic > %|%B$1";
     topic_info = "%B{nick $[-11]0}%n %K> %nset the topic";
     channel_created = "%r{$channel $[-11]0}%n %K> %ncreated on %r$1";
