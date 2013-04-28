@@ -178,7 +178,7 @@ style "button" {
 	ythickness = 3
 	
 	bg[NORMAL] = "#f9f9f9"
-	bg[ACTIVE] = "#fbfbfb"
+	bg[ACTIVE] = "#dfdfdf"
 }
 
 style "entry" {
