@@ -77,7 +77,7 @@ chatnets = {
   };
   Rizon = {
     type = "IRC";
-    autosendcmd = "msg nickserv identify ; msg hostserv on";
+    autosendcmd = "msg nickserv identify  ; msg hostserv on";
     max_kicks = "1";
     max_msgs = "3";
     max_whois = "30";
@@ -92,7 +92,7 @@ chatnets = {
 };
 
 channels = (
-  { name = "#irssi"; chatnet = "ircnet"; autojoin = "No"; },
+  { name = "#/g/summer"; chatnet = "rizon"; autojoin = "yes"; },
   { name = "silc"; chatnet = "silc"; autojoin = "No"; }
 );
 
@@ -272,7 +272,7 @@ settings = {
   "fe-text" = {
     actlist_sort = "refnum";
     indent_always = "yes";
-    indent = "7";
+    indent = "11";
   };
   core = { 
     real_name = "phallus";
@@ -306,7 +306,7 @@ settings = {
     show_names_on_join = "no";
     autocreate_own_query = "no";
     autocreate_windows = "yes";
-    use_msgs_window = "yes";
+    use_msgs_window = "no";
   };
 };
 
