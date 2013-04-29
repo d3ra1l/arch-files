@@ -1,3 +1,3 @@
-These are the configs for the Arch install on my X1 Carbon. The files here are up-to-date, though some might overlap with the contents of bkp.
+Dotfiles 'n such.
 
-Screenshot (16 March 2013): https://goput.it/n0r.png
+[stuff](http://i.imgur.com/mGyxNtH.png)
