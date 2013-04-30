@@ -1,19 +1,29 @@
-# Created by newuser for 5.0.2
+# Created by phallus for 5.0.2
 
-PROMPT="%{$fg[blue]%}» "
-RPROMPT="%{$reset_color%}"
-#. /usr/share/zsh/site-contrib/powerline.zsh
+export PS1="%{[38;05;255;48;05;4m%} %(!.%S-ROOT-%s.%n) %{[38;05;4;48;05;1m%}⮀%{[00m%}%{[38;05;8;48;05;1m%} %~ %{[00m%}%{[38;05;1m%}⮀ %{[00m%}"
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+#fix home, del, et. al. keys
+bindkey "^[[1~" beginning-of-line
+bindkey "^[[4~" end-of-line
+bindkey "^[[2~" overwrite-mode
+bindkey "^[[3~" delete-char
+bindkey "^[[5~" up-line-or-history
+bindkey "^[[6~" down-line-or-history
 
-#enable awesomeness
+#enable essentials
 setopt AUTO_CD
 setopt CORRECT
-autoload -U compinit
-compinit
+autoload -U compinit && compinit
+export HISTSIZE=10000
+export SAVEHIST=10000
+export HISTFILE=~/.zshistory
+setopt inc_append_history
+setopt promptsubst
+zstyle ':completion::complete:*' use-cache 1
 
-#fix home, end, et. al. keys
-#--nothing yet ;_;
+#enable 256-color mode
+export TERM='rxvt-256color'
 
 #set default editor (vim mustard rice)
 export EDITOR="vim"
@@ -23,6 +33,15 @@ export EDITOR="vim"
 
 #add ~/bin to $path
 export PATH=~/bin:$PATH
+
+function precmd { print -Pn "\e]0;%n@%M:%~\a" }
+
+###
+## aliases
+###
+
+#ensure make uses all cores
+alias make="make -j3"
 
 #add pretty much any font in ~/.fonts
 alias fonts='mkfontdir ~/.fonts;mkfontscale ~/.fonts;xset +fp ~/.fonts;xset fp rehash;fc-cache;fc-cache -fv'
@@ -62,4 +81,3 @@ alias yr='yaourt -R'
 alias yu='yaourt -Syy && yaourt -Syua --devel'
 alias yb='yaourt -Sb'
 alias yg='yaourt -G'
-
