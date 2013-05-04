@@ -65,9 +65,6 @@ alias fonts='mkfontdir ~/.fonts;mkfontscale ~/.fonts;xset +fp ~/.fonts;xset fp r
 #make du pretty
 alias du='cdu -d ch'
 
-#open vim in home directory
-alias vh='vim ~'
-
 #convert flacs in dir to ogg, then move up a dir
 alias f2o='flac2ogg;..'
 
@@ -94,10 +91,25 @@ alias metf='toilet --metal -f future -t'
 alias mett='toilet --metal -f term -t'
 
 #git
-alias ga='git add'
-alias gaa='git add *'
+alias ga='git add *'
 alias gc='git commit -m' #remember to put commit in quotes
 alias gp='git push origin master'
+export gstyc=~/gitshit/user-styles/styles-clean
+export gstyo=~/gitshit/user-styles/styles-old
+export gconf=~/gitshit/arch-files
+
+gcp() {
+	case $1 in
+		uc)		cp ~/.mozilla/firefox/*.default/chrome/userChrome.css $gstyc/userChrome.css;$gstyc ;;
+		4chan)  	rm $gstyc/4chan.css;touch $gstyc/4chan.css;vim $gstyc/4chan.css;$gtsyc ;;
+		4chan-t)	rm $gstyc/4chan-testing.css;touch $gstyc/4chan-testing.css;vim $gstyc/4chan-testing.css$gstyc ;;
+		reddit)         rm $gstyc/reddit.css;touch $gstyc/reddit.css;vim $gstyc/reddit.css;$gstyc ;;
+		crshd)          cp ~/.irssi/crshd.theme $gconf/config/.irssi/crshd.theme;$gconf ;;
+		zsh)		cp ~/.zshrc $gconf/dotfiles/.zshrc;$gconf ;;
+		tmux)		cp ~/.tmux.conf $gconf/dotfiles/.tmux.conf;$gconf ;;
+	esac
+}
+
 
 #package management
 alias pu='pacman -Syu'
@@ -108,3 +120,21 @@ alias yr='yaourt -R'
 alias yu='yaourt -Syy && yaourt -Syua --devel'
 alias yb='yaourt -Sb'
 alias yg='yaourt -G'
+
+#vim - thanks to earsplit for this!
+conf() {
+	case $1 in
+		mpd)		vim ~/.mpdconf ;;
+		conky)		vim ~/.conkyrc ;;
+		ncmpcpp)	vim ~/.ncmpcpp/config ;;
+		ranger)		vim ~/.config/ranger/rc.conf ;;
+		tmux)		vim ~/.tmux.conf ;;
+		vim)		vim ~/.vimrc ;;
+		xinit)		vim ~/.xinitrc ;;
+		Xdefaults)	vim ~/.Xdefaults ;;
+		zsh)		vim ~/.zshrc && source ~/.zshrc ;;
+		userChrome)	vim ~/.mozilla/firefox/*.default/chrome/userChrome.css ;;
+		*)		echo "unknown conf: $1" ;;		
+	esac
+}
+alias vh='vim ~'
