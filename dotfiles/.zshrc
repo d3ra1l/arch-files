@@ -137,4 +137,3 @@ conf() {
 		*)		echo "unknown conf: $1" ;;		
 	esac
 }
-alias vh='vim ~'
