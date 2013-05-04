@@ -68,6 +68,13 @@ alias du='cdu -d ch'
 #convert flacs in dir to ogg, then move up a dir
 alias f2o='flac2ogg;..'
 
+#a bit of fun
+alias fuck='echo;gayt "fuck you too";echo'
+alias fucking='sudo'
+alias starwars='telnet towel.blinkenlights.nl'
+alias fort='fortune -a'
+alias gfort='fort | gayt'
+
 #h4x0rz ur sh1t; or ricer scripts
 alias hack1='cat /dev/urandom | hexdump -c'
 alias 2spooky='lua ~/stuff/2spooky.lua'
@@ -102,7 +109,7 @@ gcp() {
 	case $1 in
 		uc)		cp ~/.mozilla/firefox/*.default/chrome/userChrome.css $gstyc/userChrome.css;$gstyc ;;
 		4chan)  	rm $gstyc/4chan.css;touch $gstyc/4chan.css;vim $gstyc/4chan.css;$gtsyc ;;
-		4chan-t)	rm $gstyc/4chan-testing.css;touch $gstyc/4chan-testing.css;vim $gstyc/4chan-testing.css$gstyc ;;
+		4chan-t)	rm $gstyc/4chan-testing.css;touch $gstyc/4chan-testing.css;vim $gstyc/4chan-testing.css;$gstyc ;;
 		reddit)         rm $gstyc/reddit.css;touch $gstyc/reddit.css;vim $gstyc/reddit.css;$gstyc ;;
 		reddit-t)       rm $gstyc/reddit-testing.css;touch $gstyc/reddit-testing.css;vim $gstyc/reddit-testing.css;$gstyc ;;
 		crshd)          cp ~/.irssi/crshd.theme $gconf/config/.irssi/crshd.theme;$gconf ;;
