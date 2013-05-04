@@ -101,9 +101,11 @@ alias mett='toilet --metal -f term -t'
 alias ga='git add *'
 alias gc='git commit -m' #remember to put commit in quotes
 alias gp='git push origin master'
+alias gl='git clone'
 export gstyc=~/gitshit/user-styles/styles-clean
 export gstyo=~/gitshit/user-styles/styles-old
 export gconf=~/gitshit/arch-files
+export g4x=~/gitshit/4chan-x
 
 gcp() {
 	case $1 in
@@ -138,6 +140,7 @@ conf() {
 		ranger)		vim ~/.config/ranger/rc.conf ;;
 		tmux)		vim ~/.tmux.conf ;;
 		vim)		vim ~/.vimrc ;;
+		4x)		vim ~/stuff/4chan-x/ ;;
 		xi)		vim ~/.xinitrc ;;
 		xd)		vim ~/.Xdefaults ;;
 		zsh)		vim ~/.zshrc && source ~/.zshrc ;;
