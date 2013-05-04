@@ -130,10 +130,10 @@ conf() {
 		ranger)		vim ~/.config/ranger/rc.conf ;;
 		tmux)		vim ~/.tmux.conf ;;
 		vim)		vim ~/.vimrc ;;
-		xinit)		vim ~/.xinitrc ;;
-		Xdefaults)	vim ~/.Xdefaults ;;
+		xi)		vim ~/.xinitrc ;;
+		xd)		vim ~/.Xdefaults ;;
 		zsh)		vim ~/.zshrc && source ~/.zshrc ;;
-		userChrome)	vim ~/.mozilla/firefox/*.default/chrome/userChrome.css ;;
+		uc)		vim ~/.mozilla/firefox/*.default/chrome/userChrome.css ;;
 		*)		echo "unknown conf: $1" ;;		
 	esac
 }
