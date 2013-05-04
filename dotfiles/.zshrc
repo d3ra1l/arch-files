@@ -104,6 +104,7 @@ gcp() {
 		4chan)  	rm $gstyc/4chan.css;touch $gstyc/4chan.css;vim $gstyc/4chan.css;$gtsyc ;;
 		4chan-t)	rm $gstyc/4chan-testing.css;touch $gstyc/4chan-testing.css;vim $gstyc/4chan-testing.css$gstyc ;;
 		reddit)         rm $gstyc/reddit.css;touch $gstyc/reddit.css;vim $gstyc/reddit.css;$gstyc ;;
+		reddit-t)       rm $gstyc/reddit-testing.css;touch $gstyc/reddit-testing.css;vim $gstyc/reddit-testing.css;$gstyc ;;
 		crshd)          cp ~/.irssi/crshd.theme $gconf/config/.irssi/crshd.theme;$gconf ;;
 		zsh)		cp ~/.zshrc $gconf/dotfiles/.zshrc;$gconf ;;
 		tmux)		cp ~/.tmux.conf $gconf/dotfiles/.tmux.conf;$gconf ;;
