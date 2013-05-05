@@ -10,8 +10,8 @@ total_run_times 0
 
 #borders
 draw_borders no
-border_inner_margin 0
-border_outer_margin 1
+border_inner_margin -3
+border_outer_margin -1
 #border_margin 3
 
 #shades
@@ -19,8 +19,8 @@ draw_shades no
 
 #position
 gap_x 0
-gap_y 
-alignment top_left
+gap_y 0
+alignment top_middle
 
 #behaviour
 update_interval 1
@@ -34,15 +34,17 @@ own_window_colour 30303a #283e52
 
 #font
 use_xft yes
-font cure:size=8
+font limey:size=10
 
 # Force UTF8? note that UTF8 support required XFT
 #override_utf8_locale yes
 
 #to prevent window from moving
 #use_spacer none
-#minimum_size 1600
+minimum_size 1600
 #maximum_width 1600
 
 TEXT
-${if_mpd_playing} ${color eeeeee}${mpd_artist}: ${color b4b4b4}${mpd_title} ${else} ${color eeeeee}mpd ${color b4b4b4}[stopped] ${endif} ${alignc}${color eeeeee}${time %H:%M}${alignr}  ${color eeeeee}V: ${color b4b4b4}${exec amixer get Master | egrep -o "[0-9]+%" | head -1 | egrep -o "[0-9]*"}%   ${color eeeeee}B: ${color b4b4b4}${battery_percent BAT0}% 
+#${if_mpd_playing} ${color eeeeee}${mpd_artist}: ${color b4b4b4}${mpd_title} ${else} ${color eeeeee}mpd ${color b4b4b4}[stopped] ${endif} ${alignc}${color eeeeee}${time %H:%M}${alignr}  ${color eeeeee}V: ${color b4b4b4}${exec amixer get Master | egrep -o "[0-9]+%" | head -1 | egrep -o "[0-9]*"}%   ${color eeeeee}B: ${color b4b4b4}${battery_percent BAT0}% 
+${color eeeeee} ⮕${if_mpd_playing} ${color b4b4b4}${mpd_title} ${color dddddd}by ${color b4b4b4}${mpd_artist} ${else} ${color eeeeee}mpd ${color b4b4b4}[stopped] ${endif} $alignc ${color eeeeee}⮖ ${color b4b4b4}${time %R - %a, %b %d} $alignr ${color eeeeee}⮒ ${color b4b4b4}${exec ~/bin/batstat} 
+#${color eeeeee} MPD${if_mpd_playing} ${color b4b4b4}${mpd_title} ${color dddddd}by ${color b4b4b4}${mpd_artist} ${else} ${color b4b4b4}[stopped] ${endif} ${alignc}${color eeeeee}${time %H:%M}${alignr} ${color eeeeee}BAT ${color b4b4b4}is ${exec ~/bin/batstat} 

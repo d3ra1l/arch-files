@@ -100,8 +100,9 @@ alias mett='toilet --metal -f term -t'
 #git
 alias ga='git add *'
 alias gc='git commit -m' #remember to put commit in quotes
-alias gp='git push origin master'
 alias gl='git clone'
+alias gp='git push origin'
+alias gh='git checkout'
 export gstyc=~/gitshit/user-styles/styles-clean
 export gstyo=~/gitshit/user-styles/styles-old
 export gconf=~/gitshit/arch-files
@@ -117,6 +118,7 @@ gcp() {
 		crshd)          cp ~/.irssi/crshd.theme $gconf/config/.irssi/crshd.theme;$gconf ;;
 		zsh)		cp ~/.zshrc $gconf/dotfiles/.zshrc;$gconf ;;
 		tmux)		cp ~/.tmux.conf $gconf/dotfiles/.tmux.conf;$gconf ;;
+		*)		echo "$1 not found!" ;;
 	esac
 }
 
@@ -140,7 +142,7 @@ conf() {
 		ranger)		vim ~/.config/ranger/rc.conf ;;
 		tmux)		vim ~/.tmux.conf ;;
 		vim)		vim ~/.vimrc ;;
-		4x)		vim ~/stuff/4chan-x/ ;;
+		4x)		vim $g4x/script.coffee;$g4x ;;
 		xi)		vim ~/.xinitrc ;;
 		xd)		vim ~/.Xdefaults ;;
 		zsh)		vim ~/.zshrc && source ~/.zshrc ;;
