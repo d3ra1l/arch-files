@@ -106,6 +106,7 @@ alias gh='git checkout'
 export gstyc=~/gitshit/user-styles/styles-clean
 export gstyo=~/gitshit/user-styles/styles-old
 export gconf=~/gitshit/arch-files
+export gfo=~/gitshit/fonts
 export g4x=~/gitshit/4chan-x
 
 gcp() {
@@ -118,6 +119,7 @@ gcp() {
 		crshd)          cp ~/.irssi/crshd.theme $gconf/config/.irssi/crshd.theme;$gconf ;;
 		zsh)		cp ~/.zshrc $gconf/dotfiles/.zshrc;$gconf ;;
 		tmux)		cp ~/.tmux.conf $gconf/dotfiles/.tmux.conf;$gconf ;;
+		lemon)		cp ~/.fonts/bdf/lemon.bdf $gfo/lemon.bdf;$gfo ;;
 		*)		echo "$1 not found!" ;;
 	esac
 }
@@ -147,6 +149,9 @@ conf() {
 		xd)		vim ~/.Xdefaults ;;
 		zsh)		vim ~/.zshrc && source ~/.zshrc ;;
 		uc)		vim ~/.mozilla/firefox/*.default/chrome/userChrome.css ;;
+		i3)		vim ~/.i3/config ;;
+		irssi)		vim ~/.irssi/config ;;
+		crshd)		vim ~/.irssi/crshd.theme ;;
 		*)		echo "unknown conf: $1" ;;		
 	esac
 }
