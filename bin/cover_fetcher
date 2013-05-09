@@ -1,0 +1,45 @@
+#!/bin/zsh
+
+# this is a simple operation, really. all we do is fetch data from last.fm, get
+# the albm cover links, download them, and put them in the right place.
+# There are no heuristics going on here, it only works on exact matches!
+
+#(( $# != 2 )) && echo 'Usage: $0 Artist Album' && return 1
+
+Artist="$(mpc current -f %artist%)"
+Album="$(mpc current -f %album%)"
+
+if [[ -e $Artist/$Album.xpm ]]; then
+    echo "Error: File exists: $Artist/$Album.png"
+    return 2
+fi
+
+cd ~/mu/thumbs
+
+# simple http get request for album.getinfo, with artist + album
+data=$(curl \
+    --data-urlencode method=album.getinfo \
+    --data-urlencode api_key=2f63459bcb2578a277c5cf5ec4ca62f7 \
+    --data-urlencode artist=$Artist \
+    --data-urlencode album=$Album \
+    -G -s http://ws.audioscrobbler.com/2.0/)
+
+[[ $? > 0 ]] && echo 'Error: Unable to fetch album data!' && return 3
+
+# try to find a cover art link
+setopt rematchpcre
+[[ $data =~ '<image size="medium">([^<]+)</image>' ]] || { echo 'Error: No cover art found in album info.' && return 4 }
+
+1=${1:gs/\//_}
+2=${2:gs/\//_}
+
+# make sure this dir exists..
+if [[ ! -d $Artist ]]; then
+    mkdir -p $Artist
+fi
+
+# download and convert. heh.
+echo 'Downloading and converting..'
+curl -s $match | convert - -resize 80x80 "$Artist/$Album.png"
+
+[[ $? == 0 ]] && echo 'All done!' && cd ~ || { echo 'Error fetching or converting..' && return 5 && cd ~ }

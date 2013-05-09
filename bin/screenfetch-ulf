@@ -515,10 +515,10 @@ if (ref $config_array eq 'ARRAY') {
             print_logo_line() or last;
             printf $item->{OS}, $c2, $z, $os;
         }
-        elsif (exists $item->{CPU}) {
-            print_logo_line() or last;
-            printf $item->{CPU}, $c2, $z, $cpu;
-        }
+#        elsif (exists $item->{CPU}) {
+#            print_logo_line() or last;
+#            printf $item->{CPU}, $c2, $z, $cpu;
+#        }
         elsif (exists $item->{RAM}) {
             print_logo_line() or last;
             printf $item->{RAM}, $c2, $z, "$usedram / $totalram ($usedpercent)\n";
