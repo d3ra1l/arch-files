@@ -68,7 +68,7 @@ abstracts = {
 
   # the basic styling of how to print message, $0 = nick mode, $1 = nick
   # msgnick = " $1 %N %|";
-  msgnick = "$1 %b│ %K%|";
+  msgnick = "$1   %K%|";
   # msgnick = "   $1 %K· %n";
 
   # $0 = nick mode, $1 = nick
@@ -105,11 +105,11 @@ abstracts = {
   ########## Actions (/ME stuff) #########################
 
   # generic one that's used by most actions
-  action = "%m$* %M* %m%|";
+  action = "%m$* %M*%m %|";
 
   # own action, both private/public
   # ownaction = "{action $*}";
-  ownaction = "%m$* %M*%N%m";
+  ownaction = "%B$* %b*%m %|";
 
   # own action with target, both private/public
   ownaction_target = "{action $*}";
@@ -119,7 +119,7 @@ abstracts = {
   pvtaction_query = "{action $*}";
 
   # public action sent by others
-  pubaction = "{action $*}";
+  pubaction = "%R$* %r*%m %|";
 
 
   ########## other IRC events #############################
@@ -144,8 +144,8 @@ abstracts = {
   wallop_action = "%K * $*%n ";
 
   # netsplits
-  netsplit = "       %Knsplit %R« %b\"$*\"%n";
-  netjoin = "        %Knjoin %G» %b\"$*\"%n";
+  netsplit = "       %Knsplit %N« %b\"$*\"%n";
+  netjoin = "        %Knjoin %N» %b\"$*\"%n";
 
   # /names list
   names_prefix = "%Y!%K!      names %Y!%n ";
@@ -240,8 +240,8 @@ formats = {
     kick = "%R{nick $[-11]2}%n%| » kicked {channick_hilight $0}%n {reason $3}";
     quit = "%R{channick $[-11]0}%n%| « has quit ";
 
-    nick_changed = "{nick $[-11]0} %G»%n {channick $1}";
-    your_nick_changed = "%|%K        you %G»%n {channick $1}";
+    nick_changed = "{nick $[-11]0} %N»%n {channick $1}";
+    your_nick_changed = "%|%K        you %N»%n {channick $1}";
 
     pubmsg = "{pubmsgnick $2 {pubnick \00313$[-13]0}}  $1 %|";
 
@@ -264,13 +264,13 @@ formats = {
   "fe-common/irc" = {
     server_chanmode_change = "       mode %K»%n {channick $1}";
     usermode_change = "%B%|{nick $[-11]1} %K» %nreceived %r{mode $0}";
-    topic = "      %rtopic » %|%B$1";
+    topic = "      %rtopic %K» %|%B$1";
     topic_info = "%B{nick $[-11]0}%n %K» %nset the topic";
     channel_created = "%r{$channel $[-11]0}%n %K» %ncreated on %r$1";
     channel_mode =    "%B{channick $[-11]2}%n %K» %nset {$channelhilight $0} $1";
     chanmode_change = "%B{channick $[-11]2}%n %K» %nset mode %r$1";
     channel_synced =  "%r{$channel $[-11]0}%n %K» %nsynced in %C{hilight $1} %nseconds";
-    own_action = "{ownaction $[-11]0} $1";
+    own_action = "{ownaction $[-11]0}$1";
     action_private = "{pvtaction $[-11]0}$1";
     action_private_query = "{pvtaction_query $[-11]0} $2";
     action_public = "{pubaction $[-11]0}$1";
