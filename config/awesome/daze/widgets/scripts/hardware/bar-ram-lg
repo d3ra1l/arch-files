@@ -8,10 +8,10 @@ PERC=`echo $FREE*100/$MAX | bc`
 ICON="mem.xbm"
 if [[ $PERC -gt 75 ]]; then
 PERCBAR=`echo -e "$PERC"\
-        | gdbar -bg $bar_bg -fg $warning -h 1 -w 180`
+        | gdbar -bg $bar_bg -fg $warning -h 1 -w 115`
 else
 PERCBAR=`echo -e "$PERC"\
-        | gdbar -bg $bar_bg -fg $foreground -h 1 -w 180`
+        | gdbar -bg $bar_bg -fg $foreground -h 1 -w 115`
 fi
 
 echo "^fg($FG2) ⮥ RAM^fg()  $PERCBAR ^fg($highlight)$PERC%"
