@@ -3,9 +3,9 @@ colors phallus
 
 noremap j 5j
 noremap k 5k
-
 noremap <S-j> gT<Return>
 noremap <S-k> gt<Return>
+
 
 map <silent> <C-F1> :js toggle_bottombar()<CR>
 

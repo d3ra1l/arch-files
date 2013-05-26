@@ -7,7 +7,6 @@
 
 
 #prompt and syntax highlighting
-function precmd { print -Pn "\e]0;%n@%M:%~\a" }
 export PS1="%{[38;05;8;48;05;4m%} %(!.%S-ROOT-%s.%n) %{[38;05;4;48;05;1m%}⮀%{[00m%}%{[38;05;8;48;05;1m%} %~ %{[00m%}%{[38;05;1m%}⮀ %{[00m%}"
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
@@ -80,10 +79,29 @@ alias hack1='cat /dev/urandom | hexdump -c'
 alias 2spooky='lua ~/stuff/2spooky.lua'
 alias gentoo='lua ~/stuff/gentoo.lua'
 
+#screenfetch
+alias sfd='screenfetch-dev'
+alias sfu='screenfetch-ulf'
+
+#mpd
+alias mpd='mpd;mpdscribble'
+alias mps='mpdscribble'
+alias ncp='ncmpcpp'
+alias eq='alsamixer -D equal'
+
+#nitrogen
+alias nr='nitrogen --restore'
+
 #ls
 alias ls='ls -F --color=auto'
 alias la='ls -aF --color=auto'
 alias ll='ls -lhF'
+
+#archives
+alias ut='tar xf'
+alias utv='tar xvf'
+alias uz='unzip'
+alias ur='unrar x'
 
 #pkill
 alias pk='pkill'
@@ -118,8 +136,11 @@ gcp() {
 		reddit-t)       rm $gstyc/reddit-testing.css;touch $gstyc/reddit-testing.css;vim $gstyc/reddit-testing.css;$gstyc ;;
 		crshd)          cp ~/.irssi/crshd.theme $gconf/config/.irssi/crshd.theme;$gconf ;;
 		zsh)		cp ~/.zshrc $gconf/dotfiles/.zshrc;$gconf ;;
+                vim)            cp ~/.vimrc $gconf/dotfiles/.vimrc;$gconf ;;
+                vimp)           cp ~/.vimperatorrc $gconf/dotfiles/.vimperatorrc;$gconf ;;
 		tmux)		cp ~/.tmux.conf $gconf/dotfiles/.tmux.conf;$gconf ;;
 		lemon)		cp ~/.fonts/bdf/lemon.bdf $gfo/lemon.bdf;$gfo ;;
+		uushi)		cp ~/.fonts/bdf/uushi.bdf $gfo/uushi.bdf;$gfo ;;
 		*)		echo "$1 not found!" ;;
 	esac
 }
@@ -140,7 +161,7 @@ conf() {
 	case $1 in
 		mpd)		vim ~/.mpdconf ;;
 		conky)		vim ~/.conkyrc ;;
-		ncmpcpp)	vim ~/.ncmpcpp/config ;;
+		ncp)	vim ~/.ncmpcpp/config ;;
 		ranger)		vim ~/.config/ranger/rc.conf ;;
 		tmux)		vim ~/.tmux.conf ;;
 		vim)		vim ~/.vimrc ;;
@@ -152,6 +173,9 @@ conf() {
 		i3)		vim ~/.i3/config ;;
 		irssi)		vim ~/.irssi/config ;;
 		crshd)		vim ~/.irssi/crshd.theme ;;
+		lemon)		~/.fonts/bdf;gbdfed;vim lemon.bdf;bdftopcf -o ../lemon.pcf lemon.bdf ;;
+		uushi)		~/.fonts/bdf;gbdfed;bdftopcf -o ../uushi.pcf uushi.bdf ;;
+		awesome)	vim ~/.config/awesome/rc.lua ;;
 		*)		echo "unknown conf: $1" ;;		
 	esac
 }
