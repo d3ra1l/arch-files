@@ -26,7 +26,7 @@ set incsearch
 set ignorecase
 set smartcase
 
-" persistend undo history
+" persistent undo history
 if has('persistent_undo')
     set undofile " Save undo's after file closes
     set undodir=~/.vim/undo " where to save undo histories
