@@ -4,7 +4,7 @@ source $(dirname $0)/d-conf
 
 YPOS="14"
 XPOS="1436"
-TIMING="5"
+#TIMING="5"
 
 HEIGHT="10"
 WIDTH="160"

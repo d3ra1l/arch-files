@@ -4,7 +4,7 @@ source $(dirname $0)/d-conf
 
 XPOS=$(xdotool getmouselocation | awk -F " " '{print $1}' | cut -d ":" -f 2)
 #YPOS="14"
-TIMING="5"
+#TIMING="5"
 
 HEIGHT="12"
 WIDTH="144"
@@ -35,17 +35,27 @@ if [ "`mpc 2>&1 | wc -l`" -gt "1" ]; then
 	perc=`mpc | awk 'NR == 2 {gsub(/[()%]/,""); print $4}'`
 	percwidth=$(( $WIDTH - 10 ))
 	percbar=`echo -e "$perc" | gdbar -bg $bar_bg -fg $foreground -h 1 -w $percwidth`
-	nowplaying="$np"
+	
+
+        aart="/home/phallus/mu/thumbs/$(ls ~/mu/thumbs | grep "$art - $alb")"
+        if [ "$aart" = "" ]; then
+                cover_fetcher
+        else
+                albumart=$aart
+        fi
+
+        nowplaying="$np"
 	playing=$(mpc current)
 	playlistcurrent=$(mpc playlist | grep -n "$playing" | cut -d ":" -f 1)
-	mvol=$(mpc volume | awk -F " " '{print $2}')
-	if [ "$(mpc volume)" != "volume:100%" ]; then
+        mvol=$(mpc volume | awk -F " " '{print $2}')
+	
+        if [ "$(mpc volume)" != "volume:100%" ]; then
 		mpdvol="^fg($FG2)MPD Volume: ^fg($FG1)$mvol"
 	else
 		mpdvol="^fg($FG2)MPD Volume: ^fg($FG1)100%"
 	fi
-
-    (echo "$nowplaying"; echo "$artist"; echo "$album"; echo "$time"; echo "$alsavol"; echo "$mpdvol"; echo " "; echo " $percbar";echo "^fg($red)      $buttons"; echo " ";sleep $TIMING) | dzen2 -bg $BG -fn $FONT -x $XPOS -y $YPOS -w $WIDTH -h $HEIGHT -l $LINES -e 'onstart=uncollapse;button1=exit;button2=exit;button3=exit;button4=exit;button5=exit'
+    feh -x -B black -g +$(($XPOS-108))+$(($YPOS)) "$albumart" &
+    (echo "$nowplaying"; echo " $artist"; echo " $album"; echo " $time"; echo " $alsavol"; echo " $mpdvol"; echo " "; echo " $percbar";echo "^fg($red)      $buttons"; echo " "; sleep $TIMING) | dzen2 -bg $BG -fn $FONT -x $XPOS -y $YPOS -w $WIDTH -h $HEIGHT -l $LINES -e 'onstart=uncollapse;button1=exit;button2=exit;button3=exit;button4=exit;button5=exit;onexit=exec:killall feh'
 else
     (echo "^fg($FG2)MPD is not playing."; sleep 1) | dzen2 -bg $BG -fn $FONT -x $XPOS -y $YPOS -w 95 -h $HEIGHT -l 0 -ta "center" -sa $ALIGN -e 'onstart=uncollapse;button1=exit;button2=exit;button3=exit;button4=exit;button5=exit'
 fi

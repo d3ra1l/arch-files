@@ -16,6 +16,7 @@ foreground="#eeeeee"
 highlight="#b4b4b4"
 
 FONT="-artwiz-lemon-medium-r-normal-*-10-110-75-75-m-50-iso8859-*"
+TIMING="10"
 white0="#626e74"
 
 bar_bg="#404040"
