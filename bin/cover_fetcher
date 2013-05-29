@@ -1,10 +1,5 @@
 #!/bin/zsh
 
-# this is a simple operation, really. all we do is fetch data from last.fm, get
-# the albm cover links, download them, and put them in the right place.
-# There are no heuristics going on here, it only works on exact matches!
-
-#(( $# != 2 )) && echo 'Usage: $0 Artist Album' && return 1
 
 Artist="$(mpc current -f %artist%)"
 Album="$(mpc current -f %album%)"
@@ -38,7 +33,6 @@ if [[ ! -d $Artist ]]; then
     mkdir -p $Artist
 fi
 
-# download and convert. heh.
 echo 'Downloading and converting..'
 curl -s $match | convert - -resize 80x80 "$Artist/$Album.png"
 
