@@ -4,7 +4,7 @@
 art="$(mpc current -f %artist%)"
 alb="$(mpc current -f %album%)"
 
-if [[ -e $art/$alb.xpm ]]; then
+if [[ -e $art/$alb.png ]]; then
     echo "Error: File exists: $art/$alb.png"
     return 2
 fi
