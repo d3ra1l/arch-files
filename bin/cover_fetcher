@@ -1,11 +1,11 @@
 #!/bin/zsh
 
 
-Artist="$(mpc current -f %artist%)"
-Album="$(mpc current -f %album%)"
+art="$(mpc current -f %artist%)"
+alb="$(mpc current -f %album%)"
 
-if [[ -e $Artist/$Album.xpm ]]; then
-    echo "Error: File exists: $Artist/$Album.png"
+if [[ -e $art/$alb.xpm ]]; then
+    echo "Error: File exists: $art/$alb.png"
     return 2
 fi
 
@@ -15,8 +15,8 @@ cd ~/mu/thumbs
 data=$(curl \
     --data-urlencode method=album.getinfo \
     --data-urlencode api_key=2f63459bcb2578a277c5cf5ec4ca62f7 \
-    --data-urlencode artist=$Artist \
-    --data-urlencode album=$Album \
+    --data-urlencode artist=$art \
+    --data-urlencode album=$alb \
     -G -s http://ws.audioscrobbler.com/2.0/)
 
 [[ $? > 0 ]] && echo 'Error: Unable to fetch album data!' && return 3
@@ -29,11 +29,11 @@ setopt rematchpcre
 2=${2:gs/\//_}
 
 # make sure this dir exists..
-if [[ ! -d $Artist ]]; then
-    mkdir -p $Artist
+if [[ ! -d $art ]]; then
+    mkdir -p $art
 fi
 
 echo 'Downloading and converting..'
-curl -s $match | convert - -resize 80x80 "$Artist/$Album.png"
+curl -s $match | convert - -resize 80x80 "$art/$alb.png"
 
 [[ $? == 0 ]] && echo 'All done!' && cd ~ || { echo 'Error fetching or converting..' && return 5 && cd ~ }
