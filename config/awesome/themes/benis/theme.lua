@@ -8,7 +8,7 @@ theme.font          = "lemon 7"
 --theme.font_alt      = "-*-lime.se-*-*-*-*-*-*-*-*-*-*-*-*"
 
 theme.bg_normal     = "#20202f"
-theme.bg_focus      = "#c97c7c"
+theme.bg_focus      = "#20202f"
 theme.bg_urgent     = "#20202f"
 theme.bg_minimize   = "#20202f"
 theme.bg_systray    = theme.bg_normal
@@ -18,11 +18,14 @@ theme.fg_focus      = "#eeeeee"
 theme.fg_urgent     = "#646464"
 theme.fg_minimize   = "#eeeeee"
 theme.fg_systray    = "#b4b4b4"
+theme.tasklist_fg_focus = "#dadada"
+theme.taglist_fg_normal = "#a2a2a2"
 
 theme.border_width  = 2
-theme.border_normal = "#646464"
-theme.border_focus  = "#b4b4b4"
+theme.border_normal = "#20202f"
+theme.border_focus  = "#30303a"
 theme.border_marked = "#646464"
+theme.border_feh    = "#30303a"
 
 -- There are other variable sets
 -- overriding the default one when
@@ -35,26 +38,29 @@ theme.border_marked = "#646464"
 --theme.taglist_bg_focus = "#ff0000"
 
 -- Display the taglist squares
--- theme.taglist_squares_sel   = "/home/phallus/.config/awesome/themes/benis/taglist/squarefw.png"
-theme.taglist_squares_unsel = "/home/phallus/.config/awesome/themes/benis/taglist/squarew-r.png"
+theme.taglist_squares_sel   = "/home/phallus/.config/awesome/themes/benis/taglist/squarefw-g.png"
+theme.taglist_squares_unsel = "/home/phallus/.config/awesome/themes/benis/taglist/squarew-g.png"
 
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
 theme.menu_submenu_icon = "/home/phallus/.config/awesome/themes/benis/submenu.png"
 theme.menu_height = 11
-theme.menu_width  = 80
+theme.menu_width  = 70
 
 -- You can add as many variables as
 -- you wish and access them by using
 -- beautiful.variable in your rc.lua
 --theme.bg_widget = "#cc0000"
 
-theme.useless_gap_width = "53"
+theme.useless_gap_width = "43"
 theme.lower_window_height = "72"
 theme.vertical_resolution = "900"
 theme.vertical_border = "3"
 theme.outer_padding = "0"
+
+theme.layout_txt_tile       = "⮘ "
+theme.layout_txt_floating   = "⮛ "
 
 -- Define the image to load
 theme.titlebar_close_button_normal = "/home/phallus/.config/awesome/themes/benis/titlebar/close_normal.png"

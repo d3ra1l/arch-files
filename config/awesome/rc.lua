@@ -65,17 +65,7 @@ local layouts =
 {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
-    daze.layout.fixed,
+    daze.layout.tile,
 }
 
 -- }}}
@@ -90,9 +80,10 @@ for s = 1, screen.count() do
     tags[s] = awful.tag({ "⮫", "⮬", "⮭", "⮮", "⮯" }, s, layouts[1])
 end
 
-awful.layout.set(daze.layout.tile, tags[1][1])                                             
-awful.tag.setmwfact(0.653, tags[1][1])
+awful.layout.set(awful.layout.suit.floating, tags[1][1])                                             
+awful.tag.setmwfact(0.658, tags[1][1])
 awful.tag.setncol(1, tags[1][1])
+
 -- }}}
 
 -- {{{ Menu
@@ -104,11 +95,11 @@ myawesomemenu = {
    { "quit", awesome.quit }
 }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu },
-                                    { "urxvtc", terminal },
-				    { "nitrogen", "nitrogen" },
-				    { "scrot", "/home/phallus/bin/scr" },
-				    { "lock", "/home/phallus/bin/i3lock-w" }
+mymainmenu = awful.menu({ items = { { "⮗ awesome", awesome.restart },
+                                    { "⮩ urxvtc", terminal },
+				    { "⮠ nitrogen", "nitrogen" },
+				    { "⮤ scrot", "/home/phallus/bin/scr" },
+				    { "⮪ lock", "/home/phallus/bin/i3lock-w" }
                                   }
                         })
 
@@ -135,14 +126,6 @@ tasklist.buttons = awful.util.table.join(
         client.focus = c
         c:raise()
     end
-    end),
-    awful.button({ }, 3, function ()
-        if instance then
-            instance:hide()
-            instance = nil
-        else
-            instance = awful.menu.clients({ width = 250 })
-        end
     end),
     awful.button({ }, 4, function ()
         awful.client.focus.byidx(1)
@@ -221,13 +204,19 @@ daze.widgets.mpd.register(mpdwidget)
 vicious.register(mpdwidget, vicious.widgets.mpd,
    function (widget, args)
        if args["{state}"] == "Stop" then 
-           return "<span color='#dfdfdf'>⮕</span> [mpd stopped] "
+           return "<span color='#dfdfdf'>⮕</span> [mpd stopped]"
        elseif args["{state}"] == "Pause" then
 		   return '<span color="#dfdfdf">⮔</span> '.. args["{Title}"]..'<span color="#d2d2d2"> by </span>'.. args["{Artist}"]..''
        else
   		   return '<span color="#dfdfdf">⮓</span> '.. args["{Title}"]..'<span color="#d2d2d2"> by </span>'.. args["{Artist}"]..''
        end
    end, 1)
+
+-- layout widget
+function updatelayoutbox(l, s)
+    local screen = s or 1
+    l.text = beautiful["layout_txt_" .. awful.layout.getname(awful.layout.get(screen))]
+end
 
 
 separator = wibox.widget.textbox()
@@ -239,6 +228,7 @@ separator:set_text("")
 mywibox = {}
 mypromptbox = {}
 mylayoutbox = {}
+txtlayoutbox = {}
 mytaglist = {}
 mytaglist.buttons = awful.util.table.join(
                     awful.button({ }, 1, awful.tag.viewonly),
@@ -253,7 +243,7 @@ mytasklist = {}
 mytasklist.buttons = awful.util.table.join(
                      awful.button({ }, 1, function (c)
                                               if c == client.focus then
-                                                  c.minimized = true
+                                                  c.minimized = false
                                               else
                                                   -- Without this, the following
                                                   -- :isvisible() makes no sense
@@ -265,14 +255,6 @@ mytasklist.buttons = awful.util.table.join(
                                                   -- the client, if needed
                                                   client.focus = c
                                                   c:raise()
-                                              end
-                                          end),
-                     awful.button({ }, 3, function ()
-                                              if instance then
-                                                  instance:hide()
-                                                  instance = nil
-                                              else
-                                                  instance = awful.menu.clients({ width=250 })
                                               end
                                           end),
                      awful.button({ }, 4, function ()
@@ -287,27 +269,36 @@ mytasklist.buttons = awful.util.table.join(
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
     mypromptbox[s] = awful.widget.prompt()
+
+    txtlayoutbox[s] = wibox.widget.textbox()
+    txtlayoutbox[s].text = beautiful["layout_txt_" .. awful.layout.getname(awful.layout.get(s))] 
+    awful.tag.attached_connect_signal(s, "property::selected", function ()
+        updatelayoutbox(txtlayoutbox[s], s) 
+    end)
+    awful.tag.attached_connect_signal(s, "property::layout", function ()
+        updatelayoutbox(txtlayoutbox[s], s) 
+    end)
+    txtlayoutbox[s]:buttons(awful.util.table.join(
+            awful.button({}, 1, function() awful.layout.inc(layouts, 1) end),
+            awful.button({}, 3, function() awful.layout.inc(layouts, -1) end),
+            awful.button({}, 4, function() awful.layout.inc(layouts, 1) end),
+            awful.button({}, 5, function() awful.layout.inc(layouts, -1) end)))
+ 
     -- Create an imagebox widget which will contains an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
-    mylayoutbox[s] = awful.widget.layoutbox(s)
-    mylayoutbox[s]:buttons(awful.util.table.join(
-                           awful.button({ }, 1, function () awful.layout.inc(layouts, 1) end),
-                           awful.button({ }, 3, function () awful.layout.inc(layouts, -1) end),
-                           awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
-                           awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))
     -- Create a taglist widget
     mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, mytaglist.buttons)
 
     -- Create a tasklist widget
+--    mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.focused, mytasklist.buttons)
     mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
-
     -- Create the wibox
     mywibox[s] = awful.wibox({ position = "top", screen = s, height = 10 })
 
     -- Widgets that are aligned to the left
     local left_layout = wibox.layout.fixed.horizontal()
     left_layout:add(mytaglist[s])
-    left_layout:add(mypromptbox[s])
+    left_layout:add(txtlayoutbox[s])
     left_layout:add(spacer)
 
     -- Widgets that are aligned to the right
@@ -323,7 +314,7 @@ for s = 1, screen.count() do
 -- Now bring it all together (with the tasklist in the middle)
     local layout = wibox.layout.align.horizontal()
     layout:set_left(left_layout)
---    layout:set_middle(mytasklist[s])
+    layout:set_middle(mytasklist[s])
     layout:set_right(right_layout)
     mywibox[s]:set_widget(layout)
 end
@@ -522,16 +513,16 @@ awful.rules.rules = {
                      keys = clientkeys,
                      buttons = clientbuttons,
                      size_hints_honor = false } },
-    { rule = { class = "MPlayer" },
-      properties = { floating = true } },
+    { rule = { }, properties = { }, callback = awful.client.setslave },
+    { rule = { class = "feh" },
+      properties = { border_color = beautiful.border_feh,
+        floating = true } },
     { rule = { class = "pinentry" },
       properties = { floating = true } },
-    { rule = { class = "gimp" },
-      properties = { floating = true } },
+    { rule = { class = "sun-awt-X11-XWindowPeer" },
+      properties = { floating = true, border_width = 0 } },
     { rule = { instance = "Download" },
       properties = { floating = true } },
---    { rule = { class = "Firefox" },
---      properties = { border_width = 0 } },
     { rule = { instance = "Devtools" },
       properties = { floating = true } },
 
