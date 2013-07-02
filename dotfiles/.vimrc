@@ -5,21 +5,26 @@ set t_Co=256
 syntax on
 filetype on
 filetype plugin on
-filetype indent on
+
+hi CursorLine ctermbg=235 cterm=bold
+hi CursorLineNr ctermfg=238 ctermbg=235
+hi LineNr ctermfg=238
+hi VertSplit ctermfg=235
+hi Constant ctermfg=5
+hi Statement ctermfg=1
 
 " set basic settings
+set tabstop=4
+set shiftwidth=4
 set nowrap
 set noswapfile
 set backspace=2
-set mouse=a
 set shell=zsh
 set hlsearch
 set spelllang=pl,en
-"set cursorline
 
-" smart tabs
-set expandtab
-set smarttab
+" key bindings
+cmap w!! %!sudo tee > /dev/null %
 
 " start searching as you type
 set incsearch

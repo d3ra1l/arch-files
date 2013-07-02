@@ -64,8 +64,9 @@ alias fonts='mkfontdir ~/.fonts;mkfontscale ~/.fonts;xset +fp ~/.fonts;xset fp r
 #make du pretty
 alias du='cdu -d ch'
 
-#convert flacs in dir to ogg, then move up a dir
+#conversion
 alias f2o='flac2ogg;..'
+alias a2f='for f in *.m4a; do ffmpeg -i "$f" "${f%.m4a}.flac"; done;rm *.m4a'
 
 #a bit of fun
 alias fuck='echo;gayt "fuck you too";echo'
@@ -76,12 +77,16 @@ alias gfort='fort | gayt'
 
 #h4x0rz ur sh1t; or ricer scripts
 alias hack1='cat /dev/urandom | hexdump -c'
-alias 2spooky='lua ~/stuff/2spooky.lua'
-alias gentoo='lua ~/stuff/gentoo.lua'
 
 #screenfetch
 alias sfd='screenfetch-dev'
 alias sfu='screenfetch-ulf'
+
+#byzanz
+record() {
+	byzanz-record --duration=$1 --delay=$2 $3.gif
+}
+alias byz="record"
 
 #mpd
 alias mpd='mpd;mpdscribble'
@@ -129,15 +134,17 @@ export g4x=~/gitshit/4chan-x
 
 gcp() {
 	case $1 in
-		uc)		cp ~/.mozilla/firefox/*.default/chrome/userChrome.css $gstyc/userChrome.css;$gstyc ;;
+		uc)			cp ~/.mozilla/firefox/*.default/chrome/userChrome.css $gstyc/userChrome.css;$gstyc ;;
+		uc-t)       cp ~/.mozilla/firefox/*.default/chrome/userChrome.css $gstyc/userChrome-testing.css;$gstyc ;;
 		4chan)  	rm $gstyc/4chan.css;touch $gstyc/4chan.css;vim $gstyc/4chan.css;$gtsyc ;;
 		4chan-t)	rm $gstyc/4chan-testing.css;touch $gstyc/4chan-testing.css;vim $gstyc/4chan-testing.css;$gstyc ;;
-		reddit)         rm $gstyc/reddit.css;touch $gstyc/reddit.css;vim $gstyc/reddit.css;$gstyc ;;
-		reddit-t)       rm $gstyc/reddit-testing.css;touch $gstyc/reddit-testing.css;vim $gstyc/reddit-testing.css;$gstyc ;;
-		crshd)          cp ~/.irssi/crshd.theme $gconf/config/.irssi/crshd.theme;$gconf ;;
+		reddit)     rm $gstyc/reddit.css;touch $gstyc/reddit.css;vim $gstyc/reddit.css;$gstyc ;;
+		reddit-t)   rm $gstyc/reddit-testing.css;touch $gstyc/reddit-testing.css;vim $gstyc/reddit-testing.css;$gstyc ;;
+		crshd)      cp ~/.irssi/crshd.theme $gconf/config/.irssi/crshd.theme;$gconf ;;
 		zsh)		cp ~/.zshrc $gconf/dotfiles/.zshrc;$gconf ;;
-                vim)            cp ~/.vimrc $gconf/dotfiles/.vimrc;$gconf ;;
-                vimp)           cp ~/.vimperatorrc $gconf/dotfiles/.vimperatorrc;$gconf ;;
+        vim)        cp ~/.vimrc $gconf/dotfiles/.vimrc;$gconf ;;
+        vimp)       cp ~/.vimperatorrc $gconf/dotfiles/.vimperatorrc;$gconf ;;
+		ncp) 		cp ~/.ncmpcpp/config $gconf/dotfiles/ncmpcpp-config;$gconf ;;
 		tmux)		cp ~/.tmux.conf $gconf/dotfiles/.tmux.conf;$gconf ;;
 		lemon)		cp ~/.fonts/bdf/lemon.bdf $gfo/lemon.bdf;$gfo ;;
 		uushi)		cp ~/.fonts/bdf/uushi.bdf $gfo/uushi.bdf;$gfo ;;
@@ -156,26 +163,40 @@ alias yu='yaourt -Syy && yaourt -Syua --devel'
 alias yb='yaourt -Sb'
 alias yg='yaourt -G'
 
+#ranger
+rn() {
+        case $1 in     
+                awesome)        ranger ~/.config/awesome ;;
+                torrents)       ranger ~/torrents ;;
+                music)          ranger ~/mu ;;
+                bin)            ranger ~/bin ;;
+                git)            ranger ~/gitshit ;;
+        esac
+}
+
 #vim - thanks to earsplit for this!
 conf() {
 	case $1 in
 		mpd)		vim ~/.mpdconf ;;
 		conky)		vim ~/.conkyrc ;;
-		ncp)	vim ~/.ncmpcpp/config ;;
+		ncp)    	vim ~/.ncmpcpp/config ;;
 		ranger)		vim ~/.config/ranger/rc.conf ;;
 		tmux)		vim ~/.tmux.conf ;;
 		vim)		vim ~/.vimrc ;;
-		4x)		vim $g4x/script.coffee;$g4x ;;
-		xi)		vim ~/.xinitrc ;;
-		xd)		vim ~/.Xdefaults ;;
+		4x)			vim $g4x/script.coffee;$g4x ;;
+		xi)			vim ~/.xinitrc ;;
+		xd)			vim ~/.Xdefaults ;;
 		zsh)		vim ~/.zshrc && source ~/.zshrc ;;
-		uc)		vim ~/.mozilla/firefox/*.default/chrome/userChrome.css ;;
-		i3)		vim ~/.i3/config ;;
+		uc)			vim ~/.mozilla/firefox/*.default/chrome/userChrome.css ;;
+		i3)			vim ~/.i3/config ;;
 		irssi)		vim ~/.irssi/config ;;
 		crshd)		vim ~/.irssi/crshd.theme ;;
 		lemon)		~/.fonts/bdf;gbdfed;vim lemon.bdf;bdftopcf -o ../lemon.pcf lemon.bdf ;;
 		uushi)		~/.fonts/bdf;gbdfed;bdftopcf -o ../uushi.pcf uushi.bdf ;;
 		awesome)	vim ~/.config/awesome/rc.lua ;;
+        gtk)        vim ~/.themes/Kvtie/gtk-2.0/gtkrc ;;
+        pacman)     sudo vim /etc/pacman.conf ;;
+		vimp)		vim ~/.vimperatorrc ;;
 		*)		echo "unknown conf: $1" ;;		
 	esac
 }
