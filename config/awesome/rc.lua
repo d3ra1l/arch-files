@@ -95,10 +95,10 @@ myawesomemenu = {
    { "quit", awesome.quit }
 }
 
-mymainmenu = awful.menu({ items = { { "⮗ awesome", awesome.restart },
-                                    { "⮩ urxvtc", terminal },
+mymainmenu = awful.menu({ items = { { "⮩ urxvtc", terminal },
 				    { "⮠ nitrogen", "nitrogen" },
 				    { "⮤ scrot", "/home/phallus/bin/scr" },
+					{ "⮗ restart", awesome.restart },
 				    { "⮪ lock", "/home/phallus/bin/i3lock-w" }
                                   }
                         })
@@ -357,32 +357,6 @@ local g = c:geometry()
 	c:geometry(g)
 end
 
-client_mode = {
-	k = function(c) move(c, 0, -5) end, -- Up
-	j = function(c) move(c, 0, 5) end, -- Down
-	h = function(c) move(c, -5, 0) end, -- Left
-	l = function(c) move(c, 5, 0) end, -- Right
-	u = function(c) move(c, -5, -5) end, -- Up left
-	i = function(c) move(c, 5, -5) end, -- Up right
-	n = function(c) move(c, -5, 5) end, -- Down left
-	m = function(c) move(c, 5, 5) end, -- Down right
-}
-
-client_mode_common = {
--- Various controls
-	f = function (c) c.fullscreen = not c.fullscreen end,
-	x = function (c)
-	c.maximized_horizontal = not c.maximized_horizontal
-	c.maximized_vertical = not c.maximized_vertical
-	end,
--- Launch terminal
-	q = function()
-	awful.util.spawn(terminal)
-	end
-}
-
-client_mode = awful.util.table.join(client_mode, client_mode_common)
-
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
@@ -425,6 +399,8 @@ globalkeys = awful.util.table.join(
     awful.key({ "Control" }, "k", function () awful.util.spawn("amixer -q set Master 4%+ unmute") end),
     awful.key({ "Control" }, "h",  function () awful.util.spawn("mpc prev") end),
     awful.key({ modkey, }, "p", function () awful.util.spawn("mpc toggle") end),
+	awful.key({ "Mod4" }, "k", function () awful.util.spawn("xbacklight -inc 10") end),
+    awful.key({ "Mod4" }, "j", function () awful.util.spawn("xbacklight -dec 10") end),
 
     -- Prompt
     -- awful.key({ modkey },            "d", awful.util.spawn("dmenu_run -p 'run' -fn '-*-lemon-*-*-*-*-10-*-*-*-*-*-*-*' -nf '#a2a2a2' -nb '#131313' -sf '#777777' -sb '#131313")),
