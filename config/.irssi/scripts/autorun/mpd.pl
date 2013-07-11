@@ -85,7 +85,9 @@ sub np {
     $MPD{'status'}   = "";
     $MPD{'artist'}   = "";
     $MPD{'title'}    = "";
+    $MPD{'album'}    = "";
     $MPD{'filename'} = "";
+    
 
     my $ans = "";
     my $str = "";
@@ -116,7 +118,10 @@ sub np {
             $MPD{'artist'} = $1;
         } elsif ($ans =~ /Title: (.+)$/) {
             $MPD{'title'} = $1;
+        }elsif ($ans =~ /Album: (.+)$/) {
+            $MPD{'album'} = $1;
         }
+
     }
 
     close $socket;
@@ -130,6 +135,7 @@ sub np {
     $str =~ s/\%ARTIST/$MPD{'artist'}/g;
     $str =~ s/\%TITLE/$MPD{'title'}/g;
     $str =~ s/\%FILENAME/$MPD{'filename'}/g;
+    $str =~ s/\%ALBUM/$MPD{'album'}/g;
 
     if ($witem && ($witem->{type} eq "CHANNEL" ||
                    $witem->{type} eq "QUERY")) {
@@ -168,7 +174,7 @@ USAGE
 Irssi::settings_add_str('mpd', 'mpd_host', 'localhost');
 Irssi::settings_add_str('mpd', 'mpd_port', '6600');
 Irssi::settings_add_str('mpd', 'mpd_timeout', '5');
-Irssi::settings_add_str('mpd', 'mpd_format', 'np: %ARTIST - %TITLE');
+Irssi::settings_add_str('mpd', 'mpd_format', 'np: %TITLE by %ARTIST');
 Irssi::settings_add_str('mpd', 'mpd_alt_text', 'np: %FILENAME');
 
 Irssi::command_bind np        => \&np;
