@@ -52,8 +52,8 @@ export PATH=~/bin:$PATH
 ###
 
 
-#ensure make uses all cores
-alias make="make -j3"
+#ensure make uses all cores (tfw I didn't realize my comp was quad-core until very recently)
+alias make="make -j5"
 
 #ensure cp is always recursive and verbose
 alias cp='cp -Rv'
@@ -74,9 +74,7 @@ alias fucking='sudo'
 alias starwars='telnet towel.blinkenlights.nl'
 alias fort='fortune -a'
 alias gfort='fort | gayt'
-
-#h4x0rz ur sh1t; or ricer scripts
-alias hack1='cat /dev/urandom | hexdump -c'
+alias hack='cat /dev/urandom | hexdump -c'
 
 #screenfetch
 alias sfd='screenfetch-dev'
@@ -88,11 +86,12 @@ record() {
 }
 alias byz="record"
 
-#mpd
+#music
 alias mpd='mpd;mpdscribble'
 alias mps='mpdscribble'
 alias ncp='ncmpcpp'
 alias eq='alsamixer -D equal'
+alias f2k='wine ~/.wine/drive_c/users/phallus/Desktop/foobar2000/foobar2000.exe'
 
 #nitrogen
 alias nr='nitrogen --restore'
@@ -103,10 +102,20 @@ alias la='ls -aF --color=auto'
 alias ll='ls -lhF'
 
 #archives
-alias ut='tar xf'
-alias utv='tar xvf'
-alias uz='unzip'
-alias ur='unrar x'
+extract () {
+	if [ -f $1 ] ; then
+		case $1 in
+		tar)	tar xf $1;;
+		rar)	unrar x $1;;
+		7z)		7za e $1;;
+		zip)	unzip $1;;
+		*)		echo "idk how to extract this lol";;
+		esac
+	else
+		echo "invalid file you baka"
+	fi
+}
+
 
 #pkill
 alias pk='pkill'
@@ -148,7 +157,7 @@ gcp() {
 		tmux)		cp ~/.tmux.conf $gconf/dotfiles/.tmux.conf;$gconf ;;
 		lemon)		cp ~/.fonts/bdf/lemon.bdf $gfo/lemon.bdf;$gfo ;;
 		uushi)		cp ~/.fonts/bdf/uushi.bdf $gfo/uushi.bdf;$gfo ;;
-		*)		echo "$1 not found!" ;;
+		*)			echo "$1 not found!" ;;
 	esac
 }
 
@@ -171,6 +180,7 @@ rn() {
                 music)          ranger ~/mu ;;
                 bin)            ranger ~/bin ;;
                 git)            ranger ~/gitshit ;;
+				*)				ranger ;;
         esac
 }
 
@@ -180,10 +190,9 @@ conf() {
 		mpd)		vim ~/.mpdconf ;;
 		conky)		vim ~/.conkyrc ;;
 		ncp)    	vim ~/.ncmpcpp/config ;;
-		ranger)		vim ~/.config/ranger/rc.conf ;;
+		rn)		    vim ~/.config/ranger/rc.conf ;;
 		tmux)		vim ~/.tmux.conf ;;
 		vim)		vim ~/.vimrc ;;
-		4x)			vim $g4x/script.coffee;$g4x ;;
 		xi)			vim ~/.xinitrc ;;
 		xd)			vim ~/.Xdefaults ;;
 		zsh)		vim ~/.zshrc && source ~/.zshrc ;;
@@ -197,6 +206,6 @@ conf() {
         gtk)        vim ~/.themes/Kvtie/gtk-2.0/gtkrc ;;
         pacman)     sudo vim /etc/pacman.conf ;;
 		vimp)		vim ~/.vimperatorrc ;;
-		*)		echo "unknown conf: $1" ;;		
+		*)			echo "unknown conf: $1" ;;		
 	esac
 }
