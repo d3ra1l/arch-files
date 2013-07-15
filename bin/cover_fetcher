@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-
+#define the variables
 art="$(mpc current -f %artist%)"
 alb="$(mpc current -f %album%)"
 
@@ -11,7 +11,7 @@ fi
 
 cd ~/mu/thumbs
 
-# simple http get request for album.getinfo, with artist + album
+#find the cover
 data=$(curl \
     --data-urlencode method=album.getinfo \
     --data-urlencode api_key=2f63459bcb2578a277c5cf5ec4ca62f7 \
@@ -23,17 +23,13 @@ data=$(curl \
 
 # try to find a cover art link
 setopt rematchpcre
-[[ $data =~ '<image size="medium">([^<]+)</image>' ]] || { echo 'Error: No cover art found in album info.' && return 4 }
+[[ $data =~ '<image size="large">([^<]+)</image>' ]] || { echo 'Error: No cover art found in album info.' && return 4 }
 
 1=${1:gs/\//_}
 2=${2:gs/\//_}
 
-# make sure this dir exists..
-if [[ ! -d $art ]]; then
-    mkdir -p $art
-fi
-
+#pull it all together
 echo 'Downloading and converting..'
-curl -s $match | convert - -resize 80x80 "$art/$alb.png"
+curl -s $match | convert - -resize 104x104 "$art - $alb.png"
 
 [[ $? == 0 ]] && echo 'All done!' && cd ~ || { echo 'Error fetching or converting..' && return 5 && cd ~ }

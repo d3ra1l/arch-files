@@ -19,9 +19,9 @@ WIDTH="130"
 LINES="0"
 ALIGN="center"
 
-tunnel=`netstat -atn | grep "$port"`
+tunnel=`netstat -atn | grep ":11590"`
 if [ "$tunnel" == "" ]; then
-	$(ssh -p $port1 -ND $port2 $user@$ipaddr) &
+	$(ssh -p 8149 -ND port user@address) &
 	msg="Tunnel is turning on."
 else
 	msg="Tunnel is already on."

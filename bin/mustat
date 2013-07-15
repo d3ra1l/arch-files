@@ -44,12 +44,12 @@ roll_text() {
 }
 
 
-
+mu_stat (){
 if [ "`mpc 2>&1 | wc -l`" -gt "1" ]; then
         artist=`mpc current -f %artist%`
         title=`mpc current -f %title%`
         if [ "`mpc | grep "^\[paused\]"`" != "" ]; then
-               mpd_current="$title by $artist [paused]"
+               mpd_current="$title by $artist"
         else
                mpd_current="$title by $artist "
         fi
@@ -64,5 +64,31 @@ fi
 			np=${np:0:max_len} ;;
 	esac
     echo " ${np}"
-
 exit 0
+}
+
+
+mu_icon (){
+if [ "`mpc 2>&1 | wc -l`" -gt "1" ]; then
+        if [ "`mpc | grep "^\[paused\]"`" != "" ]; then
+                icon="⮔"
+        else
+                icon="⮓"
+        fi
+else
+icon="⮕"
+fi
+
+echo $icon
+}
+
+
+while getopts "sia" opt; do
+        case $opt in
+                i)      mu_icon ;;
+                s)      mu_stat ;;
+                a)      mu_icon && mu_stat ;;
+                *)      echo "not a valid option!" ;;
+        esac
+done
+

@@ -4,5 +4,7 @@ name=$(date '+%Y-%m-%d-%R')
 place=$HOME/img/scrots
 
 #scrot -d1 $place/$name.png
-scrot -d1 $HOME/benis.png
+scrot -d1 $HOME/benis1.png
+pngcrush $HOME/benis1.png benis.png
+rm $HOME/benis1.png
 cp benis.png $place/$name.png
