@@ -92,8 +92,10 @@ chatnets = {
 };
 
 channels = (
+  { name = "#/g/sicp"; chatnet = "rizon"; autojoin = "yes"; },
   { name = "#/g/summer"; chatnet = "rizon"; autojoin = "yes"; },
-  { name = "silc"; chatnet = "silc"; autojoin = "No"; }
+  { name = "#/g/technology"; chatnet = "rizon"; autojoin = "yes"; },
+  { name = "#sky"; chatnet = "rizon"; autojoin = "yes"; }
 );
 
 aliases = {
@@ -282,8 +284,8 @@ settings = {
 
 
   "perl/core/scripts" = {
-    awl_display_key_active = "%B $Q $H$C$S ";
-    awl_display_key = "%k $Q $C ";
+	awl_display_key_active = "%K $Q $H$C$S ";
+    awl_display_key = "%W $Q $C ";
     awl_block = "15";
     awl_maxlines = "2";
     awl_placement = "top";
@@ -298,6 +300,7 @@ settings = {
     chanact_header = " ";
     chanact_remove_hash = "no";
     chanact_abbreviate_names = "6";
+    mpd_format = "/me \0031is listening to: \00312\"%TITLE\" \0030by \0034%ARTIST \0030from the album \0039%ALBUM";  
   };
 
   "fe-common/core" = {
