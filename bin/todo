@@ -57,8 +57,6 @@ help (){
 	echo " "
 }
 
-(( $# )) || printf 'No arguments given!';echo; help
-
 while getopts ":hreca:d:" opt; do
   case $opt in
     h)
