@@ -57,7 +57,9 @@ help (){
 	echo " "
 }
 
-while getopts ":hrea:d:" opt; do
+(( $# )) || printf 'No arguments given!';echo; help
+
+while getopts ":hreca:d:" opt; do
   case $opt in
     h)
       help ;; 
@@ -72,8 +74,9 @@ while getopts ":hrea:d:" opt; do
     c)
       clear ;;
    \?)
-      read ;;
-	:)
+      echo "I don't know what to do with $OPTARG!"
+	  help ;;
+    :)
       echo "Option -$OPTARG needs an argument!" >&2
       help ;;	
   esac
