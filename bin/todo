@@ -7,19 +7,29 @@ read (){
 add (){
 	text=$OPTARG
         line=$(( $(sed = ~/.todo | sed 'N;s/\n/ /' | awk -F " " '{print $1}' | sed -n '$p') + 1 ))
-        item="$line $text"
+		if [ "$line" -le 9 ]; then
+			lin="0$line"
+		elif [ "$line" -ge 10 ]; then
+			lin="$line"
+		fi
+        item="$lin $text"
         echo $item >> ~/.todo
 	echo "New task $line successfully added."
 }
 
-
 del (){
-	line="$OPTARG"
-	linenum=`echo $(cat ~/.todo | awk -F " " '{print $1}' | grep $OPTARG)`
-	if [ "$linenum" = "$line" ];then
-		sed -e "$line d" ~/.todo > ~/.todo-d
+	ent="$OPTARG"
+        if [ "$ent" -le 9 ]; then
+            it="0$ent"
+        elif [ "$ent" -ge 10 ]; then
+            it="$ent"
+        fi
+	lin="$it"
+	linn=`echo $(cat ~/.todo | awk -F " " '{print $1}' | grep $it)`
+	if [ "$linn" = "$lin" ];then
+		sed -e "/$lin/d" ~/.todo > ~/.todo-d
 		mv ~/.todo-d ~/.todo
-		echo "Task $line successfully removed."
+		echo "Task $lin successfully removed."
 	elif [ "$linenum" != "$line" ];then
 		echo "Sorry; I couldn't find that entry. ;_;"
 	fi
@@ -50,30 +60,21 @@ help (){
 while getopts ":hrea:d:" opt; do
   case $opt in
     h)
-      help
-      ;; 
+      help ;; 
     r)
-      read
-      ;;
+      read ;;
     e)
-      $EDITOR ~/.todo
-      ;;
+      $EDITOR ~/.todo ;;
     a)
-      add
-      ;;
+      add ;;
     d)
-      del
-      ;;
+      del ;;
     c)
-      clear
-      ;;
-    \?)
-      echo "I don't recognize option -$OPTARG." >&2
-      help
-      ;;
-     :)
+      clear ;;
+   \?)
+      read ;;
+	:)
       echo "Option -$OPTARG needs an argument!" >&2
-      help
-      ;;	
+      help ;;	
   esac
 done
