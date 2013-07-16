@@ -30,7 +30,7 @@ del (){
 		sed -e "/$lin/d" ~/.todo > ~/.todo-d
 		mv ~/.todo-d ~/.todo
 		echo "Task $lin successfully removed."
-	elif [ "$linenum" != "$line" ];then
+	elif [ "$linn" != "$lin" ];then
 		echo "Sorry; I couldn't find that entry. ;_;"
 	fi
 }
