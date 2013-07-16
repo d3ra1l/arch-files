@@ -18,6 +18,6 @@ highlight="#b4b4b4"
 
 #XPOS=$(xdotool getmouselocation | awk -F " " '{print $1}' | cut -d ":" -f 2)
 
-bar_bg="#404040"
+bar_bg="#66666a"
 notify="#F39D21"
 warning="#D23D3D"

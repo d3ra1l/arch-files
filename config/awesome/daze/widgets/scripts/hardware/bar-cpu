@@ -13,4 +13,4 @@ PERCBAR=`echo -e "$PERC"\
         | gdbar -bg $bar_bg -fg $foreground -h 1 -w 115`
 fi
 
-echo "^fg($FG2)⮦  CPU$1^fg() $PERCBAR ^fg($highlight)$PERC%"
+echo "^fg($FG2) ⮦ CPU$1^fg() $PERCBAR ^fg($highlight)$PERC%"

@@ -37,7 +37,7 @@ btime="^fg($FG2)Time: ^fg($FG1)$bat_time $timestat"
 
 ## CPU
 
-cputemp="^fg($FG2)⮡  Temp ^fg($highlight)$(sensors | grep "temp1" | cut -d'+' -f2 | head -c2)F"
+cputemp="^fg($FG2) ⮡ Temp ^fg($highlight)$(sensors | grep "temp1" | cut -d'+' -f2 | head -c2)F"
 cpuutiluser=$(iostat -c | sed -n "4p" | awk -F " " '{print $1}')
 cpuutilsystem=$(iostat -c | sed -n "4p" | awk -F " " '{print $3}')
 cpuutilidle=$(iostat -c | sed -n "4p" | awk -F " " '{print $6}')
@@ -47,7 +47,7 @@ cpuutilidle=$(iostat -c | sed -n "4p" | awk -F " " '{print $6}')
 
 hddtitle=$(df -h | head -1)
 hddtotal=$(df -h --total | tail -1)
-ramtotal=$(free -m | sed -n "3p" | awk -F " " '{print $4}')
+ramtotal=$(free -m | sed -n "2p" | awk -F " " '{print $2}')
 ramused=$(free -m | sed -n "3p" | awk -F " " '{print $3}')
 
 
@@ -55,7 +55,7 @@ ramused=$(free -m | sed -n "3p" | awk -F " " '{print $3}')
 
 kernel="^fg($FG2)⮗ Kernel ^fg()^fg($highlight)$(uname -r)"
 packages="^fg($FG2)⮢ Packages^fg() ^fg($highlight)$(pacman -Q | wc -l)"
-uptime="^fg($FG2)⮖ Uptime^fg() ^fg($highlight)$(uptime | awk '{gsub(/,/,""); print $3}') days"
+uptime="^fg($FG2)⮖ Uptime^fg() ^fg($highlight)$(uptime | awk '{gsub(/,/,""); print $3}')"
 
 
 
@@ -99,6 +99,6 @@ sdb_bar=`/home/phallus/.config/awesome/daze/widgets/scripts/hardware/bar-disk2`
 
 ## Put everything together
 
-(echo "^fg($red)Hardware"; echo "$kernel-benis"; echo "$packages  $uptime"; echo " ";echo "$bstat"; echo "$btime"; echo " "; echo "$cpu_bar_0 "; echo "$cpu_bar_1"; echo "$cpu_bar_2"; echo "$cpu_bar_3"; echo "$cputemp"; echo " "; echo "$mem_bar"; echo "^fg($highlight)$ramused MB / $ramtotal MB"; echo " "; echo " $sda_bar"; echo " $sdb_bar"; sleep $TIMING) | dzen2 -bg $BG -fn $FONT -x $XPOS -y $YPOS -h $HEIGHT -w $WIDTH -sa $ALIGN -l $LINES -e 'onstart=uncollapse;button1=exit;button2=exit;button3=exit;button4=exit;button5=exit'
+(echo "^fg($red)Hardware"; echo "$kernel-benis"; echo "$packages  $uptime"; echo " ";echo "$bstat"; echo "$btime"; echo " "; echo "$cpu_bar_0 "; echo "$cpu_bar_1"; echo "$cpu_bar_2"; echo "$cpu_bar_3"; echo "$cputemp"; echo " "; echo "$mem_bar"; echo "^fg($FG2) ⮥ $ramused/$ramtotal MB used"; echo " "; echo " $sda_bar"; echo " $sdb_bar"; sleep $TIMING) | dzen2 -bg $BG -fn $FONT -x $XPOS -y $YPOS -h $HEIGHT -w $WIDTH -sa $ALIGN -l $LINES -e 'onstart=uncollapse;button1=exit;button2=exit;button3=exit;button4=exit;button5=exit'
 
 
