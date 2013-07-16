@@ -45,7 +45,7 @@ help (){
 	echo " "
 	echo "todo, by phallus"
 	echo " "
-	echo "Usage: todo [option]"
+	echo "Usage: todo [-rceh] [-a entry] [-d line]"
 	echo " "
 	echo "A shitty CLI to-do list. Options are as follows."
 	echo "-r: Read; display the current list."
