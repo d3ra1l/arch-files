@@ -1,5 +1,5 @@
 # default foreground color (%N) - -1 is the "default terminal color"
-default_color = "%k";
+default_color = "%w";
 
 # print timestamp/servertag at the end of line, not at beginning
 info_eol = "false";
@@ -125,7 +125,7 @@ abstracts = {
   ########## other IRC events #############################
 
   # whois
-  whois = "%#    $[8]0 = $1-;";
+  whois = "%#   $[8]0 = $1-;";
 
   # notices
   ownnotice = "%NNote n = %Mnew%n $0 ($1-) ";
@@ -136,7 +136,7 @@ abstracts = {
 
   # CTCPs
   ownctcp = "%NCTCP c = %Mnew%n $0 ($1-) ";
-  ctcp = "%N$*%n";
+  ctcp = "       %cCTCP » %N$*%n";
 
   # wallops
   wallop = "%K$*%n: ";
@@ -144,17 +144,17 @@ abstracts = {
   wallop_action = "%K * $*%n ";
 
   # netsplits
-  netsplit = "       %Knsplit %N« %b\"$*\"%n";
-  netjoin = "        %Knjoin %N» %b\"$*\"%n";
+  netsplit = "     %Knsplit %N« %|%b\"$*\"%n";
+  netjoin = "      %Knjoin %N» %|%b\"$*\"%n";
 
   # /names list
-  names_prefix = "%Y!%K!      names %Y!%n ";
+  names_prefix = "      %cnames %B!%n ";
   names_nick = "%_$2$0%_%n$1- ";
-  names_nick_op = "{names_nick $* %R}";
-  names_nick_halfop = "{names_nick $* %C}";
-  names_nick_voice = "{names_nick $* %K}";
-  names_users = "%Y!%K!      names %Y!%n $1";
-  names_channel = "\"%b$*\"%n";
+  names_nick_op = "{names_nick %R$*}";
+  names_nick_halfop = "{names_nick %b$*}";
+  names_nick_voice = "{names_nick %G$*}";
+  names_users = "      %cnames %Y!%n $1";
+  names_channel = "%b$*\"%n";
 
   # DCC
   dcc = "%g$*%n";
@@ -237,8 +237,8 @@ formats = {
 
     join = "%R{channick $[-11]0}%n %K» %nhas joined ";
     part = "%R{channick $[-11]0}%n %K« %nhas left ";
-    kick = "%R{nick $[-11]2}%n%| » kicked {channick_hilight $0}%n {reason $3}";
-    quit = "%R{channick $[-11]0}%n%| « has quit ";
+    kick = "%R{nick $[-11]2}%n » %|kicked {channick_hilight $0}%n {reason $3}";
+    quit = "%R{channick $[-11]0}%n « %|has quit ";
 
     nick_changed = "{nick $[-11]0} %N»%n {channick $1}";
     your_nick_changed = "%|%K        you %N»%n {channick $1}";
@@ -259,7 +259,7 @@ formats = {
     msg_private_query = "{privmsgnick $[-31]0}$2";
     new_topic = "%B{channick $[-11]0}%n %K» %|%nchanged the topic to {channick $2}";
 
-    endofnames = "%Y!%K!      names %Y!%m Total: {hilight $2} ops, {hilight $3} halfops, {hilight $4} voices, {hilight $5} normal%n";
+    endofnames = "      %cnames %Y!%m Total: {hilight $2} ops, {hilight $3} halfops, {hilight $4} voices, {hilight $5} normal%n";
   };
   "fe-common/irc" = {
     server_chanmode_change = "       mode %K»%n {channick $1}";
