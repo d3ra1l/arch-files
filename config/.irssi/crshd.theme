@@ -87,18 +87,18 @@ abstracts = {
   msgchannel = "%K:%m$*%n";
 
   # private message, $0 = nick, $1 = host
-  privmsg = "$0=%b\"$1-\"%n ";
+  privmsg = "        %cmsg » %n[$0] ";
 
   # private message from you, $0 = "msg", $1 = target nick
-  ownprivmsg = "$0=%b\"$1-\"%n ";
+  ownprivmsg = "       %cyou » %n";
 
   # private message in query
   # privmsgnick = "{msgnick $*}";
-  privmsgnick = "%g«%N %|";
+  privmsgnick = "        %gmsg%g « %N%|";
 
   # own private message in query
   #ownprivmsgnick = "{privmsgnick $*}";
-  ownprivmsgnick = "%r»%N %|";
+  ownprivmsgnick = "        %ryou%r » %N%|";
   #ownprivnick = "$*";
 
 

@@ -6,7 +6,7 @@ source $(dirname $0)/d-conf
 XPOS=$(( $(xdotool getmouselocation | awk -F " " '{print $1}' | cut -d ":" -f 2) - 55 ))
 #TIMING="5"
  
-HEIGHT="12"
+HEIGHT="11"
 WIDTH="106"
 ALIGN="left"
 
@@ -16,9 +16,11 @@ calendar=$(cal -1)
 
 lines="$(sed = ~/.todo | sed 'N;s/\n/ /' | awk -F " " '{print $1}' | sed -n '$p')"
 LINES="$(( $lines + 14 ))"
+lin="13"
+
 
 if [ "$lines" != "" ]; then
 	(echo "^fg($red)Time"; echo "^fg($FG2)Time: ^fg($FG1)$ti"; echo "^fg($FG2)Date: ^fg($FG1)$day"; echo ; echo "^fg($FG2)$calendar";echo; echo "^fg($FG2)        to do";echo "^fg($FG1)$(cat ~/.todo | grep -v '# *')";echo;echo "^fg($cyan) mid click for list";sleep $TIMING) | dzen2 -bg $BG -fn $FONT -x $XPOS -y $YPOS -w $WIDTH -h $HEIGHT -l $LINES -e 'onstart=uncollapse;button1=exit;button3=exit;button2=exec:urxvt -e ~/bin/todo -e;button4=exit;button5=exit'
 elif [ "$lines" = "" ]; then
-	(echo "^fg($red)Time"; echo "^fg($FG2)Time: ^fg($FG1)$ti"; echo "^fg($FG2)Date: ^fg($FG1)$day"; echo ; echo "^fg($FG2)$calendar";echo; echo "^fg($FG2)    nothing to do!";sleep $TIMING) | dzen2 -bg $BG -fn $FONT -x $XPOS -y $YPOS -w $WIDTH -h $HEIGHT -l $LINES -e 'onstart=uncollapse;button1=exit;button2=exit;button3=exit;button4=exit;button5=exit'
+	(echo "^fg($red)Time"; echo "^fg($FG2)Time: ^fg($FG1)$ti"; echo "^fg($FG2)Date: ^fg($FG1)$day"; echo ; echo "^fg($FG2)$calendar";echo; echo "^fg($FG2)    nothing to do!";sleep $TIMING) | dzen2 -bg $BG -fn $FONT -x $XPOS -y $YPOS -w $WIDTH -h $HEIGHT -l $lin -e 'onstart=uncollapse;button1=exit;button2=exit;button3=exit;button4=exit;button5=exit'
 fi

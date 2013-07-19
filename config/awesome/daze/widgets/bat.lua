@@ -14,11 +14,6 @@ function register(mywidget)
     awful.button({ }, 1, 
     function()
         awful.util.spawn_with_shell("/home/phallus/.config/awesome/daze/widgets/scripts/d-hardware")
---        naughty.notify({
---        text = "batinfogoeshere",
---        timeout = 0,
---        screen = capi.mouse.screen
---        })
     end)
    ))
 end

@@ -7,6 +7,7 @@ require("awful.autofocus")
 local wibox = require("wibox")
 local daze = require("daze")
 local vicious = require("vicious")
+local benis = require("benis")
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Notification library
@@ -65,7 +66,7 @@ local layouts =
 {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
-    daze.layout.tile,
+	daze.layout.dtile,
 }
 
 -- }}}
@@ -189,8 +190,6 @@ function batinfo(adapter)
         battery_timer:start()
 
 
-
-
 -- time widget
 mytextclock = awful.widget.textclock("  <span color='#dfdfdf'>⮖</span> %R - %a, %b %d ")
 daze.widgets.calendar.register(mytextclock)
@@ -212,15 +211,10 @@ vicious.register(mpdwidget, vicious.widgets.mpd,
        end
    end, 1)
 
--- layout widget
-function updatelayoutbox(l, s)
-    local screen = s or 1
-    l.text = beautiful["layout_txt_" .. awful.layout.getname(awful.layout.get(screen))]
-end
-
 
 separator = wibox.widget.textbox()
-spacer = wibox.widget.textbox("     ")
+spacer1 = wibox.widget.textbox("     ")
+spacer = wibox.widget.textbox(" ")
 separator:set_text("")
 
 
@@ -228,7 +222,6 @@ separator:set_text("")
 mywibox = {}
 mypromptbox = {}
 mylayoutbox = {}
-txtlayoutbox = {}
 mytaglist = {}
 mytaglist.buttons = awful.util.table.join(
                     awful.button({ }, 1, awful.tag.viewonly),
@@ -270,27 +263,17 @@ for s = 1, screen.count() do
     -- Create a promptbox for each screen
     mypromptbox[s] = awful.widget.prompt()
 
-    txtlayoutbox[s] = wibox.widget.textbox()
-    txtlayoutbox[s].text = beautiful["layout_txt_" .. awful.layout.getname(awful.layout.get(s))] 
-    awful.tag.attached_connect_signal(s, "property::selected", function ()
-        updatelayoutbox(txtlayoutbox[s], s) 
-    end)
-    awful.tag.attached_connect_signal(s, "property::layout", function ()
-        updatelayoutbox(txtlayoutbox[s], s) 
-    end)
-    txtlayoutbox[s]:buttons(awful.util.table.join(
-            awful.button({}, 1, function() awful.layout.inc(layouts, 1) end),
-            awful.button({}, 3, function() awful.layout.inc(layouts, -1) end),
-            awful.button({}, 4, function() awful.layout.inc(layouts, 1) end),
-            awful.button({}, 5, function() awful.layout.inc(layouts, -1) end)))
- 
-    -- Create an imagebox widget which will contains an icon indicating which layout we're using.
-    -- We need one layoutbox per screen.
-    -- Create a taglist widget
-    mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, mytaglist.buttons)
+	-- create a text layout widget
+	mylayoutbox[s] = benis.widget.layoutbox(s)
+	mylayoutbox[s]:buttons(awful.util.table.join(
+		awful.button({ }, 1, function () awful.layout.inc(layouts, 1) end),
+		awful.button({ }, 3, function () awful.layout.inc(layouts, -1) end),
+		awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
+		awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))
 
+	-- Create a tag list
+    mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, mytaglist.buttons)
     -- Create a tasklist widget
---    mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.focused, mytasklist.buttons)
     mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
     -- Create the wibox
     mywibox[s] = awful.wibox({ position = "top", screen = s, height = 10 })
@@ -298,12 +281,12 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the left
     local left_layout = wibox.layout.fixed.horizontal()
     left_layout:add(mytaglist[s])
-    left_layout:add(txtlayoutbox[s])
-    left_layout:add(spacer)
+	left_layout:add(mylayoutbox[s])
+	left_layout:add(spacer)
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
-    right_layout:add(spacer)
+    right_layout:add(spacer1)
     right_layout:add(separator)
     right_layout:add(mpdwidget)
     right_layout:add(separator)
@@ -323,7 +306,6 @@ end
 
 
 
-
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
     awful.button({ }, 3, function () mymainmenu:toggle() end)
@@ -331,31 +313,6 @@ root.buttons(awful.util.table.join(
 -- }}}
 
 
-
-
-
--- Client mode
--- Move floating windows 5 pixels at a time
-
-function floats(c)
-	local ret = false
-	local layout = awful.layout.get(c.screen)
-	if awful.layout.getname(layout) == "floating" or awful.client.floating.get(c) then
-		ret = true
-	end
-	return ret
-end
-
-function move(c, x, y)
-	if not floats(c) then
-		return
-	end
-
-local g = c:geometry()
-	g.x = g.x + x
-	g.y = g.y + y
-	c:geometry(g)
-end
 
 
 -- {{{ Key bindings
@@ -390,8 +347,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, 	  }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
-    awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
-    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
+    awful.key({ "Mod4",           }, "space", function () awful.layout.inc(layouts,  1) end),
+    awful.key({ "Mod4", "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 
     awful.key({ modkey, }, "n", function () awful.util.spawn("firefox") end),
     awful.key({ "Control" }, "l", function () awful.util.spawn("mpc next") end), 
@@ -479,6 +436,9 @@ clientbuttons = awful.util.table.join(
 root.keys(globalkeys)
 -- }}}
 
+
+
+
 -- {{{ Rules
 awful.rules.rules = {
     -- All clients will match this rule.
@@ -501,13 +461,11 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { instance = "Devtools" },
       properties = { floating = true } },
-
-      
-    -- Set Firefox to always map on tags number 2 of screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { tag = tags[1][2] } },
 }
 -- }}}
+
+
+
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
