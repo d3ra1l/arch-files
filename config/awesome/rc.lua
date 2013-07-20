@@ -330,7 +330,18 @@ globalkeys = awful.util.table.join(
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey,           }, "w", function () mymainmenu:show() end),
+    awful.key({ modkey, "Shift"    }, "l",
+        function ()
+            awful.client.swap.byidx( 1)
+            if client.focus then client.focus:raise() end
+        end),
+    awful.key({ modkey, "Shift"    }, "h",
+        function ()
+            awful.client.swap.byidx(-1)
+            if client.focus then client.focus:raise() end
+        end),
+
+	awful.key({ modkey,           }, "w", function () mymainmenu:show() end),
 
     -- Layout manipulation
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
@@ -345,10 +356,13 @@ globalkeys = awful.util.table.join(
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
-    awful.key({ modkey, 	  }, "r", awesome.restart),
+    awful.key({ modkey, 	      }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
     awful.key({ "Mod4",           }, "space", function () awful.layout.inc(layouts,  1) end),
     awful.key({ "Mod4", "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
+    awful.key({ modkey, "Shift"   }, "k", function () awful.tag.incmwfact( 0.010) end),
+    awful.key({ modkey, "Shift"   }, "j", function () awful.tag.incmwfact(-0.010) end),
+
 
     awful.key({ modkey, }, "n", function () awful.util.spawn("firefox") end),
     awful.key({ "Control" }, "l", function () awful.util.spawn("mpc next") end), 
@@ -449,7 +463,7 @@ awful.rules.rules = {
                      keys = clientkeys,
                      buttons = clientbuttons,
                      size_hints_honor = false } },
-    { rule = { }, properties = { }, callback = awful.client.setslave },
+--    { rule = { }, properties = { }, callback = awful.client.setslave },
     { rule = { class = "feh" },
       properties = { border_color = beautiful.border_feh,
         floating = true } },
