@@ -362,7 +362,13 @@ globalkeys = awful.util.table.join(
     awful.key({ "Mod4", "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
     awful.key({ modkey, "Shift"   }, "k", function () awful.tag.incmwfact( 0.010) end),
     awful.key({ modkey, "Shift"   }, "j", function () awful.tag.incmwfact(-0.010) end),
-
+	awful.key({ modkey },            "d",     function ()
+    awful.util.spawn("dmenu_run -i -p 'Run command:' -nb '" .. 
+ 		beautiful.bg_normal .. "' -nf '" .. beautiful.fg_normal ..
+		"' -fn '" .. beautiful.font_alt ..
+		"' -sb '" .. beautiful.bg_focus .. 
+		"' -sf '" .. beautiful.fg_focus .. "'") 
+	end),
 
     awful.key({ modkey, }, "n", function () awful.util.spawn("firefox") end),
     awful.key({ "Control" }, "l", function () awful.util.spawn("mpc next") end), 
@@ -463,7 +469,7 @@ awful.rules.rules = {
                      keys = clientkeys,
                      buttons = clientbuttons,
                      size_hints_honor = false } },
---    { rule = { }, properties = { }, callback = awful.client.setslave },
+    { rule = { }, properties = { }, callback = awful.client.setslave },
     { rule = { class = "feh" },
       properties = { border_color = beautiful.border_feh,
         floating = true } },

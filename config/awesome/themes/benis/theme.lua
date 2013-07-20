@@ -5,7 +5,7 @@
 theme = {}
 
 theme.font          = "lemon 7"
---theme.font_alt      = "-*-lime.se-*-*-*-*-*-*-*-*-*-*-*-*"
+theme.font_alt      = "-*-cure-*-*-*-*-*-*-*-*-*-*-*-*"
 
 theme.bg_normal     = "#20202f"
 theme.bg_focus      = "#20202f"
@@ -59,8 +59,6 @@ theme.vertical_resolution = "900"
 theme.vertical_border = "3"
 theme.outer_padding = "0"
 
-theme.layout_txt_tile       = "⮘ "
-theme.layout_txt_floating   = "⮛ "
 
 -- Define the image to load
 theme.titlebar_close_button_normal = "/home/phallus/.config/awesome/themes/benis/titlebar/close_normal.png"
@@ -89,20 +87,6 @@ theme.titlebar_maximized_button_focus_active  = "/home/phallus/.config/awesome/t
 --theme.wallpaper = "/home/phallus/img/wallpapers/scenery/bokeh - winter.jpg"
 
 -- You can use your own layout icons like this:
-theme.layout_fairh = "/home/phallus/.config/awesome/themes/benis/layouts/fairhw.png"
-theme.layout_fairv = "/home/phallus/.config/awesome/themes/benis/layouts/fairvw.png"
---theme.layout_floating  = "⮛"
-theme.layout_magnifier = "/home/phallus/.config/awesome/themes/benis/layouts/magnifierw.png"
-theme.layout_max = "/home/phallus/.config/awesome/themes/benis/layouts/maxw.png"
-theme.layout_fullscreen = "/home/phallus/.config/awesome/themes/benis/layouts/fullscreenw.png"
-theme.layout_tilebottom = "/home/phallus/.config/awesome/themes/benis/layouts/tilebottomw.png"
-theme.layout_tileleft   = "/home/phallus/.config/awesome/themes/benis/layouts/tileleftw.png"
-theme.layout_tile = "/home/phallus/.config/awesome/themes/benis/layouts/tilew.png"
-theme.layout_tiletop = "/home/phallus/.config/awesome/themes/benis/layouts/tiletopw.png"
-theme.layout_spiral  = "/home/phallus/.config/awesome/themes/benis/layouts/spiralw.png"
-theme.layout_dwindle = "/home/phallus/.config/awesome/themes/benis/layouts/dwindlew.png"
-
-theme.awesome_icon = "/home/phallus/.config/awesome/icons/awesome16.png"
 
 -- {{{ Widgets
 theme.widget_netdown = "/home/phallus/.config/awesome/themes/benis/icons/down.png"
@@ -113,9 +97,19 @@ theme.widget_cpu = "/home/phallus/.config/awesome/themes/benis/icons/cpu.png"
 theme.widget_mem = "/home/phallus/.config/awesome/themes/benis/icons/mem.png"
 -- }}}
 
+theme.layout = {
+
+floating  = "  ⮛ ",
+tile      = "  ⮘ ",
+tileleft  = "  ⮙ ",
+dtile     = "  ⮘ ",
+
+}
 -- Define the icon theme for application icons. If not set then the icons 
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil
+
+
 
 return theme
 -- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
