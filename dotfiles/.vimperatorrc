@@ -1,12 +1,20 @@
+"" general settings
 set autocomplete=false
 colors phallus
 
+"" key bindings and remappings
 noremap j 5j
 noremap k 5k
 noremap J gT
 noremap K gt
+noremap i gi
+map <C-g> tboards.4chan.org/g/<Return>
+map <C-m> tboards.4chan.org/mu/<Return>
+map <C-a> tboards.4chan.org/a/<Return>
+map <C-r> treddit.com<Return>
+map <C-u> tgithub.com<Return>
 
-
+"" hide bar with ctrl-f1
 map <silent> <C-F1> :js toggle_bottombar()<CR>
 
 :js << EOF
