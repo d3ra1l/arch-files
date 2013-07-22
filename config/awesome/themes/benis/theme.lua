@@ -5,7 +5,7 @@
 theme = {}
 
 theme.font          = "lemon 7"
-theme.font_alt      = "-*-cure-*-*-*-*-*-*-*-*-*-*-*-*"
+theme.font_alt      = "-*-lemon-*-*-*-*-*-*-*-*-*-*-*-*"
 
 theme.bg_normal     = "#20202f"
 theme.bg_focus      = "#20202f"
@@ -102,7 +102,7 @@ theme.layout = {
 floating  = "  ⮛ ",
 tile      = "  ⮘ ",
 tileleft  = "  ⮙ ",
-dtile     = "  ⮘ ",
+dtile     = "  ⮨ ",
 
 }
 -- Define the icon theme for application icons. If not set then the icons 
