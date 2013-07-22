@@ -27,6 +27,7 @@ set spelllang=pl,en
 cmap w!! %!sudo tee > /dev/null %
 map K <C-u>
 map J <C-d>
+map <C-o> :Explore<Return>
 
 " start searching as you type
 set incsearch
