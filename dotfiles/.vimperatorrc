@@ -3,21 +3,28 @@ set autocomplete=false
 colors phallus
 
 "" key bindings and remappings
-noremap j 15j
-noremap k 15k
+noremap j 5j
+noremap k 5k
 noremap h 3h
 noremap l 3l
-noremap J gT
-noremap K gt
+"noremap J gT
+"noremap K gt
+noremap J <C-d>
+noremap K <C-u>
+noremap H gT
+noremap L gt
+noremap U :ba<cr>
+noremap I :fo<cr>
 noremap i gi
+noremap R :source ~/.vimperatorrc<cr>
 
 "" bookmarks/commonly visited sites
-map <C-1> thttps://boards.4chan.org/g/<Return>
-map <C-2> thttps://boards.4chan.org/mu/<Return>
+map <C-1> thttps://boards.4chan.org/mu/<Return>
+map <C-2> tgithub.com<Return>
 map <C-3> treddit.com<Return>
-map <C-4> thttps://github.com<Return>
-map <C-5> tlast.fm<Return>
-map <C-6> ttapmusic.net/lastfm<Return>
+map <C-4> tlast.fm<Return>
+map <C-5> ttapmusic.net/lastfm<Return>
+map <C-6> trateyourmusic.com<Return>
 map <C-7> ttwitter.com<Return>
 map <C-8> thttps://www.facebook.com<Return>
 map <C-9> trutracker.org<Return>
