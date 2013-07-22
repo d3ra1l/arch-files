@@ -25,6 +25,8 @@ set spelllang=pl,en
 
 " key bindings
 cmap w!! %!sudo tee > /dev/null %
+map K <C-u>
+map J <C-d>
 
 " start searching as you type
 set incsearch
