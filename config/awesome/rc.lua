@@ -113,6 +113,10 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 
 
+function lyt()
+     local layout = awful.layout.get(screen)
+     return awful.layout.getname(layout)
+end
 
 -- {{{ Tasklist
 
@@ -320,6 +324,43 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "j",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "k",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
+
+-- move/resize clients
+-- to do: incorporate both floating move/resize and tiled wfact into one keybinding
+
+    awful.key({ modkey, "Shift" }, "j",    
+		function (lyt)
+			awful.client.moveresize(  0,  10,   0,   0) 
+		end),
+    
+	awful.key({ modkey, "Shift" }, "k",    
+		function () 
+			awful.client.moveresize(  0, -10,   0,   0) 
+		end),
+    
+	awful.key({ modkey, "Shift" }, "h",    
+		function () 
+			awful.client.moveresize(-10,   0,   0,   0) 
+		end),
+    
+	awful.key({ modkey, "Shift" }, "l",    
+		function () 
+			awful.client.moveresize( 10,   0,   0,   0) 
+		end),
+	
+	awful.key({ modkey, "Shift" }, "s",    function () awful.client.moveresize(  0,   0,   0, -10) end),
+    awful.key({ modkey, "Shift" }, "d",    function () awful.client.moveresize(  0,   0,   0,  10) end),
+    awful.key({ modkey, "Shift" }, "a",    function () awful.client.moveresize(  0,   0, -10,   0) end),
+    awful.key({ modkey, "Shift" }, "f",    function () awful.client.moveresize(  0,   0,  10,   0) end),
+    
+    awful.key({ modkey,    		}, "'", function () awful.tag.incmwfact( 0.010) end),
+    awful.key({ modkey,		    }, ";", function () awful.tag.incmwfact(-0.010) end),
+    awful.key({ modkey, "Shift"   }, "'", function () awful.client.incwfact(-0.010) end),
+    awful.key({ modkey, "Shift"   }, ";", function () awful.client.incwfact( 0.010) end),
+
+
+
+--shift focused/swap client
     awful.key({ modkey,           }, "l",
         function ()
             awful.client.focus.byidx( 1)
@@ -330,38 +371,27 @@ globalkeys = awful.util.table.join(
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey, "Shift"    }, "l",
+    awful.key({ modkey, "Shift"    }, "o",
         function ()
             awful.client.swap.byidx( 1)
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey, "Shift"    }, "h",
+    awful.key({ modkey, "Shift"    }, "i",
         function ()
             awful.client.swap.byidx(-1)
             if client.focus then client.focus:raise() end
         end),
 
-	awful.key({ modkey,           }, "w", function () mymainmenu:show() end),
 
     -- Layout manipulation
-    awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
-    awful.key({ modkey,           }, "Tab",
-        function ()
-            awful.client.focus.history.previous()
-            if client.focus then
-                client.focus:raise()
-            end
-        end),
-    
+    awful.key({ "Mod4",           }, "space", function () awful.layout.inc(layouts,  1) end),
+    awful.key({ "Mod4", "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
+
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, 	      }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
-    awful.key({ "Mod4",           }, "space", function () awful.layout.inc(layouts,  1) end),
-    awful.key({ "Mod4", "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
-    awful.key({ modkey, "Shift"   }, "k", function () awful.tag.incmwfact( 0.010) end),
-    awful.key({ modkey, "Shift"   }, "j", function () awful.tag.incmwfact(-0.010) end),
 	awful.key({ modkey },            "d",     function ()
     awful.util.spawn("dmenu_run -i -p 'Run command:' -nb '" .. 
  		beautiful.bg_normal .. "' -nf '" .. beautiful.fg_normal ..
@@ -378,6 +408,9 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, }, "p", function () awful.util.spawn("mpc toggle") end),
 	awful.key({ "Mod4" }, "k", function () awful.util.spawn("xbacklight -inc 10") end),
     awful.key({ "Mod4" }, "j", function () awful.util.spawn("xbacklight -dec 10") end),
+--	awful.key({ modkey }, "F1", function () awful.util.spawn("/home/phallus/.config/awesome/daze/widgets/scripts/d-music") end),
+--	awful.key({ modkey }, "F2", function () awful.util.spawn("/home/phallus/.config/awesome/daze/widgets/scripts/d-date") end),
+--	awful.key({ modkey }, "F3", function () awful.util.spawn("/home/phallus/.config/awesome/daze/widgets/scripts/d-hardware") end),
 
     -- Prompt
     -- awful.key({ modkey },            "d", awful.util.spawn("dmenu_run -p 'run' -fn '-*-lemon-*-*-*-*-10-*-*-*-*-*-*-*' -nf '#a2a2a2' -nb '#131313' -sf '#777777' -sb '#131313")),
@@ -398,15 +431,6 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "t",      awful.client.floating.toggle                  ),
     awful.key({ modkey,           }, "m",      function (c) c:swap(awful.client.getmaster()) end),
     awful.key({ modkey,           }, "y",      function (c) c.ontop = not c.ontop            end))
-    awful.key({ modkey, }, "o", function (c)
-                                                   if c.border_width == 0 then
-                                                       c.border_width = beautiful.border_width
-                                                       awful.layout.set(awful.layout.get(), tags[1][1])
-                                                   else
-                                                       c.border_width = 0
-                                                       awful.layout.set(awful.layout.get(), tags[1][1])
-                                                   end
-                                               end )	
 
 -- Compute the maximum number of digit we need, limited to 9
 keynumber = 0
