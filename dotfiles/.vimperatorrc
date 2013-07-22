@@ -5,13 +5,13 @@ colors phallus
 "" key bindings and remappings
 noremap j 15j
 noremap k 15k
-noremap h  3h
-noremap l  3l
+noremap h 3h
+noremap l 3l
 noremap J gT
 noremap K gt
 noremap i gi
-noremap <C-j> <C-d>
-noremap <C-k> <C-u>
+
+"" bookmarks/commonly visited sites
 map <C-1> thttps://boards.4chan.org/g/<Return>
 map <C-2> thttps://boards.4chan.org/mu/<Return>
 map <C-3> treddit.com<Return>
