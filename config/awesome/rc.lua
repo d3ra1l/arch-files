@@ -154,6 +154,7 @@ tasklist.buttons = awful.util.table.join(
 
 batwidget = wibox.widget.textbox()
 daze.widgets.bat.register(batwidget)
+--if you get an error regarding hibernation, change energy_now and energy_full to charge_now/full. thanks doidbb
 function batinfo(adapter)
           local fcur = io.open("/sys/class/power_supply/"..adapter.."/energy_now")    
           local fcap = io.open("/sys/class/power_supply/"..adapter.."/energy_full")
@@ -264,9 +265,6 @@ mytasklist.buttons = awful.util.table.join(
                                           end))
 
 for s = 1, screen.count() do
-    -- Create a promptbox for each screen
-    mypromptbox[s] = awful.widget.prompt()
-
 	-- create a text layout widget
 	mylayoutbox[s] = benis.widget.layoutbox(s)
 	mylayoutbox[s]:buttons(awful.util.table.join(
@@ -400,6 +398,8 @@ globalkeys = awful.util.table.join(
 		"' -sf '" .. beautiful.fg_focus .. "'") 
 	end),
 
+
+
     awful.key({ modkey, }, "n", function () awful.util.spawn("firefox") end),
     awful.key({ "Control" }, "l", function () awful.util.spawn("mpc next") end), 
     awful.key({ "Control" }, "j", function () awful.util.spawn("amixer -q set Master 4%- unmute") end),
@@ -407,22 +407,7 @@ globalkeys = awful.util.table.join(
     awful.key({ "Control" }, "h",  function () awful.util.spawn("mpc prev") end),
     awful.key({ modkey, }, "p", function () awful.util.spawn("mpc toggle") end),
 	awful.key({ "Mod4" }, "k", function () awful.util.spawn("xbacklight -inc 10") end),
-    awful.key({ "Mod4" }, "j", function () awful.util.spawn("xbacklight -dec 10") end),
---	awful.key({ modkey }, "F1", function () awful.util.spawn("/home/phallus/.config/awesome/daze/widgets/scripts/d-music") end),
---	awful.key({ modkey }, "F2", function () awful.util.spawn("/home/phallus/.config/awesome/daze/widgets/scripts/d-date") end),
---	awful.key({ modkey }, "F3", function () awful.util.spawn("/home/phallus/.config/awesome/daze/widgets/scripts/d-hardware") end),
-
-    -- Prompt
-    -- awful.key({ modkey },            "d", awful.util.spawn("dmenu_run -p 'run' -fn '-*-lemon-*-*-*-*-10-*-*-*-*-*-*-*' -nf '#a2a2a2' -nb '#131313' -sf '#777777' -sb '#131313")),
-    --    awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
-
-    awful.key({ modkey }, "x",
-              function ()
-                  awful.prompt.run({ prompt = "Run Lua code: " },
-                  mypromptbox[mouse.screen].widget,
-                  awful.util.eval, nil,
-                  awful.util.getdir("cache") .. "/history_eval")
-              end)
+    awful.key({ "Mod4" }, "j", function () awful.util.spawn("xbacklight -dec 10") end)
 )
 
 clientkeys = awful.util.table.join(
@@ -494,6 +479,8 @@ awful.rules.rules = {
                      buttons = clientbuttons,
                      size_hints_honor = false } },
     { rule = { }, properties = { }, callback = awful.client.setslave },
+	{ rule = { name = "ImageMagick:" },
+		properties = { floating = true } },
     { rule = { class = "feh" },
       properties = { border_color = beautiful.border_feh,
         floating = true } },
