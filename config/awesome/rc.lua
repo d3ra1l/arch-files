@@ -55,10 +55,6 @@ scrot = "~/bin/scr"
 lock = "~/bin/i3lock-w"
 
 -- Default modkey.
--- Usually, Mod4 is the key with a logo between Control and Alt.
--- If you do not like this or do not have such a key,
--- I suggest you to remap Mod4 to another key using xmodmap or other tools.
--- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod1"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
@@ -166,10 +162,10 @@ function batinfo(adapter)
           local batico = ""
           if sta:match("Charging") then
             batico = "<span color='#dfdfdf'>⮒ </span>"
-	    batstat = "charging @ "
-	    batwidget:set_markup(' '..batico..''..batstat..'' ..battery..'% ')
+		    batstat = "charging @ "
+		    batwidget:set_markup(' '..batico..''..batstat..'' ..battery..'% ')
           elseif sta:match("Discharging") then
-	    batstat = "discharging @ "
+		    batstat = "discharging @ "
             if tonumber(battery) > 49 then
               batico = "<span color='#dfdfdf'>⮏ </span>"
             elseif tonumber(battery) < 50 and tonumber(battery) > 20 then
@@ -204,7 +200,6 @@ daze.widgets.calendar.register(mytextclock)
 mpdwidget = wibox.widget.textbox()                                                                                                                   
 daze.widgets.mpd.register(mpdwidget)
 
--- Register widget
 vicious.register(mpdwidget, vicious.widgets.mpd,
    function (widget, args)
        if args["{state}"] == "Stop" then 
@@ -217,6 +212,22 @@ vicious.register(mpdwidget, vicious.widgets.mpd,
    end, 1)
 
 
+--volume widget
+volwidget = wibox.widget.textbox()
+daze.widgets.vol.register(volwidget)
+
+vicious.register(volwidget, vicious.widgets.volume,
+function (widget, args)
+  if (args[2] ~= "♩" ) then
+     return '<span color="#dfdfdf"> ⮜</span> '.. args[1] ..'%'
+  else
+     return '<span color="#dfdfdf"> ⮜</span> [mute]'
+  end
+end, 1, "Master")
+
+
+pline = wibox.widget.textbox('<span color="#595961" background="#20202f">⮄</span><span color="#20202f" background="#595961">⮄</span>')
+pline_alt = wibox.widget.textbox('<span color="#20202f" background="#595961">⮅</span><span color="#595961" background="#20202f">⮅</span>')
 separator = wibox.widget.textbox()
 spacer1 = wibox.widget.textbox("     ")
 spacer = wibox.widget.textbox(" ")
@@ -291,6 +302,8 @@ for s = 1, screen.count() do
     right_layout:add(spacer1)
     right_layout:add(separator)
     right_layout:add(mpdwidget)
+    right_layout:add(spacer)
+	right_layout:add(volwidget)
     right_layout:add(separator)
     right_layout:add(mytextclock)
     right_layout:add(separator)
