@@ -87,7 +87,8 @@ sub np {
     $MPD{'title'}    = "";
     $MPD{'album'}    = "";
     $MPD{'filename'} = "";
-    
+	$MPD{'date'} = "";
+
 
     my $ans = "";
     my $str = "";
@@ -120,9 +121,10 @@ sub np {
             $MPD{'title'} = $1;
         }elsif ($ans =~ /Album: (.+)$/) {
             $MPD{'album'} = $1;
-        }
-
-    }
+		}elsif ($ans =~ /Date: (.+)$/) {
+            $MPD{'date'} = $1;
+		}
+	}
 
     close $socket;
 
@@ -136,6 +138,7 @@ sub np {
     $str =~ s/\%TITLE/$MPD{'title'}/g;
     $str =~ s/\%FILENAME/$MPD{'filename'}/g;
     $str =~ s/\%ALBUM/$MPD{'album'}/g;
+	$str =~ s/\%DATE/$MPD{'date'}/g;
 
     if ($witem && ($witem->{type} eq "CHANNEL" ||
                    $witem->{type} eq "QUERY")) {

@@ -42,8 +42,10 @@ chatnets = {
 channels = (
   { name = "#/g/sicp"; chatnet = "rizon"; autojoin = "yes"; },
   { name = "#/g/summer"; chatnet = "rizon"; autojoin = "yes"; },
-  { name = "#/g/technology"; chatnet = "rizon"; autojoin = "yes"; },
+  { name = "#/g/technology"; chatnet = "rizon"; autojoin = "no"; },
+  { name = "#/music/"; chatnet = "rizon"; autojoin = "yes"; },
   { name = "#sky"; chatnet = "rizon"; autojoin = "yes"; },
+  { name = "#rice"; chatnet = "rizon"; autojoin = "yes"; },
   { name = "#unixhub"; chatnet = "unixhub"; autojoin = "yes"; }
 );
 
@@ -97,6 +99,8 @@ aliases = {
   ATAG = "WINDOW SERVER";
   UNSET = "set -clear";
   RESET = "set -default";
+  tickle = "me tickles";
+  hug = "me hugs";
 };
 
 statusbar = {
@@ -253,7 +257,7 @@ settings = {
     chanact_header = " ";
     chanact_remove_hash = "no";
     chanact_abbreviate_names = "6";
-    mpd_format = "/me \0031is listening to: \00312\"%TITLE\" \0030by \0034%ARTIST \0030from the album \0039%ALBUM";
+    mpd_format = "/me \00311~\0034 ♥ \00311~ \0036♫ \0031now playing:\00312 \"%TITLE\" \0030by\0034 %ARTIST \0030from the album\0039 %ALBUM \0033(%DATE) \0036♫ \00311~ \0034♥ \00311~    ";
   };
 
   "fe-common/core" = {
@@ -265,8 +269,21 @@ settings = {
     autolog = "on";
     autolog_path = "~/.irssi/logs/$tag/$0/%y-%m-%d.log";
     use_msgs_window = "yes";
-    autolog_ignore_targets = "auth global hopm-siglost hostserv nickserv phallus";
+    autolog_ignore_targets = "auth global hopm-siglost hostserv nickserv phallus [leet] chanserv uguubot";
   };
 };
 
 logs = { };
+keyboard = (
+  { key = "^u"; id = "previous_window"; data = ""; },
+  { key = "^i"; id = "previous_window"; data = ""; }
+);
+ignores = (
+  { mask = "TSwift"; level = "ALL"; },
+  { mask = "TaylorSwift"; level = "ALL"; },
+  { mask = "TheCrittaC"; level = "ALL"; },
+  { mask = "EmWatson"; level = "ALL"; },
+  { mask = "Sersh"; level = "ALL"; },
+  { mask = "katt_ming"; level = "ALL"; },
+  { mask = "kattming"; level = "ALL"; }
+);
