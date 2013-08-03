@@ -18,14 +18,24 @@ hi TabLine ctermfg=15 ctermbg=none
 hi TabLineSel ctermfg=Blue ctermbg=7
 
 " set basic settings
-set tabstop=4
+set tabstop=4 
+set smarttab
 set shiftwidth=4
 set nowrap
 set noswapfile
 set backspace=2
 set shell=zsh
-set hlsearch
 set spelllang=pl,en
+set ruler
+set number
+set mouse=a
+set scrolloff=5
+set ruler               
+set noerrorbells
+
+" set utf8
+set encoding=utf8
+set termencoding=utf-8
 
 " key bindings
 cmap w!! %!sudo tee > /dev/null %
@@ -40,24 +50,22 @@ map k gk
 map r :so $MYVIMRC<cr>
 map <C-o> :Explore<Return>
 nmap w :w!<cr>
-nmap q :q!<cr>
-inoremap jk <Esc>
-inoremap kj <Esc>
+nmap q :q<cr>
 noremap <F1> <Esc>
 
-"
+
 " start searching as you type
+set nohlsearch
 set incsearch
+set showmatch
 set ignorecase
 set smartcase
 
 " persistent undo history
-if has('persistent_undo')
-    set undofile " Save undo's after file closes
-    set undodir=~/.vim/undo " where to save undo histories
-    set undolevels=100 " How many undos
-    set undoreload=1000 " number of lines to save for undo
-endif
+set undofile " Save undo's after file closes
+set undodir=~/.vim/undo " where to save undo histories
+set undolevels=100 " How many undos
+set undoreload=1000 " number of lines to save for undo
 
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
@@ -66,7 +74,7 @@ autocmd BufReadPost *
             \ endif
 
 " Remember info about open buffers on close
- set viminfo^=%
+set viminfo^=%
 
 " powerline
 set nocompatible
@@ -79,3 +87,4 @@ let g:Powerline_symbols = 'fancy'
 Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'tpope/vim-surround'
+Bundle 'danro/rename.vim'
