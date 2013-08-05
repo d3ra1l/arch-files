@@ -7,9 +7,9 @@ filetype on
 filetype plugin on
 
 " fix colors
-hi CursorLine ctermbg=235 cterm=bold
+hi CursorLine ctermbg=7 cterm=bold
 hi CursorLineNr ctermfg=238 ctermbg=235
-hi LineNr ctermfg=238
+hi LineNr ctermfg=7
 hi VertSplit ctermfg=235
 hi Constant ctermfg=5
 hi Statement ctermfg=1
@@ -18,6 +18,7 @@ hi TabLine ctermfg=15 ctermbg=none
 hi TabLineSel ctermfg=Blue ctermbg=7
 
 " set basic settings
+set cursorline
 set tabstop=4 
 set smarttab
 set shiftwidth=4
