@@ -6,7 +6,7 @@ syntax on
 filetype on
 filetype plugin on
 
-" fix colors
+" colors
 hi CursorLine ctermbg=7 cterm=bold
 hi CursorLineNr ctermfg=238 ctermbg=235
 hi LineNr ctermfg=7
@@ -48,12 +48,19 @@ map t :tabf
 map T :Texplore<cr>
 map j gj
 map k gk
+map s :s
+map S :%s
 map r :so $MYVIMRC<cr>
+map R :so $MYVIMRC<cr>
 map <C-o> :Explore<Return>
+map <space> /
+imap jk <Esc>
+imap kj <Esc>
 nmap w :w!<cr>
-nmap q :q<cr>
+nmap Q :q<cr>
 noremap <F1> <Esc>
-
+noremap ; :
+noremap , ;
 
 " start searching as you type
 set nohlsearch
