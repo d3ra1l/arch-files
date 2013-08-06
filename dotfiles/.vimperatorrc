@@ -14,6 +14,7 @@ noremap H gT
 noremap L gt
 noremap U :ba<cr>
 noremap I :fo<cr>
+noremap e <Esc>
 noremap i gi
 noremap ; :
 noremap , ;
