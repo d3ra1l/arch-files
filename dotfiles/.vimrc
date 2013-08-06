@@ -28,11 +28,14 @@ set backspace=2
 set shell=zsh
 set spelllang=pl,en
 set number
-set mouse=a
 set scrolloff=5
 set ruler               
 set noerrorbells
 set history=1000
+set wildmenu
+set wildmode=longest,list
+set vb t_vb=
+set mouse=
 
 " set utf8
 set encoding=utf8
