@@ -14,7 +14,7 @@ hi VertSplit ctermfg=235
 hi Constant ctermfg=5
 hi Statement ctermfg=1
 hi TabLineFill term=bold cterm=bold ctermbg=none
-hi TabLine ctermfg=15 ctermbg=none
+hi TabLine ctermfg=7 ctermbg=none
 hi TabLineSel ctermfg=Blue ctermbg=7
 
 " set basic settings
@@ -27,12 +27,12 @@ set noswapfile
 set backspace=2
 set shell=zsh
 set spelllang=pl,en
-set ruler
 set number
 set mouse=a
 set scrolloff=5
 set ruler               
 set noerrorbells
+set history=1000
 
 " set utf8
 set encoding=utf8
@@ -57,6 +57,7 @@ map <space> /
 imap jk <Esc>
 imap kj <Esc>
 nmap w :w!<cr>
+nmap q :q<cr>
 nmap Q :q<cr>
 noremap <F1> <Esc>
 noremap ; :
@@ -69,10 +70,14 @@ set showmatch
 set ignorecase
 set smartcase
 
+" backups
+set backup
+set backupdir=~/.vim/backup,/tmp
+
 " persistent undo history
 set undofile " Save undo's after file closes
-set undodir=~/.vim/undo " where to save undo histories
-set undolevels=100 " How many undos
+set undodir=~/.vim/undo,/tmp " where to save undo histories
+set undolevels=1000 " How many undos
 set undoreload=1000 " number of lines to save for undo
 
 " Return to last edit position when opening files (You want this!)
@@ -94,5 +99,5 @@ let g:Powerline_symbols = 'fancy'
 " vundle
 Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'tpope/vim-surround'
 Bundle 'danro/rename.vim'
+"Bundle 'tpope/vim-surround'
