@@ -82,9 +82,15 @@ alias sfu='screenfetch-ulf'
 
 #byzanz
 record() {
-	byzanz-record --duration=$1 --delay=$2 $3.gif
+	byzanz-record -v --duration=$1 --delay=$2 $3.gif
 }
 alias byz="record"
+
+#look words up in an online dictionary
+define() {
+	curl dict://dict.org/d:$1
+}
+alias define="define"
 
 #music
 alias mpd='mpd;mpdscribble'
@@ -115,9 +121,11 @@ alias pkx='sudo pkill X'
 alias gaym='toilet --gay -f mono9 -t'
 alias gayf='toilet --gay -f future -t'
 alias gayt='toilet --gay -f term -t'
+alias gayp='toilet --gay -f pagga -t'
 alias metm='toilet --metal -f mono9 -t'
 alias metf='toilet --metal -f future -t'
 alias mett='toilet --metal -f term -t'
+alias metp='toilet --metal -f pagga -t'
 
 #git
 alias ga='git add *'
@@ -126,7 +134,6 @@ alias gl='git clone'
 alias gp='git push origin'
 alias gh='git checkout'
 export gstyc=~/gitshit/user-styles/styles-clean
-export gstyo=~/gitshit/user-styles/styles-old
 export gconf=~/gitshit/arch-files
 export gfo=~/gitshit/fonts
 export g4x=~/gitshit/4chan-x
@@ -135,18 +142,17 @@ gcp() {
 	case $1 in
 		uc)			cp ~/.mozilla/firefox/*.default/chrome/userChrome.css $gstyc/userChrome.css;$gstyc ;;
 		uc-t)       cp ~/.mozilla/firefox/*.default/chrome/userChrome.css $gstyc/userChrome-testing.css;$gstyc ;;
-		4chan)  	rm $gstyc/4chan.css;touch $gstyc/4chan.css;vim $gstyc/4chan.css;$gtsyc ;;
-		4chan-t)	rm $gstyc/4chan-testing.css;touch $gstyc/4chan-testing.css;vim $gstyc/4chan-testing.css;$gstyc ;;
+		4chan)  	rm $gstyc/4chan.css;touch $gstyc/4chan.css;vim $gstyc/4chan.css;$gstyc ;;
 		reddit)     rm $gstyc/reddit.css;touch $gstyc/reddit.css;vim $gstyc/reddit.css;$gstyc ;;
-		reddit-t)   rm $gstyc/reddit-testing.css;touch $gstyc/reddit-testing.css;vim $gstyc/reddit-testing.css;$gstyc ;;
-		crshd)      cp ~/.irssi/crshd.theme $gconf/config/.irssi/crshd.theme;$gconf ;;
+		crshd)      cp ~/.irssi/crshd.theme $gconf/config/.irssi/phallus.theme;$gconf ;;
 		zsh)		cp ~/.zshrc $gconf/dotfiles/.zshrc;$gconf ;;
         vim)        cp ~/.vimrc $gconf/dotfiles/.vimrc;$gconf ;;
         vimp)       cp ~/.vimperatorrc $gconf/dotfiles/.vimperatorrc;$gconf ;;
-		ncp) 		cp ~/.ncmpcpp/config $gconf/dotfiles/ncmpcpp-config;$gconf ;;
+		ncp) 		cp ~/.ncmpcpp/config $gconf/config/ncmpcpp/config;$gconf ;;
 		tmux)		cp ~/.tmux.conf $gconf/dotfiles/.tmux.conf;$gconf ;;
 		lemon)		cp ~/.fonts/bdf/lemon.bdf $gfo/lemon.bdf;$gfo ;;
 		uushi)		cp ~/.fonts/bdf/uushi.bdf $gfo/uushi.bdf;$gfo ;;
+		todo)		cp ~/bin/todo ~/gitshit/arch-files/bin/todo;$gconf ;;
 		*)			echo "$1 not found!" ;;
 	esac
 }
@@ -164,14 +170,31 @@ alias yg='yaourt -G'
 
 #ranger
 rn() {
-        case $1 in     
-                awesome)        ranger ~/.config/awesome ;;
-                torrents)       ranger ~/torrents ;;
-                music)          ranger ~/mu ;;
-                bin)            ranger ~/bin ;;
-                git)            ranger ~/gitshit ;;
-				*)				ranger ;;
-        esac
+    case $1 in     
+        awesome)        ranger ~/.config/awesome ;;
+        tor)	        ranger ~/torrents ;;
+        mu)     	    ranger ~/mu ;;
+        bin)            ranger ~/bin ;;
+        git)            ranger ~/gitshit ;;
+		irssi)			ranger ~/.irssi ;;
+		edu)			ranger ~/edu ;;
+		bks)			ranger ~/edu/books ;;
+		ncp)			ranger ~/.ncmpcpp ;;
+		*)				ranger ;;
+    esac
+}
+
+#school - will add functions for notes and such once school starts
+export bks=~/edu/books
+alias bks=$bks
+re() {
+	case $1 in
+		sicp)			llpp $bks/sicp.pdf & ;;
+		emacs)			llpp $bks/eintr.pdf & ;;
+		pil)			llpp $bks/pil.pdf & ;;
+		lua)			llpp $bks/pil.pdf & ;;
+		*)				ranger $bks ;;
+	esac
 }
 
 #vim - thanks to earsplit for this!
@@ -196,6 +219,7 @@ conf() {
         gtk)        vim ~/.themes/Kvtie/gtk-2.0/gtkrc ;;
         pacman)     sudo vim /etc/pacman.conf ;;
 		vimp)		vim ~/.vimperatorrc ;;
+		mutt)		vim ~/.muttrc ;;
 		*)			echo "unknown conf: $1" ;;		
 	esac
 }
