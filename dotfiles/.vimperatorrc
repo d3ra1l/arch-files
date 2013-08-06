@@ -1,5 +1,6 @@
 "" general settings
 set autocomplete=false
+set defsearch=startpage
 colors phallus
 
 "" key bindings and remappings
@@ -7,8 +8,6 @@ noremap j 5j
 noremap k 5k
 noremap h 3h
 noremap l 3l
-"noremap J gT
-"noremap K gt
 noremap J <C-d>
 noremap K <C-u>
 noremap H gT
@@ -16,6 +15,8 @@ noremap L gt
 noremap U :ba<cr>
 noremap I :fo<cr>
 noremap i gi
+noremap ; :
+noremap , ;
 noremap R :source ~/.vimperatorrc<cr>
 
 "" bookmarks/commonly visited sites
@@ -29,6 +30,8 @@ map <C-7> ttwitter.com<Return>
 map <C-8> thttps://www.facebook.com<Return>
 map <C-9> trutracker.org<Return>
 map <C-0> thttps://what.cd<Return>
+noremap b ohttps://boards.4chan.org/
+noremap B thttps://boards.4chan.org/
 
 "" hide bar with ctrl-f1
 map <silent> <C-F1> :js toggle_bottombar()<CR>
