@@ -10,12 +10,20 @@ filetype plugin on
 hi CursorLine ctermbg=7 cterm=bold
 hi CursorLineNr ctermfg=238 ctermbg=235
 hi LineNr ctermfg=7
-hi VertSplit ctermfg=235
 hi Constant ctermfg=5
 hi Statement ctermfg=1
 hi TabLineFill term=bold cterm=bold ctermbg=none
 hi TabLine ctermfg=7 ctermbg=none
 hi TabLineSel ctermfg=Blue ctermbg=7
+hi VertSplit ctermfg=235 ctermbg=235 cterm=none
+hi StatusLine cterm=none ctermfg=0 ctermbg=7
+hi StatusLineNC cterm=none ctermfg=7 ctermbg=235
+hi Directory ctermfg=12
+hi User1 ctermfg=1 ctermbg=7
+hi User2 ctermfg=2 ctermbg=7
+hi User3 ctermfg=1 ctermbg=7
+hi User4 ctermfg=12 ctermbg=7
+hi User5 ctermfg=5 ctermbg=7
 
 " set basic settings
 set cursorline
@@ -36,6 +44,7 @@ set wildmenu
 set wildmode=longest,list
 set vb t_vb=
 set mouse=
+set fillchars+=vert:\ 
 
 " set utf8
 set encoding=utf8
@@ -56,7 +65,6 @@ map S :%s
 map r :so $MYVIMRC<cr>
 map R :so $MYVIMRC<cr>
 map <C-o> :Explore<Return>
-map <space> /
 imap jk <Esc>
 imap kj <Esc>
 nmap w :w!<cr>
@@ -65,6 +73,13 @@ nmap Q :q<cr>
 noremap <F1> <Esc>
 noremap ; :
 noremap , ;
+let mapleader=" "
+noremap <leader>v :Ve<cr>
+noremap <leader>j <C-W>j<cr>
+noremap <leader>k <C-W>k<cr>
+noremap <leader>l <C-W>l<cr>
+noremap <leader>h <C-W>h<cr>
+noremap <leader>r :!
 
 " start searching as you type
 set nohlsearch
@@ -92,7 +107,17 @@ autocmd BufReadPost *
 " Remember info about open buffers on close
 set viminfo^=%
 
-" powerline
+" status line
+set statusline =
+set statusline +=%4*\ %<%F%*\ 			"full path
+set statusline +=%5*%{&ff}%*\           "file format
+set statusline +=%2*%m%*				"modified flag
+set statusline +=%3*%y%*                "file type
+set statusline +=%1*%=%5l%*             "current line
+set statusline +=%2*/%L%*\              "total lines
+set statusline +=%5*0x%04B\ %*          "character under cursor
+
+" vundle
 set nocompatible
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -101,5 +126,5 @@ let g:Powerline_symbols = 'fancy'
 
 " vundle
 Bundle 'gmarik/vundle'
-Bundle 'Lokaltog/vim-powerline'
+"Bundle 'Lokaltog/vim-powerline'
 Bundle 'danro/rename.vim'
