@@ -116,6 +116,7 @@ set statusline +=%3*%y%*                "file type
 set statusline +=%1*%=%5l%*             "current line
 set statusline +=%2*/%L%*\              "total lines
 set statusline +=%5*0x%04B\ %*          "character under cursor
+set laststatus=2
 
 " vundle
 set nocompatible
@@ -124,7 +125,6 @@ call vundle#rc()
 set laststatus=2
 let g:Powerline_symbols = 'fancy'
 
-" vundle
 Bundle 'gmarik/vundle'
 "Bundle 'Lokaltog/vim-powerline'
 Bundle 'danro/rename.vim'
