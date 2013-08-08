@@ -171,7 +171,7 @@ function batinfo(adapter)
             elseif tonumber(battery) < 50 and tonumber(battery) > 20 then
               batico = "<span color='#dfdfdf'>⮑ </span>"
             else
-              batico = "<span color='#c97c7c'>⮐ </span>"
+              batico = "<span color='#c97c7c'>⮱ </span>"
             end
 	    batwidget:set_markup(' '..batico..''..batstat..'' ..battery..'% ')
           else

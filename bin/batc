@@ -17,7 +17,7 @@ b_icons (){
                         if [ "$bat_trun" -gt "20" ]; then
                                 icon=" ⮑ "
                         elif [ "$bat_trun" -lt "20" ]; then
-                                icon=" ⮐ "
+                                icon=" ⮱ "
                         fi  
                 fi  
             elif [ "$bat_acpi" = "Charging" ]; then
