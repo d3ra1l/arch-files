@@ -56,7 +56,7 @@ autocmd BufReadPost *
 " Remember info about open buffers on close
 set viminfo^=%
 
-"disable auto comment insertion
+" disable auto comment insertion
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " turn on syntax highlighting
