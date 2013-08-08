@@ -52,6 +52,9 @@ set laststatus=2
 set encoding=utf8
 set termencoding=utf-8
 
+"disable auto comment insertion
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
 " key bindings
 cmap w!! %!sudo tee > /dev/null %
 map K <C-u>
@@ -76,7 +79,6 @@ noremap <F1> <Esc>
 noremap ; :
 noremap , ;
 let mapleader=" "
-noremap <leader>t :NERDTree<cr>
 noremap <leader>j <C-W>j<cr>
 noremap <leader>k <C-W>k<cr>
 noremap <leader>l <C-W>l<cr>
@@ -93,6 +95,7 @@ set smartcase
 " backups
 set backup
 set backupdir=~/.vim/backup,/tmp
+set directory=~/.vim/tmp
 
 " persistent undo history
 set undofile " Save undo's after file closes
