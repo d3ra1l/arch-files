@@ -1,35 +1,12 @@
-" enable 256 colors
-set t_Co=256
-
-" turn on syntax highlighting
-syntax on
-filetype on
-filetype plugin on
-
-" colors
-hi CursorLine ctermbg=7 cterm=bold
-hi CursorLineNr ctermfg=238 ctermbg=235
-hi LineNr ctermfg=7
-hi Constant ctermfg=5
-hi Statement ctermfg=1
-hi TabLineFill term=bold cterm=bold ctermbg=none
-hi TabLine ctermfg=7 ctermbg=none
-hi TabLineSel ctermfg=Blue ctermbg=7
-hi VertSplit ctermfg=235 ctermbg=235 cterm=none
-hi StatusLine cterm=none ctermfg=0 ctermbg=7
-hi StatusLineNC cterm=none ctermfg=7 ctermbg=235
-hi Normal ctermfg=0 ctermbg=none
-hi Directory ctermfg=4 cterm=none
-hi User1 ctermfg=1 ctermbg=7
-hi User2 ctermfg=2 ctermbg=7
-hi User3 ctermfg=1 ctermbg=7
-hi User4 ctermfg=12 ctermbg=7
-hi User5 ctermfg=5 ctermbg=7
+"""""""""""""
+"" General ""
+"""""""""""""
 
 " set basic settings
 set cursorline
 set tabstop=4 
 set smarttab
+set noexpandtab
 set shiftwidth=4
 set nowrap
 set noswapfile
@@ -48,12 +25,60 @@ set mouse=
 set fillchars+=vert:\ 
 set laststatus=2
 
-" set utf8
+" enable utf8
 set encoding=utf8
 set termencoding=utf-8
 
+" searching
+set nohlsearch
+set incsearch
+set showmatch
+set ignorecase
+set smartcase
+
+" backups
+set backup
+set backupdir=~/.vim/backup,/tmp
+set directory=~/.vim/tmp
+
+" persistent undo history
+set undofile " Save undo's after file closes
+set undodir=~/.vim/undo,/tmp " where to save undo histories
+set undolevels=1000 " How many undos
+set undoreload=1000 " number of lines to save for undo
+
+" Return to last edit position when opening files (You want this!)
+autocmd BufReadPost *
+            \ if line("'\"") > 0 && line("'\"") <= line("$") |
+            \ exe "normal! g`\"" |
+            \ endif
+
+" Remember info about open buffers on close
+set viminfo^=%
+
 "disable auto comment insertion
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" turn on syntax highlighting
+syntax on
+filetype on
+filetype plugin on
+
+" colors
+set t_Co=256
+hi CursorLine ctermbg=7 cterm=bold
+hi CursorLineNr ctermfg=238 ctermbg=235
+hi LineNr ctermfg=7
+hi Constant ctermfg=5
+hi Statement ctermfg=1
+hi TabLineFill term=bold cterm=bold ctermbg=none
+hi TabLine ctermfg=7 ctermbg=none
+hi TabLineSel ctermfg=Blue ctermbg=7
+hi VertSplit ctermfg=235 ctermbg=235 cterm=none
+hi StatusLine cterm=none ctermfg=0 ctermbg=7
+hi StatusLineNC cterm=none ctermfg=7 ctermbg=235
+hi Normal ctermfg=0 ctermbg=none
+hi Directory ctermfg=4 cterm=none
 
 " key bindings
 cmap w!! %!sudo tee > /dev/null %
@@ -85,43 +110,11 @@ noremap <leader>l <C-W>l<cr>
 noremap <leader>h <C-W>h<cr>
 noremap <leader>r :!
 
-" start searching as you type
-set nohlsearch
-set incsearch
-set showmatch
-set ignorecase
-set smartcase
 
-" backups
-set backup
-set backupdir=~/.vim/backup,/tmp
-set directory=~/.vim/tmp
+"""""""""""""
+"" Plugins ""
+"""""""""""""
 
-" persistent undo history
-set undofile " Save undo's after file closes
-set undodir=~/.vim/undo,/tmp " where to save undo histories
-set undolevels=1000 " How many undos
-set undoreload=1000 " number of lines to save for undo
-
-" Return to last edit position when opening files (You want this!)
-autocmd BufReadPost *
-            \ if line("'\"") > 0 && line("'\"") <= line("$") |
-            \ exe "normal! g`\"" |
-            \ endif
-
-" Remember info about open buffers on close
-set viminfo^=%
-
-" status line
-"set statusline =
-"set statusline +=%4*\ %<%F%*\ 			"full path
-"set statusline +=%5*%{&ff}%*\           "file format
-"set statusline +=%2*%m%*				"modified flag
-"set statusline +=%3*%y%*                "file type
-"set statusline +=%1*%=%5l%*             "current line
-"set statusline +=%2*/%L%*\              "total lines
-"set statusline +=%5*0x%04B\ %*          "character under cursor
-"set noshowmode
 
 " powerline settings
 let g:Powerline_mode_n = 'N'
