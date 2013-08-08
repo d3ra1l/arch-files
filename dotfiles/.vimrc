@@ -18,7 +18,8 @@ hi TabLineSel ctermfg=Blue ctermbg=7
 hi VertSplit ctermfg=235 ctermbg=235 cterm=none
 hi StatusLine cterm=none ctermfg=0 ctermbg=7
 hi StatusLineNC cterm=none ctermfg=7 ctermbg=235
-hi Directory ctermfg=12
+hi Normal ctermfg=0 ctermbg=none
+hi Directory ctermfg=4 cterm=none
 hi User1 ctermfg=1 ctermbg=7
 hi User2 ctermfg=2 ctermbg=7
 hi User3 ctermfg=1 ctermbg=7
@@ -33,7 +34,7 @@ set shiftwidth=4
 set nowrap
 set noswapfile
 set backspace=2
-set shell=zsh
+set shell=zsh\ -i
 set spelllang=pl,en
 set number
 set scrolloff=5
@@ -45,6 +46,7 @@ set wildmode=longest,list
 set vb t_vb=
 set mouse=
 set fillchars+=vert:\ 
+set laststatus=2
 
 " set utf8
 set encoding=utf8
@@ -64,9 +66,9 @@ map s :s
 map S :%s
 map r :so $MYVIMRC<cr>
 map R :so $MYVIMRC<cr>
-map <C-o> :Explore<Return>
-imap jk <Esc>
-imap kj <Esc>
+map <C-o> :NERDTreeToggle<cr>
+imap jk <Esc><Esc>
+imap kj <Esc><Esc>
 nmap w :w!<cr>
 nmap q :q<cr>
 nmap Q :q<cr>
@@ -74,7 +76,7 @@ noremap <F1> <Esc>
 noremap ; :
 noremap , ;
 let mapleader=" "
-noremap <leader>v :Ve<cr>
+noremap <leader>t :NERDTree<cr>
 noremap <leader>j <C-W>j<cr>
 noremap <leader>k <C-W>k<cr>
 noremap <leader>l <C-W>l<cr>
@@ -108,23 +110,49 @@ autocmd BufReadPost *
 set viminfo^=%
 
 " status line
-set statusline =
-set statusline +=%4*\ %<%F%*\ 			"full path
-set statusline +=%5*%{&ff}%*\           "file format
-set statusline +=%2*%m%*				"modified flag
-set statusline +=%3*%y%*                "file type
-set statusline +=%1*%=%5l%*             "current line
-set statusline +=%2*/%L%*\              "total lines
-set statusline +=%5*0x%04B\ %*          "character under cursor
-set laststatus=2
+"set statusline =
+"set statusline +=%4*\ %<%F%*\ 			"full path
+"set statusline +=%5*%{&ff}%*\           "file format
+"set statusline +=%2*%m%*				"modified flag
+"set statusline +=%3*%y%*                "file type
+"set statusline +=%1*%=%5l%*             "current line
+"set statusline +=%2*/%L%*\              "total lines
+"set statusline +=%5*0x%04B\ %*          "character under cursor
+"set noshowmode
+
+" powerline settings
+let g:Powerline_mode_n = 'N'
+let g:Powerline_mode_i = 'I'
+let g:Powerline_mode_R = 'R'
+let g:Powerline_mode_v = 'V'
+let g:Powerline_mode_V = 'V·L'
+let g:Powerline_mode_cv = 'V·B'
+let g:Powerline_mode_s = 'S'
+let g:Powerline_mode_S = 'S·L'
+let g:Powerline_mode_cs = 'S·B'
+let g:Powerline_symbols = 'fancy'
+let g:Powerline_colorscheme = 'custom'
+
+" nerd tree
+let NERDTreeShowHidden=0
+let NERDTreeIgnore=['\.png$', '\.jpg$', '\.gif$', '\.tmp$', '\.swp$']
+autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
+function! s:CloseIfOnlyNerdTreeLeft()
+  if exists("t:NERDTreeBufName")
+    if bufwinnr(t:NERDTreeBufName) != -1
+      if winnr("$") == 1
+        q
+      endif
+    endif
+  endif
+endfunction
 
 " vundle
 set nocompatible
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-set laststatus=2
-let g:Powerline_symbols = 'fancy'
 
 Bundle 'gmarik/vundle'
-"Bundle 'Lokaltog/vim-powerline'
+Bundle 'Lokaltog/vim-powerline'
 Bundle 'danro/rename.vim'
+Bundle 'scrooloose/nerdtree'
