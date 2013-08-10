@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/phallus'
+let g:netrw_dirhist_2='/home/phallus/.vim/bundle/vim-powerline/autoload/Powerline/Colorschemes'
+let g:netrw_dirhist_3='/home/phallus'
+let g:netrw_dirhist_4='/home/phallus/.vim/bundle/vim-powerline/autoload/Powerline/Colorschemes'
+let g:netrw_dirhist_5='/home/phallus'
+let g:netrw_dirhist_6='/home/phallus/.vim'
+let g:netrw_dirhist_7='/home/phallus'
