@@ -24,6 +24,8 @@ set vb t_vb=
 set mouse=
 set fillchars+=vert:\ 
 set laststatus=2
+set splitright
+set splitbelow
 
 " enable utf8
 set encoding=utf8
@@ -86,8 +88,7 @@ map K <C-u>
 map J <C-d>
 map L :tabnext<cr>
 map H :tabprev<cr>
-map t :tabf 
-map T :Texplore<cr>
+map T :tabnew<cr>
 map j gj
 map k gk
 map s :s/
@@ -104,11 +105,15 @@ noremap <F1> <Esc>
 noremap ; :
 noremap , ;
 let mapleader=" "
-noremap <leader>j <C-W>j<cr>
-noremap <leader>k <C-W>k<cr>
-noremap <leader>l <C-W>l<cr>
-noremap <leader>h <C-W>h<cr>
-noremap <leader>r :!
+noremap <leader>v :vsplit<cr>
+noremap <leader>j <C-W>j
+noremap <leader>k <C-W>k
+noremap <leader>l <C-W>l
+noremap <leader>h <C-W>h
+noremap <leader>a 4 <C-w>>
+noremap <leader>s 4 <C-w>-
+noremap <leader>d 4 <C-w>+
+noremap <leader>f 4 <C-w><
 
 
 """""""""""""
