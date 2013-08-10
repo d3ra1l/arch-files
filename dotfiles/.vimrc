@@ -115,6 +115,17 @@ noremap <leader>r :!
 "" Plugins ""
 """""""""""""
 
+" vundle
+set nocompatible
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+filetype off
+filetype plugin on
+
+Bundle 'gmarik/vundle'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'danro/rename.vim'
+Bundle 'scrooloose/nerdtree'
 
 " powerline settings
 let g:Powerline_mode_n = 'N'
@@ -128,6 +139,11 @@ let g:Powerline_mode_S = 'S·L'
 let g:Powerline_mode_cs = 'S·B'
 let g:Powerline_symbols = 'fancy'
 let g:Powerline_colorscheme = 'custom'
+call Pl#Theme#RemoveSegment('fileformat')
+call Pl#Theme#RemoveSegment('fileencoding')
+call Pl#Theme#RemoveSegment('filesize')
+call Pl#Theme#RemoveSegment('raw')
+call Pl#Theme#RemoveSegment('lineinfo')
 
 " nerd tree
 let NERDTreeShowHidden=0
@@ -142,13 +158,3 @@ function! s:CloseIfOnlyNerdTreeLeft()
     endif
   endif
 endfunction
-
-" vundle
-set nocompatible
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-Bundle 'gmarik/vundle'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'danro/rename.vim'
-Bundle 'scrooloose/nerdtree'
