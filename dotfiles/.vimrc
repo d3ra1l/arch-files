@@ -2,7 +2,7 @@
 "" General ""
 """""""""""""
 
-" set basic settings
+" basic settings
 set cursorline
 set tabstop=4 
 set smarttab
@@ -49,7 +49,7 @@ set undodir=~/.vim/undo,/tmp " where to save undo histories
 set undolevels=1000 " How many undos
 set undoreload=1000 " number of lines to save for undo
 
-" Return to last edit position when opening files (You want this!)
+" return to last edit position when opening files
 autocmd BufReadPost *
             \ if line("'\"") > 0 && line("'\"") <= line("$") |
             \ exe "normal! g`\"" |
