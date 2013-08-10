@@ -90,8 +90,8 @@ map t :tabf
 map T :Texplore<cr>
 map j gj
 map k gk
-map s :s
-map S :%s
+map s :s/
+map S :%s/
 map r :so $MYVIMRC<cr>
 map R :so $MYVIMRC<cr>
 map <C-o> :NERDTreeToggle<cr>
@@ -148,6 +148,7 @@ call Pl#Theme#RemoveSegment('lineinfo')
 " nerd tree
 let NERDTreeShowHidden=0
 let NERDTreeIgnore=['\.png$', '\.jpg$', '\.gif$', '\.tmp$', '\.swp$']
+let g:NERDTreeWinSize = '20'
 autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 function! s:CloseIfOnlyNerdTreeLeft()
   if exists("t:NERDTreeBufName")
