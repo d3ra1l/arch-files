@@ -26,6 +26,7 @@ set fillchars+=vert:\
 set laststatus=2
 set splitright
 set splitbelow
+set showmatch
 
 " enable utf8
 set encoding=utf8
@@ -34,7 +35,6 @@ set termencoding=utf-8
 " searching
 set nohlsearch
 set incsearch
-set showmatch
 set ignorecase
 set smartcase
 
@@ -73,6 +73,7 @@ hi CursorLineNr ctermfg=238 ctermbg=235
 hi LineNr ctermfg=7
 hi Constant ctermfg=5
 hi Statement ctermfg=1
+hi MatchParen ctermfg=8 ctermbg=6 cterm=none
 hi TabLineFill term=bold cterm=bold ctermbg=none
 hi TabLine ctermfg=7 ctermbg=none
 hi TabLineSel ctermfg=Blue ctermbg=7
