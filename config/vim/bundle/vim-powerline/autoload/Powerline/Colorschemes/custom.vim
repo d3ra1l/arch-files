@@ -82,10 +82,10 @@ let g:Powerline#Colorschemes#custom#colorscheme = Pl#Colorscheme#Init([
        \ }),
 \
 \ Pl#Hi#Segments(['fileinfo', 'filename'], {
-\ 'n': ['termlwhite', 'termdblack'],
+\ 'n': ['termdwhite', 'termdblack'],
 \ 'N': ['termdwhite', 'termdblack'],
-\ 'i': ['termlred', 'termdblack'],
-\ 'v': ['brightorange', 'termdblack'],
+\ 'i': ['termdwhite', 'termdblack'],
+\ 'v': ['termdwhite', 'termdblack'],
 \ }),
 \
 \ Pl#Hi#Segments(['fileinfo.filepath'], {
@@ -107,8 +107,8 @@ let g:Powerline#Colorschemes#custom#colorscheme = Pl#Colorscheme#Init([
 \ }),
 \
 \ Pl#Hi#Segments(['currenttag', 'fullcurrenttag', 'fileformat', 'fileencoding', 'pwd', 'filetype', 'rvm:string', 'rvm:statusline', 'virtualenv:statusline', 'charcode', 'currhigroup'], {
-\ 'n': ['termdblack', 'termdblack'],
-\ 'i': ['termdblack', 'termdblack'],
+\ 'n': ['termdwhite', 'termdblack'],
+\ 'i': ['termdwhite', 'termdblack'],
 \ }),
 \
 \ Pl#Hi#Segments(['lineinfo'], {
