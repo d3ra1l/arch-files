@@ -27,6 +27,7 @@ set laststatus=2
 set splitright
 set splitbelow
 set showmatch
+set autochdir
 
 " enable utf8
 set encoding=utf8
@@ -105,6 +106,7 @@ nmap Q :q<cr>
 noremap <F1> <Esc>
 noremap ; :
 noremap , ;
+noremap D <Delete>
 let mapleader=" "
 noremap <leader>v :vsplit<cr>
 noremap <leader>j <C-W>j
@@ -115,6 +117,8 @@ noremap <leader>a 4 <C-w>>
 noremap <leader>s 4 <C-w>-
 noremap <leader>d 4 <C-w>+
 noremap <leader>f 4 <C-w><
+noremap <leader>g $
+noremap <leader>G 0
 
 
 """""""""""""
@@ -132,6 +136,7 @@ Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'danro/rename.vim'
 Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
 
 " powerline settings
 let g:Powerline_mode_n = 'N'

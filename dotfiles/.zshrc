@@ -9,6 +9,21 @@
 #prompt and syntax highlighting
 export PS1="%{[38;05;8;48;05;4m%} %(!.%S-ROOT-%s.%n) %{[38;05;4;48;05;1m%}⮀%{[00m%}%{[38;05;8;48;05;1m%} %3~ %{[00m%}%{[38;05;1m%}⮀ %{[00m%}"
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+ZSH_HIGHLIGHT_STYLES[globbing]='fg=yellow,none'
+ZSH_HIGHLIGHT_STYLES[path]='fg=red'
+ZSH_HIGHLIGHT_STYLES[function]='fg=blue'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=blue'
+ZSH_HIGHLIGHT_STYLES[command]='fg=blue'
+ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=blue'
+ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red,bold'
+ZSH_HIGHLIGHT_STYLES[default]='fg=black'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=magenta,none'
+ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=cyan,bold'
+ZSH_HIGHLIGHT_STYLES[hashed-command]='fg=red'
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=magenta,bold'
+ZSH_HIGHLIGHT_STYLES[single-hyphen-opton]='fg=red'
 
 #fix home, del, et. al. keys
 bindkey "^[[1~" beginning-of-line
