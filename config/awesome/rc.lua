@@ -204,7 +204,7 @@ function batinfo(adapter)
 
 
 -- time widget
-mytextclock = awful.widget.textclock("  <span color='#dfdfdf'>⮖</span> %R - %a, %b %d ")
+mytextclock = awful.widget.textclock("  <span color='#dfdfdf'>⮖</span>  %R - %a, %b %d  ")
 daze.widgets.calendar.register(mytextclock)
 
 
