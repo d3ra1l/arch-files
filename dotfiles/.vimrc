@@ -5,30 +5,31 @@
 " basic settings
 set cursorline
 set tabstop=4 
-set smarttab
+set smarttab smartindent
 set noexpandtab
 set shiftwidth=4
+set softtabstop=4
 set nowrap
 set noswapfile
-set backspace=2
+set backspace=indent,eol,start
+set foldmethod=marker
 set shell=zsh\ -i
 set spelllang=pl,en
 set number
 set scrolloff=5
-set ruler               
+set ruler
 set noerrorbells
 set history=1000
 set wildmenu
 set wildmode=longest,list
 set vb t_vb=
 set mouse=
-set fillchars+=vert:\ 
+set fillchars+=vert:\
 set laststatus=2
 set splitright
 set splitbelow
 set showmatch
 set autochdir
-
 " enable utf8
 set encoding=utf8
 set termencoding=utf-8
@@ -83,6 +84,7 @@ hi StatusLine cterm=none ctermfg=0 ctermbg=7
 hi StatusLineNC cterm=none ctermfg=7 ctermbg=235
 hi Normal ctermfg=0 ctermbg=none
 hi Directory ctermfg=4 cterm=none
+hi Folded ctermbg=235 cterm=none
 
 " key bindings
 cmap w!! %!sudo tee > /dev/null %
@@ -119,6 +121,7 @@ noremap <leader>d 4 <C-w>+
 noremap <leader>f 4 <C-w><
 noremap <leader>g $
 noremap <leader>G 0
+
 
 
 """""""""""""
