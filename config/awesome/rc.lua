@@ -41,7 +41,6 @@ end
 -- }}}
 
 
-
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/home/phallus/.config/awesome/themes/benis/theme.lua")
@@ -68,7 +67,6 @@ local layouts =
 -- }}}
 
 
-
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 tags = {}
@@ -82,6 +80,7 @@ awful.tag.setmwfact(0.658, tags[1][1])
 awful.tag.setncol(1, tags[1][1])
 
 -- }}}
+
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
@@ -97,8 +96,8 @@ mymainmenu = awful.menu({ items = { { "⮩ urxvtc", terminal },
 				    { "⮤ scrot", "/home/phallus/bin/scr" },
 					{ "⮗ restart", awesome.restart },
 				    { "⮪ lock", "/home/phallus/bin/i3lock-w" }
-                                  }
-                        })
+                    }
+})
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
@@ -107,12 +106,6 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
-
-
-function lyt()
-     local layout = awful.layout.get(screen)
-     return awful.layout.getname(layout)
-end
 
 -- {{{ Tasklist
 
@@ -141,8 +134,6 @@ tasklist.buttons = awful.util.table.join(
 --}}}
 
 
-
-
 -- {{{ Wibox
 
 	
@@ -160,35 +151,56 @@ function batinfo(adapter)
           local sta = fsta:read()
           local battery = math.floor(cur * 100 / cap)
           local batico = ""
-          if sta:match("Charging") then
-            batico = "<span color='#dfdfdf'>⮒ </span>"
-		    batstat = "charging @ "
-		    batwidget:set_markup(' '..batico..''..batstat..'' ..battery..'% ')
-          elseif sta:match("Discharging") then
-		    batstat = "discharging @ "
-            if tonumber(battery) > 49 then
-              batico = "<span color='#dfdfdf'>⮏ </span>"
-            elseif tonumber(battery) < 50 and tonumber(battery) > 20 then
-              batico = "<span color='#dfdfdf'>⮑ </span>"
-            else
-              batico = "<span color='#c97c7c'>⮐ </span>"
-            end
-	    batwidget:set_markup(' '..batico..''..batstat..'' ..battery..'% ')
+          local batbar = ""
+
+          if sta:match("Charged") then
+              batbar = "<span color='#dfdfdf'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶ "  
+              batico = "<span color='#dfdfdf'>⮎ </span>"
           else
-	    batstat = "charged "	
-            batico = "<span color='#dfdfdf'>⮎ </span>"
-	    batwidget:set_markup(' '..batico..''..batstat..'')	
+
+            if tonumber(battery) > 90 then
+                batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶ </span>"
+            elseif tonumber(battery) > 80 then
+                batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶ </span>"
+            elseif tonumber(battery) > 70 then
+                batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶ </span>"
+            elseif tonumber(battery) > 60 then
+                batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶ </span>"
+            elseif tonumber(battery) > 50 then
+                batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶ </span>"
+            elseif tonumber(battery) > 40 then
+                batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶ </span>"
+            elseif tonumber(battery) > 30 then
+                batbar = "<span color='#b4b4b4'>⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶ </span>"
+            elseif tonumber(battery) > 20 then
+                batbar = "<span color='#d23d3d'>⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
+            elseif tonumber(battery) > 10 then
+                batbar = "<span color='#d23d3d'>⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
+            end 
+
+            if sta:match("Charging") then
+                batico = "<span color='#dfdfdf'>⮒ </span>"
+            elseif sta:match("Discharging") then
+
+                if tonumber(battery) > 49 then
+                      batico = "<span color='#dfdfdf'>⮏ </span>"
+                elseif tonumber(battery) < 50 and tonumber(battery) > 20 then
+                      batico = "<span color='#dfdfdf'>⮑ </span>"
+                else
+                      batico = "<span color='#c97c7c'>⮐ </span>"
+                end 
+            end 
+    
           end
-          fcur:close()
-          fcap:close()
-          fsta:close()
-        end
-     
-        battery_timer = timer({timeout = 1})
+
+	      batwidget:set_markup(' '..batico..' '..batbar..'')	
+        end 
+        battery_timer = timer({timeout = 1}) 
         battery_timer:connect_signal("timeout", function()
           batinfo("BAT0")
         end)
         battery_timer:start()
+
 
 
 -- time widget
@@ -205,9 +217,9 @@ vicious.register(mpdwidget, vicious.widgets.mpd,
        if args["{state}"] == "Stop" then 
            return "<span color='#dfdfdf'>⮕</span> [mpd stopped]"
        elseif args["{state}"] == "Pause" then
-		   return '<span color="#dfdfdf">⮔</span> '.. args["{Title}"]..'<span color="#d2d2d2"> by </span>'.. args["{Artist}"]..''
+		   return '<span color="#dfdfdf">⮔</span> '.. args["{Title}"]..'<span color="#d2d2d2"> by </span>'.. args["{Artist}"]..' '
        else
-  		   return '<span color="#dfdfdf">⮓</span> '.. args["{Title}"]..'<span color="#d2d2d2"> by </span>'.. args["{Artist}"]..''
+  		   return '<span color="#dfdfdf">⮓</span> '.. args["{Title}"]..'<span color="#d2d2d2"> by </span>'.. args["{Artist}"]..' '
        end
    end, 1)
 
@@ -219,10 +231,30 @@ daze.widgets.vol.register(volwidget)
 vicious.register(volwidget, vicious.widgets.volume,
 function (widget, args)
   if (args[2] ~= "♩" ) then
-     return '<span color="#dfdfdf"> ⮜</span> '.. args[1] ..'%'
+            if tonumber(args[1]) > 90 then
+                volbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶ </span>"
+            elseif tonumber(args[1]) > 80 then
+                volbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶ </span>"
+            elseif tonumber(args[1]) > 70 then
+                volbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶ </span>"
+            elseif tonumber(args[1]) > 60 then
+                volbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶ </span>"
+            elseif tonumber(args[1]) > 50 then
+                volbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶ </span>"
+            elseif tonumber(args[1]) > 40 then
+                volbar = "<span color='#b4b4b4'>⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶ </span>"
+            elseif tonumber(args[1]) > 30 then
+                volbar = "<span color='#b4b4b4'>⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶ </span>"
+            elseif tonumber(args[1]) > 20 then
+                volbar = "<span color='#b4b4b4'>⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
+            elseif tonumber(args[1]) > 10 then
+                volbar = "<span color='#b4b4b4'>⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
+            end 
+     return '<span color="#dfdfdf"> ⮜</span> '.. volbar ..' '
   else
      return '<span color="#dfdfdf"> ⮜</span> [mute]'
-  end
+  end 
+
 end, 1, "Master")
 
 
@@ -305,9 +337,9 @@ for s = 1, screen.count() do
     right_layout:add(spacer)
 	right_layout:add(volwidget)
     right_layout:add(separator)
-    right_layout:add(mytextclock)
-    right_layout:add(separator)
     right_layout:add(batwidget)
+    right_layout:add(separator)
+    right_layout:add(mytextclock)
 
 -- Now bring it all together (with the tasklist in the middle)
     local layout = wibox.layout.align.horizontal()
@@ -319,15 +351,11 @@ end
 -- }}}
 
 
-
-
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
     awful.button({ }, 3, function () mymainmenu:toggle() end)
 ))
 -- }}}
-
-
 
 
 -- {{{ Key bindings
@@ -479,8 +507,6 @@ root.keys(globalkeys)
 -- }}}
 
 
-
-
 -- {{{ Rules
 awful.rules.rules = {
     -- All clients will match this rule.
@@ -507,8 +533,6 @@ awful.rules.rules = {
       properties = { floating = true } },
 }
 -- }}}
-
-
 
 
 -- {{{ Signals
