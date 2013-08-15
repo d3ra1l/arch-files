@@ -232,7 +232,9 @@ daze.widgets.vol.register(volwidget)
 vicious.register(volwidget, vicious.widgets.volume,
 function (widget, args)
   if (args[2] ~= "♩" ) then
-            if tonumber(args[1]) > 90 then
+            if tonumber(args[1]) > 99 then
+				volbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'> </span>"
+			elseif tonumber(args[1]) > 90 then
                 volbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶ </span>"
             elseif tonumber(args[1]) > 80 then
                 volbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶ </span>"
@@ -250,6 +252,8 @@ function (widget, args)
                 volbar = "<span color='#b4b4b4'>⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
             elseif tonumber(args[1]) > 10 then
                 volbar = "<span color='#b4b4b4'>⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
+			else
+				volbar = "<span color='#b4b4b4'></span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
             end 
      return '<span color="#dfdfdf"> ⮜</span> '.. volbar ..' '
   else
