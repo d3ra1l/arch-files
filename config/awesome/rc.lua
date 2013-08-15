@@ -157,25 +157,25 @@ function batinfo(adapter)
               batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶ "  
               batico = "<span color='#dfdfdf'>⮎ </span>"
           else
-			if tonumber(battery) > 91 then
+			if tonumber(battery) > 90 then
 				batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'> </span>"		
-            elseif tonumber(battery) > 81 then
+            elseif tonumber(battery) > 80 then
                 batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶ </span>"
-            elseif tonumber(battery) > 71 then
+            elseif tonumber(battery) > 70 then
                 batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶ </span>"
-            elseif tonumber(battery) > 61 then
+            elseif tonumber(battery) > 60 then
                 batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶ </span>"
-            elseif tonumber(battery) > 51 then
+            elseif tonumber(battery) > 50 then
                 batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶ </span>"
-            elseif tonumber(battery) > 41 then
+            elseif tonumber(battery) > 40 then
                 batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶ </span>"
-            elseif tonumber(battery) > 31 then
+            elseif tonumber(battery) > 30 then
                 batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶ </span>"
-            elseif tonumber(battery) > 21 then
+            elseif tonumber(battery) > 20 then
                 batbar = "<span color='#b4b4b4'>⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶ </span>"
-            elseif tonumber(battery) > 11 then
+            elseif tonumber(battery) > 10 then
                 batbar = "<span color='#d23d3d'>⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
-            elseif tonumber(battery) > 1 then
+            elseif tonumber(battery) > 0 then
                 batbar = "<span color='#d23d3d'>⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
 			else
 				batbar = "<span color='#d23d3d'></span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
