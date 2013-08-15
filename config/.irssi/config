@@ -22,7 +22,7 @@ servers = (
     port = "6667";
     use_ssl = "no";
     ssl_verify = "no";
-    autoconnect = "yes";
+    autoconnect = "no";
   }
 );
 
@@ -46,7 +46,8 @@ channels = (
   { name = "#/music/"; chatnet = "rizon"; autojoin = "yes"; },
   { name = "#sky"; chatnet = "rizon"; autojoin = "yes"; },
   { name = "#rice"; chatnet = "rizon"; autojoin = "yes"; },
-  { name = "#unixhub"; chatnet = "unixhub"; autojoin = "yes"; }
+  { name = "#sadbot-dev"; chatnet = "rizon"; autojoin = "yes"; },
+  { name = "#unixhub"; chatnet = "unixhub"; autojoin = "no"; }
 );
 
 aliases = {
@@ -237,27 +238,26 @@ settings = {
     nick = "phallus";
     log_open_string = "!!            LOG » opened on %a, %b %d %H:%M:%S %Y  ";
     log_close_string = "!!            LOG » closed on %a, %b %d %H:%M:%S %Y  ";
+    quit_message = "see you in another life, brother";
   };
 
 
   "perl/core/scripts" = {
-    awl_display_key_active = "%K $Q $H$C$S ";
-    awl_display_key = "%W $Q $C ";
+    #    awl_display_key_active = "%K $Q $H $C $S ";
+    #    awl_display_key = "%W $Q $C ";
+    awl_display_key = "%W$H $Q $C $S";
+    awl_display_key_active = "%K$H $Q $C $S";
     awl_block = "15";
-    awl_maxlines = "2";
+    awl_maxlines = "1";
     awl_placement = "top";
     awl_position = "1";
-    awl_automode = "emulate_lightbar";
-    awl_all_disable = "no";
-    awl_hide_data = "0";
-    awl_prefer_name = "yes";
     awl_custom_sb = "yes";
     chanact_display = "%r$N%K|%W$C";
     chanact_filter = "1";
     chanact_header = " ";
     chanact_remove_hash = "no";
     chanact_abbreviate_names = "6";
-    mpd_format = "/me \00311~\0034 ♥ \00311~ \0036♫ \0031now playing:\00312 \"%TITLE\" \0030by\0034 %ARTIST \0030from the album\0039 %ALBUM \0033(%DATE) \0036♫ \00311~ \0034♥ \00311~    ";
+    mpd_format = "/me \00311~\0034 ♥ \0036♪ \0036♫ \00312 ☄ \0031now playing:\00312 \"%TITLE\" \0030by\0034 %ARTIST \0030from the album\0039 %ALBUM \0033(%DATE) \00312☄  \0036♫ \0036♪ \0034♥ \00311~ ";
   };
 
   "fe-common/core" = {
@@ -280,10 +280,9 @@ keyboard = (
 );
 ignores = (
   { mask = "TSwift"; level = "ALL"; },
-  { mask = "TaylorSwift"; level = "ALL"; },
-  { mask = "TheCrittaC"; level = "ALL"; },
-  { mask = "EmWatson"; level = "ALL"; },
-  { mask = "Sersh"; level = "ALL"; },
-  { mask = "katt_ming"; level = "ALL"; },
-  { mask = "kattming"; level = "ALL"; }
+  { mask = "BallSac"; level = "ALL"; },
+  { mask = "SICPBot"; level = "ALL"; }
 );
+#hilights = (
+#  { text = "phallus"; nick = "yes"; word = "yes"; fullword = "yes"; }
+#);
