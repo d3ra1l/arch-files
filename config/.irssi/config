@@ -46,8 +46,7 @@ channels = (
   { name = "#/music/"; chatnet = "rizon"; autojoin = "yes"; },
   { name = "#sky"; chatnet = "rizon"; autojoin = "yes"; },
   { name = "#rice"; chatnet = "rizon"; autojoin = "yes"; },
-  { name = "#sadbot-dev"; chatnet = "rizon"; autojoin = "yes"; },
-  { name = "#unixhub"; chatnet = "unixhub"; autojoin = "no"; }
+  { name = "#sadbot-dev"; chatnet = "rizon"; autojoin = "yes"; }
 );
 
 aliases = {
@@ -261,7 +260,7 @@ settings = {
   };
 
   "fe-common/core" = {
-    theme = "crshd";
+    theme = "phallus";
     use_status_window = "no";
     show_names_on_join = "no";
     autocreate_own_query = "no";
@@ -283,6 +282,3 @@ ignores = (
   { mask = "BallSac"; level = "ALL"; },
   { mask = "SICPBot"; level = "ALL"; }
 );
-#hilights = (
-#  { text = "phallus"; nick = "yes"; word = "yes"; fullword = "yes"; }
-#);
