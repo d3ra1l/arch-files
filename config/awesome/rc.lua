@@ -191,8 +191,9 @@ function batinfo(adapter)
                 else
                       batico = "<span color='#c97c7c'>⮐ </span>"
                 end 
-            end 
-    
+			else
+				batico = "<span color='#dfdfdf'>⮎ </span>"						
+			end
           end
 
 	      batwidget:set_markup(' '..batico..' '..batbar..'')	
