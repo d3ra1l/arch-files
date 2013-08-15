@@ -157,24 +157,25 @@ function batinfo(adapter)
               batbar = "<span color='#dfdfdf'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶ "  
               batico = "<span color='#dfdfdf'>⮎ </span>"
           else
-
-            if tonumber(battery) > 90 then
+			if tonumber(battery) < 100 then
+				batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'> </span>"	
+            elseif tonumber(battery) < 90 then
                 batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶ </span>"
-            elseif tonumber(battery) > 80 then
+            elseif tonumber(battery) < 80 then
                 batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶ </span>"
-            elseif tonumber(battery) > 70 then
+            elseif tonumber(battery) < 70 then
                 batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶ </span>"
-            elseif tonumber(battery) > 60 then
+            elseif tonumber(battery) < 60 then
                 batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶ </span>"
-            elseif tonumber(battery) > 50 then
+            elseif tonumber(battery) < 50 then
                 batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶ </span>"
-            elseif tonumber(battery) > 40 then
+            elseif tonumber(battery) < 40 then
                 batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶ </span>"
-            elseif tonumber(battery) > 30 then
+            elseif tonumber(battery) < 30 then
                 batbar = "<span color='#b4b4b4'>⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶ </span>"
-            elseif tonumber(battery) > 20 then
+            elseif tonumber(battery) < 20 then
                 batbar = "<span color='#d23d3d'>⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
-            elseif tonumber(battery) > 10 then
+            elseif tonumber(battery) < 10 then
                 batbar = "<span color='#d23d3d'>⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
             end 
 
