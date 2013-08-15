@@ -154,35 +154,36 @@ function batinfo(adapter)
           local batbar = ""
 
           if sta:match("Charged") then
-              batbar = "<span color='#dfdfdf'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶ "  
+              batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶ "  
               batico = "<span color='#dfdfdf'>⮎ </span>"
           else
-			if tonumber(battery) < 100 then
-				batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'> </span>"	
-            elseif tonumber(battery) < 90 then
+			if tonumber(battery) > 91 then
+				batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'> </span>"		
+            elseif tonumber(battery) > 81 then
                 batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶ </span>"
-            elseif tonumber(battery) < 80 then
+            elseif tonumber(battery) > 71 then
                 batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶ </span>"
-            elseif tonumber(battery) < 70 then
+            elseif tonumber(battery) > 61 then
                 batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶ </span>"
-            elseif tonumber(battery) < 60 then
+            elseif tonumber(battery) > 51 then
                 batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶ </span>"
-            elseif tonumber(battery) < 50 then
+            elseif tonumber(battery) > 41 then
                 batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶ </span>"
-            elseif tonumber(battery) < 40 then
+            elseif tonumber(battery) > 31 then
                 batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶ </span>"
-            elseif tonumber(battery) < 30 then
+            elseif tonumber(battery) > 21 then
                 batbar = "<span color='#b4b4b4'>⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶ </span>"
-            elseif tonumber(battery) < 20 then
+            elseif tonumber(battery) > 11 then
                 batbar = "<span color='#d23d3d'>⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
-            elseif tonumber(battery) < 10 then
+            elseif tonumber(battery) > 1 then
                 batbar = "<span color='#d23d3d'>⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
+			else
+				batbar = "<span color='#d23d3d'></span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
             end 
 
             if sta:match("Charging") then
                 batico = "<span color='#dfdfdf'>⮒ </span>"
             elseif sta:match("Discharging") then
-
                 if tonumber(battery) > 49 then
                       batico = "<span color='#dfdfdf'>⮏ </span>"
                 elseif tonumber(battery) < 50 and tonumber(battery) > 20 then
