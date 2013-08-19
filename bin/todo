@@ -6,24 +6,24 @@ read (){
 
 add (){
 	text=$OPTARG
-        line=$(( $(sed = ~/.todo | sed 'N;s/\n/ /' | awk -F " " '{print $1}' | sed -n '$p') + 1 ))
-		if [ "$line" -le 9 ]; then
-			lin="0$line"
-		elif [ "$line" -ge 10 ]; then
-			lin="$line"
-		fi
-        item="$lin $text"
-        echo $item >> ~/.todo
+	line=$(( $(sed = ~/.todo | sed 'N;s/\n/ /' | awk -F " " '{print $1}' | sed -n '$p') + 1 ))
+	if [ "$line" -le 9 ]; then
+		lin="0$line"
+	elif [ "$line" -ge 10 ]; then
+		lin="$line"
+	fi
+	item="$lin $text"
+	echo $item >> ~/.todo
 	echo "New task $line successfully added."
 }
 
 del (){
 	ent="$OPTARG"
-        if [ "$ent" -le 9 ]; then
-            it="0$ent"
-        elif [ "$ent" -ge 10 ]; then
-            it="$ent"
-        fi
+	if [ "$ent" -le 9 ]; then
+		it="0$ent"
+	elif [ "$ent" -ge 10 ]; then
+		it="$ent"
+	fi
 	lin="$it"
 	linn=`echo $(cat ~/.todo | awk -F " " '{print $1}' | grep $it)`
 	if [ "$linn" = "$lin" ];then
@@ -58,24 +58,24 @@ help (){
 }
 
 while getopts ":hreca:d:" opt; do
-  case $opt in
-    h)
-      help ;; 
-    r)
-      read ;;
-    e)
-      $EDITOR ~/.todo ;;
-    a)
-      add ;;
-    d)
-      del ;;
-    c)
-      clear ;;
-   \?)
-      echo "I don't know what to do with $OPTARG!"
-	  help ;;
-    :)
-      echo "Option -$OPTARG needs an argument!" >&2
-      help ;;	
-  esac
+	case $opt in
+		h)
+			help ;; 
+		r)
+			read ;;
+		e)
+			$EDITOR ~/.todo ;;
+		a)
+			add ;;
+		d)
+			del ;;
+		c)
+			clear ;;
+		\?)
+			echo "I don't know what to do with $OPTARG!"
+			help ;;
+		:)
+			echo "Option -$OPTARG needs an argument!" >&2
+			help ;;
+	esac
 done

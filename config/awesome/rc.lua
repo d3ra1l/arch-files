@@ -77,7 +77,7 @@ end
 
 awful.layout.set(awful.layout.suit.floating, tags[1][1])                                             
 awful.tag.setmwfact(0.658, tags[1][1])
-awful.tag.setncol(1, tags[1][1])
+--awful.tag.setncol(1, tags[1][1])
 
 -- }}}
 
@@ -91,12 +91,13 @@ myawesomemenu = {
    { "quit", awesome.quit }
 }
 
-mymainmenu = awful.menu({ items = { { "⮩ urxvtc", terminal },
-				    { "⮠ nitrogen", "nitrogen" },
-				    { "⮤ scrot", "/home/phallus/bin/scr" },
-					{ "⮗ restart", awesome.restart },
-				    { "⮪ lock", "/home/phallus/bin/i3lock-w" }
-                    }
+mymainmenu = awful.menu({ items = { 
+    { "⮩ urxvtc", terminal },
+    { "⮠ nitrogen", "nitrogen" },
+    { "⮤ scrot", "/home/phallus/bin/scr" },
+    { "⮗ restart", awesome.restart },
+    { "⮪ lock", "/home/phallus/bin/i3lock-w" }
+    }
 })
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
@@ -136,73 +137,70 @@ tasklist.buttons = awful.util.table.join(
 
 -- {{{ Wibox
 
-	
+
 -- bat widget
 
 batwidget = wibox.widget.textbox()
 daze.widgets.bat.register(batwidget)
 --if you get an error regarding hibernation, change energy_now and energy_full to charge_now/full. thanks doidbb
 function batinfo(adapter)
-          local fcur = io.open("/sys/class/power_supply/"..adapter.."/energy_now")    
-          local fcap = io.open("/sys/class/power_supply/"..adapter.."/energy_full")
-          local fsta = io.open("/sys/class/power_supply/"..adapter.."/status")
-          local cur = fcur:read()
-          local cap = fcap:read()
-          local sta = fsta:read()
-          local battery = math.floor(cur * 100 / cap)
-          local batico = ""
-          local batbar = ""
-
-          if sta:match("Charged") then
-              batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶ "  
-              batico = "<span color='#dfdfdf'>⮎ </span>"
-          else
+	local fcur = io.open("/sys/class/power_supply/"..adapter.."/energy_now")    
+	local fcap = io.open("/sys/class/power_supply/"..adapter.."/energy_full")
+	local fsta = io.open("/sys/class/power_supply/"..adapter.."/status")
+	local cur = fcur:read()
+	local cap = fcap:read()
+	local sta = fsta:read()
+	local battery = math.floor(cur * 100 / cap)
+	local batico = ""
+	local batbar = ""
+		if sta:match("Charged") then
+			batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶ "  
+			batico = "<span color='#dfdfdf'>⮎ </span>"
+		else
 			if tonumber(battery) > 90 then
-				batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'> </span>"		
-            elseif tonumber(battery) > 80 then
-                batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶ </span>"
-            elseif tonumber(battery) > 70 then
-                batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶ </span>"
-            elseif tonumber(battery) > 60 then
-                batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶ </span>"
-            elseif tonumber(battery) > 50 then
-                batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶ </span>"
-            elseif tonumber(battery) > 40 then
-                batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶ </span>"
-            elseif tonumber(battery) > 30 then
-                batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶ </span>"
-            elseif tonumber(battery) > 20 then
-                batbar = "<span color='#b4b4b4'>⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶ </span>"
-            elseif tonumber(battery) > 10 then
-                batbar = "<span color='#d23d3d'>⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
-            elseif tonumber(battery) > 0 then
-                batbar = "<span color='#d23d3d'>⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
+				batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'> </span>"
+			elseif tonumber(battery) > 80 then
+				batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶ </span>"
+			elseif tonumber(battery) > 70 then
+				batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶ </span>"
+			elseif tonumber(battery) > 60 then
+				batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶ </span>"
+			elseif tonumber(battery) > 50 then
+				batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶ </span>"
+			elseif tonumber(battery) > 40 then
+				batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶ </span>"
+			elseif tonumber(battery) > 30 then
+			batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶ </span>"
+			elseif tonumber(battery) > 20 then
+				batbar = "<span color='#b4b4b4'>⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶ </span>"
+			elseif tonumber(battery) > 10 then
+				batbar = "<span color='#d23d3d'>⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
+			elseif tonumber(battery) > 0 then
+				batbar = "<span color='#d23d3d'>⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
 			else
 				batbar = "<span color='#d23d3d'></span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
-            end 
-
-            if sta:match("Charging") then
-                batico = "<span color='#dfdfdf'>⮒ </span>"
-            elseif sta:match("Discharging") then
-                if tonumber(battery) > 49 then
-                      batico = "<span color='#dfdfdf'>⮏ </span>"
-                elseif tonumber(battery) < 50 and tonumber(battery) > 20 then
-                      batico = "<span color='#dfdfdf'>⮑ </span>"
-                else
-                      batico = "<span color='#c97c7c'>⮐ </span>"
-                end 
+			end 
+			if sta:match("Charging") then
+				batico = "<span color='#dfdfdf'>⮒ </span>"
+			elseif sta:match("Discharging") then
+				if tonumber(battery) > 49 then
+					batico = "<span color='#dfdfdf'>⮏ </span>"
+				elseif tonumber(battery) < 50 and tonumber(battery) > 20 then
+					batico = "<span color='#dfdfdf'>⮑ </span>"
+				else
+					batico = "<span color='#c97c7c'>⮐ </span>"
+				end 
 			else
-				batico = "<span color='#dfdfdf'>⮎ </span>"						
+				batico = "<span color='#dfdfdf'>⮎ </span>"
 			end
-          end
-
-	      batwidget:set_markup(' '..batico..' '..batbar..'')	
-        end 
-        battery_timer = timer({timeout = 1}) 
-        battery_timer:connect_signal("timeout", function()
-          batinfo("BAT0")
+		end
+		batwidget:set_markup(' '..batico..' '..batbar..'')
+	end 
+	battery_timer = timer({timeout = 1}) 
+	battery_timer:connect_signal("timeout", function()
+	batinfo("BAT0")
         end)
-        battery_timer:start()
+battery_timer:start()
 
 
 
@@ -216,15 +214,15 @@ mpdwidget = wibox.widget.textbox()
 daze.widgets.mpd.register(mpdwidget)
 
 vicious.register(mpdwidget, vicious.widgets.mpd,
-   function (widget, args)
-       if args["{state}"] == "Stop" then 
-           return "<span color='#dfdfdf'>⮕</span> [mpd stopped]"
-       elseif args["{state}"] == "Pause" then
-		   return '<span color="#dfdfdf">⮔</span> '.. args["{Title}"]..'<span color="#d2d2d2"> by </span>'.. args["{Artist}"]..' '
-       else
-  		   return '<span color="#dfdfdf">⮓</span> '.. args["{Title}"]..'<span color="#d2d2d2"> by </span>'.. args["{Artist}"]..' '
-       end
-   end, 1)
+function (widget, args)
+	if args["{state}"] == "Stop" then 
+		return "<span color='#dfdfdf'>⮕</span> [mpd stopped] "
+	elseif args["{state}"] == "Pause" then
+		return '<span color="#dfdfdf">⮔</span> '.. args["{Title}"]..'<span color="#d2d2d2"> by </span>'.. args["{Artist}"]..' '
+	else
+		return '<span color="#dfdfdf">⮓</span> '.. args["{Title}"]..'<span color="#d2d2d2"> by </span>'.. args["{Artist}"]..' '
+	end
+end, 1)
 
 
 --volume widget
@@ -233,40 +231,36 @@ daze.widgets.vol.register(volwidget)
 
 vicious.register(volwidget, vicious.widgets.volume,
 function (widget, args)
-  if (args[2] ~= "♩" ) then
-            if tonumber(args[1]) > 99 then
-				volbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'> </span>"
-			elseif tonumber(args[1]) > 90 then
-                volbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶ </span>"
-            elseif tonumber(args[1]) > 80 then
-                volbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶ </span>"
-            elseif tonumber(args[1]) > 70 then
-                volbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶ </span>"
-            elseif tonumber(args[1]) > 60 then
-                volbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶ </span>"
-            elseif tonumber(args[1]) > 50 then
-                volbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶ </span>"
-            elseif tonumber(args[1]) > 40 then
-                volbar = "<span color='#b4b4b4'>⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶ </span>"
-            elseif tonumber(args[1]) > 30 then
-                volbar = "<span color='#b4b4b4'>⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶ </span>"
-            elseif tonumber(args[1]) > 20 then
-                volbar = "<span color='#b4b4b4'>⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
-            elseif tonumber(args[1]) > 10 then
-                volbar = "<span color='#b4b4b4'>⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
-			else
-				volbar = "<span color='#b4b4b4'></span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
-            end 
-     return '<span color="#dfdfdf"> ⮜</span> '.. volbar ..' '
-  else
-     return '<span color="#dfdfdf"> ⮜</span> [mute]'
-  end 
-
+	if (args[2] ~= "♩" ) then
+		if tonumber(args[1]) > 99 then
+			volbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'> </span>"
+		elseif tonumber(args[1]) > 90 then
+			volbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶ </span>"
+		elseif tonumber(args[1]) > 80 then
+			volbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶ </span>"
+		elseif tonumber(args[1]) > 70 then
+			volbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶ </span>"
+		elseif tonumber(args[1]) > 60 then
+			volbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶ </span>"
+		elseif tonumber(args[1]) > 50 then
+			volbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶ </span>"
+		elseif tonumber(args[1]) > 40 then
+			volbar = "<span color='#b4b4b4'>⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶ </span>"
+		elseif tonumber(args[1]) > 30 then
+			volbar = "<span color='#b4b4b4'>⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶ </span>"
+		elseif tonumber(args[1]) > 20 then
+			volbar = "<span color='#b4b4b4'>⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
+		elseif tonumber(args[1]) > 10 then
+			volbar = "<span color='#b4b4b4'>⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
+		else
+			volbar = "<span color='#b4b4b4'></span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
+		end 
+		return '<span color="#dfdfdf"> ⮜</span> '.. volbar ..' '
+	else
+		return '<span color="#dfdfdf"> ⮜</span> [muted]'
+	end 
 end, 1, "Master")
 
-
-pline = wibox.widget.textbox('<span color="#595961" background="#20202f">⮄</span><span color="#20202f" background="#595961">⮄</span>')
-pline_alt = wibox.widget.textbox('<span color="#20202f" background="#595961">⮅</span><span color="#595961" background="#20202f">⮅</span>')
 separator = wibox.widget.textbox()
 spacer1 = wibox.widget.textbox("     ")
 spacer = wibox.widget.textbox(" ")
@@ -315,15 +309,15 @@ mytasklist.buttons = awful.util.table.join(
                                           end))
 
 for s = 1, screen.count() do
-	-- create a text layout widget
-	mylayoutbox[s] = benis.widget.layoutbox(s)
-	mylayoutbox[s]:buttons(awful.util.table.join(
-		awful.button({ }, 1, function () awful.layout.inc(layouts, 1) end),
-		awful.button({ }, 3, function () awful.layout.inc(layouts, -1) end),
-		awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
-		awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))
+    -- create a text layout widget
+    mylayoutbox[s] = benis.widget.layoutbox(s)
+    mylayoutbox[s]:buttons(awful.util.table.join(
+            awful.button({ }, 1, function () awful.layout.inc(layouts, 1) end),
+            awful.button({ }, 3, function () awful.layout.inc(layouts, -1) end),
+            awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
+            awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))
 
-	-- Create a tag list
+    -- Create a tag list
     mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, mytaglist.buttons)
     -- Create a tasklist widget
     mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
@@ -333,8 +327,8 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the left
     local left_layout = wibox.layout.fixed.horizontal()
     left_layout:add(mytaglist[s])
-	left_layout:add(mylayoutbox[s])
-	left_layout:add(spacer)
+    left_layout:add(mylayoutbox[s])
+    left_layout:add(spacer)
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
@@ -342,7 +336,7 @@ for s = 1, screen.count() do
     right_layout:add(separator)
     right_layout:add(mpdwidget)
     right_layout:add(spacer)
-	right_layout:add(volwidget)
+    right_layout:add(volwidget)
     right_layout:add(separator)
     right_layout:add(batwidget)
     right_layout:add(separator)
@@ -401,9 +395,8 @@ globalkeys = awful.util.table.join(
     
     awful.key({ modkey,    		}, "'", function () awful.tag.incmwfact( 0.010) end),
     awful.key({ modkey,		    }, ";", function () awful.tag.incmwfact(-0.010) end),
-    awful.key({ modkey, "Shift"   }, "'", function () awful.client.incwfact(-0.010) end),
-    awful.key({ modkey, "Shift"   }, ";", function () awful.client.incwfact( 0.010) end),
-
+    --awful.key({ modkey, "Shift"   }, "'", function () awful.client.incwfact(-0.010) end),
+    --awful.key({ modkey, "Shift"   }, ";", function () awful.client.incwfact( 0.010) end),
 
 
 --shift focused/swap client
