@@ -85,19 +85,19 @@ awful.tag.setmwfact(0.658, tags[1][1])
 -- {{{ Menu
 -- Create a laucher widget and a main menu
 myawesomemenu = {
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", awesome.quit }
+	{ "manual", terminal .. " -e man awesome" },
+	{ "edit config", editor_cmd .. " " .. awesome.conffile },
+	{ "restart", awesome.restart },
+	{ "quit", awesome.quit }
 }
 
 mymainmenu = awful.menu({ items = { 
-    { "⮩ urxvtc", terminal },
-    { "⮠ nitrogen", "nitrogen" },
-    { "⮤ scrot", "/home/phallus/bin/scr" },
-    { "⮗ restart", awesome.restart },
-    { "⮪ lock", "/home/phallus/bin/i3lock-w" }
-    }
+	{ "⮩ urxvtc", terminal },
+	{ "⮠ nitrogen", "nitrogen" },
+	{ "⮤ scrot", "/home/phallus/bin/scr" },
+	{ "⮗ restart", awesome.restart },
+	{ "⮪ lock", "/home/phallus/bin/i3lock-w" }
+	}
 })
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
