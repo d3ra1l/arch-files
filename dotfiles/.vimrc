@@ -5,7 +5,7 @@
 " basic settings
 set cursorline
 set tabstop=4 
-set smarttab smartindent
+set smarttab
 set noexpandtab
 set shiftwidth=4
 set softtabstop=4
@@ -30,6 +30,7 @@ set splitright
 set splitbelow
 set showmatch
 set autochdir
+
 " enable utf8
 set encoding=utf8
 set termencoding=utf-8
@@ -100,11 +101,11 @@ map S :%s/
 map r :so $MYVIMRC<cr>
 map R :so $MYVIMRC<cr>
 map <C-o> :NERDTreeToggle<cr>
+"map <C-t> :TagbarToggle<cr>
 imap jk <Esc><Esc>
 imap kj <Esc><Esc>
-nmap w :w!<cr>
 nmap q :q<cr>
-nmap Q :q<cr>
+nmap Q :wq<cr>
 noremap <F1> <Esc>
 noremap ; :
 noremap , ;
@@ -121,6 +122,9 @@ noremap <leader>d 4 <C-w>+
 noremap <leader>f 4 <C-w><
 noremap <leader>g $
 noremap <leader>G 0
+nmap <leader>w :w!<cr>
+nmap <leader>q :q<cr>
+
 
 
 
