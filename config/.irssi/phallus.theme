@@ -80,7 +80,7 @@ abstracts = {
   pubnick = "%N$*%n";
 
   # public highlighted message in channel
-  pubmsghinick = "$1   %|%r";
+  pubmsghinick = "$1   %r%|";
   menick = "%B$*   %|%r";
 
   # channel name is printed with message
@@ -200,7 +200,7 @@ abstracts = {
   prompt = " %r» %n";
   #prompt = " %K~ ";
 
-  sb = "[$*]";
+  sb = "$*";
   sbmode = " %K[%g%g+%n$*%K]";
   sbaway = " %g/* zZzZ */%n";
   sbservertag = ":%g$0%n";
@@ -252,7 +252,7 @@ formats = {
     pubmsg_me = "{menick $[-11]0}$1";
     pubmsg_me_channel = "{pubmsghinick $3 {menick $[-11]0}{msgchannel $1}}$2";
 
-    pubmsg_hilight = "{pubmsghinick $3 {menick $[-11]0}}$1";
+    pubmsg_hilight = "{pubmsghinick ${menick $[-11]1}}   %|%R$2";
     pubmsg_hilight_channel = "{pubmsghinick $0 $[-11]$4{msgchannel $2}}$3";
 
     pubmsg_channel = "{pubmsgnick {pubnick %G$[-13]0}$2}$1";
@@ -264,12 +264,12 @@ formats = {
   "fe-common/irc" = {
     server_chanmode_change = "       mode %K»%n {channick $1}";
     usermode_change = "%B%|{nick $[-11]1} %K» %nreceived %r{mode $0}";
-    topic = "      %rtopic %K» %|%B$1";
+    topic = "      %ctopic %K» %|%B$1";
     topic_info = "%B{nick $[-11]0}%n %K» %nset the topic";
-    channel_created = "%r{$channel $[-11]0}%n %K» %ncreated on %r$1";
+    channel_created = "%c{$channel $[-11]0}%n %K» %ncreated on %r$1";
     channel_mode =    "%B{channick $[-11]2}%n %K» %nset {$channelhilight $0} $1";
     chanmode_change = "%B{channick $[-11]2}%n %K» %nset mode %r$1";
-    channel_synced =  "%r{$channel $[-11]0}%n %K» %nsynced in %C{hilight $1} %nseconds";
+    channel_synced =  "%c{$channel $[-11]0}%n %K» %nsynced in %C{hilight $1} %nseconds";
     own_action = "{ownaction $[-11]0}$1";
     action_private = "{pvtaction $[-11]0}$1";
     action_private_query = "{pvtaction_query $[-11]0} $2";
