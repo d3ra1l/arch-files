@@ -145,10 +145,10 @@ tasklist.buttons = awful.util.table.join(
 
 
 -- bat widget
+--if you get an error regarding hibernation, change energy_now and energy_full to charge_now/full. thanks doidbb
 
 batwidget = wibox.widget.textbox()
 daze.widgets.bat.register(batwidget)
---if you get an error regarding hibernation, change energy_now and energy_full to charge_now/full. thanks doidbb
 function batinfo(adapter)
 	local fcur = io.open("/sys/class/power_supply/"..adapter.."/energy_now")    
 	local fcap = io.open("/sys/class/power_supply/"..adapter.."/energy_full")
