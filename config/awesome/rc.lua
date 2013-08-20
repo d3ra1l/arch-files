@@ -209,7 +209,6 @@ function batinfo(adapter)
 battery_timer:start()
 
 
-
 -- time widget
 mytextclock = awful.widget.textclock("  <span color='#dfdfdf'>⮖</span>  %R - %a, %b %d  ")
 daze.widgets.calendar.register(mytextclock)
