@@ -97,7 +97,8 @@ mymainmenu = awful.menu({ items = {
 	{ "⮤ scrot", "/home/phallus/bin/scr" },
 	{ "⮗ restart", awesome.restart },
 	{ "⮪ lock", "/home/phallus/bin/i3lock-w" }
-	}
+}
+
 })
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
