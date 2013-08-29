@@ -1,5 +1,8 @@
-"""""""""""""
-"" General ""
+""""""""""""""""""""""""
+"" kingbenis' .vimrc """
+""""""""""""""""""""""""
+
+" General {{{
 """""""""""""
 
 " basic settings
@@ -8,13 +11,11 @@ set tabstop=4
 set smarttab
 set noexpandtab
 set shiftwidth=4
-set softtabstop=4
+set softtabstop=4 tabstop=4
 set nowrap
 set noswapfile
 set backspace=indent,eol,start
 set foldmethod=marker
-set shell=zsh\ -i
-set spelllang=pl,en
 set number
 set scrolloff=5
 set ruler
@@ -25,10 +26,12 @@ set wildmode=longest,list
 set vb t_vb=
 set mouse=
 set fillchars+=vert:\
+set list 
+set listchars=tab:\|\ 
 set laststatus=2
 set splitright
 set splitbelow
-set showmatch
+"set showmatch
 set autochdir
 
 " enable utf8
@@ -58,34 +61,12 @@ autocmd BufReadPost *
             \ exe "normal! g`\"" |
             \ endif
 
-" Remember info about open buffers on close
-set viminfo^=%
-
 " disable auto comment insertion
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+set formatoptions-=cro
 
 " turn on syntax highlighting
 syntax on
-filetype on
-filetype plugin on
-
-" colors
-set t_Co=256
-hi CursorLine ctermbg=7 cterm=bold
-hi CursorLineNr ctermfg=238 ctermbg=235
-hi LineNr ctermfg=7
-hi Constant ctermfg=5
-hi Statement ctermfg=1
-hi MatchParen ctermfg=8 ctermbg=6 cterm=none
-hi TabLineFill term=bold cterm=bold ctermbg=none
-hi TabLine ctermfg=15 ctermbg=none cterm=none
-hi TabLineSel ctermfg=Blue ctermbg=7 cterm=none
-hi VertSplit ctermfg=235 ctermbg=235 cterm=none
-hi StatusLine cterm=none ctermfg=0 ctermbg=7
-hi StatusLineNC cterm=none ctermfg=7 ctermbg=235
-hi Normal ctermfg=0 ctermbg=none
-hi Directory ctermfg=4 cterm=none
-hi Folded ctermbg=235 cterm=none
 
 " key bindings
 cmap w!! %!sudo tee > /dev/null %
@@ -101,7 +82,6 @@ map S :%s/
 map r :so $MYVIMRC<cr>
 map R :so $MYVIMRC<cr>
 map <C-o> :NERDTreeToggle<cr>
-"map <C-t> :TagbarToggle<cr>
 imap jk <Esc><Esc>
 imap kj <Esc><Esc>
 nmap q :q<cr>
@@ -110,26 +90,26 @@ noremap <F1> <Esc>
 noremap ; :
 noremap , ;
 noremap D <Delete>
+noremap <Space> <Nop>
 let mapleader=" "
 noremap <leader>v :vsplit<cr>
 noremap <leader>j <C-W>j
 noremap <leader>k <C-W>k
 noremap <leader>l <C-W>l
 noremap <leader>h <C-W>h
-noremap <leader>a 4 <C-w>>
+noremap <leader>a 4 <C-w><
 noremap <leader>s 4 <C-w>-
 noremap <leader>d 4 <C-w>+
-noremap <leader>f 4 <C-w><
+noremap <leader>f 4 <C-w>>
 noremap <leader>g $
+noremap <leader><Space> za
 noremap <leader>G 0
 nmap <leader>w :w!<cr>
 nmap <leader>q :q<cr>
 
+" }}}
 
-
-
-"""""""""""""
-"" Plugins ""
+" Plugins {{{
 """""""""""""
 
 " vundle
@@ -143,7 +123,6 @@ Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'danro/rename.vim'
 Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
 
 " powerline settings
 let g:Powerline_mode_n = 'N'
@@ -177,3 +156,25 @@ function! s:CloseIfOnlyNerdTreeLeft()
     endif
   endif
 endfunction
+
+" }}}
+
+" Colors {{{
+set t_Co=256
+hi CursorLine ctermbg=7 cterm=bold
+hi CursorLineNr ctermfg=238 ctermbg=235
+hi LineNr ctermfg=7
+hi Constant ctermfg=5
+hi Statement ctermfg=1
+hi MatchParen ctermfg=8 ctermbg=6 cterm=none
+hi TabLineFill term=bold cterm=bold ctermbg=none
+hi TabLine ctermfg=15 ctermbg=none cterm=none
+hi TabLineSel ctermfg=Black ctermbg=none cterm=none
+hi VertSplit ctermfg=235 ctermbg=235 cterm=none
+hi StatusLine cterm=none ctermfg=0 ctermbg=7
+hi StatusLineNC cterm=none ctermfg=7 ctermbg=235
+hi Normal ctermfg=0 ctermbg=none
+hi Directory ctermfg=4 cterm=none
+hi Folded ctermbg=235 cterm=none
+highlight SpecialKey ctermfg=7
+" }}}
