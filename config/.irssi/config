@@ -23,7 +23,8 @@ servers = (
     use_ssl = "no";
     ssl_verify = "no";
     autoconnect = "no";
-  }
+  },
+  { address = "localhost"; autoconnect = "no"; }
 );
 
 chatnets = {
@@ -37,16 +38,19 @@ chatnets = {
   SILC = { type = "SILC"; };
   unixhub = { type = "IRC"; };
   freenode = { type = "IRC"; };
+  bitlbee = {
+    type = "IRC";
+    autosendcmd = "wait 200; /msg -localhost &bitlbee identify nigger";
+  };
 };
 
 channels = (
   { name = "#/g/sicp"; chatnet = "rizon"; autojoin = "yes"; },
   { name = "#/g/summer"; chatnet = "rizon"; autojoin = "yes"; },
-  { name = "#/g/technology"; chatnet = "rizon"; autojoin = "no"; },
-  { name = "#/music/"; chatnet = "rizon"; autojoin = "yes"; },
-  { name = "#sky"; chatnet = "rizon"; autojoin = "yes"; },
-  { name = "#rice"; chatnet = "rizon"; autojoin = "yes"; },
-  { name = "#sadbot-dev"; chatnet = "rizon"; autojoin = "yes"; }
+  { name = "#sky"; chatnet = "rizon"; autojoin = "no"; },
+  { name = "#rice"; chatnet = "rizon"; autojoin = "no"; },
+  { name = "#sadbot-dev"; chatnet = "rizon"; autojoin = "yes"; },
+  { name = "#/g/linux"; chatnet = "rizon"; autojoin = "yes"; }
 );
 
 aliases = {
@@ -104,44 +108,24 @@ aliases = {
 };
 
 statusbar = {
-  # formats:
-  # when using {templates}, the template is shown only if it's argument isn't
-  # empty unless no argument is given. for example {sb} is printed always,
-  # but {sb $T} is printed only if $T isn't empty.
 
   items = {
-    # start/end text in statusbars
     barstart = "{sbstart}";
     barend = "{sbend}";
-
     topicbarstart = "{topicsbstart}";
     topicbarend = "{topicsbend}";
-
-    # treated "normally", you could change the time/user name to whatever
     time = "{sb $Z}";
     user = "{sb {sbnickmode $cumode}$N{sbmode $usermode}{sbaway $A}}";
-
-    # treated specially .. window is printed with non-empty windows,
-    # window_empty is printed with empty windows
     window = "{sb $winref:$tag/$itemname{sbmode $M}}";
     window_empty = "{sb $winref{sbservertag $tag}}";
-    prompt = "{prompt $[.15]itemname}";
-    prompt_empty = "{prompt $winname}";
     topic = " $topic";
     topic_empty = " Irssi v$J - http://www.irssi.org";
-
-    # all of these treated specially, they're only displayed when needed
     lag = "{sb Lag: $0-}";
     act = "{sb Act: $0-}";
     more = "-- more --";
   };
 
-  # there's two type of statusbars. root statusbars are either at the top
-  # of the screen or at the bottom of the screen. window statusbars are at
-  # the top/bottom of each split window in screen.
   default = {
-    # the "default statusbar" to be displayed at the bottom of the window.
-    # contains all the normal items.
     window = {
       disabled = "yes";
 
@@ -154,13 +138,8 @@ statusbar = {
       # active, inactive, always
       visible = "active";
 
-      # list of items in statusbar in the display order
       items = {
         barstart = { priority = "100"; };
-        time = { };
-        user = { };
-        window = { };
-        window_empty = { };
         lag = { priority = "-1"; };
         act = { priority = "10"; };
         more = { priority = "-1"; alignment = "right"; };
@@ -168,7 +147,6 @@ statusbar = {
       };
     };
 
-    # statusbar to use in inactive split windows
     window_inact = {
       type = "window";
       placement = "bottom";
@@ -178,25 +156,19 @@ statusbar = {
         barstart = { priority = "100"; };
         window = { };
         window_empty = { };
+        bottom_empty_line = { placement = "bottom"; };
         more = { priority = "-1"; alignment = "right"; };
         barend = { priority = "100"; alignment = "right"; };
       };
     };
 
-    # we treat input line as yet another statusbar :) It's possible to
-    # add other items before or after the input line item.
     prompt = {
       type = "root";
       placement = "bottom";
       # we want to be at the bottom always
       position = "100";
       visible = "always";
-      items = {
-        prompt = { priority = "-1"; };
-        prompt_empty = { priority = "-1"; };
-        # treated specially, this is the real input line.
-        input = { priority = "10"; };
-      };
+      items = { vim_mode = { }; input = { priority = "10"; }; };
     };
 
     # topicbar
@@ -213,6 +185,9 @@ statusbar = {
 
       };
     };
+
+    bottom_empty_line = { placement = "bottom"; };
+
     awl_0 = {
       placement = "top";
       position = "1";
@@ -237,26 +212,30 @@ settings = {
     nick = "phallus";
     log_open_string = "!!            LOG » opened on %a, %b %d %H:%M:%S %Y  ";
     log_close_string = "!!            LOG » closed on %a, %b %d %H:%M:%S %Y  ";
-    quit_message = "see you in another life, brother";
+    quit_message = "ded";
   };
 
 
   "perl/core/scripts" = {
-    #    awl_display_key_active = "%K $Q $H $C $S ";
-    #    awl_display_key = "%W $Q $C ";
-    awl_display_key = "%W$H $Q $C $S";
-    awl_display_key_active = "%K$H $Q $C $S";
+    awl_display_key = "%W$H $Q $C  $S";
+    awl_display_key_active = "%K$H $Q $C  $S";
     awl_block = "15";
     awl_maxlines = "1";
     awl_placement = "top";
     awl_position = "1";
     awl_custom_sb = "yes";
+    awl_automode = "emulate_lightbar";
+    awl_all_disable = "no";
+    awl_hide_data = "0";
+    awl_prefer_name = "yes";
     chanact_display = "%r$N%K|%W$C";
     chanact_filter = "1";
     chanact_header = " ";
     chanact_remove_hash = "no";
     chanact_abbreviate_names = "6";
-    mpd_format = "/me \00311~\0034 ♥ \0036♪ \0036♫ \00312 ☄ \0031now playing:\00312 \"%TITLE\" \0030by\0034 %ARTIST \0030from the album\0039 %ALBUM \0033(%DATE) \00312☄  \0036♫ \0036♪ \0034♥ \00311~ ";
+    vim_mode_start_cmd = "yes";
+    vim_mode_map_leader = " ";
+    mpd_format = "/me \00311~\0034 ♥ \0036♪ \0036♫ \00312 ☄ \0030now playing:\00312 \"%TITLE\" \0030by\0034 %ARTIST \0030from the album\0039 %ALBUM \0033(%DATE) \00312☄  \0036♫ \0036♪ \0034♥ \00311~";
   };
 
   "fe-common/core" = {
@@ -281,4 +260,11 @@ ignores = (
   { mask = "TSwift"; level = "ALL"; },
   { mask = "BallSac"; level = "ALL"; },
   { mask = "SICPBot"; level = "ALL"; }
+);
+
+hilights = (
+  { text = "phallus"; nick = "yes"; word = "yes"; fullword = "yes"; },
+  { text = "benis"; nick = "yes"; word = "yes"; },
+  { text = "phal"; nick = "yes"; word = "yes"; },
+  { text = "dennis"; nick = "yes"; word = "yes"; }
 );

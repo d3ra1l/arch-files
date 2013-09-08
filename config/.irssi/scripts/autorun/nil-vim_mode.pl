@@ -2642,11 +2642,13 @@ sub vim_mode_cmd {
 
     my $mode_str = '';
     if ($mode == M_INS) {
-        $mode_str = '%7 %K» %w%1⮀%K%N%r⮀%N ';
+        $mode_str = '%7%r I%7%K » %N%w⮀%N ';
+#        $mode_str = '%rI %K» %N ';
     } elsif ($mode == M_EX) {
         $mode_str = '%_Ex%_';
     } else {
-        $mode_str = '%7 %K» %w%6⮀%K%N%c⮀%N ';
+        $mode_str = '%7%b N%7%K » %N%w⮀%N ';
+#        $mode_str = '%bN %K» %N ';
         if ($register ne '"' or $numeric_prefix or $operator or $movement or
             $pending_map) {
             my $partial = '';
