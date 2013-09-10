@@ -16,10 +16,10 @@ call Pl#Hi#Allocate({
     \ 'termlgreen' : 10,
     \ 'termdgreen' : 2,
 \
-\ 'darkestgreen' : 7,
-\ 'darkgreen' : 7,
-\ 'mediumgreen' : 7,
-\ 'brightgreen' : 7,
+\ 'darkestgreen' : 235,
+\ 'darkgreen' : 235,
+\ 'mediumgreen' : 235,
+\ 'brightgreen' : 235,
 \
 \ 'darkestcyan' : 23,
 \ 'mediumcyan' : 117,
@@ -27,15 +27,15 @@ call Pl#Hi#Allocate({
 \ 'darkestblue' : 24,
 \ 'darkblue' : 31,
 \
-\ 'darkestred' : 52,
-\ 'darkred' : 88,
-\ 'mediumred' : 124,
-\ 'brightred' : 160,
-\ 'brightestred' : 196,
+\ 'darkestred' : 1,
+\ 'darkred' : 1,
+\ 'mediumred' : 1,
+\ 'brightred' : 9,
+\ 'brightestred' : 9,
 \
-\ 'darkestpurple' : 55,
-\ 'mediumpurple' : 98,
-\ 'brightpurple' : 189,
+\ 'darkestpurple' : 7,
+\ 'mediumpurple' : 7,
+\ 'brightpurple' : 7,
 \
 \ 'brightorange' : 208,
 \ 'brightestorange': 214,
