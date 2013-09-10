@@ -31,7 +31,6 @@ set listchars=tab:\|\
 set laststatus=2
 set splitright
 set splitbelow
-"set showmatch
 set autochdir
 
 " enable utf8
@@ -120,9 +119,11 @@ filetype off
 filetype plugin on
 
 Bundle 'gmarik/vundle'
-Bundle 'Lokaltog/vim-powerline'
 Bundle 'danro/rename.vim'
+Bundle 'tpope/vim-surround'
+Bundle 'Lokaltog/vim-powerline'
 Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
 
 " powerline settings
 let g:Powerline_mode_n = 'N'
