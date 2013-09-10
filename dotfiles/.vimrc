@@ -3,15 +3,15 @@
 """"""""""""""""""""""""
 
 " General {{{
-"""""""""""""
+"---------------
 
 " basic settings
 set cursorline
-set tabstop=4 
+set tabstop=2
 set smarttab
 set noexpandtab
-set shiftwidth=4
-set softtabstop=4 tabstop=4
+set shiftwidth=2
+set softtabstop=2 tabstop=2
 set nowrap
 set noswapfile
 set backspace=indent,eol,start
@@ -55,6 +55,9 @@ set undodir=~/.vim/undo,/tmp " where to save undo histories
 set undolevels=1000 " How many undos
 set undoreload=1000 " number of lines to save for undo
 
+" source .vimrc
+autocmd vimenter * source $MYVIMRC
+
 " return to last edit position when opening files
 autocmd BufReadPost *
             \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -77,8 +80,6 @@ map H :tabprev<cr>
 map T :tabnew<cr>
 map j gj
 map k gk
-map s :s/
-map S :%s/
 map r :so $MYVIMRC<cr>
 map R :so $MYVIMRC<cr>
 map <C-o> :NERDTreeToggle<cr>
@@ -86,6 +87,7 @@ imap jk <Esc><Esc>
 imap kj <Esc><Esc>
 nmap q :q<cr>
 nmap Q :wq<cr>
+nmap <C-v> V
 noremap <F1> <Esc>
 noremap ; :
 noremap , ;
@@ -97,20 +99,18 @@ noremap <leader>j <C-W>j
 noremap <leader>k <C-W>k
 noremap <leader>l <C-W>l
 noremap <leader>h <C-W>h
-noremap <leader>a 4 <C-w><
-noremap <leader>s 4 <C-w>-
-noremap <leader>d 4 <C-w>+
-noremap <leader>f 4 <C-w>>
-noremap <leader>g $
+noremap <leader>a 8 <C-w><
+noremap <leader>d 8 <C-w>-
+noremap <leader>s 8 <C-w>+
+noremap <leader>f 8 <C-w>>
 noremap <leader><Space> za
-noremap <leader>G 0
 nmap <leader>w :w!<cr>
 nmap <leader>q :q<cr>
 
 " }}}
 
 " Plugins {{{
-"""""""""""""
+"---------------
 
 " vundle
 set nocompatible
@@ -160,6 +160,8 @@ endfunction
 " }}}
 
 " Colors {{{
+"--------------
+
 set t_Co=256
 hi CursorLine ctermbg=7 cterm=bold
 hi CursorLineNr ctermfg=238 ctermbg=235
@@ -177,4 +179,5 @@ hi Normal ctermfg=0 ctermbg=none
 hi Directory ctermfg=4 cterm=none
 hi Folded ctermbg=235 cterm=none
 highlight SpecialKey ctermfg=7
+
 " }}}
