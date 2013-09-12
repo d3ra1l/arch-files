@@ -159,39 +159,42 @@ function batinfo(adapter)
 	local battery = math.floor(cur * 100 / cap)
 	local batico = ""
 	local batbar = ""
+		
 		if sta:match("Charged") then
 			batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶ "  
 			batico = "<span color='#dfdfdf'>⮎ </span>"
 		else
-			if tonumber(battery) > 90 then
+			
+			if tonumber(battery) > 95 then
 				batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'> </span>"
-			elseif tonumber(battery) > 80 then
+			elseif tonumber(battery) > 85 then
 				batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶ </span>"
-			elseif tonumber(battery) > 70 then
+			elseif tonumber(battery) > 75 then
 				batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶ </span>"
-			elseif tonumber(battery) > 60 then
+			elseif tonumber(battery) > 65 then
 				batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶ </span>"
-			elseif tonumber(battery) > 50 then
+			elseif tonumber(battery) > 55 then
 				batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶ </span>"
-			elseif tonumber(battery) > 40 then
+			elseif tonumber(battery) > 45 then
 				batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶ </span>"
-			elseif tonumber(battery) > 30 then
-			batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶ </span>"
-			elseif tonumber(battery) > 20 then
+			elseif tonumber(battery) > 35 then
+				batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶ </span>"
+			elseif tonumber(battery) > 25 then
 				batbar = "<span color='#b4b4b4'>⮶⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶ </span>"
-			elseif tonumber(battery) > 10 then
+			elseif tonumber(battery) > 15 then
 				batbar = "<span color='#d23d3d'>⮶⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
-			elseif tonumber(battery) > 0 then
+			elseif tonumber(battery) > 5 then
 				batbar = "<span color='#d23d3d'>⮶</span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
 			else
 				batbar = "<span color='#d23d3d'></span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
 			end 
+			
 			if sta:match("Charging") then
 				batico = "<span color='#dfdfdf'>⮒ </span>"
 			elseif sta:match("Discharging") then
 				if tonumber(battery) > 49 then
 					batico = "<span color='#dfdfdf'>⮏ </span>"
-				elseif tonumber(battery) < 50 and tonumber(battery) > 20 then
+				elseif tonumber(battery) < 50 and tonumber(battery) > 25 then
 					batico = "<span color='#dfdfdf'>⮑ </span>"
 				else
 					batico = "<span color='#c97c7c'>⮐ </span>"
@@ -200,12 +203,13 @@ function batinfo(adapter)
 				batico = "<span color='#dfdfdf'>⮎ </span>"
 			end
 		end
-		batwidget:set_markup(' '..batico..' '..batbar..'')
-	end 
-	battery_timer = timer({timeout = 1}) 
-	battery_timer:connect_signal("timeout", function()
+		
+	batwidget:set_markup(' '..batico..' '..batbar..'')
+end 
+battery_timer = timer({timeout = 1}) 
+battery_timer:connect_signal("timeout", function()
 	batinfo("BAT0")
-        end)
+end)
 battery_timer:start()
 
 
@@ -221,7 +225,7 @@ daze.widgets.mpd.register(mpdwidget)
 vicious.register(mpdwidget, vicious.widgets.mpd,
 function (widget, args)
 	if args["{state}"] == "Stop" then 
-		return "<span color='#dfdfdf'>⮕</span> [mpd stopped] "
+		return "<span color='#dfdfdf'>⮕</span>  not playing anything "
 	elseif args["{state}"] == "Pause" then
 		return '<span color="#dfdfdf">⮔</span> '.. args["{Title}"]..'<span color="#d2d2d2"> by </span>'.. args["{Artist}"]..' '
 	else
@@ -260,9 +264,9 @@ function (widget, args)
 		else
 			volbar = "<span color='#b4b4b4'></span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
 		end 
-		return '<span color="#dfdfdf"> ⮜</span> '.. volbar ..' '
+		return '<span color="#dfdfdf"> ⮜ </span> '.. volbar ..' '
 	else
-		return '<span color="#dfdfdf"> ⮜</span> [muted]'
+		return '<span color="#dfdfdf"> ⮜ </span> [muted]'
 	end 
 end, 1, "Master")
 
