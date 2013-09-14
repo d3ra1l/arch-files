@@ -6,7 +6,6 @@
 "---------------
 
 " basic settings
-set cursorline
 set tabstop=2
 set smarttab
 set noexpandtab
@@ -53,6 +52,13 @@ set undofile " Save undo's after file closes
 set undodir=~/.vim/undo,/tmp " where to save undo histories
 set undolevels=1000 " How many undos
 set undoreload=1000 " number of lines to save for undo
+
+" cursorline
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
 
 " source .vimrc
 autocmd vimenter * source $MYVIMRC
