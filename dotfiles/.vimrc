@@ -194,7 +194,7 @@ hi Normal ctermfg=0 ctermbg=none
 hi Directory ctermfg=4 cterm=none
 hi Folded ctermbg=235 cterm=none
 hi SpecialKey ctermfg=7
-hi TagbarHighlight ctermfg=red cterm=bold
+hi TagbarHighlight ctermfg=red cterm=bold ctermbg=7
 hi TagbarScope ctermfg=blue ctermbg=none cterm=none
 hi TagbarKind ctermfg=blue ctermbg=none cterm=none
 hi TagbarNestedKind ctermbg=blue ctermbg=none cterm=none
