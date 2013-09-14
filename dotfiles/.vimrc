@@ -82,6 +82,7 @@ map k gk
 map r :so $MYVIMRC<cr>
 map R :so $MYVIMRC<cr>
 map <C-o> :NERDTreeToggle<cr>
+map <C-b> :TagbarToggle<cr>
 imap jk <Esc><Esc>
 imap kj <Esc><Esc>
 nmap q :q<cr>
@@ -120,6 +121,7 @@ filetype plugin on
 
 Bundle 'gmarik/vundle'
 Bundle 'danro/rename.vim'
+Bundle 'majustsuhi/tagbar' 
 Bundle 'tpope/vim-surround'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'scrooloose/nerdtree'
@@ -143,10 +145,16 @@ call Pl#Theme#RemoveSegment('filesize')
 call Pl#Theme#RemoveSegment('raw')
 call Pl#Theme#RemoveSegment('lineinfo')
 
+" tagbar
+let g:tagbar_width = '20'
+let g:tagbar_show_linenumbers = '0'
+let g:tagbar_iconchars =['▸', ' ▾']
+
 " nerd tree
 let NERDTreeShowHidden=0
 let NERDTreeIgnore=['\.png$', '\.jpg$', '\.gif$', '\.tmp$', '\.swp$']
-let g:NERDTreeWinSize = '20'
+let NERDTreeStatusline= '-1'
+let g:NERDTreeWinSize = '15'
 autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 function! s:CloseIfOnlyNerdTreeLeft()
   if exists("t:NERDTreeBufName")
@@ -175,10 +183,14 @@ hi TabLine ctermfg=15 ctermbg=none cterm=none
 hi TabLineSel ctermfg=Black ctermbg=none cterm=none
 hi VertSplit ctermfg=235 ctermbg=235 cterm=none
 hi StatusLine cterm=none ctermfg=0 ctermbg=7
-hi StatusLineNC cterm=none ctermfg=7 ctermbg=235
+hi StatusLineNC cterm=none ctermfg=235 ctermbg=235
 hi Normal ctermfg=0 ctermbg=none
 hi Directory ctermfg=4 cterm=none
 hi Folded ctermbg=235 cterm=none
-highlight SpecialKey ctermfg=7
+hi SpecialKey ctermfg=7
+hi TagbarHighlight ctermfg=red cterm=bold
+hi TagbarScope ctermfg=blue ctermbg=none cterm=none
+hi TagbarKind ctermfg=blue ctermbg=none cterm=none
+hi TagbarNestedKind ctermbg=blue ctermbg=none cterm=none
 
 " }}}
