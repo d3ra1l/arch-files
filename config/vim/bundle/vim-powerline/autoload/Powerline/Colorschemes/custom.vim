@@ -1,6 +1,6 @@
 call Pl#Hi#Allocate({
-\ 'black' : 7,
-\ 'white' : 255,
+\ 'black' : 235,
+\ 'white' : 235,
 \ 'termdblack' : 7,
 \ 'termlblack' : 15,
 \ 'termdred' : 1,
