@@ -6,11 +6,11 @@ MAX=`free -m | awk 'NR == 2 {gsub(/%/,""); print $2}'`
 PERC=`echo $FREE*100/$MAX | bc`
 
 if [[ $PERC -gt 75 ]]; then
-PERCBAR=`echo -e "$PERC"\
-        | gdbar -bg $bar_bg -fg $warning -h 1 -w 50`
+	PERCBAR=`echo -e "$PERC"\
+	| gdbar -bg $bar_bg -fg $warning -h 1 -w 50`
 else
-PERCBAR=`echo -e "$PERC"\
-        | gdbar -bg $bar_bg -fg $foreground -h 1 -w 50`
+	PERCBAR=`echo -e "$PERC"\
+	| gdbar -bg $bar_bg -fg $foreground -h 1 -w 50`
 fi
 
 echo " ⮥   $PERCBAR"

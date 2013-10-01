@@ -12,17 +12,17 @@ mvl=()
 
 for i in {0..100..10}; do
 if [ $vol -gt $i ]; then
-	val+=(" ^p(_LOCK_X)^bg($white0)^ca(1,amixer set Master $i) ^ca()")	
+	val+=(" ^p(_LOCK_X)^bg($white0) ")	
 else
-	val+=(" ^p(_LOCK_X)^bg($BG)^ca(1,amixer set Master $i) ^ca()")
+	val+=(" ^p(_LOCK_X)^bg($BG) ")
 fi
 done
 
 for a in {0..100..10}; do
 if [ $mvol -gt $a ]; then
-    mvl+=(" ^p(_LOCK_X)^bg($white0)^ca(1,mpc volume $a) ^ca()")
+	mvl+=(" ^p(_LOCK_X)^bg($white0) ")
 else
-    mvl+=(" ^p(_LOCK_X)^bg($BG)^ca(1,mpc volume $a) ^ca()")
+	mvl+=(" ^p(_LOCK_X)^bg($BG) ")
 fi
 done
 
