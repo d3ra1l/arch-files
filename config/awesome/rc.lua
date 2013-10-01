@@ -77,7 +77,7 @@ for s = 1, screen.count() do
 end
 
 awful.layout.set(awful.layout.suit.floating, tags[1][1])                                             
-awful.tag.setmwfact(0.658, tags[1][1])
+awful.tag.setmwfact(0.558, tags[1][1])
 
 -- }}}
 
@@ -529,7 +529,7 @@ awful.rules.rules = {
 		} 
 	},
 	
-	{ rule = { }, properties = { }, callback = awful.client.setslave },
+	--{ rule = { }, properties = { }, callback = awful.client.setslave },
 	
 	{ rule = { name = "ImageMagick:" },
 		properties = { floating = true } 
@@ -586,4 +586,3 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
-
