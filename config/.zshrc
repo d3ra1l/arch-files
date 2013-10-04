@@ -96,13 +96,13 @@ alias sfu='screenfetch-ulf'
 
 #byzanz
 record() {
-	byzanz-record -v --duration=$1 --delay=$2 $3.gif
+ byzanz-record -v --duration=$1 --delay=$2 $3.gif
 }
 alias byz="record"
 
 #look words up in an online dictionary
 define() {
-	curl dict://dict.org/d:$1
+ curl dict://dict.org/d:$1
 }
 alias define="define"
 
@@ -131,6 +131,10 @@ alias u7z='7za e'
 alias pk='pkill'
 alias pkx='sudo pkill X'
 
+#racket
+alias racket='screen -S racket racket'
+alias rkt='racket'
+
 #toilet
 alias gaym='toilet --gay -f mono9 -t'
 alias gayf='toilet --gay -f future -t'
@@ -154,24 +158,26 @@ export g4x=~/gitshit/4chan-x
 export gedu=~/gitshit/edu
 
 gcp() {
-	case $1 in
-		uc)				cp ~/.mozilla/firefox/*.default/chrome/userChrome.css $gstyc/userChrome.css;$gstyc ;;
-		uc-t)			cp ~/.mozilla/firefox/*.default/chrome/userChrome.css $gstyc/userChrome-testing.css;$gstyc ;;
-		4chan)  	rm $gstyc/4chan.css;touch $gstyc/4chan.css;vim $gstyc/4chan.css;$gstyc ;;
-		reddit)		rm $gstyc/reddit.css;touch $gstyc/reddit.css;vim $gstyc/reddit.css;$gstyc ;;
-		crshd)		cp ~/.irssi/phallus.theme $gconf/config/.irssi/phallus.theme;$gconf ;;
-		irssi)		cp ~/.irssi/config $gconf/config/.irssi/config;$gconf ;;
-		zsh)			cp ~/.zshrc $gconf/config/.zshrc;$gconf ;;
-		vim)			cp ~/.vimrc $gconf/config/.vimrc;$gconf ;;
-		vimp)			cp ~/.vimperatorrc $gconf/config/.vimperatorrc;$gconf ;;
-		ncp)			cp ~/.ncmpcpp/config $gconf/config/ncmpcpp/config;$gconf ;;
-		tmux)			cp ~/.tmux.conf $gconf/config/.tmux.conf;$gconf ;;
-		lemon)		cp ~/.fonts/bdf/lemon.bdf $gfo/lemon.bdf;$gfo ;;
-		uushi)		cp ~/.fonts/bdf/uushi.bdf $gfo/uushi.bdf;$gfo ;;
-		todo)			cp ~/bin/todo ~/gitshit/arch-files/bin/todo;$gconf ;;
-		211)			cp ~/edu/programming/c-211/* ~/gitshit/edu/csci-211/;$gedu ;;
-		*)				echo "$1 not found!" ;;
-	esac
+ case $1 in
+  uc)      cp ~/.mozilla/firefox/*.default/chrome/userChrome.css $gstyc/userChrome.css;$gstyc ;;
+  uc-t)    cp ~/.mozilla/firefox/*.default/chrome/userChrome.css $gstyc/userChrome-testing.css;$gstyc ;;
+  4chan)   rm $gstyc/4chan.css;touch $gstyc/4chan.css;vim $gstyc/4chan.css;$gstyc ;;
+  reddit)  rm $gstyc/reddit.css;touch $gstyc/reddit.css;vim $gstyc/reddit.css;$gstyc ;;
+  crshd)   cp ~/.irssi/phallus.theme $gconf/config/.irssi/phallus.theme;$gconf ;;
+  irssi)   cp ~/.irssi/config $gconf/config/.irssi/config;$gconf ;;
+  zsh)     cp ~/.zshrc $gconf/config/.zshrc;$gconf ;;
+  vim)     cp ~/.vimrc $gconf/config/.vimrc;$gconf ;;
+  vimp)    cp ~/.vimperatorrc $gconf/config/.vimperatorrc;$gconf ;;
+  xd)      cp ~/.Xdefaults $gconf/config/.Xdefaults;$gconf ;;
+  conky)   cp ~/.conkyrc $gconf/config/.conkyrc;$gconf ;;
+  ncp)     cp ~/.ncmpcpp/config $gconf/config/ncmpcpp/config;$gconf ;;
+  tmux)    cp ~/.tmux.conf $gconf/config/.tmux.conf;$gconf ;;
+  lemon)   cp ~/.fonts/bdf/lemon.bdf $gfo/lemon.bdf;$gfo ;;
+  uushi)   cp ~/.fonts/bdf/uushi.bdf $gfo/uushi.bdf;$gfo ;;
+  todo)    cp ~/bin/todo ~/gitshit/arch-files/bin/todo;$gconf ;;
+  211)     cp ~/edu/programming/c-211/* ~/gitshit/edu/csci-211/;$gedu ;;
+  *)       echo "$1 not found!" ;;
+ esac
 }
 
 
@@ -187,60 +193,60 @@ alias yg='yaourt -G'
 
 #ranger
 rn() {
-	case $1 in     
-		awesome)	ranger ~/.config/awesome ;;
-		tor)			ranger ~/torrents ;;
-		mu)				ranger ~/mu ;;
-		bin)			ranger ~/bin ;;
-		git)			ranger ~/gitshit ;;
-		irssi)		ranger ~/.irssi ;;
-		edu)			ranger ~/edu ;;
-		bks)			ranger ~/edu/books ;;
-		ncp)			ranger ~/.ncmpcpp ;;
-		vim)			ranger ~/.vim ;;
-		*)				ranger ;;
-	esac
+ case $1 in     
+  awesome) ranger ~/.config/awesome ;;
+  tor)     ranger ~/torrents ;;
+  mu)      ranger ~/mu ;;
+  bin)     ranger ~/bin ;;
+  git)     ranger ~/gitshit ;;
+  irssi)   ranger ~/.irssi ;;
+  edu)     ranger ~/edu ;;
+  bks)     ranger ~/edu/books ;;
+  ncp)     ranger ~/.ncmpcpp ;;
+  vim)     ranger ~/.vim ;;
+  *)       ranger ;;
+ esac
 }
 
 #school - will add functions for notes and such once school starts
 export bks=~/edu/books
 alias bks=$bks
 re() {
-	case $1 in
-		sicp)			llpp $bks/sicp.pdf & ;;
-		emacs)		llpp $bks/eintr.pdf & ;;
-		pil)			llpp $bks/pil.pdf & ;;
-		lua)			llpp $bks/pil.pdf & ;;
-		*)				ranger $bks ;;
-	esac
+ case $1 in
+  sicp)   llpp $bks/sicp.pdf & ;;
+  emacs)  llpp $bks/eintr.pdf & ;;
+  pil)    llpp $bks/pil.pdf & ;;
+  lua)    llpp $bks/pil.pdf & ;;
+  *)      ranger $bks ;;
+ esac
 }
 
 #vim - thanks to earsplit for this!
 conf() {
-	case $1 in
-		mpd)			vim ~/.mpdconf ;;
-		conky)		vim ~/.conkyrc ;;
-		ncp)    	vim ~/.ncmpcpp/config ;;
-		rn)		    vim ~/.config/ranger/rc.conf ;;
-		tmux)			vim ~/.tmux.conf ;;
-		vim)			vim ~/.vimrc ;;
-		xi)				vim ~/.xinitrc ;;
-		xd)				vim ~/.Xdefaults ;;
-		zsh)			vim ~/.zshrc && source ~/.zshrc ;;
-		uc)				vim ~/.mozilla/firefox/*.default/chrome/userChrome.css ;;
-		i3)				vim ~/.i3/config ;;
-		irssi)		vim ~/.irssi/config ;;
-		crshd)		vim ~/.irssi/phallus.theme ;;
-		lemon)		~/.fonts/bdf;gbdfed;vim lemon.bdf;bdftopcf -o ../lemon.pcf lemon.bdf ;;
-		uushi)		~/.fonts/bdf;gbdfed;bdftopcf -o ../uushi.pcf uushi.bdf ;;
-		awesome)	vim ~/.config/awesome/rc.lua ;;
-		gtk)			vim ~/.themes/Kvtie/gtk-2.0/gtkrc ;;
-		pacman)		sudo vim /etc/pacman.conf ;;
-		vimp)			vim ~/.vimperatorrc ;;
-		mutt)			vim ~/.muttrc ;;
-		vimmode)	vim ~/.irssi/vim_moderc ;;
-		*)				echo "unknown conf: $1" ;;		
-	esac
+ case $1 in
+  mpd)     vim ~/.mpdconf ;;
+  conky)   vim ~/.conkyrc ;;
+  ncp)     vim ~/.ncmpcpp/config ;;
+  rn)      vim ~/.config/ranger/rc.conf ;;
+  tmux)    vim ~/.tmux.conf ;;
+  vim)     vim ~/.vimrc ;;
+  xi)      vim ~/.xinitrc ;;
+  xd)      vim ~/.Xdefaults ;;
+  zsh)     vim ~/.zshrc && source ~/.zshrc ;;
+  uc)      vim ~/.mozilla/firefox/*.default/chrome/userChrome.css ;;
+  i3)      vim ~/.i3/config ;;
+  irssi)   vim ~/.irssi/config ;;
+  crshd)   vim ~/.irssi/phallus.theme ;;
+  lemon)   ~/.fonts/bdf;gbdfed;vim lemon.bdf;bdftopcf -o ../lemon.pcf lemon.bdf ;;
+  uushi)   ~/.fonts/bdf;gbdfed;bdftopcf -o ../uushi.pcf uushi.bdf ;;
+  awesome) vim ~/.config/awesome/rc.lua ;;
+  gtk)     vim ~/.themes/Kvtie/gtk-2.0/gtkrc ;;
+  pacman)  sudo vim /etc/pacman.conf ;;
+  vimp)    vim ~/.vimperatorrc ;;
+  mutt)    vim ~/.muttrc ;;
+  vimmode) vim ~/.irssi/vim_moderc ;;
+  *)       echo "unknown conf: $1" ;;  
+ esac
 }
 
 # }}}
