@@ -1,5 +1,5 @@
 """"""""""""""""""""""""
-"" kingbenis' .vimrc """
+"" kingbenis' .vimrc
 """"""""""""""""""""""""
 
 " General {{{
@@ -80,24 +80,21 @@ syntax on
 cmap w!! %!sudo tee > /dev/null %
 map K <C-u>
 map J <C-d>
-map L :tabnext<cr>
-map H :tabprev<cr>
-map T :tabnew<cr>
+map L W
+map H B
 map j gj
 map k gk
 map r :so $MYVIMRC<cr>
 map R :so $MYVIMRC<cr>
-map <C-o> :NERDTreeToggle<cr>
-map <C-b> :TagbarToggle<cr>
+nmap <C-o> :NERDTreeToggle<cr>
+nmap <C-b> :TagbarToggle<cr>
 imap jk <Esc><Esc>
-imap kj <Esc><Esc>
+imap kj <Esc><Esc> 
 nmap q :q<cr>
 nmap Q :wq<cr>
 nmap <C-v> V
-noremap <F1> <Esc>
 noremap ; :
 noremap , ;
-noremap D <Delete>
 noremap <Space> <Nop>
 let mapleader=" "
 noremap <leader>v :vsplit<cr>
@@ -112,6 +109,11 @@ noremap <leader>f 8 <C-w>>
 noremap <leader><Space> za
 nmap <leader>w :w!<cr>
 nmap <leader>q :q<cr>
+nmap <leader>p m[vab:sleep 550m<CR>`[
+nmap <C-p> m[vab:sleep 550m<CR>`[
+imap <C-p> m[vab:sleep 550m<CR>`[
+nmap <Return> o<Esc><Esc>
+nmap <S-Return> O<Esc><Esc>
 
 " }}}
 
@@ -128,6 +130,7 @@ filetype plugin on
 Bundle 'gmarik/vundle'
 Bundle 'danro/rename.vim'
 Bundle 'majustsuhi/tagbar' 
+Bundle 'Raimondi/delimitMate'
 Bundle 'tpope/vim-surround'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'scrooloose/nerdtree'
@@ -172,6 +175,10 @@ function! s:CloseIfOnlyNerdTreeLeft()
   endif
 endfunction
 
+" delimitmate
+au FileType scheme let b:delimitMate_quotes = "\" "
+au FileType vim let b:delimitMate_quotes = "\' "
+
 " }}}
 
 " Colors {{{
@@ -181,9 +188,9 @@ set t_Co=256
 hi CursorLine ctermbg=7 cterm=bold
 hi CursorLineNr ctermfg=238 ctermbg=235
 hi LineNr ctermfg=7
-hi Constant ctermfg=5
+hi Constant ctermfg=2
 hi Statement ctermfg=1
-hi MatchParen ctermfg=8 ctermbg=6 cterm=none
+hi MatchParen ctermfg=8 ctermbg=none cterm=none
 hi TabLineFill term=bold cterm=bold ctermbg=none
 hi TabLine ctermfg=15 ctermbg=none cterm=none
 hi TabLineSel ctermfg=Black ctermbg=none cterm=none
@@ -196,7 +203,7 @@ hi Folded ctermbg=235 cterm=none
 hi SpecialKey ctermfg=7
 hi Nontext ctermfg=7
 hi TagbarIcon ctermfg=red cterm=none
-hi TagbarHighlight ctermfg=red cterm=bold ctermbg=none
+hi TagbarHighlight ctermfg=red ctermbg=none
 hi TagbarScope ctermfg=blue ctermbg=none cterm=none
 hi TagbarKind ctermfg=blue ctermbg=none cterm=none
 hi TagbarNestedKind ctermbg=blue ctermbg=none cterm=none
