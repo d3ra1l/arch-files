@@ -10,7 +10,7 @@ set tabstop=2
 set smarttab
 set noexpandtab
 set shiftwidth=2
-set softtabstop=2 tabstop=2
+set softtabstop=2
 set nowrap
 set noswapfile
 set backspace=indent,eol,start
@@ -97,7 +97,12 @@ noremap ; :
 noremap , ;
 noremap <Space> <Nop>
 let mapleader=" "
-noremap <leader>v :vsplit<cr>
+"nnoremap <Leader><Down> :m .+1<CR>==
+"nnoremap <Leader><Up> :m .-2<CR>==
+"inoremap <Leader><Down> <ESC>:m .+1<CR>==gi
+"inoremap <Leader><Up> <ESC>:m .-2<CR>==gi
+"vnoremap <Leader><Down> :m '>+1<CR>gv=gv
+"vnoremap <Leader><Up> :m '<-2<CR>gv=gv
 noremap <leader>j <C-W>j
 noremap <leader>k <C-W>k
 noremap <leader>l <C-W>l
@@ -110,10 +115,10 @@ noremap <leader><Space> za
 nmap <leader>w :w!<cr>
 nmap <leader>q :q<cr>
 nmap <leader>p m[vab:sleep 550m<CR>`[
-nmap <C-p> m[vab:sleep 550m<CR>`[
-imap <C-p> m[vab:sleep 550m<CR>`[
 nmap <Return> o<Esc><Esc>
 nmap <S-Return> O<Esc><Esc>
+nmap <leader>n <Plug>SneakNext
+nmap <leader>N <Plug>SneakPrev
 
 " }}}
 
@@ -131,7 +136,8 @@ Bundle 'gmarik/vundle'
 Bundle 'danro/rename.vim'
 Bundle 'majustsuhi/tagbar' 
 Bundle 'Raimondi/delimitMate'
-Bundle 'tpope/vim-surround'
+Bundle 'justinmk/vim-sneak'
+Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
@@ -161,6 +167,9 @@ let g:tagbar_iconchars =[' ▸', ' ▾']
 
 " nerd tree
 let NERDTreeShowHidden=0
+let NERDChristmasTree=1
+let NERDTreeShowBookmarks=0
+let NERDTreeMinimalUI=0
 let NERDTreeIgnore=['\.png$', '\.jpg$', '\.gif$', '\.tmp$', '\.swp$']
 let NERDTreeStatusline= '-1'
 let g:NERDTreeWinSize = '15'
