@@ -6,11 +6,6 @@
 "---------------
 
 " basic settings
-set tabstop=2
-set smarttab
-set noexpandtab
-set shiftwidth=2
-set softtabstop=2
 set nowrap
 set noswapfile
 set backspace=indent,eol,start
@@ -31,6 +26,14 @@ set laststatus=2
 set splitright
 set splitbelow
 set autochdir
+
+" tabs
+set smarttab
+set noexpandtab
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+au FileType scheme,racket,lisp,config set expandtab
 
 " enable utf8
 set encoding=utf8
@@ -184,9 +187,18 @@ function! s:CloseIfOnlyNerdTreeLeft()
   endif
 endfunction
 
-" delimitmate
+" identline
+let g:indentLine_char = '│'
+let g:indentLine_color_term = 7
+
+" per-type settings
 au FileType scheme let b:delimitMate_quotes = "\" "
+au FileType scheme let t:vicle_screen_sn = 'racket'
+au FileType lua let t:vicle_screen_sn = 'lua'
+au FileType * let t:vicle_screen_wn = '0'
 au FileType vim let b:delimitMate_quotes = "\' "
+
+" vicle
 
 " }}}
 
