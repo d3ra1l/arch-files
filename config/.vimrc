@@ -100,12 +100,6 @@ noremap ; :
 noremap , ;
 noremap <Space> <Nop>
 let mapleader=" "
-"nnoremap <Leader><Down> :m .+1<CR>==
-"nnoremap <Leader><Up> :m .-2<CR>==
-"inoremap <Leader><Down> <ESC>:m .+1<CR>==gi
-"inoremap <Leader><Up> <ESC>:m .-2<CR>==gi
-"vnoremap <Leader><Down> :m '>+1<CR>gv=gv
-"vnoremap <Leader><Up> :m '<-2<CR>gv=gv
 noremap <leader>j <C-W>j
 noremap <leader>k <C-W>k
 noremap <leader>l <C-W>l
@@ -191,14 +185,14 @@ endfunction
 let g:indentLine_char = '│'
 let g:indentLine_color_term = 7
 
-" per-type settings
-au FileType vim let b:delimitMate_quotes = "\' "
+" delimitmate
 au FileType scheme let b:delimitMate_quotes = "\" "
+au FileType vim let b:delimitMate_quotes = "\' "
+
+" vicle
 au FileType scheme let t:vicle_screen_sn = 'racket'
 au FileType lua let t:vicle_screen_sn = 'lua'
 au FileType * let t:vicle_screen_wn = '0'
-
-" vicle
 
 " }}}
 
