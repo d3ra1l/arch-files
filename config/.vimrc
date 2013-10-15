@@ -109,6 +109,8 @@ noremap <leader>d 8 <C-w>-
 noremap <leader>s 8 <C-w>+
 noremap <leader>f 8 <C-w>>
 noremap <leader><Space> za
+noremap <leader>L :tabnext<cr>
+noremap <leader>H :tabprev<cr>
 nmap <leader>w :w!<cr>
 nmap <leader>q :q<cr>
 nmap <leader>p m[vab:sleep 550m<CR>`[
