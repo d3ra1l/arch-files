@@ -192,11 +192,11 @@ let g:indentLine_char = '│'
 let g:indentLine_color_term = 7
 
 " per-type settings
+au FileType vim let b:delimitMate_quotes = "\' "
 au FileType scheme let b:delimitMate_quotes = "\" "
 au FileType scheme let t:vicle_screen_sn = 'racket'
 au FileType lua let t:vicle_screen_sn = 'lua'
 au FileType * let t:vicle_screen_wn = '0'
-au FileType vim let b:delimitMate_quotes = "\' "
 
 " vicle
 
