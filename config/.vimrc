@@ -95,9 +95,13 @@ imap jk <Esc><Esc>
 imap kj <Esc><Esc> 
 nmap q :q<cr>
 nmap Q :wq<cr>
+nmap < <<
+nmap > >>
 nmap <C-v> V
 noremap ; :
 noremap , ;
+vnoremap > >gv
+vnoremap < <gv
 noremap <Space> <Nop>
 let mapleader=" "
 noremap <leader>j <C-W>j
