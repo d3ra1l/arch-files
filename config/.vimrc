@@ -6,6 +6,7 @@
 "---------------
 
 " basic settings
+set nocompatible
 set nowrap
 set noswapfile
 set backspace=indent,eol,start
@@ -27,13 +28,13 @@ set splitright
 set splitbelow
 set autochdir
 
-" tabs
+" tab (as in the key)
 set smarttab
-set noexpandtab
+set expandtab
 set shiftwidth=2
 set softtabstop=2
 set tabstop=2
-au FileType scheme,racket,lisp,config set expandtab
+autocmd FileType c,javascript,lua,bash,sh,zsh set noexpandtab
 
 " enable utf8
 set encoding=utf8
@@ -85,8 +86,6 @@ map K <C-u>
 map J <C-d>
 map L W
 map H B
-map j gj
-map k gk
 map r :so $MYVIMRC<cr>
 map R :so $MYVIMRC<cr>
 nmap <C-o> :NERDTreeToggle<cr>
@@ -95,11 +94,14 @@ imap jk <Esc><Esc>
 imap kj <Esc><Esc> 
 nmap q :q<cr>
 nmap Q :wq<cr>
-nmap < <<
-nmap > >>
 nmap <C-v> V
-noremap ; :
-noremap , ;
+noremap j gj
+noremap k gk
+nnoremap ; :
+nnoremap , ;
+nnoremap n nzz
+nnoremap < <<
+nnoremap > >>
 vnoremap > >gv
 vnoremap < <gv
 noremap <Space> <Nop>
@@ -129,7 +131,6 @@ nmap <leader>N <Plug>SneakPrev
 "---------------
 
 " vundle
-set nocompatible
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 filetype off

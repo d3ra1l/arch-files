@@ -1,6 +1,6 @@
 call Pl#Hi#Allocate({
 \ 'black' : 235,
-\ 'white' : 235,
+\ 'white' : 0,
 \ 'termdblack' : 7,
 \ 'termlblack' : 15,
 \ 'termdred' : 1,
@@ -34,7 +34,7 @@ call Pl#Hi#Allocate({
 \ 'brightestred' : 9,
 \
 \ 'darkestpurple' : 7,
-\ 'mediumpurple' : 7,
+\ 'mediumpurple' : 235,
 \ 'brightpurple' : 7,
 \
 \ 'brightorange' : 208,
