@@ -18,11 +18,13 @@ buttons=" ^ca(1, mpc prev)⮳  ^ca()  ^ca(1, mpc pause)⮔ ^ca()  ^ca(1, mpc pla
 
 if [ "`mpc 2>&1 | wc -l`" -gt "1" ]; then
 	so=`mpc current -f %title%`
-	art=`mpc current -f %artist%`
-	alb=`mpc current -f %album%`
+	arta=`mpc current -f %artist%`
+	alba=`mpc current -f %album%`
+	art=`mpc current -f %artist% | sed -e 's/\//-/g'`
+	alb=`mpc current -f %album% | sed -e 's/\//-/g'`
 	ti=$(mpc | sed -n "2p" | awk -F " " '{print $3}')
-	artist="^fg($FG2)Artist: ^fg($FG1)$art"
-	album="^fg($FG2)Album: ^fg($FG1)$alb"
+	artist="^fg($FG2)Artist: ^fg($FG1)$arta"
+	album="^fg($FG2)Album: ^fg($FG1)$alba"
 	time="^fg($FG2)Time: ^fg($FG1)$ti"
 	
 	if [ "`mpc | grep "^\[paused\]"`" != "" ]; then
@@ -34,7 +36,7 @@ if [ "`mpc 2>&1 | wc -l`" -gt "1" ]; then
 	perc=`mpc | awk 'NR == 2 {gsub(/[()%]/,""); print $4}'`
 	percwidth=$(( $WIDTH - 10 ))
 	percbar=`echo -e "$perc" | gdbar -bg $bar_bg -fg $foreground -h 1 -w $percwidth`
-	albumart="/home/phallus/mu/thumbs/$(ls ~/mu/thumbs | grep "$art - $alb")"
+	albumart="/home/phallus/mu/thumbs/$(ls ~/mu/thumbs | grep "$art - $alb.png")"
 	
 	nowplaying="$np"
 	playing=$(mpc current)
