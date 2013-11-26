@@ -1,11 +1,5 @@
 #!/bin/zsh
 
-# this is a simple operation, really. all we do is fetch data from last.fm, get
-# the albm cover links, download them, and put them in the right place.
-# There are no heuristics going on here, it only works on exact matches!
-
-#(( $# != 2 )) && echo 'Usage: $0 art alb' && return 1
-
 art="$(mpc current -f %artist%)"
 alb="$(mpc current -f %album%)"
 
