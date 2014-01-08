@@ -30,11 +30,10 @@ set autochdir
 
 " tab (as in the key)
 set smarttab
-set expandtab
+set noexpandtab
 set shiftwidth=2
 set softtabstop=2
 set tabstop=2
-autocmd FileType c,javascript,lua,bash,sh,zsh set noexpandtab
 
 " enable utf8
 set encoding=utf8
@@ -80,7 +79,11 @@ set formatoptions-=cro
 " turn on syntax highlighting
 syntax on
 
-" key bindings
+" }}}
+
+" Key bindings {{{
+"--------------------
+
 cmap w!! %!sudo tee > /dev/null %
 map K <C-u>
 map J <C-d>
@@ -136,6 +139,7 @@ call vundle#rc()
 filetype off
 filetype plugin on
 
+Bundle 'mhniz/vim-startify'
 Bundle 'gmarik/vundle'
 Bundle 'danro/rename.vim'
 Bundle 'majustsuhi/tagbar' 
