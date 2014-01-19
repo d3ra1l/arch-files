@@ -77,7 +77,7 @@ for s = 1, screen.count() do
 end
 
 awful.layout.set(awful.layout.suit.floating, tags[1][1])                                             
-awful.tag.setmwfact(0.558, tags[1][1])
+awful.tag.setmwfact(0.538, tags[1][1])
 
 -- }}}
 
@@ -92,11 +92,12 @@ myawesomemenu = {
 }
 
 mymainmenu = awful.menu({ items = { 
-	{ "⮩ urxvtc", terminal },
-	{ "⮠ nitrogen", "nitrogen" },
-	{ "⮤ scrot", "/home/phallus/bin/scr" },
-	{ "⮗ restart", awesome.restart },
-	{ "⮪ lock", "/home/phallus/bin/i3lock-w" }
+	{ "⮩   urxvtc", terminal },
+	{ "⮠    nitro", "nitrogen" },
+	{ "⮤    scrot", "/home/phallus/bin/scr" },
+--{ "⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶", },
+	{ "⮗  restart", awesome.restart },
+	{ "⮪     lock", "/home/phallus/bin/i3lock-w" }
 }
 
 })
@@ -159,12 +160,12 @@ function batinfo(adapter)
 	local battery = math.floor(cur * 100 / cap)
 	local batico = ""
 	local batbar = ""
-		
+
 		if sta:match("Charged") then
 			batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶ "  
 			batico = "<span color='#dfdfdf'>⮎ </span>"
 		else
-			
+
 			if tonumber(battery) > 95 then
 				batbar = "<span color='#b4b4b4'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶</span><span color='#66666a'> </span>"
 			elseif tonumber(battery) > 85 then
@@ -188,7 +189,7 @@ function batinfo(adapter)
 			else
 				batbar = "<span color='#d23d3d'></span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
 			end 
-			
+
 			if sta:match("Charging") then
 				batico = "<span color='#dfdfdf'>⮒ </span>"
 			elseif sta:match("Discharging") then
@@ -203,8 +204,8 @@ function batinfo(adapter)
 				batico = "<span color='#dfdfdf'>⮎ </span>"
 			end
 		end
-		
-	batwidget:set_markup(' '..batico..' '..batbar..'')
+
+	batwidget:set_markup(' '..batico..' '..batbar..' ')
 end 
 battery_timer = timer({timeout = 1}) 
 battery_timer:connect_signal("timeout", function()
@@ -214,8 +215,28 @@ battery_timer:start()
 
 
 -- time widget
-mytextclock = awful.widget.textclock("  <span color='#dfdfdf'>⮖</span>  %R - %a, %b %d  ")
+mytextclock = awful.widget.textclock(" <span color='#dfdfdf'>⮖</span>  %R - %a, %b %d  ")
 daze.widgets.calendar.register(mytextclock)
+
+
+-- net widget
+netwidget = wibox.widget.textbox()
+daze.widgets.net.register(netwidget)
+vicious.register(netwidget, vicious.widgets.wifi,
+function (widget, args)
+	local qual = tonumber(args["{link}"])
+	local ssid = args["{ssid}"]
+	if qual > 66 then
+		neticon = '<span color="#dfdfdf">⮷ </span>'
+	elseif qual > 33 then
+		neticon = '<span color="#dfdfdf">⮸ </span>'
+	elseif qual > 0 then
+		neticon = '<span color="#dfdfdf">⮹ </span>'
+	else
+		neticon = '<span color="#dfdfdf">… </span>'
+	end
+	return ' '..neticon..' '..ssid..' '
+end, 1, 'wlan0')
 
 
 -- mpd widget
@@ -266,7 +287,7 @@ function (widget, args)
 		end 
 		return '<span color="#dfdfdf"> ⮜ </span> '.. volbar ..' '
 	else
-		return '<span color="#dfdfdf"> ⮜ </span> [muted]'
+		return '<span color="#dfdfdf"> ⮜ </span> muted  '
 	end 
 end, 1, "Master")
 
@@ -344,6 +365,8 @@ for s = 1, screen.count() do
     right_layout:add(spacer1)
     right_layout:add(separator)
     right_layout:add(mpdwidget)
+    right_layout:add(spacer)
+    right_layout:add(netwidget)
     right_layout:add(spacer)
     right_layout:add(volwidget)
     right_layout:add(separator)
@@ -438,7 +461,7 @@ globalkeys = awful.util.table.join(
 	
 	-- dmenu
 	awful.key({ modkey }, "d", function ()
-	awful.util.spawn("dmenu_run -i -p 'Run command:' -nb '" .. 
+	awful.util.spawn("dmenu_run -i -h 9 -p 'Run command:' -nb '" .. 
 		beautiful.bg_normal .. "' -nf '" .. beautiful.fg_normal ..
 		"' -fn '" .. beautiful.font_alt ..
 		"' -sb '" .. beautiful.bg_focus .. 
@@ -536,8 +559,10 @@ awful.rules.rules = {
 	},
 	
 	{ rule = { class = "feh" },
-		properties = { border_color = beautiful.border_feh,
-		floating = true } 
+		properties = { 
+      border_color = "#30303a",
+      focus = true,
+      floating = true } 
 	},
 	
 	{ rule = { class = "pinentry" },
