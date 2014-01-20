@@ -13,7 +13,7 @@ function register(mywidget)
     mywidget:buttons(awful.util.table.join(
     awful.button({ }, 1, 
     function()
-        awful.util.spawn_with_shell("/home/spectrum/.config/awesome/daze/widgets/scripts/dzen_network.sh")
+        awful.util.spawn_with_shell("/home/phallus/.config/awesome/daze/widgets/scripts/d-net")
     end)
    ))
 end
