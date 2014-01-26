@@ -144,6 +144,7 @@ tasklist.buttons = awful.util.table.join(
 
 -- {{{ Wibox
 
+--most of these widgets could use some refactoring
 
 -- bat widget
 --if you get an error regarding hibernation, change energy_now and energy_full to charge_now/full. thanks doidbb
@@ -393,7 +394,7 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
-	awful.key({ modkey, }, "j",   awful.tag.viewprev ),
+	awful.key({ modkey, }, "j",  awful.tag.viewprev ),
 	awful.key({ modkey, }, "k",  awful.tag.viewnext ),
 	awful.key({ modkey, }, "Escape", awful.tag.history.restore),
 	
@@ -456,15 +457,14 @@ globalkeys = awful.util.table.join(
 	awful.key({ modkey, "Shift" }, "q", awesome.quit),
 	awful.key({ modkey, }, "Return", function () awful.util.spawn(terminal) end),
 	awful.key({ modkey, }, "r", awesome.restart),
-	awful.key({ modkey, "Shift" }, "q", awesome.quit),
 	
 	
 	-- dmenu
 	awful.key({ modkey }, "d", function ()
-	awful.util.spawn("dmenu_run -i -h 9 -p 'Run command:' -nb '" .. 
+	awful.util.spawn("dmenu_run -i -x 700 -y 400 -w 200 -h 15 -dim 0.05 -l 4 -nb '" .. 
 		beautiful.bg_normal .. "' -nf '" .. beautiful.fg_normal ..
 		"' -fn '" .. beautiful.font_alt ..
-		"' -sb '" .. beautiful.bg_focus .. 
+		"' -sb '" .. beautiful.bg_special .. 
 		"' -sf '" .. beautiful.fg_focus .. "'") 
 	end),
 	
@@ -560,16 +560,16 @@ awful.rules.rules = {
 	
 	{ rule = { class = "feh" },
 		properties = { 
-      border_color = "#30303a",
-      focus = true,
-      floating = true } 
+			border_color = beautiful.border_normal,
+			focus = true,
+			floating = true } 
 	},
 	
 	{ rule = { class = "pinentry" },
 		properties = { floating = true } 
 	},
 	
-	{ rule = { class = "sun-awt-X11-XWindowPeer" },
+	{ rule = { class = "sun-awt-X11-XWindowPeer", "com-group_finity-mascot-Main" },
 		properties = { floating = true, border_width = 0 } 
 	},
 	
