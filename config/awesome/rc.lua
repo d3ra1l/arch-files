@@ -192,21 +192,21 @@ function batinfo(adapter)
 			end 
 
 			if sta:match("Charging") then
-				batico = "<span color='#dfdfdf'>⮒ </span>"
+				batico = "<span color='#dfdfdf' background='#30303a'> ⮒ </span>"
 			elseif sta:match("Discharging") then
 				if tonumber(battery) > 49 then
-					batico = "<span color='#dfdfdf'>⮏ </span>"
+					batico = "<span color='#dfdfdf' background='#30303a'> ⮏ </span>"
 				elseif tonumber(battery) < 50 and tonumber(battery) > 25 then
-					batico = "<span color='#dfdfdf'>⮑ </span>"
+					batico = "<span color='#dfdfdf' background='#30303a'> ⮑ </span>"
 				else
-					batico = "<span color='#c97c7c'>⮐ </span>"
+					batico = "<span color='#c97c7c' background='#30303a'> ⮐ </span>"
 				end 
 			else
-				batico = "<span color='#dfdfdf'>⮎ </span>"
+				batico = "<span color='#dfdfdf' background='#30303a'> ⮎ </span>"
 			end
 		end
 
-	batwidget:set_markup(' '..batico..' '..batbar..' ')
+	batwidget:set_markup(''..batico..' '..batbar..' ')
 end 
 battery_timer = timer({timeout = 1}) 
 battery_timer:connect_signal("timeout", function()
@@ -216,7 +216,7 @@ battery_timer:start()
 
 
 -- time widget
-mytextclock = awful.widget.textclock(" <span color='#dfdfdf'>⮖</span>  %R - %a, %b %d  ")
+mytextclock = awful.widget.textclock("<span color='#dfdfdf' background='#30303a'> ⮖ </span> %R - %a, %b %d  ")
 daze.widgets.calendar.register(mytextclock)
 
 
@@ -228,15 +228,15 @@ function (widget, args)
 	local qual = tonumber(args["{link}"])
 	local ssid = args["{ssid}"]
 	if qual > 66 then
-		neticon = '<span color="#dfdfdf">⮷ </span>'
+		neticon = '<span color="#dfdfdf" background="#30303a"> ⮷ </span>'
 	elseif qual > 33 then
-		neticon = '<span color="#dfdfdf">⮸ </span>'
+		neticon = '<span color="#dfdfdf" background="#30303a"> ⮸ </span>'
 	elseif qual > 0 then
-		neticon = '<span color="#dfdfdf">⮹ </span>'
+		neticon = '<span color="#dfdfdf" background="#30303a"> ⮹ </span>'
 	else
-		neticon = '<span color="#dfdfdf">… </span>'
+		neticon = '<span color="#dfdfdf" background="#30303a"> … </span>'
 	end
-	return ' '..neticon..' '..ssid..' '
+	return ''..neticon..' '..ssid..' '
 end, 1, 'wlan0')
 
 
@@ -247,11 +247,11 @@ daze.widgets.mpd.register(mpdwidget)
 vicious.register(mpdwidget, vicious.widgets.mpd,
 function (widget, args)
 	if args["{state}"] == "Stop" then 
-		return "<span color='#dfdfdf'>⮕</span>  not playing anything "
+		return "<span color='#dfdfdf' background='#30303a'> ⮕ </span> not playing anything "
 	elseif args["{state}"] == "Pause" then
-		return '<span color="#dfdfdf">⮔</span> '.. args["{Title}"]..'<span color="#d2d2d2"> by </span>'.. args["{Artist}"]..' '
+		return '<span color="#dfdfdf" background="#30303a"> ⮔ </span> '.. args["{Title}"]..'<span color="#d2d2d2"> by </span>'.. args["{Artist}"]..' '
 	else
-		return '<span color="#dfdfdf">⮓</span> '.. args["{Title}"]..'<span color="#d2d2d2"> by </span>'.. args["{Artist}"]..' '
+		return '<span color="#dfdfdf" background="#30303a"> ⮓ </span> '.. args["{Title}"]..'<span color="#d2d2d2"> by </span>'.. args["{Artist}"]..' '
 	end
 end, 1)
 
@@ -286,9 +286,9 @@ function (widget, args)
 		else
 			volbar = "<span color='#b4b4b4'></span><span color='#66666a'>⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶ </span>"
 		end 
-		return '<span color="#dfdfdf"> ⮜ </span> '.. volbar ..' '
+		return '<span color="#dfdfdf" background="#30303a"> ⮜ </span> '.. volbar ..' '
 	else
-		return '<span color="#dfdfdf"> ⮜ </span> muted  '
+		return '<span color="#dfdfdf" background="#30303a"> ⮜ </span> muted  '
 	end 
 end, 1, "Master")
 
@@ -358,6 +358,7 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the left
     local left_layout = wibox.layout.fixed.horizontal()
     left_layout:add(mytaglist[s])
+    left_layout:add(spacer)
     left_layout:add(mylayoutbox[s])
     left_layout:add(spacer)
 
