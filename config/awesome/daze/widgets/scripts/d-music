@@ -20,8 +20,8 @@ if [ "`mpc 2>&1 | wc -l`" -gt "1" ]; then
 	so=`mpc current -f %title%`
 	arta=`mpc current -f %artist%`
 	alba=`mpc current -f %album%`
-	art=`mpc current -f %artist% | sed -e 's/\//-/g'`
-	alb=`mpc current -f %album% | sed -e 's/\//-/g'`
+	art=`mpc current -f %artist% | sed -e 's/\//-/g'| sed -e 's/|/-/g'`
+	alb=`mpc current -f %album% | sed -e 's/\//-/g'| sed -e 's/|/-/g'`
 	ti=$(mpc | sed -n "2p" | awk -F " " '{print $3}')
 	artist="^fg($FG2)Artist: ^fg($FG1)$arta"
 	album="^fg($FG2)Album: ^fg($FG1)$alba"

@@ -22,8 +22,8 @@ data=$(curl \
 setopt rematchpcre
 [[ $data =~ '<image size="large">([^<]+)</image>' ]] || { echo 'Error: No cover art found in album info.' && return 4 }
 
-artist="$(mpc current -f %artist% | sed -e 's/\//-/g')"
-album="$(mpc current -f %album% | sed -e 's/\//-/g')"
+artist="$(mpc current -f %artist% | sed -e 's/\//-/g' | sed -e 's/|/-/g')"
+album="$(mpc current -f %album% | sed -e 's/\//-/g' | sed -e 's/|/-/g')"
 
 1=${1:gs/\//_}
 2=${2:gs/\//_}
