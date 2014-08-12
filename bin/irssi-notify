@@ -1,0 +1,18 @@
+#!/bin/bash
+
+source ~/bin/d-conf
+
+XPOS="1490"
+HEIGHT="10"
+WIDTH="180"
+LINES="1"
+ALIGN="CENTER"
+
+outp=`tail -n 10 .irssi/fnotify; : > .irssi/fnotify; tail -f .irssi/fnotify`
+chan=`$outp | awk -F " " '{print $1}'`
+nick=`$outp | awk -F " " '{print $2}'`
+note=`$outp | awk -F " " '{print $3}'`
+
+while true;do
+	(echo "^fg($FG1)New hilight from ^fg($purp)$nick^fg($FG1) in ^fg($redb)$chan"; sleep $TIMING) | dzen2 -bg $BG -fn $FONT -x $XPOS -y $YPOS -w $WIDTH -h $HEIGHT -l $LINES -e 'onstart=uncollapse;button1=exit;button2=exit;button3=exit;button4=exit'
+done
