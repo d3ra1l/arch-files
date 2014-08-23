@@ -47,10 +47,7 @@ chatnets = {
 channels = (
   { name = "#/g/sicp"; chatnet = "rizon"; autojoin = "yes"; },
   { name = "#/g/summer"; chatnet = "rizon"; autojoin = "yes"; },
-  { name = "#sky"; chatnet = "rizon"; autojoin = "no"; },
-  { name = "#rice"; chatnet = "rizon"; autojoin = "no"; },
-  { name = "#sadbot-dev"; chatnet = "rizon"; autojoin = "yes"; },
-  { name = "#/g/linux"; chatnet = "rizon"; autojoin = "yes"; }
+  { name = "#/music/"; chatnet = "rizon"; autojoin = "yes"; }
 );
 
 aliases = {
@@ -156,6 +153,7 @@ statusbar = {
         barstart = { priority = "100"; };
         window = { };
         window_empty = { };
+        top_empty_line = { placement = "top"; };
         bottom_empty_line = { placement = "bottom"; };
         more = { priority = "-1"; alignment = "right"; };
         barend = { priority = "100"; alignment = "right"; };
@@ -182,11 +180,11 @@ statusbar = {
         topic = { };
         topic_empty = { };
         topicbarend = { priority = "100"; alignment = "right"; };
-
       };
     };
 
     bottom_empty_line = { placement = "bottom"; };
+    top_empty_line = { placement = "top"; position = "100"; };
 
     awl_0 = {
       placement = "top";
