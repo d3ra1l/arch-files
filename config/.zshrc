@@ -55,7 +55,7 @@ export TERM='rxvt-256color'
 export EDITOR="vim"
 
 #start X at login
-[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec xinit
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 
 #add ~/bin to $path
 export PATH=~/bin:$PATH
@@ -71,6 +71,9 @@ alias make="make -j5"
 
 #ensure cp is always recursive and verbose
 alias cp='cp -Rv'
+
+#start emacs with -nw
+alias emacs='emacs -nw'
 
 #add pretty much any font in ~/.fonts
 alias fonts='mkfontdir ~/.fonts;mkfontscale ~/.fonts;xset +fp ~/.fonts;xset fp rehash;fc-cache;fc-cache -fv'
@@ -107,11 +110,14 @@ define() {
 alias define="define"
 
 #music
-alias mpd='mpd;mpdscribble'
 alias mps='mpdscribble'
 alias ncp='ncmpcpp'
 alias eq='alsamixer -D equal'
 alias f2k='wine ~/.wine/drive_c/users/phallus/Desktop/foobar2000/foobar2000.exe'
+
+#pokesav
+alias pokesav='wine ~/.wine/drive_c/users/phallus/Desktop/pokesav_bw_06c_en.exe'
+alias pokegen='wine ~/.wine/drive_c/users/phallus/Desktop/pokegen/PokeGen.exe'
 
 #nitrogen
 alias nr='nitrogen --restore'
@@ -131,9 +137,14 @@ alias u7z='7za e'
 alias pk='pkill'
 alias pkx='sudo pkill X'
 
-#racket
-alias racket='screen -S racket racket'
-alias rkt='racket'
+#ygopro
+alias ygopro='cd ~/downloads/ygopro/;./ygopro64'
+
+#screen
+alias rackets='screen -S racket racket'
+alias guiles='screen -S guile guile'
+alias luas='screen -S lua lua'
+alias shells='screen -S zsh zsh'
 
 #toilet
 alias gaym='toilet --gay -f mono9 -t'
@@ -156,6 +167,7 @@ export gconf=~/gitshit/arch-files
 export gfo=~/gitshit/fonts
 export g4x=~/gitshit/4chan-x
 export gedu=~/gitshit/edu
+export gbot=~/gitshit/bot
 
 gcp() {
  case $1 in
@@ -175,7 +187,8 @@ gcp() {
   lemon)   cp ~/.fonts/bdf/lemon.bdf $gfo/lemon.bdf;$gfo ;;
   uushi)   cp ~/.fonts/bdf/uushi.bdf $gfo/uushi.bdf;$gfo ;;
   todo)    cp ~/bin/todo ~/gitshit/arch-files/bin/todo;$gconf ;;
-  211)     cp ~/edu/programming/c-211/* ~/gitshit/edu/csci-211/;$gedu ;;
+  211)     cp ~/edu/programming/c211/* ~/gitshit/edu/c211/;$gedu ;;
+  bot)     cp ~/edu/programming/bot/* ~/gitshit/bot/;$gbot ;;
   *)       echo "$1 not found!" ;;
  esac
 }
@@ -184,12 +197,14 @@ gcp() {
 #package management
 alias pu='pacman -Syu'
 alias ys='yaourt'
+alias yc='yaourt -Rns $(pacman -Qqdt)'
 alias yo='yaourt -Qdt'
 alias yi='yaourt -S'
 alias yr='yaourt -R'
 alias yu='yaourt -Syy && yaourt -Syua --devel'
 alias yb='yaourt -Sb'
 alias yg='yaourt -G'
+alias ysi='yaourt -Qs'
 
 #ranger
 rn() {
@@ -237,7 +252,7 @@ conf() {
   i3)      vim ~/.i3/config ;;
   irssi)   vim ~/.irssi/config ;;
   crshd)   vim ~/.irssi/phallus.theme ;;
-  lemon)   ~/.fonts/bdf;gbdfed;vim lemon.bdf;bdftopcf -o ../lemon.pcf lemon.bdf ;;
+  lemon)   ~/.fonts/bdf;gbdfed;vim lemon.bdf;bdftopcf -o ../lemon.pcf lemon.bdf;fonts ;;
   uushi)   ~/.fonts/bdf;gbdfed;bdftopcf -o ../uushi.pcf uushi.bdf ;;
   awesome) vim ~/.config/awesome/rc.lua ;;
   gtk)     vim ~/.themes/Kvtie/gtk-2.0/gtkrc ;;
