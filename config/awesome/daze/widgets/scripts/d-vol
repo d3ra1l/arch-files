@@ -1,6 +1,6 @@
 #!/bin/bash
 source $(dirname $0)/d-conf
-XPOS=$(xdotool getmouselocation | awk -F " " '{print $1}' | cut -d ":" -f 2)
+XPOS=$(( $(xdotool getmouselocation | awk -F " " '{print $1}' | cut -d ":" -f 2) - 14 ))
 WIDTH="31"
 LINES="13"
 HEIGHT="10"
