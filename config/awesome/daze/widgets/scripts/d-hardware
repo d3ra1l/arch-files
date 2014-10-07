@@ -2,9 +2,8 @@
 
 source $(dirname $0)/d-conf
 
-YPOS="14"
-#XPOS="1436"
-XPOS=$(( $(xdotool getmouselocation | awk -F " " '{print $1}' | cut -d ":" -f 2) - 55 ))
+#XPOS="1490"
+XPOS=$(( $(xdotool getmouselocation | awk -F " " '{print $1}' | cut -d ":" -f 2) - 65 ))
 #TIMING="5"
 
 HEIGHT="10"

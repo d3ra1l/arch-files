@@ -3,8 +3,16 @@
 source $(dirname $0)/d-conf
 
 #YPOS="14"
+get_xpos(){
+	xpos=$(( $(xdotool getmouselocation | awk -F " " '{print $1}' | cut -d ":" -f 2) - 45 ))
+	if [ "$xpos" -gt "1490" ]; then
+		echo "1490"
+	else
+		echo $xpos
+	fi
+}
 #XPOS=$(( $(xdotool getmouselocation | awk -F " " '{print $1}' | cut -d ":" -f 2) - 55 ))
-XPOS=1490
+XPOS=`get_xpos`
 #TIMING="5"
  
 HEIGHT="12"
@@ -13,7 +21,7 @@ ALIGN="center"
 
 ti=$(date | awk -F " " '{print $4}')
 day=$(date +%D)
-calendar=$(cal -1 | sed -re "s/^(.*[A-Za-z][A-Za-z]*.*)$/^fg()\1/;s/(^|[ ])($TODAY)($|[ ])/\1^fg(#2)\2^fg(#dfdfdf)\3/")
+calendar=$(cal -1 | sed -re "s/^(.*[A-Za-z][A-Za-z]*.*)$/^fg()\1/;s/(^|[ ])($TODAY)($|[ ])/\1^fg(#2)\2\3/")
 
 LINES="11"
 
