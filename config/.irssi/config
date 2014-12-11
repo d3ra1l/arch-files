@@ -247,6 +247,10 @@ settings = {
     use_msgs_window = "yes";
     autolog_ignore_targets = "auth global hopm-siglost hostserv nickserv phallus [leet] chanserv uguubot";
   };
+  "irc/dcc" = {
+    dcc_autoget = "yes";
+    dcc_download_path = "~/downloads/dcc";
+  };
 };
 
 logs = { };
@@ -263,6 +267,5 @@ ignores = (
 hilights = (
   { text = "phallus"; nick = "yes"; word = "yes"; fullword = "yes"; },
   { text = "benis"; nick = "yes"; word = "yes"; },
-  { text = "phal"; nick = "yes"; word = "yes"; },
-  { text = "dennis"; nick = "yes"; word = "yes"; }
+  { text = "phal"; nick = "yes"; word = "yes"; }
 );
