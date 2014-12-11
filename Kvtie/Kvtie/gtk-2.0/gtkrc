@@ -2,7 +2,7 @@
 # -made by phallus
 # -built from a basis of Lyvu and Eminence
 
-gtk_color_scheme = "fg_color:#646464\nbg_color:#ffffff\ntext_color:#909090\nbase_color:#ffffff\nselected_fg_color:#ffffff\nselected_bg_color:#646464\ntooltip_fg_color:#646464\ntooltip_bg_color:#ffffff"
+gtk_color_scheme = "fg_color:#646464\nbg_color:#fbfbfb\ntext_color:#909090\nbase_color:#fbfbfb\nselected_fg_color:#fbfbfb\nselected_bg_color:#646464\ntooltip_fg_color:#646464\ntooltip_bg_color:#f9f9f9"
 
 gtk_color_scheme = "frame_color:#646464\ninactive_frame_color:#c3c3c3" # Fix for Chrome
 
@@ -80,13 +80,13 @@ style "default" {
 	fg[INSENSITIVE] = "#c3c3c3"
 
 	bg[NORMAL] = @bg_color
-	bg[PRELIGHT] = "#ffffff"
+	bg[PRELIGHT] = "#fbfbfb"
 	bg[SELECTED] = @selected_bg_color
 	bg[INSENSITIVE] = @bg_color
-	bg[ACTIVE] = "#ffffff"
+	bg[ACTIVE] = "#fbfbfb"
 
 	base[NORMAL] = @base_color
-	base[PRELIGHT] = "#ffffff"
+	base[PRELIGHT] = "#fbfbfb"
 	base[ACTIVE] = @selected_bg_color
 	base[SELECTED] = @selected_bg_color
 	base[INSENSITIVE] = @bg_color
@@ -177,7 +177,7 @@ style "button" {
 	xthickness = 3
 	ythickness = 3
 	
-	bg[NORMAL] = "#ffffff"
+	bg[NORMAL] = "#f9f9f9"
 	bg[ACTIVE] = "#dfdfdf"
 }
 
@@ -213,7 +213,7 @@ style "menu" {
 	xthickness = 0
 	ythickness = 0
 	
-	fg[PRELIGHT] = "#666666"
+	fg[PRELIGHT] = "#ffffff"
 	bg[NORMAL] = "#ffffff"
 	
 	engine "murrine" {
@@ -292,7 +292,7 @@ style "progressbar" {
 	xthickness = 0
 	ythickness = 0
 
-	fg[PRELIGHT] = "#666666"
+	fg[PRELIGHT] = "#f9f9f9"
 
 	engine "murrine" {
 		# Explicitly set the radius, for progress
@@ -330,8 +330,8 @@ style "vscale" { }
 style "scrollbar" = "button" {
 	GtkRange::trough-under-steppers = 0
 	
-	bg[NORMAL] = "#ffffff"
-	bg[PRELIGHT] = "#ffffff" 
+	bg[NORMAL] = "#fbfbfb"
+	bg[PRELIGHT] = "#fbfbfb" 
 
 	engine "murrine" {
 	roundness = 0
