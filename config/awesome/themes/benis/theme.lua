@@ -57,11 +57,12 @@ theme.menu_bg_focus = "#30303a"
 -- beautiful.variable in your rc.lua
 --theme.bg_widget = "#cc0000"
 
-theme.useless_gap_width = "74"
-theme.lower_window_height = "124"
+theme.useless_gap_width = "94"
+--theme.lower_window_height = "124"
+theme.lower_window_height = "0"
 theme.vertical_resolution = "900"
 theme.vertical_border = "2"
-theme.outer_padding = "12"
+theme.outer_padding = "4"
 
 
 -- Define the image to load

@@ -477,8 +477,8 @@ globalkeys = awful.util.table.join(
 	awful.key({ "Control" }, "k", function () awful.util.spawn("amixer -q set Master 4%+ unmute") end),
 	awful.key({ "Control" }, "h",  function () awful.util.spawn("mpc prev") end),
 	awful.key({ modkey, }, "p", function () awful.util.spawn("mpc toggle") end),
-	awful.key({ "Mod4" }, "k", function () awful.util.spawn("xbacklight -inc 10") end),
-	awful.key({ "Mod4" }, "j", function () awful.util.spawn("xbacklight -dec 10") end)
+	awful.key({ "Mod4" }, "k", function () awful.util.spawn("xbacklight -inc 5") end),
+	awful.key({ "Mod4" }, "j", function () awful.util.spawn("xbacklight -dec 5") end)
 )
 
 

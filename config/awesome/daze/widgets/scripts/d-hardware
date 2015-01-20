@@ -54,7 +54,7 @@ cpuutilidle=$(iostat -c | sed -n "4p" | awk -F " " '{print $6}')
 hddtitle=$(df -h | head -1)
 hddtotal=$(df -h --total | tail -1)
 ramtotal=$(free -m | sed -n "2p" | awk -F " " '{print $2}')
-ramused=$(free -m | sed -n "3p" | awk -F " " '{print $3}')
+ramused=$(free -m | sed -n "2p" | awk -F " " '{print $3}')
 
 # }}}
 
