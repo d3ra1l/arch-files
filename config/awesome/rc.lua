@@ -77,7 +77,7 @@ for s = 1, screen.count() do
 end
 
 awful.layout.set(awful.layout.suit.floating, tags[1][1])                                             
-awful.tag.setmwfact(0.538, tags[1][1])
+awful.tag.setmwfact(0.5, tags[1][1])
 
 -- }}}
 
@@ -93,7 +93,8 @@ myawesomemenu = {
 
 mymainmenu = awful.menu({ items = { 
 	{ "⮩   urxvtc", terminal },
-	{ "⮠    nitro", "nitrogen" },
+	{ "⮻    nitro", "nitrogen" },
+	{ "⮠  shimeji", "/home/phallus/bin/shimeji-run" },
 	{ "⮤    scrot", "/home/phallus/bin/scr" },
 --{ "⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶", },
 	{ "⮗  restart", awesome.restart },
@@ -570,7 +571,11 @@ awful.rules.rules = {
 		properties = { floating = true } 
 	},
 	
-	{ rule = { class = "sun-awt-X11-XWindowPeer", "com-group_finity-mascot-Main" },
+	{ rule = { name = "win0" },
+		properties = { floating = true, border_width = 0 } 
+	},
+	
+	{ rule = { class = "com.group_finity.mascot.Main" },
 		properties = { floating = true, border_width = 0 } 
 	},
 	
