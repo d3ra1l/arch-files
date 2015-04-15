@@ -574,8 +574,7 @@ awful.rules.rules = {
 	{ rule = { name = "win0" },
 		properties = { floating = true, border_width = 0 } 
 	},
-	
-	{ rule = { class = "com.group_finity.mascot.Main" },
+	{ rule = { instance = "sun-awt-X11-XWindowPeer" },
 		properties = { floating = true, border_width = 0 } 
 	},
 	
