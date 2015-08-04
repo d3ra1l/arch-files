@@ -93,7 +93,7 @@ myawesomemenu = {
 
 mymainmenu = awful.menu({ items = { 
 	{ "⮩   urxvtc", terminal },
-	{ "⮻    nitro", "nitrogen" },
+--{ "⮻    nitro", "nitrogen" },
 	{ "⮠  shimeji", "/home/phallus/bin/shimeji-run" },
 	{ "⮤    scrot", "/home/phallus/bin/scr" },
 --{ "⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶", },
