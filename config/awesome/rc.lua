@@ -331,6 +331,9 @@ mytasklist.buttons = awful.util.table.join(
                                                   c:raise()
                                               end
                                           end),
+                     awful.button({ }, 3, function(c)
+                                              c.minimized = true
+                                          end),
                      awful.button({ }, 4, function ()
                                               awful.client.focus.byidx(1)
                                               if client.focus then client.focus:raise() end
