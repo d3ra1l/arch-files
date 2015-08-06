@@ -1,5 +1,6 @@
-# aliases
-###
+## aliases
+
+# general {{{
 
 #ensure make uses all cores (tfw I didn't realize my comp was quad-core until very recently)
 alias make="make -j5"
@@ -27,6 +28,7 @@ alias starwars='telnet towel.blinkenlights.nl'
 alias fort='fortune -a'
 alias gfort='fort | gayt'
 alias hack='cat /dev/urandom | hexdump -c'
+alias shimeji='~/bin/shimeji-run'
 
 #screenfetch
 alias sfd='screenfetch-dev'
@@ -45,14 +47,8 @@ define() {
 alias def="define"
 
 #music
-alias mps='mpdscribble'
 alias ncp='ncmpcpp'
-alias eq='alsamixer -D equal'
 alias f2k='wine ~/.wine/drive_c/users/phallus/Desktop/foobar2000/foobar2000.exe'
-
-#pokesav
-alias pokesav='wine ~/.wine/drive_c/users/phallus/Desktop/pokesav_bw_06c_en.exe'
-alias pokegen='wine ~/.wine/drive_c/users/phallus/Desktop/pokegen/PokeGen.exe'
 
 #nitrogen
 alias nr='nitrogen --restore'
@@ -72,9 +68,6 @@ alias u7z='7za e'
 alias pk='pkill'
 alias pkx='sudo pkill X'
 
-#ygopro
-alias ygopro='cd ~/downloads/ygopro/;./ygopro64'
-
 #screen
 alias rackets='screen -S racket racket'
 alias guiles='screen -S guile guile'
@@ -91,7 +84,21 @@ alias metf='toilet --metal -f future -t'
 alias mett='toilet --metal -f term -t'
 alias metp='toilet --metal -f pagga -t'
 
-#git
+#package management
+alias pu='pacman -Syu'
+alias ys='yaourt'
+alias yc='yaourt -Rns $(pacman -Qqdt)'
+alias yo='yaourt -Qdt'
+alias yi='yaourt -S'
+alias yr='yaourt -R'
+alias yu='yaourt -Syy && yaourt -Syua --devel'
+alias yb='yaourt -Sb'
+alias yg='yaourt -G'
+alias ysi='yaourt -Qs'
+
+#}}}
+
+#git {{{
 alias ga='git add *'
 alias gc='git commit -m' #remember to put commit in quotes
 alias gl='git clone'
@@ -110,8 +117,8 @@ gcp() {
   uc-t)    cp ~/.mozilla/firefox/*.default/chrome/userChrome.css $gstyc/userChrome-testing.css;$gstyc ;;
   4chan)   rm $gstyc/4chan.css;touch $gstyc/4chan.css;vim $gstyc/4chan.css;$gstyc ;;
   reddit)  rm $gstyc/reddit.css;touch $gstyc/reddit.css;vim $gstyc/reddit.css;$gstyc ;;
-  crshd)   cp ~/.irssi/phallus.theme $gconf/config/.irssi/phallus.theme;$gconf ;;
-  irssi)   cp ~/.irssi/config $gconf/config/.irssi/config;$gconf ;;
+  irssi)   cp ~/.irssi/config $gconf/config/.irssi/config;$gconf; cp ~/.irssi/phallus.theme $gconf/config/.irssi/phallus.theme;$gconf ;;
+  gtk)     cp ~/.themes/Kvtie/gtk-2.0/gtkrc $gconf/Kvtie/gtk-2.0/gtkrc; $gconf ;;
   zsh)     cp ~/.zshrc $gconf/config/.zshrc;cp ~/.zsh_aliases $gconf/config/.zsh_aliases;$gconf ;;
   vim)     cp ~/.vimrc $gconf/config/.vimrc;$gconf ;;
   vimp)    cp ~/.vimperatorrc $gconf/config/.vimperatorrc;$gconf ;;
@@ -121,29 +128,23 @@ gcp() {
   tmux)    cp ~/.tmux.conf $gconf/config/.tmux.conf;$gconf ;;
   lemon)   cp ~/.fonts/bdf/lemon.bdf $gfo/lemon.bdf;$gfo ;;
   uushi)   cp ~/.fonts/bdf/uushi.bdf $gfo/uushi.bdf;$gfo ;;
-  todo)    cp ~/bin/todo ~/gitshit/arch-files/bin/todo;$gconf ;;
-  211)     cp ~/edu/programming/c211/* ~/gitshit/edu/c211/;$gedu ;;
-  bot)     cp ~/edu/programming/bot/* ~/gitshit/bot/;$gbot ;;
+  todo)    cp ~/bin/todo $gconf/bin/todo;$gconf ;;
+  211)     cp ~/edu/programming/c211/* $gedu/c211/;$gedu ;;
+  bot)     cp ~/edu/programming/bot/* $gbot;$gbot ;;
+  awesome) cp ~/.config/awesome $gconf/config;$gconf ;;
+  compton) cp ~/.compton.conf $gconf/config/.compton.conf;$gconf ;;
   *)       echo "$1 not found!" ;;
  esac
 }
 
+# }}}
 
-#package management
-alias pu='pacman -Syu'
-alias ys='yaourt'
-alias yc='yaourt -Rns $(pacman -Qqdt)'
-alias yo='yaourt -Qdt'
-alias yi='yaourt -S'
-alias yr='yaourt -R'
-alias yu='yaourt -Syy && yaourt -Syua --devel'
-alias yb='yaourt -Sb'
-alias yg='yaourt -G'
-alias ysi='yaourt -Qs'
+# file management {{{
 
 #ranger
 rn() {
  case $1 in     
+  shimeji) ranger ~/stuff/linux-shimeji-master ;;
   awesome) ranger ~/.config/awesome ;;
   tor)     ranger ~/torrents ;;
   mu)      ranger ~/mu ;;
@@ -154,20 +155,8 @@ rn() {
   bks)     ranger ~/edu/books ;;
   ncp)     ranger ~/.ncmpcpp ;;
   vim)     ranger ~/.vim ;;
+  ffx)     ranger ~/.mozilla/firefox/c3mobl9b.default ;;
   *)       ranger ;;
- esac
-}
-
-#school - will add functions for notes and such once school starts
-export bks=~/edu/books
-alias bks=$bks
-re() {
- case $1 in
-  sicp)   llpp $bks/sicp.pdf & ;;
-  emacs)  llpp $bks/eintr.pdf & ;;
-  pil)    llpp $bks/pil.pdf & ;;
-  lua)    llpp $bks/pil.pdf & ;;
-  *)      ranger $bks ;;
  esac
 }
 
@@ -199,3 +188,5 @@ conf() {
   *)       echo "unknown conf: $1" ;;  
  esac
 }
+
+#}}}
