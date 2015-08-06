@@ -2,9 +2,12 @@
 
 source ~/bin/d-conf
 
-XPOS="1390"
+XPOS="1460"
+LINES="1"
 HEIGHT="12"
-WIDTH="205"
+WIDTH="134"
 ALIGN="LEFT"
 
-tail -n 10 .irssi/fnotify; : > .irssi/fnotify; tail -f .irssi/fnotify | dzen2 -bg $BG -fn $FONT -x $XPOS -y $YPOS -w $WIDTH -h $HEIGHT -e 'onstart=uncollapse;button1=exit;button3=exit;button2=exec:urxvt -e ~/bin/todo -e;button4=exit;button5=exit'
+while inotifywait ~/.irssi/fnotify >/dev/null 2>&1;do
+	echo "You have been highlighted!" | dzen2 -bg $BG -fn $FONT -x $XPOS -y $YPOS -w $WIDTH -h $HEIGHT -p 15 -e 'onstart=uncollapse;button1=exit;button3=exit'
+done
