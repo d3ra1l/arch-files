@@ -10,9 +10,11 @@
 local ipairs = ipairs
 local math = math
 local tag = require("awful.tag")
+local beautiful = require("beautiful")
+local tonumber = tonumber
 
 --- Tiled layouts module for awful
-module("awful.layout.suit.tile")
+module("daze.layout.tile")
 
 local function tile_group(cls, wa, orientation, fact, group)
     -- get our orientation right
@@ -73,7 +75,8 @@ local function tile_group(cls, wa, orientation, fact, group)
  
 
         -- Useless gap.
-        useless_gap = 12
+        --useless_gap = 23
+        useless_gap = tonumber(beautiful.padding)
         if useless_gap > 0
         then
             -- Top and left clients are shrinked by two steps and

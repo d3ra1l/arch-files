@@ -8,6 +8,7 @@ local wibox = require("wibox")
 local daze = require("daze")
 local vicious = require("vicious")
 local benis = require("benis")
+local lain = require ("lain")
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Notification library
@@ -62,8 +63,7 @@ modkey = "Mod1"
 local layouts =
 {
 	awful.layout.suit.floating,
-	awful.layout.suit.tile,
-	daze.layout.dtile,
+	daze.layout.tile,
 }
 
 -- }}}
@@ -77,7 +77,7 @@ for s = 1, screen.count() do
 end
 
 awful.layout.set(awful.layout.suit.floating, tags[1][1])                                             
-awful.tag.setmwfact(0.5, tags[1][1])
+awful.tag.setmwfact(0.55, tags[1][1])
 
 -- }}}
 
@@ -557,7 +557,7 @@ awful.rules.rules = {
 		} 
 	},
 	
-	--{ rule = { }, properties = { }, callback = awful.client.setslave },
+	{ rule = { }, properties = { }, callback = awful.client.setslave },
 	
 	{ rule = { name = "ImageMagick:" },
 		properties = { floating = true } 

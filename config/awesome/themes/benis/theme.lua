@@ -29,16 +29,6 @@ theme.border_focus  = "#30303a"
 theme.border_marked = "#646464"
 theme.border_feh    = "#30303a"
 
--- There are other variable sets
--- overriding the default one when
--- defined, the sets are:
--- [taglist|tasklist]_[bg|fg]_[focus|urgent]
--- titlebar_[bg|fg]_[normal|focus]
--- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
--- mouse_finder_[color|timeout|animate_timeout|radius|factor]
--- Example:
---theme.taglist_bg_focus = "#ff0000"
-
 -- Display the taglist squares
 theme.taglist_squares_sel   = "/home/phallus/.config/awesome/themes/benis/taglist/squarefw-g.png"
 theme.taglist_squares_unsel = "/home/phallus/.config/awesome/themes/benis/taglist/squarew-g.png"
@@ -52,18 +42,16 @@ theme.menu_width  = 75
 theme.menu_border_color = "#595961"
 theme.menu_bg_focus = "#30303a"
 
--- You can add as many variables as
--- you wish and access them by using
--- beautiful.variable in your rc.lua
---theme.bg_widget = "#cc0000"
-
-theme.useless_gap_width = "94"
+-- daze {{{
+--theme.useless_gap_width = "94"
+theme.useless_gap_width = "42"
 --theme.lower_window_height = "124"
 theme.lower_window_height = "0"
 theme.vertical_resolution = "900"
 theme.vertical_border = "2"
-theme.outer_padding = "4"
-
+theme.outer_padding = "6"
+theme.padding = "23"
+---}}}
 
 -- Define the image to load
 theme.titlebar_close_button_normal = "/home/phallus/.config/awesome/themes/benis/titlebar/close_normal.png"
@@ -88,8 +76,6 @@ theme.titlebar_maximized_button_normal_inactive = "/home/phallus/.config/awesome
 theme.titlebar_maximized_button_focus_inactive  = "/home/phallus/.config/awesome/themes/benis/titlebar/maximized_focus_inactive.png"
 theme.titlebar_maximized_button_normal_active = "/home/phallus/.config/awesome/themes/benis/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active  = "/home/phallus/.config/awesome/themes/benis/titlebar/maximized_focus_active.png"
-
---theme.wallpaper = "/home/phallus/img/wallpapers/scenery/bokeh - winter.jpg"
 
 -- You can use your own layout icons like this:
 
