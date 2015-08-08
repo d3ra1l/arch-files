@@ -29,17 +29,23 @@ theme.border_focus  = "#30303a"
 theme.border_marked = "#646464"
 theme.border_feh    = "#30303a"
 
+theme.taglist_squares_sel   = "/home/phallus/.config/awesome/themes/benis/taglist/squarefw-g.png"
+theme.taglist_squares_unsel = "/home/phallus/.config/awesome/themes/benis/taglist/squarew-g.png"
+
+theme.menu_submenu_icon = "/home/phallus/.config/awesome/themes/benis/submenu3.png"
 theme.menu_height = 11
 theme.menu_width  = 75
 theme.menu_border_color = "#595961"
 theme.menu_bg_focus = "#30303a"
 
+-- daze {{{
 theme.useless_gap_width = "42"
 theme.lower_window_height = "0"
 theme.vertical_resolution = "900"
 theme.vertical_border = "2"
 theme.outer_padding = "6"
 theme.padding = "23"
+---}}}
 
 theme.layout = {
 

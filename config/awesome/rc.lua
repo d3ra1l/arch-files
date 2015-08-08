@@ -428,6 +428,8 @@ globalkeys = awful.util.table.join(
 	awful.key({ modkey, "Shift" }, "f", function () awful.client.moveresize(  0,   0,  10,   0) end),
 	awful.key({ modkey, }, "'", function () awful.tag.incmwfact( 0.010) end),
 	awful.key({ modkey, }, ";", function () awful.tag.incmwfact(-0.010) end),
+	awful.key({ modkey, "Shift"   }, "'", function () awful.client.incwfact(0.010) end),
+	awful.key({ modkey, "Shift"   }, ";", function () awful.client.incwfact(-0.010) end),
 	
 	
 	--shift focused/swap client
@@ -553,7 +555,7 @@ awful.rules.rules = {
 			focus = awful.client.focus.filter,
 			keys = clientkeys,
 			buttons = clientbuttons,
-			size_hints_honor = false 
+			size_hints_honor = true
 		} 
 	},
 	
