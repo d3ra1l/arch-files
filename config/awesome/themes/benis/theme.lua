@@ -44,7 +44,7 @@ theme.lower_window_height = "0"
 theme.vertical_resolution = "900"
 theme.vertical_border = "2"
 theme.outer_padding = "6"
-theme.padding = "23"
+theme.padding = "42"
 ---}}}
 
 theme.layout = {
