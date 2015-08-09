@@ -96,16 +96,16 @@ fi
 
 # Bars {{{
 
-cpu_bar_total=`/home/phallus/.config/awesome/daze/widgets/scripts/hardware/bar-cpu 0`
-cpu_bar_0=`/home/phallus/.config/awesome/daze/widgets/scripts/hardware/bar-cpu 1`
-cpu_bar_1=`/home/phallus/.config/awesome/daze/widgets/scripts/hardware/bar-cpu 2`
-cpu_bar_2=`/home/phallus/.config/awesome/daze/widgets/scripts/hardware/bar-cpu 3`
-cpu_bar_3=`/home/phallus/.config/awesome/daze/widgets/scripts/hardware/bar-cpu 4`
+cpu_bar_total=`/home/phallus/.config/awesome/monkfish/widgets/scripts/hardware/bar-cpu 0`
+cpu_bar_0=`/home/phallus/.config/awesome/monkfish/widgets/scripts/hardware/bar-cpu 1`
+cpu_bar_1=`/home/phallus/.config/awesome/monkfish/widgets/scripts/hardware/bar-cpu 2`
+cpu_bar_2=`/home/phallus/.config/awesome/monkfish/widgets/scripts/hardware/bar-cpu 3`
+cpu_bar_3=`/home/phallus/.config/awesome/monkfish/widgets/scripts/hardware/bar-cpu 4`
 
-mem_bar=`/home/phallus/.config/awesome/daze/widgets/scripts/hardware/bar-ram-lg`
+mem_bar=`/home/phallus/.config/awesome/monkfish/widgets/scripts/hardware/bar-ram-lg`
 
-sda_bar=`/home/phallus/.config/awesome/daze/widgets/scripts/hardware/bar-disk1`
-sdb_bar=`/home/phallus/.config/awesome/daze/widgets/scripts/hardware/bar-disk2`
+sda_bar=`/home/phallus/.config/awesome/monkfish/widgets/scripts/hardware/bar-disk1`
+sdb_bar=`/home/phallus/.config/awesome/monkfish/widgets/scripts/hardware/bar-disk2`
 
 # }}}
 
