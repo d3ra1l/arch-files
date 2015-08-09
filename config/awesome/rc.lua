@@ -186,7 +186,7 @@ function batinfo(adapter)
     end
   end
 
-  batwidget:set_markup(''..batico..' '..batbar..' ')
+  batwidget:set_markup(''..batico..' '..batbar..'  ')
 end 
 battery_timer = timer({timeout = 1}) 
 battery_timer:connect_signal("timeout", function()
@@ -250,7 +250,7 @@ local vol = math.floor(args[1] / 10)
         string.rep("⮶",vol)..
         "</span><span color='".."#66666a".."'>"..
         string.rep("⮶",10-vol).."</span>"
-    return '<span color="#dfdfdf" background="#30303a"> ⮜ </span> '.. volbar ..' '
+    return '<span color="#dfdfdf" background="#30303a"> ⮜ </span> '.. volbar ..'  '
   else
     return '<span color="#dfdfdf" background="#30303a"> ⮜ </span> muted  '
   end 
