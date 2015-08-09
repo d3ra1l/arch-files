@@ -1,3 +1,3 @@
 return {
-	layoutbox = require("benis.widget.layoutbox")
+  layoutbox = require("benis.widget.layoutbox")
 }

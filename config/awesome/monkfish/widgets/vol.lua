@@ -7,13 +7,13 @@ local capi = {
 }
 local awful = require("awful")
 local naughty = require("naughty")
-module("daze.widgets.mpd")
+module("monkfish.widgets.vol")
 
 function register(mywidget)
     mywidget:buttons(awful.util.table.join(
     awful.button({ }, 1, 
     function()
-        awful.util.spawn_with_shell("/home/phallus/.config/awesome/daze/widgets/scripts/d-music")
+        awful.util.spawn_with_shell("/home/phallus/.config/awesome/monkfish/widgets/scripts/d-vol")
 --        naughty.notify({
 --        text = "mpdinfogoeshere",
 --        timeout = 0,

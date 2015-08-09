@@ -6,7 +6,7 @@ local capi = {
     client = client,
     screen = screen
 }
-module("daze.util")
+module("monkfish.util")
 
 run = awful.util.spawn
 

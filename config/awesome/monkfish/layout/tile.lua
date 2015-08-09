@@ -14,7 +14,7 @@ local beautiful = require("beautiful")
 local tonumber = tonumber
 
 --- Tiled layouts module for awful
-module("daze.layout.tile")
+module("monkfish.layout.tile")
 
 local function tile_group(cls, wa, orientation, fact, group)
     -- get our orientation right

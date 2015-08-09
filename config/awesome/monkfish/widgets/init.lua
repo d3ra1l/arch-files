@@ -1,0 +1,7 @@
+require("monkfish.widgets.calendar")
+require("monkfish.widgets.mpd")
+require("monkfish.widgets.net")
+require("monkfish.widgets.sys")
+require("monkfish.widgets.bat")
+require("monkfish.widgets.vol")
+module("monkfish.widgets")

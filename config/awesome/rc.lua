@@ -5,7 +5,7 @@ awful.rules = require("awful.rules")
 require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
-local daze = require("daze")
+local monkfish = require("monkfish")
 local vicious = require("vicious")
 local benis = require("benis")
 local lain = require ("lain")
@@ -63,7 +63,7 @@ modkey = "Mod1"
 local layouts =
 {
   awful.layout.suit.floating,
-  daze.layout.tile,
+  monkfish.layout.tile,
 }
 
 -- }}}
@@ -147,11 +147,10 @@ tasklist.buttons = awful.util.table.join(
 
 --most of these widgets could use some refactoring
 
--- bat widget {{{
 --if you get an error regarding hibernation, change energy_now and energy_full to charge_now/full. thanks doidbb
 
 batwidget = wibox.widget.textbox()
-daze.widgets.bat.register(batwidget)
+monkfish.widgets.bat.register(batwidget)
 function batinfo(adapter)
   local fcur = io.open("/sys/class/power_supply/"..adapter.."/energy_now")    
   local fcap = io.open("/sys/class/power_supply/"..adapter.."/energy_full")
@@ -198,12 +197,12 @@ battery_timer:start()
 
 -- time widget
 mytextclock = awful.widget.textclock("<span color='#dfdfdf' background='#30303a'> ⮖ </span> %R - %a, %b %d  ")
-daze.widgets.calendar.register(mytextclock)
+monkfish.widgets.calendar.register(mytextclock)
 
 
 -- net widget
 netwidget = wibox.widget.textbox()
-daze.widgets.net.register(netwidget)
+monkfish.widgets.net.register(netwidget)
 vicious.register(netwidget, vicious.widgets.wifi,
 function (widget, args)
   local qual = tonumber(args["{link}"])
@@ -223,7 +222,7 @@ end, 1, 'wlan0')
 
 -- mpd widget
 mpdwidget = wibox.widget.textbox()                                                                                                                   
-daze.widgets.mpd.register(mpdwidget)
+monkfish.widgets.mpd.register(mpdwidget)
 
 vicious.register(mpdwidget, vicious.widgets.mpd,
 function (widget, args)
@@ -237,9 +236,8 @@ function (widget, args)
 end, 1)
 
 
---volume widget {{{
 volwidget = wibox.widget.textbox()
-daze.widgets.vol.register(volwidget)
+monkfish.widgets.vol.register(volwidget)
 
 vicious.register(volwidget, vicious.widgets.volume,
 function (widget, args)

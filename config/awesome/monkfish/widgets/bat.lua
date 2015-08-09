@@ -7,13 +7,13 @@ local capi = {
 }
 local awful = require("awful")
 local naughty = require("naughty")
-module("daze.widgets.sys")
+module("monkfish.widgets.bat")
 
 function register(mywidget)
     mywidget:buttons(awful.util.table.join(
     awful.button({ }, 1, 
     function()
-        awful.util.spawn_with_shell("/home/phallus/.config/awesome/daze/widgets/scripts/dzen_hardware.sh")
+        awful.util.spawn_with_shell("/home/phallus/.config/awesome/monkfish/widgets/scripts/d-hardware")
     end)
    ))
 end

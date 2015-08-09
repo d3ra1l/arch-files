@@ -7,7 +7,7 @@ local capi = {
 }
 local spawn_under_mouse = true
 
-module("daze.float")
+module("monkfish.float")
 
 local client = {}
 

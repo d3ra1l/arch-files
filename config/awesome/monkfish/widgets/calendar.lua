@@ -7,14 +7,13 @@ local capi = {
 }
 local awful = require("awful")
 local naughty = require("naughty")
-module("daze.widgets.calendar")
+module("monkfish.widgets.calendar")
 
 function register(mywidget)
     mywidget:buttons(awful.util.table.join(
     awful.button({ }, 1, 
     function()
-        awful.util.spawn_with_shell("/home/phallus/.config/awesome/daze/widgets/scripts/d-date")
-        --awful.util.spawn_with_shell("/home/phallus/.config/awesome/daze/widgets/calendar")
+        awful.util.spawn_with_shell("/home/phallus/.config/awesome/monkfish/widgets/scripts/d-date")
     end)
    ))
 end
