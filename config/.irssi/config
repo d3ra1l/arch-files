@@ -38,10 +38,6 @@ chatnets = {
   SILC = { type = "SILC"; };
   unixhub = { type = "IRC"; };
   freenode = { type = "IRC"; };
-  bitlbee = {
-    type = "IRC";
-    autosendcmd = "wait 200; /msg -localhost &bitlbee identify nigger";
-  };
 };
 
 channels = (
