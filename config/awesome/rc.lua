@@ -91,11 +91,11 @@ local function floats(c)
   return awful.layout.getname(layout) == "floating" or awful.client.floating.get(c)
 end
 
-local function move(c, x, y, mw, a, b)
+local function move(c, x, y, mw, a, b) 
   if floats(c) then
     if b == "n" then
       awful.client.moveresize( x, y, 0, 0 )  
-    else
+    elseif b == "y" then
       awful.client.moveresize( 0, 0, x, y )
     end
   else
