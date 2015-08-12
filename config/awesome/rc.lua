@@ -81,7 +81,26 @@ fgr = "#dfdfdf"
 bgr = "#30303a"
 bfg = "#b4b4b4"
 bbg = "#66666a"
+wfg = "#d23d3d"
 
+-- movement fxns
+-- thank you ne
+local function floats(c) 
+  local layout = awful.layout.get(c.screen)
+  return awful.layout.getname(layout) == "floating" or awful.client.floating.get(c)
+end
+
+local function move(c, x, y, mw, b)
+  if floats(c) then
+    awful.client.moveresize( x, y, 0, 0 )  
+  else
+    if b == "f" then
+      awful.tag.incmwfact(mw) 
+    elseif b == "t" then
+      awful.client.incwfact(mw)
+    end
+  end
+end
 -- }}}
 
 
@@ -90,7 +109,7 @@ bbg = "#66666a"
 tags = {
   names = { "⮫", "⮬", "⮭", "⮮", "⮯" },
   layouts = { layouts[2], layouts[1], layouts[1], layouts[1], layouts[1] },
-  mwfact = .53 
+  mwfact = .54
 }
 
 for s = 1, screen.count() do
@@ -193,7 +212,7 @@ function batinfo(adapter)
       elseif tonumber(battery) < 50 and tonumber(battery) > 25 then
         batico = colorizei(" ⮑ ", fgr, bgr)
       else
-        batico = colorizei(" ⮐ ", fgr, bgr)
+        batico = colorizei(" ⮐ ", wfg, bgr)
       end 
     else
       batico = colorizei(" ⮎ ", fgr, bgr)
@@ -387,22 +406,6 @@ globalkeys = awful.util.table.join(
   
   -- move/resize clients
   -- to do: incorporate both floating move/resize and tiled wfact into one keybinding
-  awful.key({ modkey, "Shift" }, "j",    
-    function (lyt)
-      awful.client.moveresize(  0,  10,   0,   0) 
-    end),
-  awful.key({ modkey, "Shift" }, "k",    
-    function () 
-      awful.client.moveresize(  0, -10,   0,   0) 
-    end),
-  awful.key({ modkey, "Shift" }, "h",    
-    function () 
-      awful.client.moveresize(-10,   0,   0,   0) 
-    end),
-  awful.key({ modkey, "Shift" }, "l",    
-    function () 
-      awful.client.moveresize( 10,   0,   0,   0) 
-    end),
   awful.key({ modkey, "Shift" }, "s", function () awful.client.moveresize(  0,   0,   0, -10) end),
   awful.key({ modkey, "Shift" }, "d", function () awful.client.moveresize(  0,   0,   0,  10) end),
   awful.key({ modkey, "Shift" }, "a", function () awful.client.moveresize(  0,   0, -10,   0) end),
@@ -474,7 +477,11 @@ clientkeys = awful.util.table.join(
   awful.key({ modkey, }, "c", function (c) c:kill() end),
   awful.key({ modkey, }, "t", awful.client.floating.toggle ),
   awful.key({ modkey, }, "m", function (c) c:swap(awful.client.getmaster()) end),
-  awful.key({ modkey, }, "y", function (c) c.ontop = not c.ontop end)
+  awful.key({ modkey, }, "y", function (c) c.ontop = not c.ontop end),
+  awful.key({ modkey, "Shift"}, "j", function(c) move( c, 0, 10, -0.011, "t") end),
+  awful.key({ modkey, "Shift"}, "k", function(c) move( c, 0, -10, 0.011, "t") end),
+  awful.key({ modkey, "Shift"}, "h", function(c) move( c, -10, 0, -.010, "f") end),
+  awful.key({ modkey, "Shift"}, "l", function(c) move( c, 10, 0, .010, "f") end)
 )
 
 -- Compute the maximum number of digit we need, limited to 9
