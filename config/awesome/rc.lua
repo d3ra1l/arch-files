@@ -166,8 +166,8 @@ tasklist.buttons = awful.util.table.join(
 
 -- {{{ Wibox
 
---if you get an error regarding hibernation, change energy_now and energy_full to charge_now/full. thanks doidbb
-
+-- bat widget {{{
+-- if you get an error regarding hibernation, change energy_now and energy_full to charge_now/full. thanks doidbb
 batwidget = wibox.widget.textbox()
 monkfish.widgets.bat.register(batwidget)
 function batinfo(adapter)
@@ -206,13 +206,15 @@ battery_timer:connect_signal("timeout", function()
   batinfo("BAT0")
 end)
 battery_timer:start()
+--}}}
 
--- time widget
+-- time widget {{{
 -- i should refactor this but idagf
 mytextclock = awful.widget.textclock("<span color='#dfdfdf' background='#30303a'> ⮖ </span> %R - %a, %b %d  ")
 monkfish.widgets.calendar.register(mytextclock)
+--}}}
 
--- net widget
+-- net widget {{{
 netwidget = wibox.widget.textbox()
 monkfish.widgets.net.register(netwidget)
 vicious.register(netwidget, vicious.widgets.wifi,
@@ -230,8 +232,9 @@ function (widget, args)
   end
   return ''..neticon..' '..ssid..' '
 end, 1, 'wlan0')
+--}}}
 
--- mpd widget
+-- mpd widget {{{
 mpdwidget = wibox.widget.textbox()
 monkfish.widgets.mpd.register(mpdwidget)
 vicious.register(mpdwidget, vicious.widgets.mpd,
@@ -251,15 +254,16 @@ function (widget, args)
     return ''..muicon..' '..title..' '..by..' '..artist..' '
   end
 end, 1)
+--}}}
 
--- vol widget
+-- vol widget {{{
 volwidget = wibox.widget.textbox()
 monkfish.widgets.vol.register(volwidget)
 
 vicious.register(volwidget, vicious.widgets.volume,
 function (widget, args)
 local volbar = ""
-local volicon = colorizen(" ⮜ ", fgr, bgr)
+local volicon = colorizei(" ⮜ ", fgr, bgr)
 local vol = math.floor(args[1] / 10)
   if (args[2] ~= "♩" ) then
     volbar = colorizeb(string.rep("⮶",vol), bfg, string.rep("⮶",10-vol), bbg)
@@ -268,6 +272,7 @@ local vol = math.floor(args[1] / 10)
     return ''..volicon..' muted  '
   end 
 end, 1, "Master")
+--}}}
 
 separator = wibox.widget.textbox()
 spacer1 = wibox.widget.textbox("     ")
