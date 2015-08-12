@@ -75,14 +75,14 @@ local layouts =
 tags = {
   names = { "⮫", "⮬", "⮭", "⮮", "⮯" },
   layouts = { layouts[2], layouts[1], layouts[1], layouts[1], layouts[1] },
-  mwfact = { .53, .53, .53, .53, .53 }
+  mwfact = .53 
 }
 
 for s = 1, screen.count() do
   tags[s] = awful.tag(tags.names, s, tags.layouts, tags.mwfact)
   -- it's a shitty loop but it works
   for i = 1, 5 do
-    awful.tag.setmwfact(.53, tags[1][i])
+    awful.tag.setmwfact(tags.mwfact, tags[1][i])
   end
 end
 
