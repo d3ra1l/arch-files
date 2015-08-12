@@ -91,11 +91,15 @@ local function floats(c)
   return awful.layout.getname(layout) == "floating" or awful.client.floating.get(c)
 end
 
-local function move(c, x, y, mw, b)
+local function move(c, x, y, mw, a, b)
   if floats(c) then
-    awful.client.moveresize( x, y, 0, 0 )  
+    if b == "n" then
+      awful.client.moveresize( x, y, 0, 0 )  
+    else
+      awful.client.moveresize( 0, 0, x, y )
+    end
   else
-    if b == "f" then
+    if a == "f" then
       awful.tag.incmwfact(mw) 
     else
       awful.client.incwfact(mw)
@@ -466,14 +470,14 @@ clientkeys = awful.util.table.join(
   awful.key({ modkey, }, "t", awful.client.floating.toggle ),
   awful.key({ modkey, }, "m", function (c) c:swap(awful.client.getmaster()) end),
   awful.key({ modkey, }, "y", function (c) c.ontop = not c.ontop end),
-  awful.key({ modkey, "Shift"}, "j", function(c) move( c, 0, 10, -0.011, "t") end),
-  awful.key({ modkey, "Shift"}, "k", function(c) move( c, 0, -10, 0.011, "t") end),
-  awful.key({ modkey, "Shift"}, "h", function(c) move( c, -10, 0, -.010, "f") end),
-  awful.key({ modkey, "Shift"}, "l", function(c) move( c, 10, 0, .010, "f") end),
-  awful.key({ modkey, "Shift" }, "s", function () awful.client.moveresize(  0,   0,   0, -10) end),
-  awful.key({ modkey, "Shift" }, "d", function () awful.client.moveresize(  0,   0,   0,  10) end),
-  awful.key({ modkey, "Shift" }, "a", function () awful.client.moveresize(  0,   0, -10,   0) end),
-  awful.key({ modkey, "Shift" }, "f", function () awful.client.moveresize(  0,   0,  10,   0) end),
+  awful.key({ modkey, "Shift"}, "j", function(c) move( c, 0, 10, -0.011, "t", "n") end),
+  awful.key({ modkey, "Shift"}, "k", function(c) move( c, 0, -10, 0.011, "t", "n") end),
+  awful.key({ modkey, "Shift"}, "h", function(c) move( c, -10, 0, -.010, "f", "n") end),
+  awful.key({ modkey, "Shift"}, "l", function(c) move( c, 10, 0, .010, "f", "n") end),
+  awful.key({ modkey, "Shift" }, "d", function (c) move( c, 0, 10, -.011, "t", "y") end),
+  awful.key({ modkey, "Shift" }, "s", function (c) move( c, 0, -10, .011, "t", "y") end),
+  awful.key({ modkey, "Shift" }, "a", function (c) move( c, -10, 0, -.01, "f", "y") end),
+  awful.key({ modkey, "Shift" }, "f", function (c) move( c, 10, 0, .01, "f", "y") end),
       awful.key({ modkey, "Shift" }, "m",
         function (c)
           c.maximized_horizontal = not c.maximized_horizontal
