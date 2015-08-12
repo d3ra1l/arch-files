@@ -29,6 +29,12 @@ theme.border_focus  = "#30303a"
 theme.border_marked = "#646464"
 theme.border_feh    = "#30303a"
 
+theme.colorize_fg    = "#dfdfdf"
+theme.colorize_fgb   = "#b4b4b4"
+theme.colorize_bg    = "#30303a"
+theme.colorize_bgb   = "#66666a"
+theme.colorize_fgw   = "#d23d3d"
+
 theme.taglist_squares_sel   = "/home/phallus/.config/awesome/themes/benis/taglist/squarefw-g.png"
 theme.taglist_squares_unsel = "/home/phallus/.config/awesome/themes/benis/taglist/squarew-g.png"
 
@@ -38,16 +44,14 @@ theme.menu_width  = 75
 theme.menu_border_color = "#595961"
 theme.menu_bg_focus = "#30303a"
 
---works best if the padding is 7 + 10x
+--gaps work best if the padding is 7 + 10x
 theme.padding = "77"
 
 theme.layout = {
-
-floating  = " ⮛ ",
-tile      = " ⮘ ",
-tileleft  = " ⮙ ",
-dtile     = " ⮨ ",
-
+    floating  = " ⮛ ",
+    tile      = " ⮘ ",
+    tileleft  = " ⮙ ",
+    dtile     = " ⮨ ",
 }
 
 theme.icon_theme = nil

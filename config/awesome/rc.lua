@@ -77,11 +77,12 @@ local function colorizei(s, fg, bg)
   return "<span color='"..fg.."' background='"..bg.."'>"..s.."</span>"
 end
 
-fgr = "#dfdfdf"
-bgr = "#30303a"
-bfg = "#b4b4b4"
-bbg = "#66666a"
-wfg = "#d23d3d"
+-- colors to use
+fgr = theme.colorize_fg
+bgr = theme.colorize_bg
+bfg = theme.colorize_fgb
+bbg = theme.colorize_bgb
+wfg = theme.colorize_fgw
 
 -- movement fxns
 -- thank you ne
@@ -109,7 +110,7 @@ end
 tags = {
   names = { "⮫", "⮬", "⮭", "⮮", "⮯" },
   layouts = { layouts[2], layouts[1], layouts[1], layouts[1], layouts[1] },
-  mwfact = .54
+  mwfact = .545
 }
 
 for s = 1, screen.count() do
