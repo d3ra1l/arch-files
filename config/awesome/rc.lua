@@ -50,12 +50,12 @@ end
 beautiful.init("/home/phallus/.config/awesome/themes/benis/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "urxvt"
-browser = os.getenv("BROWSER") or "firefox"
-editor = os.getenv("EDITOR") or "vim"
+terminal   = "urxvt"
+browser    = os.getenv("BROWSER") or "firefox"
+editor     = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
-scrot = "~/bin/scr"
-lock = "~/bin/i3lock-w"
+scrot      = "~/bin/scr"
+lock       = "~/bin/i3lock-w"
 
 -- Default modkey.
 modkey = "Mod1"
@@ -72,17 +72,19 @@ local layouts =
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
-tags = {}
-for s = 1, screen.count() do
-  tags[s] = awful.tag({ "⮫", "⮬", "⮭", "⮮", "⮯" }, s, layouts[1])
-end
+tags = {
+  names = { "⮫", "⮬", "⮭", "⮮", "⮯" },
+  layouts = { layouts[2], layouts[1], layouts[1], layouts[1], layouts[1] },
+  mwfact = { .53, .53, .53, .53, .53 }
+}
 
-awful.layout.set(monkfish.layout.tile, tags[1][1])
-awful.tag.setmwfact(0.53, tags[1][1])
-awful.tag.setmwfact(0.53, tags[1][2])
-awful.tag.setmwfact(0.53, tags[1][3])
-awful.tag.setmwfact(0.53, tags[1][4])
-awful.tag.setmwfact(0.53, tags[1][5])
+for s = 1, screen.count() do
+  tags[s] = awful.tag(tags.names, s, tags.layouts, tags.mwfact)
+  -- it's a shitty loop but it works
+  for i = 1, 5 do
+    awful.tag.setmwfact(.53, tags[1][i])
+  end
+end
 
 -- }}}
 
