@@ -110,7 +110,7 @@ end
 tags = {
   names = { "⮫", "⮬", "⮭", "⮮", "⮯" },
   layouts = { layouts[2], layouts[1], layouts[1], layouts[1], layouts[1] },
-  mwfact = .545
+  mwfact = .54
 }
 
 for s = 1, screen.count() do
@@ -473,7 +473,12 @@ clientkeys = awful.util.table.join(
   awful.key({ modkey, "Shift" }, "s", function () awful.client.moveresize(  0,   0,   0, -10) end),
   awful.key({ modkey, "Shift" }, "d", function () awful.client.moveresize(  0,   0,   0,  10) end),
   awful.key({ modkey, "Shift" }, "a", function () awful.client.moveresize(  0,   0, -10,   0) end),
-  awful.key({ modkey, "Shift" }, "f", function () awful.client.moveresize(  0,   0,  10,   0) end)
+  awful.key({ modkey, "Shift" }, "f", function () awful.client.moveresize(  0,   0,  10,   0) end),
+      awful.key({ modkey, "Shift" }, "m",
+        function (c)
+          c.maximized_horizontal = not c.maximized_horizontal
+          c.maximized_vertical   = not c.maximized_vertical
+        end)
 )
 
 -- Compute the maximum number of digit we need, limited to 9
