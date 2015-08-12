@@ -1,6 +1,6 @@
 ! black
-URxvt*color15  : #66666a
-URxvt*color7  : #30303a
+URxvt*color7: #30303a
+URxvt*color15: #66666a
 
 ! red
 URxvt*color1: #da637e
@@ -9,6 +9,8 @@ URxvt*color9: #f0a3a3
 ! yellow/orange
 URxvt*color3: #ab93b9
 URxvt*color11: #cbb6d7
+!URxvt*color3: #e5cb64
+!URxvt*color11: #ffea9a
 
 ! purple
 URxvt*color5: #ac8ac1
@@ -16,15 +18,17 @@ URxvt*color13: #d2bbe4
 
 ! blue
 URxvt*color4: #7787a3
-URxvt*color12: #a8c9eb
+URxvt*color12: #96b6d8
 
 ! green
-URxvt*color2 : #b1b792
-URxvt*color10  : #C7E6B8
+URxvt*color2: #b1b792
+URxvt*color10: #C7E6B8
 
 ! cyan
-URxvt*color6 : #63918b
-URxvt*color14  : #92b5b0
+!URxvt*color6: #63918b
+!URxvt*color14: #92b5b0
+URxvt*color6: #83a29e
+URxvt*color14: #a7c3bf
 
 ! white
 URxvt*color0 : #b1b8c3
@@ -34,12 +38,13 @@ URxvt*scrollBar: false
 URxvt*background: #20202f
 URxvt*foreground: #d2d2d2
 URxvt*cursorUnderline: true
-URxvt*cursorColor: #20202f
+URxvt*cursorColor: #666666
 URxvt*colorUL: #9695b5
 URxvt*internalBorder:7
 URxvt*borderColor: #20202f
+URxvt*pointerBlank: false
 
-URxvt*font: xft:lemon:size=10
-URxvt*boldFont: xft:lemon:size=10
+URxvt*font: xft:lemon:size=8
+URxvt*boldFont: xft:lemon:size=8
 URxvt*keysym.Home: \033[1~
 URxvt*keysym.End: \033[4~
