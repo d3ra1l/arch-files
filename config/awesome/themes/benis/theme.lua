@@ -38,12 +38,7 @@ theme.menu_width  = 75
 theme.menu_border_color = "#595961"
 theme.menu_bg_focus = "#30303a"
 
---theme.useless_gap_width = "42"
---theme.lower_window_height = "0"
---theme.vertical_resolution = "900"
---theme.vertical_border = "2"
---theme.outer_padding = "6"
---theme.padding = "33"
+--works best if the padding is 7 + 10x
 theme.padding = "77"
 
 theme.layout = {

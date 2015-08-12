@@ -49,16 +49,13 @@ end
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/home/phallus/.config/awesome/themes/benis/theme.lua")
 
--- This is used later as the default terminal and editor to run.
 terminal   = "urxvt"
 browser    = os.getenv("BROWSER") or "firefox"
 editor     = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 scrot      = "~/bin/scr"
 lock       = "~/bin/i3lock-w"
-
--- Default modkey.
-modkey = "Mod1"
+modkey     = "Mod1"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
@@ -66,6 +63,24 @@ local layouts =
   awful.layout.suit.floating,
   monkfish.layout.tile,
 }
+
+-- colorizing fxns
+local function colorizen(s, fg)
+  return "<span color='"..fg.."'>"..s.."</span>"
+end
+
+local function colorizeb(s1, fg1, s2, fg2)
+  return "<span color='"..fg1.."'>"..s1.."</span><span color='"..fg2.."'>"..s2.."</span>"
+end
+
+local function colorizei(s, fg, bg)
+  return "<span color='"..fg.."' background='"..bg.."'>"..s.."</span>"
+end
+
+fgr = "#dfdfdf"
+bgr = "#30303a"
+bfg = "#b4b4b4"
+bbg = "#66666a"
 
 -- }}}
 
@@ -151,8 +166,6 @@ tasklist.buttons = awful.util.table.join(
 
 -- {{{ Wibox
 
---most of these widgets could use some refactoring
-
 --if you get an error regarding hibernation, change energy_now and energy_full to charge_now/full. thanks doidbb
 
 batwidget = wibox.widget.textbox()
@@ -168,30 +181,24 @@ function batinfo(adapter)
   local batico = ""
   local batbar = ""
   local bat = math.floor(battery / 10)
-
-  batbar = "<span color='".."#b4b4b4".."'>"..
-    string.rep("⮶",bat)..
-    "</span><span color='".."#66666a".."'>"..
-    string.rep("⮶",10-bat).."</span>"
-
+  batbar = colorizeb(string.rep("⮶",bat), bfg, string.rep("⮶",10-bat), bbg)
   if sta:match("Charged")then
-    batico = "<span color='#dfdfdf'>⮎ </span>"
+    batico = colorizei(" ⮎ ", fgr, bgr)
   else
     if sta:match("Charging")then
-      batico = "<span color='#dfdfdf' background='#30303a'> ⮒ </span>"
+      batico = colorizei(" ⮒ ", fgr, bgr)
     elseif sta:match("Discharging") then
       if tonumber(battery) > 49 then
-        batico = "<span color='#dfdfdf' background='#30303a'> ⮏ </span>"
+        batico = colorizei(" ⮏ ", fgr, bgr)
       elseif tonumber(battery) < 50 and tonumber(battery) > 25 then
-        batico = "<span color='#dfdfdf' background='#30303a'> ⮑ </span>"
+        batico = colorizei(" ⮑ ", fgr, bgr)
       else
-        batico = "<span color='#c97c7c' background='#30303a'> ⮐ </span>"
+        batico = colorizei(" ⮐ ", fgr, bgr)
       end 
     else
-      batico = "<span color='#dfdfdf' background='#30303a'> ⮎ </span>"
+      batico = colorizei(" ⮎ ", fgr, bgr)
     end
   end
-
   batwidget:set_markup(''..batico..' '..batbar..'  ')
 end 
 battery_timer = timer({timeout = 1}) 
@@ -200,11 +207,10 @@ battery_timer:connect_signal("timeout", function()
 end)
 battery_timer:start()
 
-
 -- time widget
+-- i should refactor this but idagf
 mytextclock = awful.widget.textclock("<span color='#dfdfdf' background='#30303a'> ⮖ </span> %R - %a, %b %d  ")
 monkfish.widgets.calendar.register(mytextclock)
-
 
 -- net widget
 netwidget = wibox.widget.textbox()
@@ -214,54 +220,54 @@ function (widget, args)
   local qual = tonumber(args["{link}"])
   local ssid = args["{ssid}"]
   if qual > 66 then
-    neticon = '<span color="#dfdfdf" background="#30303a"> ⮷ </span>'
+    neticon = colorizei(" ⮷ ", fgr, bgr)  
   elseif qual > 33 then
-    neticon = '<span color="#dfdfdf" background="#30303a"> ⮸ </span>'
+    neticon = colorizei(" ⮸ ", fgr, bgr)
   elseif qual > 0 then
-    neticon = '<span color="#dfdfdf" background="#30303a"> ⮹ </span>'
+    neticon = colorizei(" ⮹ ", fgr, bgr)  
   else
-    neticon = '<span color="#dfdfdf" background="#30303a"> … </span>'
+    neticon = colorizei(" … ", fgr, bgr)  
   end
   return ''..neticon..' '..ssid..' '
 end, 1, 'wlan0')
 
-
 -- mpd widget
-mpdwidget = wibox.widget.textbox()                                                                                                                   
+mpdwidget = wibox.widget.textbox()
 monkfish.widgets.mpd.register(mpdwidget)
-
 vicious.register(mpdwidget, vicious.widgets.mpd,
 function (widget, args)
+  local artist = args["{Artist}"]
+  local title = args["{Title}"]
+  local by = colorizen("by", fgr) --this is dumb
   if args["{state}"] == "Stop" then 
-    return "<span color='#dfdfdf' background='#30303a'> ⮕ </span> not playing anything "
-  elseif args["{state}"] == "Pause" then
-    return '<span color="#dfdfdf" background="#30303a"> ⮔ </span> '.. args["{Title}"]..'<span color="#d2d2d2"> by </span>'.. args["{Artist}"]..' '
+    muicon = colorizei(" ⮕ ", fgr, bgr)
+    return ''..muicon..' not playing anything '
   else
-    return '<span color="#dfdfdf" background="#30303a"> ⮓ </span> '.. args["{Title}"]..'<span color="#d2d2d2"> by </span>'.. args["{Artist}"]..' '
+    if args["{state}"] == "Pause" then
+      muicon = colorizei(" ⮔ ", fgr, bgr)
+    else
+      muicon = colorizei(" ⮓ ", fgr, bgr)
+    end
+    return ''..muicon..' '..title..' '..by..' '..artist..' '
   end
 end, 1)
 
-
+-- vol widget
 volwidget = wibox.widget.textbox()
 monkfish.widgets.vol.register(volwidget)
 
 vicious.register(volwidget, vicious.widgets.volume,
 function (widget, args)
 local volbar = ""
-local volico = ""
+local volicon = colorizen(" ⮜ ", fgr, bgr)
 local vol = math.floor(args[1] / 10)
-
   if (args[2] ~= "♩" ) then
-    volbar = "<span color='".."#b4b4b4".."'>"..
-        string.rep("⮶",vol)..
-        "</span><span color='".."#66666a".."'>"..
-        string.rep("⮶",10-vol).."</span>"
-    return '<span color="#dfdfdf" background="#30303a"> ⮜ </span> '.. volbar ..'  '
+    volbar = colorizeb(string.rep("⮶",vol), bfg, string.rep("⮶",10-vol), bbg)
+    return ''..volicon..' '.. volbar ..'  '
   else
-    return '<span color="#dfdfdf" background="#30303a"> ⮜ </span> muted  '
+    return ''..volicon..' muted  '
   end 
 end, 1, "Master")
-
 
 separator = wibox.widget.textbox()
 spacer1 = wibox.widget.textbox("     ")
