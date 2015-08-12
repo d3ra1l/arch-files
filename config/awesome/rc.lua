@@ -97,7 +97,7 @@ local function move(c, x, y, mw, b)
   else
     if b == "f" then
       awful.tag.incmwfact(mw) 
-    elseif b == "t" then
+    else
       awful.client.incwfact(mw)
     end
   end
@@ -114,7 +114,7 @@ tags = {
 }
 
 for s = 1, screen.count() do
-  tags[s] = awful.tag(tags.names, s, tags.layouts, tags.mwfact)
+  tags[s] = awful.tag(tags.names, s, tags.layouts)
   -- it's a shitty loop but it works
   for i = 1, 5 do
     awful.tag.setmwfact(tags.mwfact, tags[1][i])
@@ -137,7 +137,7 @@ mymainmenu = awful.menu({ items = {
   { "⮩    urxvt", terminal },
   { "⮠  shimeji", "/home/phallus/bin/shimeji-run" },
   { "⮤    scrot", "/home/phallus/bin/scr" },
---{ "⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶", },
+--{ "⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶", }, --seperator, if desired
   { "⮗  restart", awesome.restart },
   { "⮪     lock", "/home/phallus/bin/i3lock-w" }
 }
@@ -404,12 +404,6 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey, }, "k",  awful.tag.viewnext ),
   awful.key({ modkey, }, "Escape", awful.tag.history.restore),
   
-  -- resize clients
-  awful.key({ modkey, "Shift" }, "s", function () awful.client.moveresize(  0,   0,   0, -10) end),
-  awful.key({ modkey, "Shift" }, "d", function () awful.client.moveresize(  0,   0,   0,  10) end),
-  awful.key({ modkey, "Shift" }, "a", function () awful.client.moveresize(  0,   0, -10,   0) end),
-  awful.key({ modkey, "Shift" }, "f", function () awful.client.moveresize(  0,   0,  10,   0) end),
-  
   -- shift focused/swap client
   awful.key({ modkey,           }, "l",
     function ()
@@ -475,7 +469,11 @@ clientkeys = awful.util.table.join(
   awful.key({ modkey, "Shift"}, "j", function(c) move( c, 0, 10, -0.011, "t") end),
   awful.key({ modkey, "Shift"}, "k", function(c) move( c, 0, -10, 0.011, "t") end),
   awful.key({ modkey, "Shift"}, "h", function(c) move( c, -10, 0, -.010, "f") end),
-  awful.key({ modkey, "Shift"}, "l", function(c) move( c, 10, 0, .010, "f") end)
+  awful.key({ modkey, "Shift"}, "l", function(c) move( c, 10, 0, .010, "f") end),
+  awful.key({ modkey, "Shift" }, "s", function () awful.client.moveresize(  0,   0,   0, -10) end),
+  awful.key({ modkey, "Shift" }, "d", function () awful.client.moveresize(  0,   0,   0,  10) end),
+  awful.key({ modkey, "Shift" }, "a", function () awful.client.moveresize(  0,   0, -10,   0) end),
+  awful.key({ modkey, "Shift" }, "f", function () awful.client.moveresize(  0,   0,  10,   0) end)
 )
 
 -- Compute the maximum number of digit we need, limited to 9
