@@ -554,6 +554,10 @@ awful.rules.rules = {
   { rule = { instance = "Devtools" },
     properties = { floating = true } 
   },
+
+  { rule = {class = "Navigator" }, 
+    callback = function (c) c:swap(awful.client.getmaster()) end,
+  }
 }
 -- }}}
 
