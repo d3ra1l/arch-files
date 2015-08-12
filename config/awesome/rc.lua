@@ -403,20 +403,13 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey, }, "k",  awful.tag.viewnext ),
   awful.key({ modkey, }, "Escape", awful.tag.history.restore),
   
-  
-  -- move/resize clients
-  -- to do: incorporate both floating move/resize and tiled wfact into one keybinding
+  -- resize clients
   awful.key({ modkey, "Shift" }, "s", function () awful.client.moveresize(  0,   0,   0, -10) end),
   awful.key({ modkey, "Shift" }, "d", function () awful.client.moveresize(  0,   0,   0,  10) end),
   awful.key({ modkey, "Shift" }, "a", function () awful.client.moveresize(  0,   0, -10,   0) end),
   awful.key({ modkey, "Shift" }, "f", function () awful.client.moveresize(  0,   0,  10,   0) end),
-  awful.key({ modkey, }, "'", function () awful.tag.incmwfact( 0.010) end),
-  awful.key({ modkey, }, ";", function () awful.tag.incmwfact(-0.010) end),
-  awful.key({ modkey, "Shift"   }, "'", function () awful.client.incwfact(0.011) end),
-  awful.key({ modkey, "Shift"   }, ";", function () awful.client.incwfact(-0.011) end),
   
-  
-  --shift focused/swap client
+  -- shift focused/swap client
   awful.key({ modkey,           }, "l",
     function ()
       awful.client.focus.byidx( 1)
