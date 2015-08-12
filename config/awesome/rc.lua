@@ -77,8 +77,12 @@ for s = 1, screen.count() do
   tags[s] = awful.tag({ "⮫", "⮬", "⮭", "⮮", "⮯" }, s, layouts[1])
 end
 
-awful.layout.set(awful.layout.suit.floating, tags[1][1])                                             
+awful.layout.set(monkfish.layout.tile, tags[1][1])
 awful.tag.setmwfact(0.53, tags[1][1])
+awful.tag.setmwfact(0.53, tags[1][2])
+awful.tag.setmwfact(0.53, tags[1][3])
+awful.tag.setmwfact(0.53, tags[1][4])
+awful.tag.setmwfact(0.53, tags[1][5])
 
 -- }}}
 
