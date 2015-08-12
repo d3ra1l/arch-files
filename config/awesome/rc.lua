@@ -1,3 +1,4 @@
+-- Libraries {{{
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -6,14 +7,14 @@ require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
 local monkfish = require("monkfish")
-local vicious = require("vicious")
 local benis = require("benis")
-local lain = require ("lain")
+local vicious = require("vicious")
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+--}}}
 
 
 -- {{{ Error handling
@@ -77,7 +78,7 @@ for s = 1, screen.count() do
 end
 
 awful.layout.set(awful.layout.suit.floating, tags[1][1])                                             
-awful.tag.setmwfact(0.55, tags[1][1])
+awful.tag.setmwfact(0.53, tags[1][1])
 
 -- }}}
 
@@ -92,8 +93,7 @@ myawesomemenu = {
 }
 
 mymainmenu = awful.menu({ items = { 
-  { "⮩   urxvtc", terminal },
---{ "⮻    nitro", "nitrogen" },
+  { "⮩    urxvt", terminal },
   { "⮠  shimeji", "/home/phallus/bin/shimeji-run" },
   { "⮤    scrot", "/home/phallus/bin/scr" },
 --{ "⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶", },
@@ -321,7 +321,7 @@ for s = 1, screen.count() do
     -- Create a tasklist widget
     mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
     -- Create the wibox
-    mywibox[s] = awful.wibox({ position = "top", screen = s, height = 10 })
+    mywibox[s] = awful.wibox({ position = "top", screen = s, height = 11 })
 
     -- Widgets that are aligned to the left
     local left_layout = wibox.layout.fixed.horizontal()
@@ -392,8 +392,8 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey, "Shift" }, "f", function () awful.client.moveresize(  0,   0,  10,   0) end),
   awful.key({ modkey, }, "'", function () awful.tag.incmwfact( 0.010) end),
   awful.key({ modkey, }, ";", function () awful.tag.incmwfact(-0.010) end),
-  awful.key({ modkey, "Shift"   }, "'", function () awful.client.incwfact(0.015) end),
-  awful.key({ modkey, "Shift"   }, ";", function () awful.client.incwfact(-0.015) end),
+  awful.key({ modkey, "Shift"   }, "'", function () awful.client.incwfact(0.011) end),
+  awful.key({ modkey, "Shift"   }, ";", function () awful.client.incwfact(-0.011) end),
   
   
   --shift focused/swap client
