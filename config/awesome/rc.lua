@@ -109,7 +109,7 @@ end
 -- }}}
 
 
--- {{{ Tags
+-- {{{ Tag
 -- Define a tag table which hold all screen tags.
 tags = {
   names = { "⮫", "⮬", "⮭", "⮮", "⮯" },
@@ -545,10 +545,9 @@ awful.rules.rules = {
       keys = clientkeys,
       buttons = clientbuttons,
       size_hints_honor = false
-    } 
+    }, 
+    callback = awful.client.setslave
   },
-  
-  { rule = { }, properties = { }, callback = awful.client.setslave },
   
   { rule = { name = "ImageMagick:" },
     properties = { floating = true } 
@@ -580,7 +579,7 @@ awful.rules.rules = {
     properties = { floating = true } 
   },
 
-  { rule = {class = "Navigator" }, 
+  { rule = { class = "Navigator" },
     callback = function (c) c:swap(awful.client.getmaster()) end,
   }
 }

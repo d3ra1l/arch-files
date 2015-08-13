@@ -9,6 +9,7 @@ theme.font_alt      = "-*-lemon-*-*-*-*-*-*-*-*-*-*-*-*"
 
 theme.bg_normal     = "#20202f"
 theme.bg_focus      = "#191921"
+--theme.bg_focus      = "#20202f"
 theme.bg_urgent     = "#20202f"
 theme.bg_minimize   = "#20202f"
 theme.bg_special    = "#30303a"
@@ -48,7 +49,7 @@ theme.tasklist_maximized_horizontal = ""
 theme.tasklist_maximized_vertical   = ""
 
 --gaps work best if the padding is 7 + 10x
-theme.padding = "77"
+theme.padding = "67"
 
 theme.layout = {
     floating  = " ⮛ ",
