@@ -8,7 +8,7 @@ theme.font          = "lemon 7"
 theme.font_alt      = "-*-lemon-*-*-*-*-*-*-*-*-*-*-*-*"
 
 theme.bg_normal     = "#20202f"
-theme.bg_focus      = "#20202f"
+theme.bg_focus      = "#191921"
 theme.bg_urgent     = "#20202f"
 theme.bg_minimize   = "#20202f"
 theme.bg_special    = "#30303a"
@@ -43,6 +43,9 @@ theme.menu_height = 11
 theme.menu_width  = 75
 theme.menu_border_color = "#595961"
 theme.menu_bg_focus = "#30303a"
+
+theme.tasklist_maximized_horizontal = ""
+theme.tasklist_maximized_vertical   = ""
 
 --gaps work best if the padding is 7 + 10x
 theme.padding = "77"

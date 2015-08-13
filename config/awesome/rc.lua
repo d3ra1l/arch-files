@@ -158,6 +158,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- {{{ Tasklist
 
+-- to center text, add tb:set_align("center") under tb = wibox.widget.textbox() in common.lua
 tasklist = {}
 tasklist.buttons = awful.util.table.join(
   awful.button({ }, 1, function (c)
@@ -299,7 +300,7 @@ end, 1, "Master")
 --}}}
 
 separator = wibox.widget.textbox()
-spacer1 = wibox.widget.textbox("     ")
+spacer1 = wibox.widget.textbox("  ")
 spacer = wibox.widget.textbox(" ")
 separator:set_text("")
 
@@ -373,7 +374,6 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
-    right_layout:add(spacer1)
     right_layout:add(separator)
     right_layout:add(mpdwidget)
     right_layout:add(spacer)
