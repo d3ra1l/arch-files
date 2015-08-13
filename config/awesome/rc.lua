@@ -579,7 +579,8 @@ awful.rules.rules = {
     properties = { floating = true } 
   },
 
-  { rule = { class = "Navigator" },
+  -- this works iconsistently
+  { rule_any = { class = { "Navigator" }, instance = { "Navigator" }, name = { "Vimperator"} },
     callback = function (c) c:swap(awful.client.getmaster()) end,
   }
 }
