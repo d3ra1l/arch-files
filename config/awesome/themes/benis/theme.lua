@@ -1,4 +1,5 @@
 ---------------------------
+
 -- Default awesome theme --
 ---------------------------
 
@@ -28,7 +29,6 @@ theme.border_width  = 2
 theme.border_normal = "#20202f"
 theme.border_focus  = "#30303a"
 theme.border_marked = "#646464"
-theme.border_feh    = "#30303a"
 
 theme.colorize_fg    = "#dfdfdf"
 theme.colorize_fgb   = "#b4b4b4"
@@ -51,6 +51,7 @@ theme.tasklist_maximized_vertical   = ""
 --gaps work best if the padding is 7 + 10x
 theme.padding = "67"
 
+theme.tasklist_floating = ""
 theme.layout = {
     floating  = " ⮛ ",
     tile      = " ⮘ ",

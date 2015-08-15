@@ -16,7 +16,6 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 --}}}
 
-
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -43,7 +42,6 @@ do
   end)
 end
 -- }}}
-
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
@@ -77,7 +75,7 @@ local function colorizei(s, fg, bg)
   return "<span color='"..fg.."' background='"..bg.."'>"..s.."</span>"
 end
 
--- colors to use
+-- colors to use in the colorizing fxns
 fgr = theme.colorize_fg
 bgr = theme.colorize_bg
 bfg = theme.colorize_fgb
@@ -91,23 +89,32 @@ local function floats(c)
   return awful.layout.getname(layout) == "floating" or awful.client.floating.get(c)
 end
 
+-- test if given client is the mw
+local function master(c)
+  return awful.client.getmaster(c.screen) == c
+end
+
+-- move client according to its state
 local function move(c, x, y, mw, a, b) 
+  -- tests if client is floating or tiled
   if floats(c) then
+    -- tests if moving or resizing
     if b == "n" then
       awful.client.moveresize( x, y, 0, 0 )  
     elseif b == "y" then
       awful.client.moveresize( 0, 0, x, y )
     end
   else
+    -- deteremines whether or not to change master or slave wfact
+    -- switches do in fact work best here
     if a == "f" then
       awful.tag.incmwfact(mw) 
-    else
+    elseif a == "t" then
       awful.client.incwfact(mw)
     end
   end
 end
 -- }}}
-
 
 -- {{{ Tag
 -- Define a tag table which hold all screen tags.
@@ -126,7 +133,6 @@ for s = 1, screen.count() do
 end
 
 -- }}}
-
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
@@ -155,9 +161,7 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
-
 -- {{{ Tasklist
-
 -- to center text, add tb:set_align("center") under tb = wibox.widget.textbox() in common.lua
 tasklist = {}
 tasklist.buttons = awful.util.table.join(
@@ -188,15 +192,13 @@ tasklist.buttons = awful.util.table.join(
 
 --}}}
 
-
 -- {{{ Wibox
-
 -- bat widget {{{
 -- if you get an error regarding hibernation, change energy_now and energy_full to charge_now/full. thanks doidbb
 batwidget = wibox.widget.textbox()
 monkfish.widgets.bat.register(batwidget)
 function batinfo(adapter)
-  local fcur = io.open("/sys/class/power_supply/"..adapter.."/energy_now")    
+  local fcur = io.open("/sys/class/power_supply/"..adapter.."/energy_now") 
   local fcap = io.open("/sys/class/power_supply/"..adapter.."/energy_full")
   local fsta = io.open("/sys/class/power_supply/"..adapter.."/status")
   local cur = fcur:read()
@@ -284,25 +286,25 @@ end, 1)
 -- vol widget {{{
 volwidget = wibox.widget.textbox()
 monkfish.widgets.vol.register(volwidget)
-
 vicious.register(volwidget, vicious.widgets.volume,
 function (widget, args)
-local volbar = ""
-local volicon = colorizei(" ⮜ ", fgr, bgr)
-local vol = math.floor(args[1] / 10)
-  if (args[2] ~= "♩" ) then
-    volbar = colorizeb(string.rep("⮶",vol), bfg, string.rep("⮶",10-vol), bbg)
-    return ''..volicon..' '.. volbar ..'  '
-  else
-    return ''..volicon..' muted  '
-  end 
+  local volbar = ""
+  local volicon = colorizei(" ⮜ ", fgr, bgr)
+  local vol = math.floor(args[1] / 10)
+    if (args[2] ~= "♩" ) then
+      volbar = colorizeb(string.rep("⮶",vol), bfg, string.rep("⮶",10-vol), bbg)
+      return ''..volicon..' '.. volbar ..'  '
+    else
+      return ''..volicon..' muted  '
+    end 
 end, 1, "Master")
 --}}}
 
+-- spacers {{{
 separator = wibox.widget.textbox()
-spacer1 = wibox.widget.textbox("  ")
 spacer = wibox.widget.textbox(" ")
 separator:set_text("")
+--}}}
 
 
 -- Create a wibox for each screen and add it
@@ -394,13 +396,11 @@ for s = 1, screen.count() do
 end
 -- }}}
 
-
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
   awful.button({ }, 3, function () mymainmenu:toggle() end)
 ))
 -- }}}
-
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
@@ -430,27 +430,23 @@ globalkeys = awful.util.table.join(
       if client.focus then client.focus:raise() end
     end),
   
-  
   -- Layout manipulation
   awful.key({ "Mod4", }, "space", function () awful.layout.inc(layouts,  1) end),
   awful.key({ "Mod4", "Shift" }, "space", function () awful.layout.inc(layouts, -1) end),
-  
   
   -- Standard program
   awful.key({ modkey, "Shift" }, "q", awesome.quit),
   awful.key({ modkey, }, "Return", function () awful.util.spawn(terminal) end),
   awful.key({ modkey, }, "r", awesome.restart),
   
-  
   -- dmenu
   awful.key({ modkey }, "d", function ()
-  awful.util.spawn("dmenu_run -i -x 700 -y 400 -w 200 -h 15 -dim 0.05 -l 4 -nb '" .. 
-    beautiful.bg_normal .. "' -nf '" .. beautiful.fg_normal ..
-    "' -fn '" .. beautiful.font_alt ..
-    "' -sb '" .. beautiful.bg_special .. 
-    "' -sf '" .. beautiful.fg_focus .. "'") 
+    awful.util.spawn("dmenu_run -i -x 700 -y 400 -w 200 -h 15 -dim 0.05 -l 4 -nb '" .. 
+      beautiful.bg_normal .. "' -nf '" .. beautiful.fg_normal ..
+      "' -fn '" .. beautiful.font_alt ..
+      "' -sb '" .. beautiful.bg_special .. 
+      "' -sf '" .. beautiful.fg_focus .. "'") 
   end),
-  
   
   -- Personal hotkeys
   awful.key({ modkey, }, "n", function () awful.util.spawn("firefox") end),
@@ -463,26 +459,24 @@ globalkeys = awful.util.table.join(
   awful.key({ "Mod4" }, "j", function () awful.util.spawn("xbacklight -dec 5") end)
 )
 
-
 -- Client control keys
 clientkeys = awful.util.table.join(
   awful.key({ modkey, }, "c", function (c) c:kill() end),
   awful.key({ modkey, }, "t", awful.client.floating.toggle ),
   awful.key({ modkey, }, "m", function (c) c:swap(awful.client.getmaster()) end),
-  awful.key({ modkey, }, "y", function (c) c.ontop = not c.ontop end),
-  awful.key({ modkey, "Shift"}, "j", function(c) move( c, 0, 10, -0.011, "t", "n") end),
-  awful.key({ modkey, "Shift"}, "k", function(c) move( c, 0, -10, 0.011, "t", "n") end),
-  awful.key({ modkey, "Shift"}, "h", function(c) move( c, -10, 0, -.010, "f", "n") end),
-  awful.key({ modkey, "Shift"}, "l", function(c) move( c, 10, 0, .010, "f", "n") end),
-  awful.key({ modkey, "Shift" }, "d", function (c) move( c, 0, 10, -.011, "t", "y") end),
-  awful.key({ modkey, "Shift" }, "s", function (c) move( c, 0, -10, .011, "t", "y") end),
-  awful.key({ modkey, "Shift" }, "a", function (c) move( c, -10, 0, -.01, "f", "y") end),
-  awful.key({ modkey, "Shift" }, "f", function (c) move( c, 10, 0, .01, "f", "y") end),
-      awful.key({ modkey, "Shift" }, "m",
-        function (c)
-          c.maximized_horizontal = not c.maximized_horizontal
-          c.maximized_vertical   = not c.maximized_vertical
-        end)
+  awful.key({ modkey, "Shift"}, "j", function(c) move(c, 0, 10, 0.011, "t", "n") end),
+  awful.key({ modkey, "Shift"}, "k", function(c) move(c, 0, -10, -0.011, "t", "n") end),
+  awful.key({ modkey, "Shift"}, "h", function(c) move(c, -10, 0, -.010, "f", "n") end),
+  awful.key({ modkey, "Shift"}, "l", function(c) move(c, 10, 0, .010, "f", "n") end),
+  awful.key({ modkey, "Shift" }, "s", function (c) move(c, 0, -10, -.011, "t", "y") end),
+  awful.key({ modkey, "Shift" }, "d", function (c) move(c, 0, 10, .011, "t", "y") end),
+  awful.key({ modkey, "Shift" }, "a", function (c) move(c, -10, 0, -.01, "f", "y") end),
+  awful.key({ modkey, "Shift" }, "f", function (c) move(c, 10, 0, .01, "f", "y") end),
+  awful.key({ modkey, "Shift" }, "m",
+    function (c)
+      c.maximized_horizontal = not c.maximized_horizontal
+      c.maximized_vertical   = not c.maximized_vertical
+    end)
 )
 
 -- Compute the maximum number of digit we need, limited to 9
@@ -534,8 +528,8 @@ clientbuttons = awful.util.table.join(
 root.keys(globalkeys)
 -- }}}
 
-
 -- {{{ Rules
+-- refactor
 awful.rules.rules = {
   { rule = { },
     properties = { 
@@ -549,25 +543,17 @@ awful.rules.rules = {
     callback = awful.client.setslave
   },
   
-  { rule = { name = "ImageMagick:" },
-    properties = { floating = true } 
-  },
-  
-  { rule = { class = "feh" },
+  --album art popup
+  { rule = { class = "feh", name = " " },
     properties = { 
-      border_color = beautiful.border_normal,
-      focus = true,
-      floating = true } 
+      border_color = beautiful.border_focus,
+      focus = false,
+      floating = true,
+      skip_taskbar = true },
+    callback = function(c) c:raise() end
   },
-  
-  { rule = { class = "pinentry" },
-    properties = { floating = true } 
-  },
-  
-  { rule = { name = "win0" },
-    properties = { floating = true, border_width = 0 } 
-  },
-  { rule = { instance = "sun-awt-X11-XWindowPeer" },
+
+  { rule = { instance = "sun-awt-X11-XWindowPeer"},
     properties = { floating = true, border_width = 0 } 
   },
   
@@ -579,13 +565,20 @@ awful.rules.rules = {
     properties = { floating = true } 
   },
 
-  -- this works iconsistently
-  { rule_any = { class = { "Navigator" }, instance = { "Navigator" }, name = { "Vimperator"} },
+  { rule = { name = "ImageMagick:" },
+    properties = { floating = true } 
+  },
+
+  { rule = { name = "llpp" },
+    callback = function (c) c:swap(awful.client.getmaster()) end,
+  },
+
+  { rule = { instance = "Navigator" },
     callback = function (c) c:swap(awful.client.getmaster()) end,
   }
+
 }
 -- }}}
-
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.

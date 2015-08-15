@@ -6,7 +6,7 @@ source $(dirname $0)/d-conf
 get_xpos(){
 	xpos=$(( $(xdotool getmouselocation | awk -F " " '{print $1}' | cut -d ":" -f 2) - 45 ))
 	if [ "$xpos" -gt "1490" ]; then
-		echo "1490"
+		echo "1492"
 	else
 		echo $xpos
 	fi

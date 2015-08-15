@@ -1,0 +1,24 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+awful.button({ }, 1, function (c) client.focus 	rc.lua	/^  awful.button({ }, 1, function (c) client.focus = c; c:raise() end),$/;"	f
+awful.key({ modkey, }, "y", function (c) c.ontop 	rc.lua	/^  awful.key({ modkey, }, "y", function (c) c.ontop = not c.ontop end),$/;"	f
+batinfo	rc.lua	/^function batinfo(adapter)$/;"	f
+c) move	rc.lua	/^  awful.key({ modkey, "Shift"}, "h", function(c) move( c, -10, 0, -.010, "f", "n") end),$/;"	f
+c) move	rc.lua	/^  awful.key({ modkey, "Shift"}, "j", function(c) move( c, 0, 10, 0.011, "t", "n") end),$/;"	f
+c) move	rc.lua	/^  awful.key({ modkey, "Shift"}, "k", function(c) move( c, 0, -10, -0.011, "t", "n") end),$/;"	f
+c) move	rc.lua	/^  awful.key({ modkey, "Shift"}, "l", function(c) move( c, 10, 0, .010, "f", "n") end),$/;"	f
+callback 	rc.lua	/^    callback = function (c) c:swap(awful.client.getmaster()) end,$/;"	f
+callback 	rc.lua	/^    callback = function(c) c:raise() end$/;"	f
+client.connect_signal("focus", function(c) c.border_color 	rc.lua	/^client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)$/;"	f
+client.connect_signal("unfocus", function(c) c.border_color 	rc.lua	/^client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)$/;"	f
+colorizeb	rc.lua	/^local function colorizeb(s1, fg1, s2, fg2)$/;"	f
+colorizei	rc.lua	/^local function colorizei(s, fg, bg)$/;"	f
+colorizen	rc.lua	/^local function colorizen(s, fg)$/;"	f
+floats	rc.lua	/^local function floats(c) $/;"	f
+move	rc.lua	/^local function move(c, x, y, mw, a, b) $/;"	f
+t) awful.tag.viewnext	rc.lua	/^                    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),$/;"	f
+t) awful.tag.viewprev	rc.lua	/^                    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)$/;"	f
