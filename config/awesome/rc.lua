@@ -544,7 +544,7 @@ awful.rules.rules = {
   },
   
   --album art popup
-  { rule = { class = "feh", name = " " },
+  { rule = { name = "aart" },
     properties = { 
       border_color = beautiful.border_focus,
       focus = false,

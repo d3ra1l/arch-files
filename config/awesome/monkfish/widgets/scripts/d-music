@@ -51,7 +51,7 @@ if [ "`mpc 2>&1 | wc -l`" -gt "1" ]; then
 		mpdvol="^fg($FG2)MPD Volume: ^fg($FG1)100%"
 	fi
 	
-	feh -N -B black -g +$(($XPOS-108))+$(($YPOS)) "$albumart" --title " " &
+	feh -N -B black -g +$(($XPOS-108))+$(($YPOS)) "$albumart" --title "aart " &
 	(echo "$nowplaying"; echo " $artist"; echo " $album"; echo " $time"; echo " $track"; echo " "; echo " $percbar";echo "^fg($cyan)      $buttons"; echo " "; sleep $TIMING) | dzen2 -bg $BG -fn $FONT -x $XPOS -y $YPOS -w $WIDTH -h $HEIGHT -l $LINES -e 'onstart=uncollapse;button1=exit;button2=exit;button3=exit;button4=exit;button5=exit;onexit=exec:killall feh'
 else
 	(echo "^fg($FG2)MPD is not playing."; sleep 1) | dzen2 -bg $BG -fn $FONT -x $XPOS -y $YPOS -w 95 -h $HEIGHT -l 0 -ta "center" -sa $ALIGN -e 'onstart=uncollapse;button1=exit;button2=exit;button3=exit;button4=exit;button5=exit'
