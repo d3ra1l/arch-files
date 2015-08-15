@@ -549,8 +549,8 @@ awful.rules.rules = {
       border_color = beautiful.border_focus,
       focus = false,
       floating = true,
+      raise = true,
       skip_taskbar = true },
-    callback = function(c) c:raise() end
   },
 
   { rule = { instance = "sun-awt-X11-XWindowPeer"},
