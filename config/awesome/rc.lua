@@ -105,7 +105,7 @@ local function move(c, x, y, mw, a, b)
       awful.client.moveresize( 0, 0, x, y )
     end
   else
-    -- deteremines whether or not to change master or slave wfact
+    -- tests if changing master or slave wfact
     -- switches do in fact work best here
     if a == "f" then
       awful.tag.incmwfact(mw) 
