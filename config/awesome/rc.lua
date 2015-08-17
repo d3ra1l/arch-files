@@ -83,7 +83,7 @@ bbg = theme.colorize_bgb
 wfg = theme.colorize_fgw
 
 -- movement fxns
--- thank you ne
+-- test if given client floats
 local function floats(c) 
   local layout = awful.layout.get(c.screen)
   return awful.layout.getname(layout) == "floating" or awful.client.floating.get(c)
@@ -106,7 +106,6 @@ local function move(c, x, y, mw, a, b)
     end
   else
     -- tests if changing master or slave wfact
-    -- switches do in fact work best here
     if a == "f" then
       awful.tag.incmwfact(mw) 
     elseif a == "t" then
@@ -195,6 +194,7 @@ tasklist.buttons = awful.util.table.join(
 -- {{{ Wibox
 -- bat widget {{{
 -- if you get an error regarding hibernation, change energy_now and energy_full to charge_now/full. thanks doidbb
+-- i should just change this to use vicious
 batwidget = wibox.widget.textbox()
 monkfish.widgets.bat.register(batwidget)
 function batinfo(adapter)
@@ -567,6 +567,14 @@ awful.rules.rules = {
 
   { rule = { name = "ImageMagick:" },
     properties = { floating = true } 
+  },
+
+  { rule = { class = "mpv" },
+    properties = { floating = true } 
+  },
+
+  { rule = { class = "feh"},
+    properties = { floating = true }
   },
 
   { rule = { name = "llpp" },
