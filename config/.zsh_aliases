@@ -8,9 +8,6 @@ alias make="make -j5"
 #ensure cp is always recursive and verbose
 alias cp='cp -Rv'
 
-#start emacs with -nw
-alias emacs='emacs -nw'
-
 #add pretty much any font in ~/.fonts
 alias fonts='mkfontdir ~/.fonts;mkfontscale ~/.fonts;xset +fp ~/.fonts;xset fp rehash;fc-cache;fc-cache -fv'
 
@@ -33,6 +30,11 @@ alias shimeji='~/bin/shimeji-run'
 #screenfetch
 alias sfd='screenfetch-dev'
 alias sfu='screenfetch-ulf'
+
+#sprunge
+sprunge(){
+  cat $1 | curl -F 'sprunge=<-' http://sprunge.us
+}
 
 #byzanz
 record() {
@@ -95,10 +97,10 @@ alias yu='yaourt -Syy && yaourt -Syua --devel'
 alias yb='yaourt -Sb'
 alias yg='yaourt -G'
 alias ysi='yaourt -Qs'
-
 #}}}
 
 #git {{{
+
 alias ga='git add *'
 alias gc='git commit -m' #remember to put commit in quotes
 alias gl='git clone'
@@ -136,12 +138,12 @@ gcp() {
   *)       echo "$1 not found!" ;;
  esac
 }
-
 # }}}
 
 # file management {{{
 
 #ranger
+
 rn() {
  case $1 in     
   shimeji) ranger ~/stuff/linux-shimeji-master ;;
@@ -180,7 +182,6 @@ conf() {
   lemon)   ~/.fonts/bdf;gbdfed;vim lemon.bdf;bdftopcf -o ../lemon.pcf lemon.bdf;fonts ;;
   uushi)   ~/.fonts/bdf;gbdfed;bdftopcf -o ../uushi.pcf uushi.bdf ;;
   awesome) vim ~/.config/awesome/rc.lua ;;
-  gtk)     vim ~/.themes/Kvtie/gtk-2.0/gtkrc ;;
   pacman)  sudo vim /etc/pacman.conf ;;
   vimp)    vim ~/.vimperatorrc ;;
   mutt)    vim ~/.muttrc ;;
@@ -188,5 +189,4 @@ conf() {
   *)       echo "unknown conf: $1" ;;  
  esac
 }
-
 #}}}
