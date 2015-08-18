@@ -409,22 +409,22 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey, }, "Escape", awful.tag.history.restore),
   
   -- shift focused/swap client
-  awful.key({ modkey,           }, "l",
+  awful.key({ modkey, }, "l",
     function ()
       awful.client.focus.byidx( 1)
       if client.focus then client.focus:raise() end
     end),
-  awful.key({ modkey,           }, "h",
+  awful.key({ modkey, }, "h",
     function ()
       awful.client.focus.byidx(-1)
       if client.focus then client.focus:raise() end
     end),
-  awful.key({ modkey, "Shift"    }, "o",
+  awful.key({ modkey, "Shift" }, "o",
     function ()
       awful.client.swap.byidx( 1)
       if client.focus then client.focus:raise() end
     end),
-  awful.key({ modkey, "Shift"    }, "i",
+  awful.key({ modkey, "Shift" }, "i",
     function ()
       awful.client.swap.byidx(-1)
       if client.focus then client.focus:raise() end
@@ -451,8 +451,8 @@ globalkeys = awful.util.table.join(
   -- Personal hotkeys
   awful.key({ modkey, }, "n", function () awful.util.spawn("firefox") end),
   awful.key({ "Control" }, "l", function () awful.util.spawn("mpc next") end), 
-  awful.key({ "Control" }, "j", function () awful.util.spawn("amixer -q set Master 4%- unmute") end),
-  awful.key({ "Control" }, "k", function () awful.util.spawn("amixer -q set Master 4%+ unmute") end),
+  awful.key({ "Control" }, "j", function () awful.util.spawn("amixer -q set Master 3%- unmute") end),
+  awful.key({ "Control" }, "k", function () awful.util.spawn("amixer -q set Master 3%+ unmute") end),
   awful.key({ "Control" }, "h",  function () awful.util.spawn("mpc prev") end),
   awful.key({ modkey, }, "p", function () awful.util.spawn("mpc toggle") end),
   awful.key({ "Mod4" }, "k", function () awful.util.spawn("xbacklight -inc 5") end),
@@ -550,7 +550,9 @@ awful.rules.rules = {
       focus = false,
       floating = true,
       raise = true,
-      skip_taskbar = true },
+      ontop = true,
+      sticky = true, 
+      skip_taskbar = true, },
   },
 
   { rule = { instance = "sun-awt-X11-XWindowPeer"},
