@@ -48,11 +48,10 @@ end
 beautiful.init("/home/phallus/.config/awesome/themes/benis/theme.lua")
 
 terminal   = "urxvt"
+bindir     = "/home/phallus/bin"
 browser    = os.getenv("BROWSER") or "firefox"
 editor     = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
-scrot      = "~/bin/scr"
-lock       = "~/bin/i3lock-w"
 modkey     = "Mod1"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
@@ -135,22 +134,35 @@ end
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
-myawesomemenu = {
-  { "manual", terminal .. " -e man awesome" },
-  { "edit config", editor_cmd .. " " .. awesome.conffile },
-  { "restart", awesome.restart },
-  { "quit", awesome.quit }
-}
+--awesomemenu = {
+  --{ "manual", terminal .. " -e man awesome" },
+  --{ "edit config", editor_cmd .. " " .. awesome.conffile },
+  --{ "restart", awesome.restart },
+  --{ "quit", awesome.quit }
+--}
+--gamesmenu = {
+  --{ "ut4", UnrealTournament },
+  --{ "ygopro", "/home/bin/phallus/yg" }
+--}
+--scriptsmenu = {
+  --{ "shimeji", "/home/phallus/bin/shimeji-run" },
+  --{ "scrot", "/home/phallus/bin/scr" },
+  --{ "set wall", "/home/phallus/bin/nr"},
+  --{ "get cover", "/home/phallus/bin/cover_fetcher"},
+--}
 
-mymainmenu = awful.menu({ items = { 
-  { "⮩    urxvt", terminal },
-  { "⮠  shimeji", "/home/phallus/bin/shimeji-run" },
-  { "⮤    scrot", "/home/phallus/bin/scr" },
---{ "⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶", }, --seperator, if desired
-  { "⮗  restart", awesome.restart },
-  { "⮪     lock", "/home/phallus/bin/i3lock-w" }
-}
-
+mymainmenu = awful.menu({ items = {
+    --{ "games", gamesmenu, theme.menu_submenu_icon },
+    --{ "awesome", awesomemenu, theme.menu_submenu_icon },
+    --{ "scripts", scriptsmenu, theme.menu_submenu_icon },
+    --{ "⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶", }, --seperator, if desired
+    { "⮩    urxvt", terminal },
+    { "⮷     wifi", terminal .. " -e sudo wifi-menu" },
+    { "⮠  shimeji", "/home/phallus/bin/shimeji-run" },
+    { "⮤    scrot", "/home/phallus/bin/scr" },
+    { "⮗  restart", awesome.restart },
+    { "⮪     lock", "/home/phallus/bin/i3lock-w" }
+  }
 })
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
@@ -305,7 +317,6 @@ separator = wibox.widget.textbox()
 spacer = wibox.widget.textbox(" ")
 separator:set_text("")
 --}}}
-
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -529,7 +540,7 @@ root.keys(globalkeys)
 -- }}}
 
 -- {{{ Rules
--- refactor
+-- these are both very fickle and very much in need of refactoring
 awful.rules.rules = {
   { rule = { },
     properties = { 
@@ -552,7 +563,7 @@ awful.rules.rules = {
       raise = true,
       ontop = true,
       sticky = true, 
-      skip_taskbar = true, },
+      skip_taskbar = true },
   },
 
   { rule = { instance = "sun-awt-X11-XWindowPeer"},
