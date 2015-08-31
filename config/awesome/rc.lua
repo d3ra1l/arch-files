@@ -134,27 +134,31 @@ end
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
---awesomemenu = {
-  --{ "manual", terminal .. " -e man awesome" },
-  --{ "edit config", editor_cmd .. " " .. awesome.conffile },
-  --{ "restart", awesome.restart },
-  --{ "quit", awesome.quit }
---}
---gamesmenu = {
-  --{ "ut4", UnrealTournament },
-  --{ "ygopro", "/home/bin/phallus/yg" }
---}
---scriptsmenu = {
-  --{ "shimeji", "/home/phallus/bin/shimeji-run" },
-  --{ "scrot", "/home/phallus/bin/scr" },
-  --{ "set wall", "/home/phallus/bin/nr"},
-  --{ "get cover", "/home/phallus/bin/cover_fetcher"},
---}
+myawesomemenu = {
+  { "manual", terminal .. " -e man awesome" },
+  { "edit config", editor_cmd .. " " .. awesome.conffile },
+  { "restart", awesome.restart },
+  { "quit", awesome.quit }
+}
+mygamesmenu = {
+  { "ut4", "UnrealTournament" },
+  { "ygopro", "/home/bin/phallus/yg" },
+  { "marathon1", "alephone-marathon"},
+  { "marathon2", "alephone-marathon2"},
+  { "marathoni", "alephone-infinity"}
+}
+myscriptsmenu = {
+  { "shimeji", "/home/phallus/bin/shimeji-run" },
+  { "scrot", "/home/phallus/bin/scr" },
+  { "set wall", "/home/phallus/bin/nr"},
+  { "get cover", "/home/phallus/bin/cover_fetcher"},
+}
 
 mymainmenu = awful.menu({ items = {
-    --{ "games", gamesmenu, theme.menu_submenu_icon },
-    --{ "awesome", awesomemenu, theme.menu_submenu_icon },
-    --{ "scripts", scriptsmenu, theme.menu_submenu_icon },
+    --submenus don't work, dunno why
+    --{ "games", mygamesmenu },
+    --{ "awesome", myawesomemenu },
+    --{ "scripts", myscriptsmenu },
     --{ "⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶", }, --seperator, if desired
     { "⮩    urxvt", terminal },
     { "⮷     wifi", terminal .. " -e sudo wifi-menu" },
@@ -206,7 +210,6 @@ tasklist.buttons = awful.util.table.join(
 -- {{{ Wibox
 -- bat widget {{{
 -- if you get an error regarding hibernation, change energy_now and energy_full to charge_now/full. thanks doidbb
--- i should just change this to use vicious
 batwidget = wibox.widget.textbox()
 monkfish.widgets.bat.register(batwidget)
 function batinfo(adapter)
@@ -248,7 +251,6 @@ battery_timer:start()
 --}}}
 
 -- time widget {{{
--- i should refactor this but idagf
 mytextclock = awful.widget.textclock("<span color='#dfdfdf' background='#30303a'> ⮖ </span> %R - %a, %b %d  ")
 monkfish.widgets.calendar.register(mytextclock)
 --}}}
