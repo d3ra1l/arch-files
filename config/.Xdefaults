@@ -51,3 +51,4 @@ URxvt*keysym.End: \033[4~
 URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher: /usr/bin/firefox
 URxvt.matcher.button: 1
+URxvt.matcher.rend.0: -Uline
