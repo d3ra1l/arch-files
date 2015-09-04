@@ -13,8 +13,9 @@ ALIGN="left"
 
 avol=$(amixer | grep "Master" -A 5 | grep -o "\[.*%" | sed "s/\[//")
 alsavol="^fg($FG2)Alsa Volume: ^fg($FG1)$avol"
+cover="cd /home/phallus/bin;./cover_fetcher"
 
-buttons=" ^ca(1, mpc prev)⮳  ^ca()  ^ca(1, mpc pause)⮔ ^ca()  ^ca(1, mpc play)⮓ ^ca()  ^ca(1, mpc next)⮲  ^ca() "
+buttons=" ^ca(1, mpc prev)⮳  ^ca()  ^ca(1, mpc pause)⮔  ^ca() ^ca(1, $cover)↓  ^ca() ^ca(1, mpc play)⮓ ^ca()  ^ca(1, mpc next)⮲  ^ca() "
 
 if [ "`mpc 2>&1 | wc -l`" -gt "1" ]; then
 	so=`mpc current -f %title%`
@@ -52,7 +53,7 @@ if [ "`mpc 2>&1 | wc -l`" -gt "1" ]; then
 	fi
 	
 	feh -N -B black -g +$(($XPOS-108))+$(($YPOS)) "$albumart" --title "aart " &
-	(echo "$nowplaying"; echo " $artist"; echo " $album"; echo " $time"; echo " $track"; echo " "; echo " $percbar";echo "^fg($cyan)      $buttons"; echo " "; sleep $TIMING) | dzen2 -bg $BG -fn $FONT -x $XPOS -y $YPOS -w $WIDTH -h $HEIGHT -l $LINES -e 'onstart=uncollapse;button1=exit;button2=exit;button3=exit;button4=exit;button5=exit;onexit=exec:killall feh'
+	(echo "$nowplaying"; echo " $artist"; echo " $album"; echo " $time"; echo " $track"; echo " "; echo " $percbar";echo "^fg($cyan)    $buttons"; echo " "; sleep $TIMING) | dzen2 -bg $BG -fn $FONT -x $XPOS -y $YPOS -w $WIDTH -h $HEIGHT -l $LINES -e 'onstart=uncollapse;button1=exit;button2=exit;button3=exit;button4=exit;button5=exit;onexit=exec:killall feh'
 else
 	(echo "^fg($FG2)MPD is not playing."; sleep 1) | dzen2 -bg $BG -fn $FONT -x $XPOS -y $YPOS -w 95 -h $HEIGHT -l 0 -ta "center" -sa $ALIGN -e 'onstart=uncollapse;button1=exit;button2=exit;button3=exit;button4=exit;button5=exit'
 fi

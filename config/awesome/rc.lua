@@ -47,7 +47,7 @@ end
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/home/phallus/.config/awesome/themes/benis/theme.lua")
 
-terminal   = "urxvt"
+terminal   = "gnome-terminal"
 bindir     = "/home/phallus/bin"
 browser    = os.getenv("BROWSER") or "firefox"
 editor     = os.getenv("EDITOR") or "vim"
