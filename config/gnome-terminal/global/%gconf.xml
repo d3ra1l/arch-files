@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="confirm_window_close" mtime="1441388643" type="bool" value="false"/>
+</gconf>
