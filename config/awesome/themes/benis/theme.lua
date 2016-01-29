@@ -9,7 +9,7 @@ theme.font          = "lemon 7"
 theme.font_alt      = "-*-lemon-*-*-*-*-*-*-*-*-*-*-*-*"
 
 theme.bg_normal     = "#20202f"
-theme.bg_focus      = "#191921"
+theme.bg_focus      = "#1b1b24"
 --theme.bg_focus      = "#20202f"
 theme.bg_urgent     = "#20202f"
 theme.bg_minimize   = "#20202f"
@@ -29,6 +29,7 @@ theme.border_width  = 2
 theme.border_normal = "#20202f"
 theme.border_focus  = "#30303a"
 theme.border_marked = "#646464"
+theme.border_custom = "#a2a2a2"
 
 theme.colorize_fg    = "#dfdfdf"
 theme.colorize_fgb   = "#b4b4b4"
@@ -49,7 +50,7 @@ theme.tasklist_maximized_horizontal = ""
 theme.tasklist_maximized_vertical   = ""
 
 --gaps work best if the padding is 7 + 10x
-theme.padding = "57"
+theme.padding = "67"
 
 theme.tasklist_floating = ""
 theme.layout = {

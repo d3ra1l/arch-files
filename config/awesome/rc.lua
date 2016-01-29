@@ -47,7 +47,7 @@ end
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/home/phallus/.config/awesome/themes/benis/theme.lua")
 
-terminal   = "gnome-terminal"
+terminal   = "urxvt"
 bindir     = "/home/phallus/bin"
 browser    = os.getenv("BROWSER") or "firefox"
 editor     = os.getenv("EDITOR") or "vim"
@@ -118,7 +118,7 @@ end
 -- Define a tag table which hold all screen tags.
 tags = {
   names = { "⮫", "⮬", "⮭", "⮮", "⮯" },
-  layouts = { layouts[2], layouts[1], layouts[1], layouts[1], layouts[1] },
+  layouts = { layouts[2], layouts[2], layouts[1], layouts[1], layouts[1] },
   mwfact = .54
 }
 
@@ -135,32 +135,32 @@ end
 -- {{{ Menu
 -- Create a laucher widget and a main menu
 myawesomemenu = {
-  { "manual", terminal .. " -e man awesome" },
-  { "edit config", editor_cmd .. " " .. awesome.conffile },
-  { "restart", awesome.restart },
-  { "quit", awesome.quit }
+  --{ "manual", terminal .. " -e man awesome" },
+  --{ "edit config", editor_cmd .. " " .. awesome.conffile },
+  --{ "restart", awesome.restart },
+  --{ "quit", awesome.quit }
 }
 mygamesmenu = {
-  { "ut4", "UnrealTournament" },
-  { "ygopro", "/home/bin/phallus/yg" },
-  { "marathon1", "alephone-marathon"},
-  { "marathon2", "alephone-marathon2"},
-  { "marathoni", "alephone-infinity"}
+  --{ "ut4", "UnrealTournament" },
+  --{ "ygopro", "/home/bin/phallus/yg" },
+  --{ "marathon1", "alephone-marathon"},
+  --{ "marathon2", "alephone-marathon2"},
+  --{ "marathoni", "alephone-infinity"}
 }
 myscriptsmenu = {
-  { "shimeji", "/home/phallus/bin/shimeji-run" },
-  { "scrot", "/home/phallus/bin/scr" },
-  { "set wall", "/home/phallus/bin/nr"},
-  { "get cover", "/home/phallus/bin/cover_fetcher"},
+  --{ "shimeji", "/home/phallus/bin/shimeji-run" },
+  --{ "scrot", "/home/phallus/bin/scr" },
+  --{ "set wall", "/home/phallus/bin/nr"},
+  --{ "get cover", "/home/phallus/bin/cover_fetcher"},
 }
 
 mymainmenu = awful.menu({ items = {
     --submenus don't work, dunno why
-    --{ "games", mygamesmenu },
-    --{ "awesome", myawesomemenu },
-    --{ "scripts", myscriptsmenu },
+    { "games", mygamesmenu },
+    { "awesome", myawesomemenu },
+    { "scripts", myscriptsmenu },
     --{ "⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶", }, --seperator, if desired
-    { "⮩    urxvt", terminal },
+    { "⮩     term", terminal },
     { "⮷     wifi", terminal .. " -e sudo wifi-menu" },
     { "⮠  shimeji", "/home/phallus/bin/shimeji-run" },
     { "⮤    scrot", "/home/phallus/bin/scr" },
@@ -241,7 +241,8 @@ function batinfo(adapter)
       batico = colorizei(" ⮎ ", fgr, bgr)
     end
   end
-  batwidget:set_markup(''..batico..' '..batbar..'  ')
+  --batwidget:set_markup(''..batico..' '..batbar..'  ')
+  batwidget:set_markup(''..batico..'')
 end 
 battery_timer = timer({timeout = 1}) 
 battery_timer:connect_signal("timeout", function()
@@ -251,7 +252,8 @@ battery_timer:start()
 --}}}
 
 -- time widget {{{
-mytextclock = awful.widget.textclock("<span color='#dfdfdf' background='#30303a'> ⮖ </span> %R - %a, %b %d  ")
+--mytextclock = awful.widget.textclock("<span color='#dfdfdf' background='#30303a'> ⮖ </span> %R - %a, %b %d  ")
+mytextclock = awful.widget.textclock("<span color='#dfdfdf' background='#30303a'> ⮖ </span> ")
 monkfish.widgets.calendar.register(mytextclock)
 --}}}
 
@@ -271,7 +273,8 @@ function (widget, args)
   else
     neticon = colorizei(" … ", fgr, bgr)  
   end
-  return ''..neticon..' '..ssid..' '
+  --return ''..neticon..' '..ssid..' '
+  return ''..neticon..''
 end, 1, 'wlan0')
 --}}}
 
@@ -292,12 +295,14 @@ function (widget, args)
     else
       muicon = colorizei(" ⮓ ", fgr, bgr)
     end
-    return ''..muicon..' '..title..' '..by..' '..artist..' '
+    --return ''..muicon..' '..title..' '..by..' '..artist..' '
+      return ''..muicon..''
   end
 end, 1)
 --}}}
 
 -- vol widget {{{
+
 volwidget = wibox.widget.textbox()
 monkfish.widgets.vol.register(volwidget)
 vicious.register(volwidget, vicious.widgets.volume,
@@ -307,9 +312,10 @@ function (widget, args)
   local vol = math.floor(args[1] / 10)
     if (args[2] ~= "♩" ) then
       volbar = colorizeb(string.rep("⮶",vol), bfg, string.rep("⮶",10-vol), bbg)
-      return ''..volicon..' '.. volbar ..'  '
+      --return ''..volicon..' '.. volbar ..'  '
+      return ''..volicon..''
     else
-      return ''..volicon..' muted  '
+      return ''..volicon..''
     end 
 end, 1, "Master")
 --}}}
@@ -317,7 +323,7 @@ end, 1, "Master")
 -- spacers {{{
 separator = wibox.widget.textbox()
 spacer = wibox.widget.textbox(" ")
-separator:set_text("")
+separator:set_text("  ")
 --}}}
 
 -- Create a wibox for each screen and add it
@@ -395,9 +401,9 @@ for s = 1, screen.count() do
     right_layout:add(netwidget)
     right_layout:add(spacer)
     right_layout:add(volwidget)
-    right_layout:add(separator)
+    right_layout:add(spacer)
     right_layout:add(batwidget)
-    right_layout:add(separator)
+    right_layout:add(spacer)
     right_layout:add(mytextclock)
 
 -- Now bring it all together (with the tasklist in the middle)
@@ -568,11 +574,21 @@ awful.rules.rules = {
       skip_taskbar = true },
   },
 
+  --{ rule = { class = "URxvt" },
+    --properties = {
+      --border_color = beautiful.border_custom
+    --}
+  --},
+
   { rule = { instance = "sun-awt-X11-XWindowPeer"},
     properties = { floating = true, border_width = 0 } 
   },
   
   { rule = { instance = "Download" },
+    properties = { floating = true } 
+  },
+
+  { rule = { name = "Firefox Preferences" },
     properties = { floating = true } 
   },
   

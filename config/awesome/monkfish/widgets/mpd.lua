@@ -12,14 +12,13 @@ module("monkfish.widgets.mpd")
 function register(mywidget)
     mywidget:buttons(awful.util.table.join(
     awful.button({ }, 1, 
-    function()
-        awful.util.spawn_with_shell("/home/phallus/.config/awesome/monkfish/widgets/scripts/d-music")
---        naughty.notify({
---        text = "mpdinfogoeshere",
---        timeout = 0,
---        screen = capi.mouse.screen
---        })
-    end)
+      function()
+          awful.util.spawn_with_shell("/home/phallus/.config/awesome/monkfish/widgets/scripts/d-music")
+      end),
+    awful.button({ }, 3,
+      function()
+          awful.util.spawn_with_shell("urxvt -e ncmpcpp")
+      end)
    ))
 end
 
