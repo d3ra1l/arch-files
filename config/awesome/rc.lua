@@ -244,7 +244,7 @@ function batinfo(adapter)
   --batwidget:set_markup(''..batico..' '..batbar..'  ')
   batwidget:set_markup(''..batico..'')
 end 
-battery_timer = timer({timeout = 1}) 
+battery_timer = timer({timeout = 0}) 
 battery_timer:connect_signal("timeout", function()
   batinfo("BAT0")
 end)
@@ -323,7 +323,7 @@ end, 1, "Master")
 -- spacers {{{
 separator = wibox.widget.textbox()
 spacer = wibox.widget.textbox(" ")
-separator:set_text("  ")
+separator:set_text("    ")
 --}}}
 
 -- Create a wibox for each screen and add it
