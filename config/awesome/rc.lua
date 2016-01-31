@@ -214,9 +214,11 @@ batwidget = wibox.widget.textbox()
 monkfish.widgets.bat.register(batwidget)
 vicious.register(batwidget, vicious.widgets.bat,
   function (widget, args)
+    local bat = math.floor(args[2] / 10)
+    local batbar = colorizeb(string.rep("⮶",bat), bfg, string.rep("⮶",10-bat), bbg)
     if args[1] == "↯" or "⌁" then
       batico = colorizei(" ⮎ ", fgr, bgr)
-    elseif args [1] == "+" then
+    elseif args[1] == "+" then
       batico = colorizei(" ⮒ ", fgr, bgr)
     else
       if args[2] > 49 then
