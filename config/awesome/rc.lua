@@ -216,14 +216,16 @@ vicious.register(batwidget, vicious.widgets.bat,
   function (widget, args)
     local bat = math.floor(args[2] / 10)
     local batbar = colorizeb(string.rep("⮶",bat), bfg, string.rep("⮶",10-bat), bbg)
-    if args[1] == "↯" or "⌁" then
+    if args[1] == "⌁" then
+      batico = colorizei(" ⮎ ", fgr, bgr)
+    elseif args[1] == "↯" then
       batico = colorizei(" ⮎ ", fgr, bgr)
     elseif args[1] == "+" then
       batico = colorizei(" ⮒ ", fgr, bgr)
     else
-      if args[2] > 49 then
+      if args[2] > 59 then
         batico = colorizei(" ⮏ ", fgr, bgr)
-      elseif args[2] < 50 and args[2] > 25 then
+      elseif args[2] < 60 and args[2] > 20 then
         batico = colorizei(" ⮑ ", fgr, bgr)
       else
         batico = colorizei(" ⮐ ", wfg, bgr)
