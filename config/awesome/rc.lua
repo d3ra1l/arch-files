@@ -218,7 +218,7 @@ vicious.register(batwidget, vicious.widgets.bat,
       batico = colorizei(" ⮒ ", fgr, bgr)
     elseif args [1] == "+" then
       batico = colorizei(" ⮒ ", fgr, bgr)
-    elseif args [1] == "-" then
+    else
       if args[2] > 49 then
         batico = colorizei(" ⮏ ", fgr, bgr)
       elseif args[2] < 50 and args[2] > 25 then
@@ -226,8 +226,6 @@ vicious.register(batwidget, vicious.widgets.bat,
       else
         batico = colorizei(" ⮐ ", wfg, bgr)
       end
-    else
-      batico = colorizei(" ⮎ ", fgr, bgr)
     end
     return batico
   end, 1, "BAT0")
