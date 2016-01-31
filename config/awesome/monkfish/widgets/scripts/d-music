@@ -29,18 +29,27 @@ if [ "`mpc 2>&1 | wc -l`" -gt "1" ]; then
 	album="^fg($FG2)Album: ^fg($FG1)$alba"
 	time="^fg($FG2)Time: ^fg($FG1)$ti"
 	
-	if [ "`mpc | grep "^\[paused\]"`" != "" ]; then
-		np="^fg($red)Paused: ^fg($FG2)$so ^fg($FG1)by ^fg($FG2)$art"
-	else
-		np="^fg($red)Playing: ^fg($FG2)$so ^fg($FG1)by ^fg($FG2)$art"
-	fi
+  #if [ "`mpc | grep "^\[paused\]"`" != "" ]; then
+    #np="^fg($red)Paused:^fg() ^fg($FG2)$so^fg()  ^fg($FG1)by^fg()  ^fg($FG2)$art"
+    #np="^fg($fg1)$so by $art"
+  #else
+    #np="^fg($red)Playing:^fg()  ^fg($FG2)$so^fg()  ^fg($FG1)by^fg()  ^fg($FG2)$art"
+    #np="^fg($fg1)$so by $art"
+  #fi
 	
 	perc=`mpc | awk 'NR == 2 {gsub(/[()%]/,""); print $4}'`
 	percwidth=$(( $WIDTH - 10 ))
 	percbar=`echo -e "$perc" | gdbar -bg $bar_bg -fg $foreground -h 1 -w $percwidth`
 	albumart="/home/phallus/mu/thumbs/$(ls ~/mu/thumbs | grep "$art - $alb.png")"
 	
-	nowplaying="$np"
+  np="^fg()$so by $art"
+  len=`expr "$np" : '.*'`
+  if [ "$len" -gt 31 ]; then
+    np1=`echo ${np:0:31}…`
+  else
+    np1=$np
+  fi
+	nowplaying="$np1"
 	playing=$(mpc current)
 	playlistcurrent=$(mpc playlist | grep -n "$playing" | cut -d ":" -f 1)
 	tnum=$(mpc -f %track% | sed -n "1p")

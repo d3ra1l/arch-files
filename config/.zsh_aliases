@@ -11,6 +11,9 @@ alias cp='cp -Rv'
 #add pretty much any font in ~/.fonts
 alias fonts='mkfontdir ~/.fonts;mkfontscale ~/.fonts;xset +fp ~/.fonts;xset fp rehash;fc-cache;fc-cache -fv'
 
+#shorten wifi-menu
+alias wifi="sudo wifi-menu"
+
 #make du pretty
 alias du='cdu -d ch'
 
@@ -19,6 +22,7 @@ alias f2o='flac2ogg;..'
 alias a2f='for f in *.m4a; do ffmpeg -i "$f" "${f%.m4a}.flac"; done;rm *.m4a'
 
 #a bit of fun
+alias ygopro="cd ~/downloads/ygopro;./ygopro64"
 alias fuck='echo;gayt "fuck you too";echo'
 alias fucking='sudo'
 alias starwars='telnet towel.blinkenlights.nl'
@@ -26,6 +30,14 @@ alias fort='fortune -a'
 alias gfort='fort | gayt'
 alias hack='cat /dev/urandom | hexdump -c'
 alias shimeji='~/bin/shimeji-run'
+
+#album cover resizing + moving
+cover_make(){
+  artist=`mpc current -f %artist`
+  album=`mpc current -f %album`
+  convert $1 -resize 104x104 "$artist - $album.png"
+  mv "$artist - $album.png" ~/mu/thumbs
+}
 
 #screenfetch
 alias sfd='screenfetch-dev'
@@ -67,7 +79,7 @@ alias ur='unrar x'
 alias u7z='7za e'
 
 #pkill
-alias pk='pkill'
+alias pk='sudo pkill'
 alias pkx='sudo pkill X'
 
 #screen
@@ -134,6 +146,7 @@ gcp() {
   211)     cp ~/edu/programming/c211/* $gedu/c211/;$gedu ;;
   bot)     cp ~/edu/programming/bot/* $gbot;$gbot ;;
   awesome) cp ~/.config/awesome $gconf/config;$gconf ;;
+  gterm)   cp ~/.config/gconf/apps/gnome-terminal/ $gconf/config  ;;
   compton) cp ~/.compton.conf $gconf/config/.compton.conf;$gconf ;;
   *)       echo "$1 not found!" ;;
  esac

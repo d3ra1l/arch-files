@@ -57,3 +57,18 @@ export EDITOR="vim"
 
 #add ~/bin to $path
 export PATH=~/bin:$PATH
+
+#remove redundant directories
+#rmdl(){
+  #if [ -d "/home/phallus/Downloads" ]; then
+    #rmdir ~/Downloads
+  #fi
+#}
+#rmdt(){
+  #if [ -d "/home/phallus/Desktop" ]; then
+    #rmdir ~/Desktop
+  #fi
+#}
+
+#exec $rmdt
+#exec $rmdl
