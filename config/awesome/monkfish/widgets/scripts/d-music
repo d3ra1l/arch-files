@@ -42,8 +42,8 @@ if [ "`mpc 2>&1 | wc -l`" -gt "1" ]; then
 	percbar=`echo -e "$perc" | gdbar -bg $bar_bg -fg $foreground -h 1 -w $percwidth`
 	albumart="/home/phallus/mu/thumbs/$(ls ~/mu/thumbs | grep "$art - $alb.png")"
 	
-  np="^fg()$so by $art"
-  len=`expr "$np" : '.*'`
+  np="^fg($FG2)$so"
+  len=`expr "$so" : '.*'`
   if [ "$len" -gt 31 ]; then
     np1=`echo ${np:0:31}…`
   else
