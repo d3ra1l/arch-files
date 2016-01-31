@@ -3,16 +3,14 @@
 source $(dirname $0)/d-conf
 
 #YPOS="14"
-get_xpos(){
-	xpos=$(( $(xdotool getmouselocation | awk -F " " '{print $1}' | cut -d ":" -f 2) - 45 ))
-	if [ "$xpos" -gt "1490" ]; then
-		echo "1492"
-	else
-		echo $xpos
-	fi
-}
+if [[ "$rescheck" == "1600x900" ]]; then
+  XPOS="1492"
+else
+  XPOS="1812" 
+fi
+
 #XPOS=$(( $(xdotool getmouselocation | awk -F " " '{print $1}' | cut -d ":" -f 2) - 55 ))
-XPOS=`get_xpos`
+#XPOS=$get_xpos
 #TIMING="5"
  
 HEIGHT="12"

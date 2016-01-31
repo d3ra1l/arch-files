@@ -60,6 +60,10 @@ define() {
 }
 alias def="define"
 
+#connect to hdmi
+alias hdmi-on="xrandr --output HDMI1 --mode 1920x1080"
+alias hdmi-off="xrandr --output HDMI1 --off"
+
 #music
 alias ncp='ncmpcpp'
 alias f2k='wine ~/.wine/drive_c/users/phallus/Desktop/foobar2000/foobar2000.exe'

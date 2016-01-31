@@ -20,6 +20,7 @@ highlight="#b4b4b4"
 FONT="-artwiz-lemon-medium-r-normal-*-10-110-75-75-m-50-iso8859-*"
 TIMING="15"
 white0="#626e74"
+rescheck=`xrandr -q | awk -F'current' -F',' 'NR==1 {gsub("( |current)","");print $2}'`
 
 bar_bg="#66666a"
 notify="#F39D21"

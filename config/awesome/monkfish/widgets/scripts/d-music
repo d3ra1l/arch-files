@@ -2,10 +2,11 @@
 
 source $(dirname $0)/d-conf
 
-XPOS=1452
-#XPOS=$(xdotool getmouselocation | awk -F " " '{print $1}' | cut -d ":" -f 2)
-#YPOS="14"
-#TIMING="5"
+if [[ $rescheck == "1600x900" ]]; then
+  XPOS=1452
+else
+  XPOS=1771
+fi
 
 HEIGHT="12"
 WIDTH="144"
