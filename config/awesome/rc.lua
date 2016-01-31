@@ -212,43 +212,25 @@ tasklist.buttons = awful.util.table.join(
 -- if you get an error regarding hibernation, change energy_now and energy_full to charge_now/full. thanks doidbb
 batwidget = wibox.widget.textbox()
 monkfish.widgets.bat.register(batwidget)
-function batinfo(adapter)
-  local fcur = io.open("/sys/class/power_supply/"..adapter.."/energy_now") 
-  local fcap = io.open("/sys/class/power_supply/"..adapter.."/energy_full")
-  local fsta = io.open("/sys/class/power_supply/"..adapter.."/status")
-  local cur = fcur:read()
-  local cap = fcap:read()
-  local sta = fsta:read()
-  local battery = math.floor(cur * 100 / cap)
-  local batico = ""
-  local batbar = ""
-  local bat = math.floor(battery / 10)
-  batbar = colorizeb(string.rep("⮶",bat), bfg, string.rep("⮶",10-bat), bbg)
-  if sta:match("Charged")then
-    batico = colorizei(" ⮎ ", fgr, bgr)
-  else
-    if sta:match("Charging")then
+vicious.register(batwidget, vicious.widgets.bat,
+  function (widget, args)
+    if args[1] == "↯" then
       batico = colorizei(" ⮒ ", fgr, bgr)
-    elseif sta:match("Discharging") then
-      if tonumber(battery) > 49 then
+    elseif args [1] == "+" then
+      batico = colorizei(" ⮒ ", fgr, bgr)
+    elseif args [1] == "-" then
+      if args[2] > 49 then
         batico = colorizei(" ⮏ ", fgr, bgr)
-      elseif tonumber(battery) < 50 and tonumber(battery) > 25 then
+      elseif args[2] < 50 and args[2] > 25 then
         batico = colorizei(" ⮑ ", fgr, bgr)
       else
         batico = colorizei(" ⮐ ", wfg, bgr)
-      end 
+      end
     else
       batico = colorizei(" ⮎ ", fgr, bgr)
     end
-  end
-  --batwidget:set_markup(''..batico..' '..batbar..'  ')
-  batwidget:set_markup(''..batico..'')
-end 
-battery_timer = timer({timeout = 1}) 
-battery_timer:connect_signal("timeout", function()
-  batinfo("BAT0")
-end)
-battery_timer:start()
+    return batico
+  end, 1, "BAT0")
 --}}}
 
 -- time widget {{{
