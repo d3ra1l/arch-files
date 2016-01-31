@@ -214,8 +214,8 @@ batwidget = wibox.widget.textbox()
 monkfish.widgets.bat.register(batwidget)
 vicious.register(batwidget, vicious.widgets.bat,
   function (widget, args)
-    if args[1] == "↯" then
-      batico = colorizei(" ⮒ ", fgr, bgr)
+    if args[1] == "↯" or "⌁" then
+      batico = colorizei(" ⮎ ", fgr, bgr)
     elseif args [1] == "+" then
       batico = colorizei(" ⮒ ", fgr, bgr)
     else
