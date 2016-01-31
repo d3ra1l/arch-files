@@ -255,7 +255,6 @@ function (widget, args)
   else
     neticon = colorizei(" … ", fgr, bgr)  
   end
-  --return ''..neticon..' '..ssid..' '
   return ''..neticon..''
 end, 1, 'wlan0')
 --}}}
@@ -277,7 +276,6 @@ function (widget, args)
     else
       muicon = colorizei(" ⮓ ", fgr, bgr)
     end
-    --return ''..muicon..' '..title..' '..by..' '..artist..' '
       return ''..muicon..''
   end
 end, 1)
@@ -294,7 +292,6 @@ function (widget, args)
   local vol = math.floor(args[1] / 10)
     if (args[2] ~= "♩" ) then
       volbar = colorizeb(string.rep("⮶",vol), bfg, string.rep("⮶",10-vol), bbg)
-      --return ''..volicon..' '.. volbar ..'  '
       return ''..volicon..''
     else
       return ''..volicon..''
