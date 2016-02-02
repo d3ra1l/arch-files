@@ -21,6 +21,7 @@ buttons=" ^ca(1, mpc prev)⮳  ^ca()  ^ca(1, mpc pause)⮔  ^ca() ^ca(1, $cover)
 
 if [ "`mpc 2>&1 | wc -l`" -gt "1" ]; then
 	so=`mpc current -f %title%`
+  np="^fg($FG2)$so"
 	arta=`mpc current -f %artist%`
 	alba=`mpc current -f %album%`
 	artb=`mpc current -f %artist% | sed -e 's/\//-/g'| sed -e 's/|/-/g' | sed -e 's/\://g'`
@@ -41,7 +42,6 @@ if [ "`mpc 2>&1 | wc -l`" -gt "1" ]; then
     alb=$alba
   fi
 
-  np="^fg($FG2)$so"
   lenc=`expr "$so" : '.*'`
   if [ "$lenc" -gt 31 ]; then
     np1=`echo ${np:0:31}…`
