@@ -43,8 +43,8 @@ if [ "`mpc 2>&1 | wc -l`" -gt "1" ]; then
   fi
 
   lenc=`expr "$so" : '.*'`
-  if [ "$lenc" -gt 31 ]; then
-    np1=`echo ${np:0:31}…`
+  if [ "$lenc" -gt 39 ]; then
+    np1=`echo ${np:0:38}…`
   else
     np1=$np
   fi
