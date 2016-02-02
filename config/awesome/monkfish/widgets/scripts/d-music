@@ -21,9 +21,10 @@ buttons=" ^ca(1, mpc prev)⮳  ^ca()  ^ca(1, mpc pause)⮔  ^ca() ^ca(1, $cover)
 
 if [ "`mpc 2>&1 | wc -l`" -gt "1" ]; then
 	so=`mpc current -f %title%`
-	#arta=`mpc current -f %artist%`
+	arta=`mpc current -f %artist%`
 	alba=`mpc current -f %album%`
-	arta=`mpc current -f %artist% | sed -e 's/\//-/g'| sed -e 's/|/-/g' | sed -e 's/\://g'`
+	artb=`mpc current -f %artist% | sed -e 's/\//-/g'| sed -e 's/|/-/g' | sed -e 's/\://g'`
+  albb=`mpc current -f %album% | sed -e 's/\//-/g'| sed -e 's/|/-/g'`
 
   #refactor this
   lena=`expr "$arta" : '.*'`
@@ -32,13 +33,20 @@ if [ "`mpc 2>&1 | wc -l`" -gt "1" ]; then
   else
     art=$arta
   fi
-  alba=`mpc current -f %album% | sed -e 's/\//-/g'| sed -e 's/|/-/g'`
 
-  lena=`expr "$alba" : '.*'`
-  if [ "$lenb" -gt 21 ]; then
-    alb=`echo ${np:0:20}…`
+  lenb=`expr "$alba" : '.*'`
+  if [ "$lenb" -gt 20 ]; then
+    alb=`echo ${alba:0:19}…`
   else
     alb=$alba
+  fi
+
+  np="^fg($FG2)$so"
+  lenc=`expr "$so" : '.*'`
+  if [ "$lenc" -gt 31 ]; then
+    np1=`echo ${np:0:31}…`
+  else
+    np1=$np
   fi
 
 	ti=$(mpc | sed -n "2p" | awk -F " " '{print $3}')
@@ -49,15 +57,8 @@ if [ "`mpc 2>&1 | wc -l`" -gt "1" ]; then
 	perc=`mpc | awk 'NR == 2 {gsub(/[()%]/,""); print $4}'`
 	percwidth=$(( $WIDTH - 10 ))
 	percbar=`echo -e "$perc" | gdbar -bg $bar_bg -fg $foreground -h 1 -w $percwidth`
-	albumart="/home/phallus/mu/thumbs/$(ls ~/mu/thumbs | grep "$arta - $alba.png")"
+	albumart="/home/phallus/mu/thumbs/$(ls ~/mu/thumbs | grep "$artb - $albb.png")"
 	
-  np="^fg($FG2)$so"
-  lenc=`expr "$so" : '.*'`
-  if [ "$lenc" -gt 31 ]; then
-    np1=`echo ${np:0:31}…`
-  else
-    np1=$np
-  fi
 	nowplaying="$np1"
 	playing=$(mpc current)
 	playlistcurrent=$(mpc playlist | grep -n "$playing" | cut -d ":" -f 1)
