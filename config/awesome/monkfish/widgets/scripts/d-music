@@ -21,31 +21,39 @@ buttons=" ^ca(1, mpc prev)⮳  ^ca()  ^ca(1, mpc pause)⮔  ^ca() ^ca(1, $cover)
 
 if [ "`mpc 2>&1 | wc -l`" -gt "1" ]; then
 	so=`mpc current -f %title%`
-	arta=`mpc current -f %artist%`
+	#arta=`mpc current -f %artist%`
 	alba=`mpc current -f %album%`
-	art=`mpc current -f %artist% | sed -e 's/\//-/g'| sed -e 's/|/-/g' | sed -e 's/\://g'`
-	alb=`mpc current -f %album% | sed -e 's/\//-/g'| sed -e 's/|/-/g'`
+	arta=`mpc current -f %artist% | sed -e 's/\//-/g'| sed -e 's/|/-/g' | sed -e 's/\://g'`
+
+  #refactor this
+  lena=`expr "$arta" : '.*'`
+  if [ "$lena" -gt 19 ]; then
+    art=`echo ${arta:0:18}…`
+  else
+    art=$arta
+  fi
+  alba=`mpc current -f %album% | sed -e 's/\//-/g'| sed -e 's/|/-/g'`
+
+  lena=`expr "$alba" : '.*'`
+  if [ "$lenb" -gt 21 ]; then
+    alb=`echo ${np:0:20}…`
+  else
+    alb=$alba
+  fi
+
 	ti=$(mpc | sed -n "2p" | awk -F " " '{print $3}')
-	artist="^fg($FG2)Artist: ^fg($FG1)$arta"
-	album="^fg($FG2)Album: ^fg($FG1)$alba"
+	artist="^fg($FG2)Artist: ^fg($FG1)$art"
+	album="^fg($FG2)Album: ^fg($FG1)$alb"
 	time="^fg($FG2)Time: ^fg($FG1)$ti"
-	
-  #if [ "`mpc | grep "^\[paused\]"`" != "" ]; then
-    #np="^fg($red)Paused:^fg() ^fg($FG2)$so^fg()  ^fg($FG1)by^fg()  ^fg($FG2)$art"
-    #np="^fg($fg1)$so by $art"
-  #else
-    #np="^fg($red)Playing:^fg()  ^fg($FG2)$so^fg()  ^fg($FG1)by^fg()  ^fg($FG2)$art"
-    #np="^fg($fg1)$so by $art"
-  #fi
 	
 	perc=`mpc | awk 'NR == 2 {gsub(/[()%]/,""); print $4}'`
 	percwidth=$(( $WIDTH - 10 ))
 	percbar=`echo -e "$perc" | gdbar -bg $bar_bg -fg $foreground -h 1 -w $percwidth`
-	albumart="/home/phallus/mu/thumbs/$(ls ~/mu/thumbs | grep "$art - $alb.png")"
+	albumart="/home/phallus/mu/thumbs/$(ls ~/mu/thumbs | grep "$arta - $alba.png")"
 	
   np="^fg($FG2)$so"
-  len=`expr "$so" : '.*'`
-  if [ "$len" -gt 31 ]; then
+  lenc=`expr "$so" : '.*'`
+  if [ "$lenc" -gt 31 ]; then
     np1=`echo ${np:0:31}…`
   else
     np1=$np
@@ -63,7 +71,7 @@ if [ "`mpc 2>&1 | wc -l`" -gt "1" ]; then
 		mpdvol="^fg($FG2)MPD Volume: ^fg($FG1)100%"
 	fi
 	
-	feh -N -B black -g +$(($XPOS-108))+$(($YPOS)) "$albumart" --title "aart " &
+	feh -N -B black -g +$(($XPOS-108))+$(($YPOS)) "$albumart" --title "aart" &
 	(echo "$nowplaying"; echo " $artist"; echo " $album"; echo " $time"; echo " $track"; echo " "; echo " $percbar";echo "^fg($cyan)    $buttons"; echo " "; sleep $TIMING) | dzen2 -bg $BG -fn $FONT -x $XPOS -y $YPOS -w $WIDTH -h $HEIGHT -l $LINES -e 'onstart=uncollapse;button1=exit;button2=exit;button3=exit;button4=exit;button5=exit;onexit=exec:killall feh'
 else
 	(echo "^fg($FG2)MPD is not playing."; sleep 1) | dzen2 -bg $BG -fn $FONT -x $XPOS -y $YPOS -w 95 -h $HEIGHT -l 0 -ta "center" -sa $ALIGN -e 'onstart=uncollapse;button1=exit;button2=exit;button3=exit;button4=exit;button5=exit'

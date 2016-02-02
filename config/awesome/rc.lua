@@ -232,7 +232,7 @@ vicious.register(batwidget, vicious.widgets.bat,
       end
     end
     return batico
-  end, 1, "BAT0")
+  end, 5, "BAT0")
 --}}}
 
 -- time widget {{{
@@ -554,12 +554,6 @@ awful.rules.rules = {
       sticky = true, 
       skip_taskbar = true },
   },
-
-  --{ rule = { class = "URxvt" },
-    --properties = {
-      --border_color = beautiful.border_custom
-    --}
-  --},
 
   { rule = { instance = "sun-awt-X11-XWindowPeer"},
     properties = { floating = true, border_width = 0 } 
