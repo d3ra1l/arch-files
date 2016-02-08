@@ -232,7 +232,7 @@ vicious.register(batwidget, vicious.widgets.bat,
       end
     end
     return batico
-  end, 5, "BAT0")
+  end, 2, "BAT0")
 --}}}
 
 -- time widget {{{
@@ -271,7 +271,7 @@ function (widget, args)
   local by = colorizen("by", fgr) --this is dumb
   if args["{state}"] == "Stop" then 
     muicon = colorizei(" ⮕ ", fgr, bgr)
-    return ''..muicon..' not playing anything '
+    return ''..muicon..''
   else
     if args["{state}"] == "Pause" then
       muicon = colorizei(" ⮔ ", fgr, bgr)
@@ -544,7 +544,7 @@ awful.rules.rules = {
   },
   
   --album art popup
-  { rule = { name = "aart" },
+  { rule_any = { name = { "aart" } },
     properties = { 
       border_color = beautiful.border_focus,
       focus = false,
@@ -587,7 +587,7 @@ awful.rules.rules = {
     callback = function (c) c:swap(awful.client.getmaster()) end,
   },
 
-  { rule = { instance = "Navigator" },
+  { rule_any = { instance = { "Navigator" } },
     callback = function (c) c:swap(awful.client.getmaster()) end,
   }
 
