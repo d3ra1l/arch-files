@@ -135,30 +135,30 @@ end
 -- {{{ Menu
 -- Create a laucher widget and a main menu
 myawesomemenu = {
-  --{ "manual", terminal .. " -e man awesome" },
-  --{ "edit config", editor_cmd .. " " .. awesome.conffile },
-  --{ "restart", awesome.restart },
-  --{ "quit", awesome.quit }
+  { "manual", terminal .. " -e man awesome" },
+  { "edit config", editor_cmd .. " " .. awesome.conffile },
+  { "restart", awesome.restart },
+  { "quit", awesome.quit },
 }
 mygamesmenu = {
-  --{ "ut4", "UnrealTournament" },
-  --{ "ygopro", "/home/bin/phallus/yg" },
-  --{ "marathon1", "alephone-marathon"},
-  --{ "marathon2", "alephone-marathon2"},
-  --{ "marathoni", "alephone-infinity"}
+  { "ut4", "UnrealTournament" },
+  { "ygopro", "/home/bin/phallus/yg" },
+  { "marathon1", "alephone-marathon" },
+  { "marathon2", "alephone-marathon2" },
+  { "marathoni", "alephone-infinity" },
 }
 myscriptsmenu = {
-  --{ "shimeji", "/home/phallus/bin/shimeji-run" },
-  --{ "scrot", "/home/phallus/bin/scr" },
-  --{ "set wall", "/home/phallus/bin/nr"},
-  --{ "get cover", "/home/phallus/bin/cover_fetcher"},
+  { "shimeji", "/home/phallus/bin/shimeji-run" },
+  { "scrot", "/home/phallus/bin/scr" },
+  { "set wall", "/home/phallus/bin/nr" },
+  { "get cover", "/home/phallus/bin/cover_fetcher" },
 }
 
 mymainmenu = awful.menu({ items = {
     --submenus don't work, dunno why
-    { "games", mygamesmenu },
-    { "awesome", myawesomemenu },
-    { "scripts", myscriptsmenu },
+    --{ "games", mygamesmenu },
+    --{ "awesome", myawesomemenu },
+    --{ "scripts", myscriptsmenu },
     --{ "⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶", }, --seperator, if desired
     { "⮩     term", terminal },
     { "⮷     wifi", terminal .. " -e sudo wifi-menu" },
@@ -275,8 +275,11 @@ function (widget, args)
   else
     if args["{state}"] == "Pause" then
       muicon = colorizei(" ⮔ ", fgr, bgr)
-    else
+    elseif args["{state}"] == "Play" then
       muicon = colorizei(" ⮓ ", fgr, bgr)
+    else
+      muicon = colorizei(" ⮕ ", fgr, bgr)
+      return ''..muicon..''
     end
       return ''..muicon..''
   end
@@ -529,7 +532,6 @@ root.keys(globalkeys)
 -- }}}
 
 -- {{{ Rules
--- these are both very fickle and very much in need of refactoring
 awful.rules.rules = {
   { rule = { },
     properties = { 
@@ -544,7 +546,7 @@ awful.rules.rules = {
   },
   
   --album art popup
-  { rule_any = { name = { "aart" } },
+  { rule = { name = "aart" },
     properties = { 
       border_color = beautiful.border_focus,
       focus = false,
@@ -552,7 +554,7 @@ awful.rules.rules = {
       raise = true,
       ontop = true,
       sticky = true, 
-      skip_taskbar = true },
+      skip_taskbar = true }
   },
 
   { rule = { instance = "sun-awt-X11-XWindowPeer"},
@@ -579,7 +581,7 @@ awful.rules.rules = {
     properties = { floating = true } 
   },
 
-  { rule = { class = "feh"},
+  { rule_any = { class = { "feh" } },
     properties = { floating = true }
   },
 
