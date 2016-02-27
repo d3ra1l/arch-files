@@ -1,13 +1,13 @@
-""""""""""""""""""""""""
-"" kingbenis' .vimrc
-""""""""""""""""""""""""
+"""""""""""
+"" vimrc ""
+"""""""""""
 
 " General {{{
 "---------------
 
 " basic settings
 set nocompatible
-set nowrap
+set wrap
 set noswapfile
 set backspace=indent,eol,start
 set foldmethod=marker
@@ -27,10 +27,12 @@ set laststatus=2
 set splitright
 set splitbelow
 set autochdir
+set autoindent
+"set viminfo=<9999
 
 " tab (as in the key)
 set smarttab
-set noexpandtab
+set expandtab
 set shiftwidth=2
 set softtabstop=2
 set tabstop=2
@@ -57,11 +59,8 @@ set undolevels=1000 " How many undos
 set undoreload=1000 " number of lines to save for undo
 
 " cursorline
-augroup CursorLine
-  au!
-  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  au WinLeave * setlocal nocursorline
-augroup END
+set cursorline
+set cursorcolumn
 
 " source .vimrc
 autocmd vimenter * source $MYVIMRC
@@ -109,15 +108,18 @@ vnoremap > >gv
 vnoremap < <gv
 noremap <Space> <Nop>
 let mapleader=" "
+noremap <leader>o o<Esc>
+noremap <leader>O O<Esc>
 noremap <leader>j <C-W>j
 noremap <leader>k <C-W>k
 noremap <leader>l <C-W>l
 noremap <leader>h <C-W>h
-noremap <leader>a 8 <C-w><
-noremap <leader>d 8 <C-w>-
-noremap <leader>s 8 <C-w>+
-noremap <leader>f 8 <C-w>>
+noremap <leader>A 8 <C-w><
+noremap <leader>D 8 <C-w>-
+noremap <leader>S 8 <C-w>+
+noremap <leader>F 8 <C-w>>
 noremap <leader><Space> za
+noremap <leader>f zf
 noremap <leader>L :tabnext<cr>
 noremap <leader>H :tabprev<cr>
 nmap <leader>w :w!<cr>
@@ -199,10 +201,12 @@ let g:indentLine_color_term = 7
 " delimitmate
 au FileType scheme let b:delimitMate_quotes = "\" "
 au FileType vim let b:delimitMate_quotes = "\' "
+let delimitMate_expand_cr=1
 
 " vicle
 au FileType scheme let t:vicle_screen_sn = 'racket'
 au FileType lua let t:vicle_screen_sn = 'lua'
+au FileType sh let t:vicle_screen_sn = 'zsh'
 au FileType * let t:vicle_screen_wn = '0'
 
 " }}}
@@ -216,9 +220,9 @@ hi CursorLineNr ctermfg=238 ctermbg=235
 hi LineNr ctermfg=7
 hi Constant ctermfg=2
 hi Statement ctermfg=1
-hi MatchParen ctermfg=8 ctermbg=none cterm=none
-hi TabLineFill term=bold cterm=bold ctermbg=none
-hi TabLine ctermfg=15 ctermbg=none cterm=none
+hi MatchParen ctermfg=8 ctermbg=white cterm=none
+hi TabLineFill term=bold cterm=bold ctermbg=235
+hi TabLine ctermfg=15 ctermbg=235 cterm=none
 hi TabLineSel ctermfg=Black ctermbg=none cterm=none
 hi VertSplit ctermfg=235 ctermbg=235 cterm=none
 hi StatusLine cterm=none ctermfg=0 ctermbg=7

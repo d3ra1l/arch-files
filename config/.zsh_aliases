@@ -33,8 +33,8 @@ alias shimeji='~/bin/shimeji-run'
 
 #album cover resizing + moving
 cover_make(){
-  artist=`mpc current -f %artist`
-  album=`mpc current -f %album`
+  artist=`mpc current -f %artist%`
+  album=`mpc current -f %album%`
   convert $1 -resize 104x104 "$artist - $album.png"
   mv "$artist - $album.png" ~/mu/thumbs
 }
@@ -61,8 +61,8 @@ define() {
 alias def="define"
 
 #connect to hdmi
-alias hdmi-on="xrandr --output HDMI1 --mode 1920x1080"
-alias hdmi-off="xrandr --output HDMI1 --off"
+alias hdmi-on="xrandr --output HDMI1 --mode 1920x1080;xset s off -dpms"
+alias hdmi-off="xrandr --output HDMI1 --off;xset s on +dpms"
 
 #music
 alias ncp='ncmpcpp'
@@ -113,6 +113,10 @@ alias yu='yaourt -Syy && yaourt -Syua --devel'
 alias yb='yaourt -Sb'
 alias yg='yaourt -G'
 alias ysi='yaourt -Qs'
+
+#misc utilities
+alias wtf='dmesg | tail'
+alias please='sudo $SHELL -ic "$(fc -ln -1)"'
 #}}}
 
 #git {{{
@@ -131,6 +135,7 @@ export gbot=~/gitshit/bot
 
 gcp() {
  case $1 in
+  bin)     cp ~/bin $gconf/bin;$gconf ;;
   uc)      cp ~/.mozilla/firefox/*.default/chrome/userChrome.css $gstyc/userChrome.css;$gstyc ;;
   uc-t)    cp ~/.mozilla/firefox/*.default/chrome/userChrome.css $gstyc/userChrome-testing.css;$gstyc ;;
   4chan)   rm $gstyc/4chan.css;touch $gstyc/4chan.css;vim $gstyc/4chan.css;$gstyc ;;
