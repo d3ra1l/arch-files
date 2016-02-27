@@ -10,30 +10,34 @@ pid_file "~/mu/conf/mpd.pid"
 state_file "~/mu/conf/mpdstate"
 
 audio_output {
-	type		"pulse"
-	name		"pulse audio"
+  type         "alsa"
+  name         "My Sound Card"
+  mixer_type   "software"
+  format       "44100:16:2"
+  #device       "hw:0,0"
+  device       "plug:dmix"
+  period_time  "2000000"
+  options      "dev=dmixer"
 }
 
 audio_output {
-	type		"alsa"
-	name		"My Sound Card"
-	mixer_type	"software"
-	format 		"44100:16:2"
-        device  	"hw:0,0"
-#	device          "plug:plugequal"
-	period_time	"2000000"
+  type         "pulse"
+  name         "MPD PulseAudio Output"
 }
 
 #audio_output {
-#        type            "alsa"
-#        name            "equal"
-#        device          "plug:plugequal"
+#  type            "alsa"
+#  name            "equal"
+#  device          "plug:plugequal"
+#  mixer_type      "software"
+#  format          "44100:16:2"
+#  use_mmap        "yes"
+#  period_time     "2000000"
 #}
 
 audio_output {
-	type		"fifo"
-	name		"my_fifo"
-	path 		"/tmp/mpd.fifo"
+  type     "fifo"
+  name     "my_fifo"
+  path     "/tmp/mpd.fifo"
+  format   "44100:16:2"
 }
-
-
