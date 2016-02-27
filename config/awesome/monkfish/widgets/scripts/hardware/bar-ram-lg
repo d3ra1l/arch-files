@@ -5,7 +5,6 @@ FREE=`free -m | sed -n "2p" | awk -F " " '{print $3}'`
 MAX=`free -m | sed -n "2p" | awk -F " " '{print $2}'`
 PERC=`echo $FREE*100/$MAX | bc`
 
-ICON="mem.xbm"
 if [[ $PERC -gt 75 ]]; then
 	PERCBAR=`echo -e "$PERC"\
 	| gdbar -bg $bar_bg -fg $warning -h 1 -w 115`

@@ -307,7 +307,7 @@ end, 1, "Master")
 -- spacers {{{
 separator = wibox.widget.textbox()
 spacer = wibox.widget.textbox(" ")
-separator:set_text("    ")
+separator:set_text("  ")
 --}}}
 
 -- Create a wibox for each screen and add it
