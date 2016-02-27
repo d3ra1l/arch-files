@@ -215,7 +215,6 @@ monkfish.widgets.bat.register(batwidget)
 vicious.register(batwidget, vicious.widgets.bat,
   function (widget, args)
     local bat = math.floor(args[2] / 10)
-    local batbar = colorizeb(string.rep("⮶",bat), bfg, string.rep("⮶",10-bat), bbg)
     if args[1] == "⌁" then
       batico = colorizei(" ⮎ ", fgr, bgr)
     elseif args[1] == "↯" then
@@ -247,7 +246,6 @@ monkfish.widgets.net.register(netwidget)
 vicious.register(netwidget, vicious.widgets.wifi,
 function (widget, args)
   local qual = tonumber(args["{link}"])
-  local ssid = args["{ssid}"]
   if qual > 66 then
     neticon = colorizei(" ⮷ ", fgr, bgr)  
   elseif qual > 33 then
@@ -266,9 +264,6 @@ mpdwidget = wibox.widget.textbox()
 monkfish.widgets.mpd.register(mpdwidget)
 vicious.register(mpdwidget, vicious.widgets.mpd,
 function (widget, args)
-  local artist = args["{Artist}"]
-  local title = args["{Title}"]
-  local by = colorizen("by", fgr) --this is dumb
   if args["{state}"] == "Stop" then 
     muicon = colorizei(" ⮕ ", fgr, bgr)
     return ''..muicon..''
@@ -292,15 +287,8 @@ volwidget = wibox.widget.textbox()
 monkfish.widgets.vol.register(volwidget)
 vicious.register(volwidget, vicious.widgets.volume,
 function (widget, args)
-  local volbar = ""
   local volicon = colorizei(" ⮜ ", fgr, bgr)
-  local vol = math.floor(args[1] / 10)
-    if (args[2] ~= "♩" ) then
-      volbar = colorizeb(string.rep("⮶",vol), bfg, string.rep("⮶",10-vol), bbg)
-      return ''..volicon..''
-    else
-      return ''..volicon..''
-    end 
+  return ''..volicon..''
 end, 1, "Master")
 --}}}
 
