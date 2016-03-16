@@ -50,7 +50,7 @@ theme.tasklist_maximized_horizontal = ""
 theme.tasklist_maximized_vertical   = ""
 
 --gaps work best if the padding is 7 + 10x
-theme.padding = "67"
+theme.padding = "77"
 
 theme.tasklist_floating = ""
 theme.layout = {
