@@ -209,7 +209,6 @@ tasklist.buttons = awful.util.table.join(
 
 -- {{{ Wibox
 -- bat widget {{{
--- if you get an error regarding hibernation, change energy_now and energy_full to charge_now/full. thanks doidbb
 batwidget = wibox.widget.textbox()
 monkfish.widgets.bat.register(batwidget)
 vicious.register(batwidget, vicious.widgets.bat,
