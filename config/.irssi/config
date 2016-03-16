@@ -37,16 +37,13 @@ chatnets = {
   SILC = { type = "SILC"; };
   unixhub = { type = "IRC"; };
   freenode = { type = "IRC"; };
-  bitlbee = {
-    type = "IRC";
-    autosendcmd = "wait 200; /msg -localhost &bitlbee identify ....";
-  };
 };
 
 channels = (
   { name = "#/g/sicp"; chatnet = "rizon"; autojoin = "yes"; },
   { name = "#/g/summer"; chatnet = "rizon"; autojoin = "no"; },
   { name = "#/music/"; chatnet = "rizon"; autojoin = "yes"; },
+  { name = "#/x/philes"; chatnet = "rizon"; autojoin = "yes"; },
   { name = "#wormhole"; chatnet = "rizon"; autojoin = "yes"; }
 );
 
@@ -103,6 +100,7 @@ aliases = {
   tickle = "me tickles";
   hug = "me hugs";
   CUBES = "SCRIPT EXEC my$$w=Irssi::active_win \\; my$$C=MSGLEVEL_CLIENTCRAP \\; my$$N=MSGLEVEL_NEVER|$$C \\; sub P{$$w->print(@_)} \\; P(\"%_bases\", $$C) \\; P( do { join '', map { \"%x0$${_}0$$_\" } '0'..'9','A'..'F' }, $$N) \\; P(\"%_cubes\", $$C) \\; P( do { my $$y = $$_*6 \\; join '', map { my $$x = $$_ \\; map { \"%x$$x$$_$$x$$_\" } @{['0'..'9','A'..'Z']}[$$y .. $$y+5] } 1..6 }, $$N) for 0..5 \\; P(\"%_grays\", $$C) \\; P( do { join '', map { \"%x7$${_}7$$_\" } 'A'..'X' }, $$N) \\; P(\"%_mIRC extended colours\", $$C) \\; my $$x \\; $$x .= sprintf \"\\cC99,%02d%02d\",$$_,$$_ for 0..15 \\; P($$x, $$N) \\; for my $$z (0..6) { my $$x \\; $$x .= sprintf \"\\cC99,%02d%02d\",$$_,$$_ for 16+($$z*12)..16+($$z*12)+11 \\; P($$x, $$N) }";
+  slap = "/me slaps $0 around a bit with a large trout;";
 };
 
 statusbar = {
@@ -263,12 +261,14 @@ keyboard = (
 ignores = (
   { mask = "TSwift"; level = "ALL"; },
   { mask = "BallSac"; level = "ALL"; },
-  { mask = "SICPBot"; level = "ALL"; },
-  { mask = "andri"; level = "ALL"; }
+  { mask = "SICPBot"; level = "MSGS"; },
+  { mask = "Onee-chan"; level = "MSGS"; }
 );
 
 hilights = (
-  { text = "phallus"; nick = "yes"; word = "yes"; fullword = "yes"; },
-  { text = "monkfish"; nick = "yes"; word = "yes"; },
-  { text = "big_moist"; nick = "yes"; word = "yes"; }
+  { text = "phallus"; nick = "yes"; fullword = "yes"; },
+  { text = "monkfish"; nick = "yes"; fullword = "yes"; },
+  { text = "big_moist"; nick = "yes"; fullword = "yes"; },
+  { text = "benis"; nick = "yes"; fullword = "yes"; },
+  { text = "balls"; nick = "yes"; fullword = "yes"; }
 );
