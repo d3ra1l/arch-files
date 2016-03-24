@@ -27,22 +27,22 @@ if [ "`mpc 2>&1 | wc -l`" -gt "1" ]; then
 	artb=`mpc current -f %artist% | sed -e 's/\//-/g'| sed -e 's/|/-/g' | sed -e 's/\://g'`
   albb=`mpc current -f %album% | sed -e 's/\//-/g'| sed -e 's/|/-/g'`
 
-  #refactor this
-  lena=`expr "$arta" : '.*'`
+  #???
+  lena=`echo ${#arta}`
   if [ "$lena" -gt 19 ]; then
     art=`echo ${arta:0:18}…`
   else
     art=$arta
   fi
-
-  lenb=`expr "$alba" : '.*'`
+  
+  lenb=`echo ${#alba}`
   if [ "$lenb" -gt 20 ]; then
     alb=`echo ${alba:0:19}…`
   else
     alb=$alba
   fi
 
-  lenc=`expr "$so" : '.*'`
+  lenc=`echo ${#so}`
   if [ "$lenc" -gt 27 ]; then
     trim=`echo $so | cut -c1-26`
     np1=`echo $trim…`
