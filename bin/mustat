@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 trim_method="roll"		# Can be {Trim or roll).
-max_len=20				# Trim output to this length.
-roll_speed=2			# Roll speed in chraacters per second.
+max_len=20						# Trim output to this length.
+roll_speed=2					# Roll speed in chraacters per second.
 
 #taken from tmux-powerline
 roll_text() {
@@ -88,4 +88,3 @@ while getopts "sia" opt; do
 		*)      echo "not a valid option!" ;;
 	esac
 done
-

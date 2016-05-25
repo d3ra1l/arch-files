@@ -21,7 +21,7 @@ ALIGN="center"
 
 tunnel=`netstat -atn | grep ":11590"`
 if [ "$tunnel" == "" ]; then
-	$(ssh -p 8149 -ND port user@address) &
+	$(ssh -p 8149 -ND 11590 diavorian@74.141.47.234) &
 	msg="Tunnel is turning on."
 else
 	msg="Tunnel is already on."

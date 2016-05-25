@@ -9,9 +9,9 @@ FONT="-*-cure-*-*-*-*-11-*-*-*-*-*-*-*"
 YPOS="14"
 
 if [ $(( $(xdotool getmouselocation | awk -F " " '{print $2}' | cut -d ":" -f 2) > $YPOS )) ]; then
-XPOS="1467"
+	XPOS="1467"
 else
-XPOS=$(( $(xdotool getmouselocation | awk -F " " '{print $1}' | cut -d ":" -f 2) - 175 ))
+	XPOS=$(( $(xdotool getmouselocation | awk -F " " '{print $1}' | cut -d ":" -f 2) - 175 ))
 fi
 
 HEIGHT="12"
@@ -25,7 +25,7 @@ if [ "$tunnel" == "" ]; then
 	msg="Tunnel is already off."
 else
 	$(pkill ssh) &
-        msg="Tunnel is turning off."
+	msg="Tunnel is turning off."
 fi
 
 (echo "$msg"; sleep 1.5) | dzen2 -bg $BG2 -fg $FG2 -fn $FONT -x $XPOS -y $YPOS -h $HEIGHT -w $WIDTH -sa $ALIGN -l $LINES -e 'onstart=uncollapse;button1=exit;button2=exit;button3=exit;button4=exit;button5=exit'

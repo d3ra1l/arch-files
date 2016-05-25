@@ -42,9 +42,6 @@ clear (){
 }
 
 help (){
-	echo " "
-	echo "todo, by phallus"
-	echo " "
 	echo "Usage: todo [-rceh] [-a entry] [-d line]"
 	echo " "
 	echo "A shitty CLI to-do list. Options are as follows."
