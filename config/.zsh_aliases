@@ -22,8 +22,6 @@ alias f2o='flac2ogg;..'
 alias a2f='for f in *.m4a; do ffmpeg -i "$f" "${f%.m4a}.flac"; done;rm *.m4a'
 
 #a bit of fun
-alias ygopro="cd ~/downloads/ygopro;./ygopro64"
-alias fuck='echo;gayt "fuck you too";echo'
 alias fucking='sudo'
 alias starwars='telnet towel.blinkenlights.nl'
 alias fort='fortune -a'
@@ -63,6 +61,10 @@ alias def="define"
 #connect to hdmi
 alias hdmi-on="xrandr --output HDMI1 --mode 1920x1080;xset s off -dpms"
 alias hdmi-off="xrandr --output HDMI1 --off;xset s on +dpms"
+
+#electrum
+alias el='electrum'
+alias elt='electrum -g text'
 
 #music
 alias ncp='ncmpcpp'
@@ -135,7 +137,7 @@ export gbot=~/gitshit/bot
 
 gcp() {
  case $1 in
-  bin)     cp ~/bin $gconf/bin;$gconf ;;
+  bin)     cp ~/bin $gconf;$gconf ;;
   uc)      cp ~/.mozilla/firefox/*.default/chrome/userChrome.css $gstyc/userChrome.css;$gstyc ;;
   uc-t)    cp ~/.mozilla/firefox/*.default/chrome/userChrome.css $gstyc/userChrome-testing.css;$gstyc ;;
   4chan)   rm $gstyc/4chan.css;touch $gstyc/4chan.css;vim $gstyc/4chan.css;$gstyc ;;

@@ -13,7 +13,6 @@ set backspace=indent,eol,start
 set foldmethod=marker
 set number
 set scrolloff=5
-set ruler
 set noerrorbells
 set history=1000
 set wildmenu
@@ -28,9 +27,8 @@ set splitright
 set splitbelow
 set autochdir
 set autoindent
-"set viminfo=<9999
 
-" tab (as in the key)
+" tab settings (as in the key)
 set smarttab
 set expandtab
 set shiftwidth=2
@@ -58,7 +56,7 @@ set undodir=~/.vim/undo,/tmp " where to save undo histories
 set undolevels=1000 " How many undos
 set undoreload=1000 " number of lines to save for undo
 
-" cursorline
+" highlight current position
 set cursorline
 set cursorcolumn
 
@@ -142,7 +140,6 @@ filetype off
 filetype plugin on
 
 Bundle 'mhniz/vim-startify'
-Bundle 'gmarik/vundle'
 Bundle 'danro/rename.vim'
 Bundle 'majustsuhi/tagbar' 
 Bundle 'Raimondi/delimitMate'

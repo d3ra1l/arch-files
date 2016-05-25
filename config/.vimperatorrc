@@ -27,7 +27,7 @@ map q <Nop>
 map Q <Nop>
 
 "" bookmarks/commonly visited sites
-map <C-1> tduelingnetwork.com<Return>
+map <C-1> tbato.to<Return>
 map <C-2> tmail.google.com<Return>
 map <C-3> tfacebook.com<Return>
 map <C-4> tlast.fm<Return>
@@ -37,6 +37,9 @@ map <C-7> ttumblr.com<Return>
 map <C-8> thttps://reddit.com<Return>
 map <C-9> trutracker.org<Return>
 map <C-0> thttps://what.cd<Return>
+noremap gp tabout:preferences<Return>
+noremap gc tchrome://ublock0/content/dashboard.html<Return>
+noremap gs tabout:stylish-edit?id=45<Return>
 noremap b ohttp://boards.4chan.org/
 noremap B thttp://boards.4chan.org/
 
@@ -52,4 +55,3 @@ function toggle_bottombar() {
     bb.style.overflow = (bb.style.height == '') ? '' : 'hidden';
     }
 EOF
-

@@ -43,7 +43,6 @@ channels = (
   { name = "#/g/sicp"; chatnet = "rizon"; autojoin = "yes"; },
   { name = "#/g/summer"; chatnet = "rizon"; autojoin = "no"; },
   { name = "#/music/"; chatnet = "rizon"; autojoin = "yes"; },
-  { name = "#/x/philes"; chatnet = "rizon"; autojoin = "yes"; },
   { name = "#wormhole"; chatnet = "rizon"; autojoin = "yes"; }
 );
 
@@ -262,7 +261,7 @@ ignores = (
   { mask = "TSwift"; level = "ALL"; },
   { mask = "BallSac"; level = "ALL"; },
   { mask = "SICPBot"; level = "MSGS"; },
-  { mask = "Onee-chan"; level = "MSGS"; }
+  { mask = "Onee-chan"; level = "ALL"; }
 );
 
 hilights = (

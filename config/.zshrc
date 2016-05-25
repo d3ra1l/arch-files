@@ -22,6 +22,11 @@ ZSH_HIGHLIGHT_STYLES[hashed-command]='fg=red'
 ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=magenta,bold'
 ZSH_HIGHLIGHT_STYLES[single-hyphen-opton]='fg=red'
 
+#infinality settings
+export INFINALITY_FT_BRIGHTNESS="-10"
+export INFINALITY_FT_FILTER_PARAMS="16 20 28 20 16"
+
+
 #fix home, del, et. al. keys
 bindkey "^[[1~" beginning-of-line
 bindkey "^[[4~" end-of-line
@@ -49,7 +54,7 @@ autoload -U compinit && compinit
 #enable 256-color mode
 export TERM='rxvt-256color'
 
-#set default editor (vim mustard rice)
+#set default editor
 export EDITOR="vim"
 
 #start X at login

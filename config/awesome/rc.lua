@@ -119,7 +119,7 @@ end
 tags = {
   names = { "⮫", "⮬", "⮭", "⮮", "⮯" },
   layouts = { layouts[2], layouts[2], layouts[1], layouts[1], layouts[1] },
-  mwfact = .54
+  mwfact = .53
 }
 
 for s = 1, screen.count() do
@@ -365,7 +365,7 @@ for s = 1, screen.count() do
     left_layout:add(spacer)
     left_layout:add(spacer)
     left_layout:add(spacer)
-    left_layout:add(spacer)
+    --left_layout:add(spacer)
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
@@ -534,7 +534,6 @@ awful.rules.rules = {
     }, 
     callback = awful.client.setslave
   },
-  
   --album art popup
   { rule = { name = "aart" },
     properties = { 
@@ -543,46 +542,30 @@ awful.rules.rules = {
       floating = true,
       raise = true,
       ontop = true,
-      sticky = true, 
-      skip_taskbar = true }
-  },
-
+      sticky = true,
+      skip_taskbar = true } },
   { rule = { instance = "sun-awt-X11-XWindowPeer"},
-    properties = { floating = true, border_width = 0 } 
-  },
-  
+    properties = { floating = true, border_width = 0 } },
   { rule = { instance = "Download" },
-    properties = { floating = true } 
-  },
-
+    properties = { floating = true } },
   { rule = { name = "Firefox Preferences" },
-    properties = { floating = true } 
-  },
-  
+    properties = { floating = true } },
   { rule = { instance = "Devtools" },
-    properties = { floating = true } 
-  },
-
+    properties = { floating = true } },
   { rule = { name = "ImageMagick:" },
-    properties = { floating = true } 
-  },
-
+    properties = { floating = true } },
   { rule = { class = "mpv" },
-    properties = { floating = true } 
-  },
-
+    properties = { floating = true } },
   { rule_any = { class = { "feh" } },
-    properties = { floating = true }
-  },
-
+    properties = { floating = true } },
+  { rule_any = { class = { "Steam" } },
+    properties = { 
+      floating = true,
+      tag = tags[1][2] } },
   { rule = { name = "llpp" },
-    callback = function (c) c:swap(awful.client.getmaster()) end,
-  },
-
+    callback = function (c) c:swap(awful.client.getmaster()) end, },
   { rule_any = { instance = { "Navigator" } },
-    callback = function (c) c:swap(awful.client.getmaster()) end,
-  }
-
+    callback = function (c) c:swap(awful.client.getmaster()) end, }
 }
 -- }}}
 
