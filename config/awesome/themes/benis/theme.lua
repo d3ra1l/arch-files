@@ -26,8 +26,8 @@ theme.tasklist_fg_focus = "#dadada"
 theme.taglist_fg_normal = "#a2a2a2"
 
 theme.border_width  = 2
-theme.border_normal = "#20202f"
-theme.border_focus  = "#30303a"
+theme.border_normal = "#30303a"
+theme.border_focus  = "#595961"
 theme.border_marked = "#646464"
 theme.border_custom = "#a2a2a2"
 
@@ -58,6 +58,7 @@ theme.layout = {
     tile      = " ⮘ ",
     tileleft  = " ⮙ ",
     dtile     = " ⮨ ",
+    stile     = " ⮨ ",
 }
 
 theme.icon_theme = nil

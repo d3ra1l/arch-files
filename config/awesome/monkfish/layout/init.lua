@@ -1,3 +1,3 @@
 require("monkfish.layout.dtile")
-require("monkfish.layout.tile")
+require("monkfish.layout.stile")
 module("monkfish.layout")

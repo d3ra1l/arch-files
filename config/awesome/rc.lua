@@ -58,7 +58,8 @@ modkey     = "Mod1"
 local layouts =
 {
   awful.layout.suit.floating,
-  monkfish.layout.tile,
+  awful.layout.suit.tile,
+  monkfish.layout.stile,
 }
 
 -- colorizing fxns
@@ -118,7 +119,7 @@ end
 -- Define a tag table which hold all screen tags.
 tags = {
   names = { "⮫", "⮬", "⮭", "⮮", "⮯" },
-  layouts = { layouts[2], layouts[2], layouts[1], layouts[1], layouts[1] },
+  layouts = { layouts[3], layouts[3], layouts[1], layouts[1], layouts[1] },
   mwfact = .53
 }
 
@@ -285,8 +286,14 @@ end, 1)
 volwidget = wibox.widget.textbox()
 monkfish.widgets.vol.register(volwidget)
 vicious.register(volwidget, vicious.widgets.volume,
-function (widget, args)
-  local volicon = colorizei(" ⮜ ", fgr, bgr)
+  function (widget, args)
+    if args[1] > 65 then
+      volicon = colorizei(" ⮟ ", fgr, bgr)
+    elseif args[1] > 35 and args[1] < 64 then
+      volicon = colorizei(" ⮞ ", fgr, bgr)
+    else
+      volicon = colorizei(" ⮝ ", fgr, bgr)
+    end
   return ''..volicon..''
 end, 1, "Master")
 --}}}
@@ -537,7 +544,7 @@ awful.rules.rules = {
   --album art popup
   { rule = { name = "aart" },
     properties = { 
-      border_color = beautiful.border_focus,
+      border_color = beautiful.border_normal,
       focus = false,
       floating = true,
       raise = true,
