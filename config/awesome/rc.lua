@@ -287,12 +287,16 @@ volwidget = wibox.widget.textbox()
 monkfish.widgets.vol.register(volwidget)
 vicious.register(volwidget, vicious.widgets.volume,
   function (widget, args)
-    if args[1] > 65 then
-      volicon = colorizei(" ⮟ ", fgr, bgr)
-    elseif args[1] > 35 and args[1] < 64 then
-      volicon = colorizei(" ⮞ ", fgr, bgr)
+    if args[2] == "♩" then
+      volicon = colorizei(" ⮠ ", fgr, bgr)
     else
-      volicon = colorizei(" ⮝ ", fgr, bgr)
+      if args[1] > 65 then
+        volicon = colorizei(" ⮟ ", fgr, bgr)
+      elseif args[1] > 35 and args[1] < 64 then
+        volicon = colorizei(" ⮞ ", fgr, bgr)
+      else
+        volicon = colorizei(" ⮝ ", fgr, bgr)
+      end
     end
   return ''..volicon..''
 end, 1, "Master")
@@ -569,6 +573,7 @@ awful.rules.rules = {
     properties = { 
       floating = true,
       tag = tags[1][2] } },
+  --these break with 3.5.9
   { rule = { name = "llpp" },
     callback = function (c) c:swap(awful.client.getmaster()) end, },
   { rule_any = { instance = { "Navigator" } },
