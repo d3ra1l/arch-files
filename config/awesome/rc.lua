@@ -163,7 +163,7 @@ mymainmenu = awful.menu({ items = {
     --{ "⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶", }, --seperator, if desired
     { "⮩     term", terminal },
     { "⮷     wifi", terminal .. " -e sudo wifi-menu" },
-    { "⮠  shimeji", "/home/phallus/bin/shimeji-run" },
+    { "❤  shimeji", "/home/phallus/bin/shimeji-run" },
     { "⮤    scrot", "/home/phallus/bin/scr" },
     { "⮗  restart", awesome.restart },
     { "⮪     lock", "/home/phallus/bin/i3lock-w" }
