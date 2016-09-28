@@ -17,7 +17,7 @@ function register(mywidget)
       end),
     awful.button({ }, 3,
       function()
-          awful.util.spawn_with_shell("urxvt -e alsamixer")
+          awful.util.spawn_with_shell("amixer -D pulse set Master 1+ toggle")
       end)
    ))
 end

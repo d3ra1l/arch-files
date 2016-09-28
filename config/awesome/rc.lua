@@ -287,7 +287,7 @@ volwidget = wibox.widget.textbox()
 monkfish.widgets.vol.register(volwidget)
 vicious.register(volwidget, vicious.widgets.volume,
   function (widget, args)
-    if args[2] == "♩" then
+    if args[2] == "♩" or args[1] == 0 then
       volicon = colorizei(" ⮠ ", fgr, bgr)
     else
       if args[1] > 65 then
