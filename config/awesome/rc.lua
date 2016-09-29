@@ -290,9 +290,9 @@ vicious.register(volwidget, vicious.widgets.volume,
     if args[2] == "♩" or args[1] == 0 then
       volicon = colorizei(" ⮠ ", fgr, bgr)
     else
-      if args[1] > 65 then
+      if args[1] > 64 then
         volicon = colorizei(" ⮟ ", fgr, bgr)
-      elseif args[1] > 35 and args[1] < 64 then
+      elseif args[1] > 35 and args[1] < 65 then
         volicon = colorizei(" ⮞ ", fgr, bgr)
       else
         volicon = colorizei(" ⮝ ", fgr, bgr)
