@@ -566,7 +566,12 @@ awful.rules.rules = {
   { rule = { name = "ImageMagick:" },
     properties = { floating = true } },
   { rule = { class = "mpv" },
-    properties = { floating = true } },
+    properties = { floating = true },},
+  --{ rule = { class = "mpv" },
+    --properties = { 
+      --floating = true, 
+      --maximized_horizontal = true, 
+      --maximized_vertical = true },},
   { rule_any = { class = { "feh" } },
     properties = { floating = true } },
   { rule_any = { class = { "Steam" } },

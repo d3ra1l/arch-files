@@ -3,6 +3,7 @@
 # frontend for:            cuetools, shntool, mp3splt
 # optional dependencies:    flac, mac, wavpack, ttaenc
 # v1.3 sen
+# i didnt write this shit lol
 
 
 SDIR=`pwd`

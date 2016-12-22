@@ -59,8 +59,8 @@ define() {
 alias def="define"
 
 #connect to hdmi
-alias hdmi-on="xrandr --output HDMI1 --mode 1920x1080;xset s off -dpms"
-alias hdmi-off="xrandr --output HDMI1 --off;xset s on +dpms"
+alias hdmi-on="xrandr --output HDMI1 --mode 1920x1080;xset s off -dpms;nitrogen --restore --head=-1; amixer -q set Speaker mute"
+alias hdmi-off="xrandr --output HDMI1 --off;xset s on +dpms;nitrogen --restore --head=0; amixer -q set Speaker unmute"
 
 #electrum
 alias el='electrum'
@@ -74,8 +74,8 @@ alias f2k='wine ~/.wine/drive_c/users/phallus/Desktop/foobar2000/foobar2000.exe'
 alias nr='nitrogen --restore'
 
 #ls
-alias ls='ls -F --color=auto'
-alias la='ls -aF --color=auto'
+alias ls='ls -F'
+alias la='ls -aF'
 alias ll='ls -lhF'
 
 #archives
@@ -87,6 +87,12 @@ alias u7z='7za e'
 #pkill
 alias pk='sudo pkill'
 alias pkx='sudo pkill X'
+
+#pulseaudio
+alias pr='pulseaudio -k;pulseaudio --start'
+
+#xbox controller
+alias xbox="sudo xboxdrv --config ~/stuff/mouse.xboxdrv --chatpad-no-init"
 
 #screen
 alias rackets='screen -S racket racket'
@@ -210,6 +216,7 @@ conf() {
   vimp)    vim ~/.vimperatorrc ;;
   mutt)    vim ~/.muttrc ;;
   vimmode) vim ~/.irssi/vim_moderc ;;
+  xbox)    vim ~/stuff/mouse.xboxdrv ;;
   *)       echo "unknown conf: $1" ;;  
  esac
 }

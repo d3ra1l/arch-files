@@ -214,6 +214,7 @@ au FileType * let t:vicle_screen_wn = '0'
 set t_Co=256
 hi CursorLine ctermbg=7 cterm=bold
 hi CursorLineNr ctermfg=238 ctermbg=235
+"hi CursorColumn ctermbg=0 cterm=bold
 hi LineNr ctermfg=7
 hi Constant ctermfg=2
 hi Statement ctermfg=1
