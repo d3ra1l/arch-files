@@ -113,25 +113,6 @@ local function tile_group(cls, wa, orientation, fact, group)
         geom = cls[c]:geometry(geom)
    end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     return used_size
 end
 
@@ -208,17 +189,6 @@ local function tile(param, orientation)
         end
         place_master = not place_master
     end
-
-
-
-
-
-
-
-
-
-
-
 
 end
 

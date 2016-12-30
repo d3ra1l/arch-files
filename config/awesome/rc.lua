@@ -46,9 +46,9 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/home/phallus/.config/awesome/themes/benis/theme.lua")
+--beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 terminal   = "urxvt"
-bindir     = "/home/phallus/bin"
 browser    = os.getenv("BROWSER") or "firefox"
 editor     = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
@@ -59,7 +59,7 @@ local layouts =
 {
   awful.layout.suit.floating,
   awful.layout.suit.tile,
-  monkfish.layout.stile,
+  monkfish.layout.stile
 }
 
 -- colorizing fxns
@@ -133,48 +133,45 @@ end
 
 -- }}}
 
--- {{{ Menu
--- Create a laucher widget and a main menu
+-- {{{ menu
+-- create a laucher widget and a main menu
+-- submenus don't fucking work
+
 myawesomemenu = {
   { "manual", terminal .. " -e man awesome" },
   { "edit config", editor_cmd .. " " .. awesome.conffile },
   { "restart", awesome.restart },
-  { "quit", awesome.quit },
-}
-mygamesmenu = {
-  { "ut4", "UnrealTournament" },
-  { "ygopro", "/home/bin/phallus/yg" },
-  { "marathon1", "alephone-marathon" },
-  { "marathon2", "alephone-marathon2" },
-  { "marathoni", "alephone-infinity" },
+  { "quit", awesome.quit }
 }
 myscriptsmenu = {
   { "shimeji", "/home/phallus/bin/shimeji-run" },
   { "scrot", "/home/phallus/bin/scr" },
   { "set wall", "/home/phallus/bin/nr" },
-  { "get cover", "/home/phallus/bin/cover_fetcher" },
+  { "get cover", "/home/phallus/bin/cover_fetcher" }
 }
 
-mymainmenu = awful.menu({ items = {
-    --submenus don't work, dunno why
-    --{ "games", mygamesmenu },
-    --{ "awesome", myawesomemenu },
-    --{ "scripts", myscriptsmenu },
-    --{ "⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶", }, --seperator, if desired
-    { "⮩     term", terminal },
-    { "⮷     wifi", terminal .. " -e sudo wifi-menu" },
-    { "❤  shimeji", "/home/phallus/bin/shimeji-run" },
-    { "⮤    scrot", "/home/phallus/bin/scr" },
-    { "⮗  restart", awesome.restart },
-    { "⮪     lock", "/home/phallus/bin/i3lock-w" }
+mymainmenu = awful.menu({
+  --{ "games", mygamesmenu },
+  --{ "awesome", myawesomemenu },
+  --{ "scripts", myscriptsmenu },
+  --{ "⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶⮶", }, --seperator, if desired
+  items = {
+    { "awesome", myawesomemenu },
+    { "scripts", myscriptsmenu },
+    { "⮩      term", terminal },
+    { "⮷      wifi", terminal .. " -e sudo wifi-menu" },
+    { "❤   shimeji", "/home/phallus/bin/shimeji-run" },
+    { "⮤     scrot", "/home/phallus/bin/scr" },
+    { "⯉  nitrogen", "nitrogen" },
+    { "⮗   restart", awesome.restart },
+    { "⮪      lock", "/home/phallus/bin/i3lock-w" }
   }
 })
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
 
--- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+-- menubar configuration
 -- }}}
 
 -- {{{ Tasklist

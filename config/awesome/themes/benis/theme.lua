@@ -41,8 +41,8 @@ theme.taglist_squares_sel   = "/home/phallus/.config/awesome/themes/benis/taglis
 theme.taglist_squares_unsel = "/home/phallus/.config/awesome/themes/benis/taglist/squarew-g.png"
 
 theme.menu_submenu_icon = "/home/phallus/.config/awesome/themes/benis/submenu3.png"
-theme.menu_height = 11
-theme.menu_width  = 75
+theme.menu_height = 15
+theme.menu_width  = 87
 theme.menu_border_color = "#595961"
 theme.menu_bg_focus = "#30303a"
 
