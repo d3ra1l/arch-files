@@ -95,6 +95,9 @@ local function master(c)
 end
 
 -- move client according to its state
+-- to remove confusion: 
+-- a only affects a tiled windows and determines whether or not to adjust the size of the master or slave windows
+-- b affects floating windows and determines whether to move or resize the window
 local function move(c, x, y, mw, a, b) 
   -- tests if client is floating or tiled
   if floats(c) then
