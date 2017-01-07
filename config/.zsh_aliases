@@ -59,8 +59,13 @@ define() {
 alias def="define"
 
 #connect to hdmi
-alias hdmi-on="xrandr --output HDMI1 --mode 1920x1080;xset s off -dpms;nitrogen --restore --head=-1; amixer -q set Speaker mute"
+alias hdmi-on="xrandr;xrandr --output HDMI1 --mode 1920x1080;xset s off -dpms;nitrogen --restore --head=-1; amixer -q set Speaker mute"
 alias hdmi-off="xrandr --output HDMI1 --off;xset s on +dpms;nitrogen --restore --head=0; amixer -q set Speaker unmute"
+
+#disable sleep
+#only works with old-ass drivers
+alias sleep-off='xset s off -dpms'
+alias sleep-on='xset s on +dpms'
 
 #electrum
 alias el='electrum'
@@ -69,6 +74,7 @@ alias elt='electrum -g text'
 #music
 alias ncp='ncmpcpp'
 alias f2k='wine ~/.wine/drive_c/users/phallus/Desktop/foobar2000/foobar2000.exe'
+alias viz='mpdviz --viz=spectrum -i'
 
 #nitrogen
 alias nr='nitrogen --restore'
@@ -165,6 +171,7 @@ gcp() {
   awesome) cp ~/.config/awesome $gconf/config;$gconf ;;
   gterm)   cp ~/.config/gconf/apps/gnome-terminal/ $gconf/config  ;;
   compton) cp ~/.compton.conf $gconf/config/.compton.conf;$gconf ;;
+  ranger)  cp ~/.config/ranger/rifle.conf $gconf/config/ranger/; cp ~/.config/ranger/rc.conf $gconf/config/ranger/; cp ~/.config/ranger/colorschemes $gconf/config/ranger/;$gconf ;;
   *)       echo "$1 not found!" ;;
  esac
 }
