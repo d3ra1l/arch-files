@@ -16,6 +16,17 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 --}}}
 
+-- {{{ Things to do
+
+-- remove dependencies to daze-based widgets
+--  move functions to call dzen scripts from monkfish widget to the rc.lua
+--  move stile script to main awful library
+-- resolve issue in which album art popup intermittently disobeys defined rules
+-- resolve issue in which defined submenus fail to appear in root menu
+-- continue general refactoring following a current towards improving my current setup's lack of sanity and a future adaption to awesome 4.0
+
+-- }}}
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -116,6 +127,7 @@ local function move(c, x, y, mw, a, b)
     end
   end
 end
+
 -- }}}
 
 -- {{{ Tag
@@ -164,8 +176,9 @@ mymainmenu = awful.menu({
     { "⮩      term", terminal },
     { "⮷      wifi", terminal .. " -e sudo wifi-menu" },
     { "❤   shimeji", "/home/phallus/bin/shimeji-run" },
-    { "⮤     scrot", "/home/phallus/bin/scr" },
-    { "⯉  nitrogen", "nitrogen" },
+    { "⯉     scrot", "/home/phallus/bin/scr" },
+    { "⮤    thunar", "thunar" },
+    { "⮼  nitrogen", "nitrogen" },
     { "⮗   restart", awesome.restart },
     { "⮪      lock", "/home/phallus/bin/i3lock-w" }
   }
