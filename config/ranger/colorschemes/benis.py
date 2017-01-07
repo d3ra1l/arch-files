@@ -16,15 +16,17 @@ class Default(ColorScheme):
 			if context.empty or context.error:
 				attr |= bold
 				bg = red
-				fg = black
+				fg = white
 			if context.border:
 				attr |= bold
-				fg = black
+				fg = white
 			if context.media:
 				if context.image:
+					attr |= bold
 					fg = white
 				else:
-					fg = red
+					attr |= bold
+					fg = white
 			if context.container:
 				attr |= bold
 				fg = magenta
@@ -51,7 +53,7 @@ class Default(ColorScheme):
 				else:
 					fg = red
 			if not context.selected and (context.cut or context.copied):
-				fg = black
+				fg = white
 				attr |= bold
 			if context.main_column:
 				if context.selected:
