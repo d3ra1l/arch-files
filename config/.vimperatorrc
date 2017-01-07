@@ -1,6 +1,6 @@
 "" general settings
 set autocomplete=false
-set defsearch=google
+set defsearch=startpage
 colors phallus
 
 "" key bindings and remappings
@@ -25,18 +25,20 @@ noremap a <Nop>
 map u <Nop>
 map q <Nop>
 map Q <Nop>
+"map y <Nop>
+"map Y <Nop>
 
 "" bookmarks/commonly visited sites
 map <C-1> tbato.to<Return>
-map <C-2> tmail.google.com<Return>
-map <C-3> tfacebook.com<Return>
+map <C-2> thttps://mail.google.com<Return>
+map <C-3> thttps://feedly.com<Return>
 map <C-4> tlast.fm<Return>
 map <C-5> trateyourmusic.com<Return>
 map <C-6> tyoutube.com<Return>
-map <C-7> ttumblr.com<Return>
+map <C-7> tebay.com<Return>
 map <C-8> thttps://reddit.com<Return>
 map <C-9> trutracker.org<Return>
-map <C-0> thttps://what.cd<Return>
+map <C-0> thttps://nyaa.se<Return>
 noremap gp tabout:preferences<Return>
 noremap gc tchrome://ublock0/content/dashboard.html<Return>
 noremap gs tabout:stylish-edit?id=45<Return>
