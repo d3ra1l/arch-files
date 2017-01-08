@@ -128,7 +128,6 @@ local function move(c, x, y, mw, a, b)
     end
   end
 end
-
 -- }}}
 
 -- {{{ Tag
@@ -313,7 +312,6 @@ end, 1)
 --}}}
 
 -- vol widget {{{
-
 volwidget = wibox.widget.textbox()
 monkfish.widgets.vol.register(volwidget)
 vicious.register(volwidget, vicious.widgets.volume,
