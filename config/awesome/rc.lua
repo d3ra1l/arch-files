@@ -269,8 +269,6 @@ end
 clock_timer = timer({timeout = 1})
 clock_timer:connect_signal("timeout", function() myclock() end)
 clock_timer:start()
-  --end, 1)
-
 --}}}
 
 -- net widget {{{
