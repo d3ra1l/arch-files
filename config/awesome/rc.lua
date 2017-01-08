@@ -24,6 +24,7 @@ local menubar = require("menubar")
 -- resolve issue in which album art popup intermittently disobeys defined rules
 -- resolve issue in which defined submenus fail to appear in root menu
 -- continue general refactoring following a current towards improving my current setup's lack of sanity and a future adaption to awesome 4.0
+--  refactor time widget to use less power -- adapt to inbuilt vicious/awful clock widgets??
 
 -- }}}
 
@@ -258,14 +259,14 @@ function myclock()
     clockicon = colorizei(" ⯊ ", fgr, bgr)
   elseif minute > 7 and minute < 23 then
     clockicon = colorizei(" ⮖ ", fgr, bgr)
-  elseif minute > 24 and minute < 38 then
+  elseif minute > 23 and minute < 38 then
     clockicon = colorizei(" ⯋ ", fgr, bgr)
-  else
+  elseif minute > 37 and minute < 52 then
     clockicon = colorizei(" ⯌ ", fgr, bgr)
   end
   mytextclock:set_markup(''..clockicon..' ')
 end
-clock_timer = timer({timeout = 0})
+clock_timer = timer({timeout = 1})
 clock_timer:connect_signal("timeout", function() myclock() end)
 clock_timer:start()
   --end, 1)
