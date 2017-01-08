@@ -251,7 +251,6 @@ vicious.register(batwidget, vicious.widgets.bat,
 mytextclock = wibox.widget.textbox()
 monkfish.widgets.calendar.register(mytextclock)
 function myclock()
-  local setmetatable = setmetatable
   local minute = tonumber(os.date("%M"))
   local clockicon = ""
   if minute > 52 or minute < 7 then
