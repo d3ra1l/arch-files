@@ -256,11 +256,11 @@ function myclock()
   local clockicon = ""
   if minute > 52 or minute < 7 then
     clockicon = colorizei(" ⯊ ", fgr, bgr)
-  elseif minute > 7 and minute < 23 then
+  elseif minute > 7 and minute < 24 then
     clockicon = colorizei(" ⮖ ", fgr, bgr)
   elseif minute > 23 and minute < 38 then
     clockicon = colorizei(" ⯋ ", fgr, bgr)
-  elseif minute > 37 and minute < 52 then
+  elseif minute > 37 and minute < 53 then
     clockicon = colorizei(" ⯌ ", fgr, bgr)
   end
   mytextclock:set_markup(''..clockicon..' ')
