@@ -248,9 +248,28 @@ vicious.register(batwidget, vicious.widgets.bat,
 --}}}
 
 -- time widget {{{
---mytextclock = awful.widget.textclock("<span color='#dfdfdf' background='#30303a'> ⮖ </span> %R - %a, %b %d  ")
-mytextclock = awful.widget.textclock("<span color='#dfdfdf' background='#30303a'> ⮖ </span> ")
+mytextclock = wibox.widget.textbox()
 monkfish.widgets.calendar.register(mytextclock)
+function myclock()
+  local setmetatable = setmetatable
+  local minute = tonumber(os.date("%M"))
+  local clockicon = ""
+  if minute > 52 or minute < 7 then
+    clockicon = colorizei(" ⯊ ", fgr, bgr)
+  elseif minute > 7 and minute < 23 then
+    clockicon = colorizei(" ⮖ ", fgr, bgr)
+  elseif minute > 24 and minute < 38 then
+    clockicon = colorizei(" ⯋ ", fgr, bgr)
+  else
+    clockicon = colorizei(" ⯌ ", fgr, bgr)
+  end
+  mytextclock:set_markup(''..clockicon..' ')
+end
+clock_timer = timer({timeout = 0})
+clock_timer:connect_signal("timeout", function() myclock() end)
+clock_timer:start()
+  --end, 1)
+
 --}}}
 
 -- net widget {{{
