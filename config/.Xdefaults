@@ -1,6 +1,4 @@
-! this colorscheme is fucked; black and white are switched. ncmpcpp, ranger, vim, irssi, zsh, tmux, and all related confs are affected. on new install: immediately switch the needed colors, address needed confs
-
-! for future reference, the affect programs are:
+! for future reference, the affected programs are:
 !   vim -- done
 !   ncmpcpp -- done
 !   irssi -- wip
