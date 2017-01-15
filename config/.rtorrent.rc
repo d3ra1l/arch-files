@@ -15,13 +15,24 @@ schedule = tied_directory,5,5,start_tied=
 schedule = low_diskspace,5,60,close_low_diskspace=100M
 
 ## Ports
+
 port_range = 49153-65535
 
 ## Other settings
+
 encryption = require
+network.xmlrpc.size_limit.set = 3M
+#log.open_file = "rtorrent", /var/log/rtorrent.log
+#log.add_output = "debug", "rtorrent"
 
 ## Colors
-active_fg_color = 0
-done_fg_color = 4
 
+#active_fg_color = 7
+#done_fg_color = 4
 
+## Sortings
+
+view_sort_current = main,greater=d.get_creation_date=
+system.method.insert = s,simple,"execute_nothrow=rtcontrol,--detach,-qV,\"$cat=*,$argument.0=,*\""
+system.method.insert = t,simple,"execute_nothrow=rtcontrol,--detach,-qV,\"$cat=\\\"alias=\\\",$argument.0=\""
+system.method.insert = f,simple,"execute_nothrow=rtcontrol,--detach,-qV,$argument.0="
