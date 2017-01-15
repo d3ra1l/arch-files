@@ -22,14 +22,12 @@ class Default(ColorScheme):
 				fg = black
 			if context.media:
 				if context.image:
-					attr |= bold
-					fg = black
+					fg = white
 				else:
-					attr |= bold
-					fg = black
+					fg = red
 			if context.container:
 				attr |= bold
-				fg = magenta
+				fg = white
 			if context.directory:
 				attr |= bold
 				fg = blue
@@ -41,7 +39,7 @@ class Default(ColorScheme):
 			if context.socket:
 				fg = magenta
 			if context.fifo or context.device:
-				fg = white
+				fg = black
 				if context.device:
 					attr |= normal
 			if context.link:
@@ -49,11 +47,11 @@ class Default(ColorScheme):
 			if context.tag_marker and not context.selected:
 				attr |= bold
 				if fg in (red, magenta):
-					fg = black
+					fg = white
 				else:
 					fg = red
 			if not context.selected and (context.cut or context.copied):
-				fg = black
+				fg = white
 				attr |= bold
 			if context.main_column:
 				if context.selected:
@@ -71,7 +69,7 @@ class Default(ColorScheme):
 			attr |= bold
 			if context.hostname:
 				attr |= bold
-				fg = context.bad and cyan or cyan
+				fg = context.bad and black or black
 			elif context.directory:
 				fg = cyan
 			elif context.tab:

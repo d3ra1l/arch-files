@@ -212,24 +212,25 @@ au FileType * let t:vicle_screen_wn = '0'
 "--------------
 
 set t_Co=256
-hi CursorLine ctermbg=7 cterm=bold
+hi CursorLine ctermbg=black cterm=bold "
 hi CursorLineNr ctermfg=238 ctermbg=235
-"hi CursorColumn ctermbg=0 cterm=bold
-hi LineNr ctermfg=7
+hi CursorColumn ctermbg=0 cterm=bold
+hi LineNr ctermfg=black
+hi Visual cterm=bold ctermbg=black
 hi Constant ctermfg=2
 hi Statement ctermfg=1
-hi MatchParen ctermfg=8 ctermbg=white cterm=none
+hi MatchParen ctermfg=15 ctermbg=black cterm=none
 hi TabLineFill term=bold cterm=bold ctermbg=235
 hi TabLine ctermfg=15 ctermbg=235 cterm=none
 hi TabLineSel ctermfg=Black ctermbg=none cterm=none
 hi VertSplit ctermfg=235 ctermbg=235 cterm=none
-hi StatusLine cterm=none ctermfg=0 ctermbg=7
+hi StatusLine cterm=none ctermfg=7 ctermbg=0
 hi StatusLineNC cterm=none ctermfg=235 ctermbg=235
-hi Normal ctermfg=0 ctermbg=none
+hi Normal ctermfg=7 ctermbg=none
 hi Directory ctermfg=4 cterm=none
 hi Folded ctermbg=235 cterm=none
-hi SpecialKey ctermfg=7
-hi Nontext ctermfg=7
+hi SpecialKey ctermfg=0
+hi Nontext ctermfg=0
 hi TagbarIcon ctermfg=red cterm=none
 hi TagbarHighlight ctermfg=red ctermbg=none
 hi TagbarScope ctermfg=blue ctermbg=none cterm=none

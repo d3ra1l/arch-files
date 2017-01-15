@@ -40,9 +40,9 @@ chatnets = {
 };
 
 channels = (
-  { name = "#/g/sicp"; chatnet = "rizon"; autojoin = "yes"; },
+  { name = "#/g/sicp"; chatnet = "rizon"; autojoin = "no"; },
   { name = "#/g/summer"; chatnet = "rizon"; autojoin = "no"; },
-  { name = "#/music/"; chatnet = "rizon"; autojoin = "yes"; },
+  { name = "#/music/"; chatnet = "rizon"; autojoin = "no"; },
   { name = "#wormhole"; chatnet = "rizon"; autojoin = "yes"; }
 );
 
@@ -214,8 +214,8 @@ settings = {
 
 
   "perl/core/scripts" = {
-    awl_display_key = "%W$H $Q $C  $S";
-    awl_display_key_active = "%K$H $Q $C  $S";
+    awl_display_key = "%K$H $Q $C  $S";
+    awl_display_key_active = "%W$H $Q $C  $S";
     awl_block = "15";
     awl_maxlines = "1";
     awl_placement = "top";
@@ -225,7 +225,7 @@ settings = {
     awl_all_disable = "no";
     awl_hide_data = "0";
     awl_prefer_name = "yes";
-    chanact_display = "%r$N%K|%W$C";
+    chanact_display = "%r$N%W|%K$C";
     chanact_filter = "1";
     chanact_header = " ";
     chanact_remove_hash = "no";
@@ -233,6 +233,7 @@ settings = {
     vim_mode_start_cmd = "yes";
     vim_mode_map_leader = " ";
     mpd_format = "/me \00311~\0034 ♥ \0036♪ \0036♫ \00312 ☄ \0030now playing:\00312 \"%TITLE\" \0030by\0034 %ARTIST \0030from the album\0039 %ALBUM \0033(%DATE) \00312☄  \0036♫ \0036♪ \0034♥ \00311~";
+    awl_shared_sbar = "OFF";
   };
 
   "fe-common/core" = {
@@ -261,13 +262,12 @@ ignores = (
   { mask = "TSwift"; level = "ALL"; },
   { mask = "BallSac"; level = "ALL"; },
   { mask = "SICPBot"; level = "MSGS"; },
-  { mask = "Onee-chan"; level = "ALL"; }
+  { mask = "Onee-chan"; level = "ALL"; },
+  { mask = "[420]"; level = "ALL"; }
 );
 
 hilights = (
   { text = "phallus"; nick = "yes"; fullword = "yes"; },
   { text = "monkfish"; nick = "yes"; fullword = "yes"; },
-  { text = "big_moist"; nick = "yes"; fullword = "yes"; },
-  { text = "benis"; nick = "yes"; fullword = "yes"; },
-  { text = "balls"; nick = "yes"; fullword = "yes"; }
+  { text = "big_moist"; nick = "yes"; fullword = "yes"; }
 );

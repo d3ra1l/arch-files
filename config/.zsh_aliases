@@ -98,7 +98,7 @@ alias pkx='sudo pkill X'
 alias pr='pulseaudio -k;pulseaudio --start'
 
 #xbox controller
-alias xbox="sudo xboxdrv --config ~/stuff/mouse.xboxdrv --chatpad-no-init"
+alias xbox="sudo pkill xboxdrv;sudo rmmod xpad;sudo xboxdrv --config ~/stuff/mouse.xboxdrv --chatpad-no-init"
 
 #screen
 alias rackets='screen -S racket racket'
