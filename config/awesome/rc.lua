@@ -21,6 +21,7 @@ local menubar = require("menubar")
 -- remove dependencies to daze-based widgets
 --  move functions to call dzen scripts from monkfish widget to the rc.lua
 --  move stile script to main awful library
+-- convert dzen scripts to use naughty
 -- resolve issue in which album art popup intermittently disobeys defined rules
 -- resolve issue in which defined submenus fail to appear in root menu
 -- continue general refactoring following a current towards improving my current setup's lack of sanity and a future adaption to awesome 4.0
@@ -90,9 +91,17 @@ end
 -- colors to use in the colorizing fxns
 fgr = theme.colorize_fg
 bgr = theme.colorize_bg
-bfg = theme.colorize_fgb
-bbg = theme.colorize_bgb
+bfg = theme.colorize_bfg
+bbg = theme.colorize_bbg
 wfg = theme.colorize_fgw
+
+red    = theme.colorize_red
+blue   = theme.colorize_blue
+green  = theme.colorize_green
+yellow = theme.colorize_yellow
+cyan   = theme.colorize_cyan
+purple = theme.colorize_purple
+npurp  = theme.colorize_npurp
 
 -- movement fxns
 -- test if given client floats
@@ -177,7 +186,8 @@ mymainmenu = awful.menu({
     { "⮷      wifi", terminal .. " -e sudo wifi-menu" },
     { "❤   shimeji", "/home/phallus/bin/shimeji-run" },
     { "⯉     scrot", "/home/phallus/bin/scr" },
-    { "⮤    thunar", "thunar" },
+    { "⮤    ranger", terminal .. " -e ranger" },
+    --{ "⮤    thunar", "thunar"},
     { "⮼  nitrogen", "nitrogen" },
     { "⮗   restart", awesome.restart },
     { "⮪      lock", "/home/phallus/bin/i3lock-w" }
@@ -229,18 +239,18 @@ vicious.register(batwidget, vicious.widgets.bat,
   function (widget, args)
     local bat = math.floor(args[2] / 10)
     if args[1] == "⌁" then
-      batico = colorizei(" ⮎ ", fgr, bgr)
+      batico = colorizei(" ⮎ ", fgr, blue)
     elseif args[1] == "↯" then
-      batico = colorizei(" ⮎ ", fgr, bgr)
+      batico = colorizei(" ⮎ ", fgr, blue)
     elseif args[1] == "+" then
-      batico = colorizei(" ⮒ ", fgr, bgr)
+      batico = colorizei(" ⮒ ", fgr, blue)
     else
       if args[2] > 59 then
-        batico = colorizei(" ⮏ ", fgr, bgr)
+        batico = colorizei(" ⮏ ", fgr, blue)
       elseif args[2] < 60 and args[2] > 20 then
-        batico = colorizei(" ⮑ ", fgr, bgr)
+        batico = colorizei(" ⮑ ", fgr, blue)
       else
-        batico = colorizei(" ⮐ ", wfg, bgr)
+        batico = colorizei(" ⮐ ", red, blue)
       end
     end
     return batico
@@ -254,13 +264,13 @@ function myclock()
   local minute = tonumber(os.date("%M"))
   local clockicon = ""
   if minute > 52 or minute < 7 then
-    clockicon = colorizei(" ⯊ ", fgr, bgr)
+    clockicon = colorizei(" ⯊ ", fgr, npurp)
   elseif minute > 7 and minute < 24 then
-    clockicon = colorizei(" ⮖ ", fgr, bgr)
+    clockicon = colorizei(" ⮖ ", fgr, npurp)
   elseif minute > 23 and minute < 38 then
-    clockicon = colorizei(" ⯋ ", fgr, bgr)
+    clockicon = colorizei(" ⯋ ", fgr, npurp)
   elseif minute > 37 and minute < 53 then
-    clockicon = colorizei(" ⯌ ", fgr, bgr)
+    clockicon = colorizei(" ⯌ ", fgr, npurp)
   end
   mytextclock:set_markup(''..clockicon..' ')
 end
@@ -276,13 +286,13 @@ vicious.register(netwidget, vicious.widgets.wifi,
 function (widget, args)
   local qual = tonumber(args["{link}"])
   if qual > 66 then
-    neticon = colorizei(" ⮷ ", fgr, bgr)  
+    neticon = colorizei(" ⮷ ", fgr, purple)
   elseif qual > 33 then
-    neticon = colorizei(" ⮸ ", fgr, bgr)
+    neticon = colorizei(" ⮸ ", fgr, purple)
   elseif qual > 0 then
-    neticon = colorizei(" ⮹ ", fgr, bgr)  
+    neticon = colorizei(" ⮹ ", fgr, purple)
   else
-    neticon = colorizei(" … ", fgr, bgr)  
+    neticon = colorizei(" … ", fgr, purple)
   end
   return ''..neticon..''
 end, 1, 'wlan0')
@@ -294,15 +304,15 @@ monkfish.widgets.mpd.register(mpdwidget)
 vicious.register(mpdwidget, vicious.widgets.mpd,
 function (widget, args)
   if args["{state}"] == "Stop" then 
-    muicon = colorizei(" ⮕ ", fgr, bgr)
+    muicon = colorizei(" ⮕ ", fgr, blue)
     return ''..muicon..''
   else
     if args["{state}"] == "Pause" then
-      muicon = colorizei(" ⮔ ", fgr, bgr)
+      muicon = colorizei(" ⮔ ", fgr, blue)
     elseif args["{state}"] == "Play" then
-      muicon = colorizei(" ⮓ ", fgr, bgr)
+      muicon = colorizei(" ⮓ ", fgr, blue)
     else
-      muicon = colorizei(" ⮕ ", fgr, bgr)
+      muicon = colorizei(" ⮕ ", fgr, blue)
       return ''..muicon..''
     end
       return ''..muicon..''
@@ -316,14 +326,14 @@ monkfish.widgets.vol.register(volwidget)
 vicious.register(volwidget, vicious.widgets.volume,
   function (widget, args)
     if args[2] == "♩" or args[1] == 0 then
-      volicon = colorizei(" ⮠ ", fgr, bgr)
+      volicon = colorizei(" ⮠ ", fgr, red)
     else
       if args[1] > 64 then
-        volicon = colorizei(" ⮟ ", fgr, bgr)
+        volicon = colorizei(" ⮟ ", fgr, red)
       elseif args[1] > 35 and args[1] < 65 then
-        volicon = colorizei(" ⮞ ", fgr, bgr)
+        volicon = colorizei(" ⮞ ", fgr, red)
       else
-        volicon = colorizei(" ⮝ ", fgr, bgr)
+        volicon = colorizei(" ⮝ ", fgr, red)
       end
     end
   return ''..volicon..''
