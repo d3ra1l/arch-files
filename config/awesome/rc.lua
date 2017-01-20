@@ -264,13 +264,13 @@ function myclock()
   local minute = tonumber(os.date("%M"))
   local clockicon = ""
   if minute > 52 or minute < 7 then
-    clockicon = colorizei(" ⯊ ", fgr, npurp)
-  elseif minute > 7 and minute < 24 then
-    clockicon = colorizei(" ⮖ ", fgr, npurp)
+    clockicon = colorizei(" ⯊ ", fgr, purple)
+  elseif minute > 6 and minute < 24 then
+    clockicon = colorizei(" ⮖ ", fgr, purple)
   elseif minute > 23 and minute < 38 then
-    clockicon = colorizei(" ⯋ ", fgr, npurp)
+    clockicon = colorizei(" ⯋ ", fgr, purple)
   elseif minute > 37 and minute < 53 then
-    clockicon = colorizei(" ⯌ ", fgr, npurp)
+    clockicon = colorizei(" ⯌ ", fgr, purple)
   end
   mytextclock:set_markup(''..clockicon..' ')
 end

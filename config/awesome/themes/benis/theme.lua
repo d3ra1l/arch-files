@@ -21,6 +21,7 @@ theme.colorize_yellow = "#e5cb64"
 theme.colorize_cyan   = "#83a29e"
 theme.colorize_purple = "#ac8ac1"
 theme.colorize_npurp  = "#ab93b9"
+theme.colorize_newbg  = "#303045"
 
 theme.bg_normal     = "#20202f"
 theme.bg_focus      = "#20202f"
@@ -40,7 +41,7 @@ theme.tasklist_fg_focus = "#dadada"
 theme.taglist_fg_normal = "#a2a2a2"
 
 theme.taglist_bg_focus    = theme.colorize_red
-theme.taglist_bg_occupied = "#303045"
+theme.taglist_bg_occupied = theme.colorize_newbg
 --theme.taglist_fg_occupied = theme.fg_focus
 theme.taglist_bg_urget    = theme.colorize_purple
 
