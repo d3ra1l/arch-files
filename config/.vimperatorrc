@@ -29,13 +29,13 @@ map Q <Nop>
 "map Y <Nop>
 
 "" bookmarks/commonly visited sites
-map <C-1> tbato.to<Return>
+map <C-1> tnetflix.com<Return>
 map <C-2> thttps://mail.google.com<Return>
 map <C-3> thttps://feedly.com<Return>
 map <C-4> tlast.fm<Return>
 map <C-5> trateyourmusic.com<Return>
 map <C-6> tyoutube.com<Return>
-map <C-7> tebay.com<Return>
+map <C-7> t8ch.net/leftypol/<Return>
 map <C-8> thttps://reddit.com<Return>
 map <C-9> trutracker.org<Return>
 map <C-0> thttps://nyaa.se<Return>
@@ -45,15 +45,34 @@ noremap gs tabout:stylish-edit?id=45<Return>
 noremap b ohttp://boards.4chan.org/
 noremap B thttp://boards.4chan.org/
 
-"" hide bar with ctrl-f1
-map <silent> <C-F1> :js toggle_bottombar()<CR>
+"javascript to hide statusbar
+noremap <silent> <C-F1> :js toggle_bottombar()<CR>
+noremap : :js toggle_bottombar('on')<CR>:
+noremap o :js toggle_bottombar('on')<CR>o
+noremap O :js toggle_bottombar('on')<CR>O
+noremap t :js toggle_bottombar('on')<CR>t
+noremap T :js toggle_bottombar('on')<CR>t
+noremap / :js toggle_bottombar('on')<CR>/
+cnoremap <CR> <CR>:js toggle_bottombar('off')<CR>
+cnoremap <Esc> <Esc>:js toggle_bottombar('off')<CR>
 
 :js << EOF
-function toggle_bottombar() {
+function toggle_bottombar(p) {
     var bb = document.getElementById('liberator-bottombar');
     if (!bb)
-        return;
+      return;
+    if (p == 'on'){
+      bb.style.height = '';
+      bb.style.overflow = '';
+      return;
+    }
+    if (p == 'off'){
+      bb.style.height = '0px';
+      bb.style.overflow = 'hidden';
+      return;
+    }
     bb.style.height = (bb.style.height == '') ? '0px' : '';
     bb.style.overflow = (bb.style.height == '') ? '' : 'hidden';
-    }
+  }
+toggle_bottombar();
 EOF
