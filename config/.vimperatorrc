@@ -18,7 +18,7 @@ noremap e <Esc>
 noremap i gi
 noremap ; :
 noremap , ;
-noremap R :source ~/.vimperatorrc<cr>
+noremap R :source ~/.vimperatorrc<CR>:js toggle_bottombar('off')<CR>
 noremap p u
 noremap m <Nop>
 noremap a <Nop>
@@ -29,32 +29,32 @@ map Q <Nop>
 "map Y <Nop>
 
 "" bookmarks/commonly visited sites
-map <C-1> tnetflix.com<Return>
-map <C-2> thttps://mail.google.com<Return>
-map <C-3> thttps://feedly.com<Return>
-map <C-4> tlast.fm<Return>
-map <C-5> trateyourmusic.com<Return>
-map <C-6> tyoutube.com<Return>
-map <C-7> t8ch.net/leftypol/<Return>
-map <C-8> thttps://reddit.com<Return>
-map <C-9> trutracker.org<Return>
-map <C-0> thttps://nyaa.se<Return>
-noremap gp tabout:preferences<Return>
-noremap gc tchrome://ublock0/content/dashboard.html<Return>
-noremap gs tabout:stylish-edit?id=45<Return>
-noremap b ohttp://boards.4chan.org/
-noremap B thttp://boards.4chan.org/
+map <C-1> tnetflix.com<CR>:js toggle_bottombar('off')<CR>
+map <C-2> thttps://mail.google.com<CR>:js toggle_bottombar('off')<CR>
+map <C-3> thttps://feedly.com<CR>:js toggle_bottombar('off')<CR>
+map <C-4> tlast.fm<CR>:js toggle_bottombar('off')<CR>
+map <C-5> trateyourmusic.com<CR>:js toggle_bottombar('off')<CR>
+map <C-6> tyoutube.com<CR>:js toggle_bottombar('off')<CR>
+map <C-7> t8ch.net/leftypol/<CR>:js toggle_bottombar('off')<CR>
+map <C-8> thttps://reddit.com<CR>:js toggle_bottombar('off')<CR>
+map <C-9> trutracker.org<CR>:js toggle_bottombar('off')<CR>
+map <C-0> thttps://nyaa.se<CR>:js toggle_bottombar('off')<CR>
+noremap gp tabout:preferences<CR>:js toggle_bottombar('off')<CR>
+noremap gc tchrome://ublock0/content/dashboard.html<CR>:js toggle_bottombar('off')<CR>
+noremap gs tabout:stylish-edit?id=45<CR>:js toggle_bottombar('off')<CR>
+noremap b :js toggle_bottombar('on')<CR>ohttp://boards.4chan.org/
+noremap B :js toggle_bottombar('on')<CR>thttp://boards.4chan.org/
 
 "javascript to hide statusbar
-noremap <silent> <C-F1> :js toggle_bottombar()<CR>
+noremap <silent> <C-F1> :js toggle_bottombar('on')<CR>
 noremap : :js toggle_bottombar('on')<CR>:
 noremap o :js toggle_bottombar('on')<CR>o
 noremap O :js toggle_bottombar('on')<CR>O
 noremap t :js toggle_bottombar('on')<CR>t
 noremap T :js toggle_bottombar('on')<CR>t
 noremap / :js toggle_bottombar('on')<CR>/
-cnoremap <CR> <CR>:js toggle_bottombar('off')<CR>
-cnoremap <Esc> <Esc>:js toggle_bottombar('off')<CR>
+noremap <CR> <CR>:js toggle_bottombar('off')<CR>
+noremap <Esc> <Esc>:js toggle_bottombar('off')<CR>
 
 :js << EOF
 function toggle_bottombar(p) {
