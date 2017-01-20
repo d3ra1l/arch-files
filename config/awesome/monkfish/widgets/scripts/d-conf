@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BG="#30303a"
+BG="#303045"
 FG1="#b4b4b4"
 FG2="#d0d0d0"
 YPOS="16"

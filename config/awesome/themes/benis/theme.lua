@@ -28,6 +28,8 @@ theme.bg_urgent     = "#20202f"
 theme.bg_minimize   = "#20202f"
 theme.bg_special    = "#30303a"
 theme.bg_systray    = theme.bg_normal
+--theme.taglist_bg_focus = "#30303a"
+
 
 theme.fg_normal     = "#b4b4b4"
 theme.fg_focus      = "#eeeeee"
@@ -38,8 +40,8 @@ theme.tasklist_fg_focus = "#dadada"
 theme.taglist_fg_normal = "#a2a2a2"
 
 theme.taglist_bg_focus    = theme.colorize_red
-theme.taglist_bg_occupied = theme.colorize_blue
-theme.taglist_fg_occupied = theme.fg_focus
+theme.taglist_bg_occupied = "#303045"
+--theme.taglist_fg_occupied = theme.fg_focus
 theme.taglist_bg_urget    = theme.colorize_purple
 
 theme.border_width  = 2
